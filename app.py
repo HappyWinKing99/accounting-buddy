@@ -61,9 +61,9 @@ st.markdown("""
         color: #FFFFFF !important;
     }
     
-    /* ALL BUTTONS - Make them GOLD with WHITE text */
+    /* ALL BUTTONS - Make them ROYAL BLUE with WHITE text */
     .stButton > button {
-        background-color: #CFB53B !important;
+        background-color: #002E5D !important;
         color: #FFFFFF !important;
         font-weight: bold !important;
         border: none !important;
@@ -71,7 +71,7 @@ st.markdown("""
     }
     
     .stButton > button:hover {
-        background-color: #B8A033 !important;
+        background-color: #003D7A !important;
         color: #FFFFFF !important;
     }
     
@@ -131,12 +131,12 @@ if st.session_state.page == 'welcome':
         # Custom styled button using HTML/CSS for royal blue square
         button_clicked = st.button("GO", on_click=go_to_main, use_container_width=True)
         
-        # Custom CSS to style the GO button - GOLD with white text
+        # Custom CSS to style the GO button - ROYAL BLUE with white text
         st.markdown("""
             <style>
-            /* Welcome page GO button - larger and gold */
+            /* Welcome page GO button - larger and royal blue */
             div[data-testid="stVerticalBlock"] > div:has(button) .stButton > button {
-                background-color: #CFB53B !important;
+                background-color: #002E5D !important;
                 color: white !important;
                 font-size: 24px !important;
                 font-weight: bold !important;
@@ -145,7 +145,7 @@ if st.session_state.page == 'welcome':
                 border: none !important;
             }
             div[data-testid="stVerticalBlock"] > div:has(button) .stButton > button:hover {
-                background-color: #B8A033 !important;
+                background-color: #003D7A !important;
             }
             </style>
         """, unsafe_allow_html=True)
