@@ -3,13 +3,23 @@ import pandas as pd
 import numpy as np
 
 # --- 1. APP CONFIGURATION (Must be the first command) ---
-# This sets the browser tab title, icon, AND dark mode
+# This sets the browser tab title, icon, AND forces dark mode
 st.set_page_config(
     page_title="Accounting Buddy", 
     page_icon="📊",
     initial_sidebar_state="collapsed",  # Hides sidebar on welcome page
     layout="centered"
 )
+
+# Force dark mode with custom theme
+st.markdown("""
+    <style>
+    /* Force dark background */
+    .stApp {
+        background-color: #0E1117;
+    }
+    </style>
+""", unsafe_allow_html=True)
 
 # --- 2. SESSION STATE SETUP (The "Memory") ---
 # Session state is like the app's memory - it remembers things even when the page updates
@@ -32,8 +42,16 @@ if st.session_state.page == 'welcome':
     col1, col2, col3 = st.columns([1, 2, 1])
     
     with col2:
-        # Display BYU Accounting Logo (using a working URL)
-        st.image("https://marriottschool.byu.edu/wp-content/uploads/2021/10/soa-logo.png", width=400)
+        # BYU Cougar Logo (simple, guaranteed to work)
+        st.markdown("""
+            <div style='text-align: center;'>
+                <svg width="200" height="200" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="50" cy="50" r="45" fill="#002E5D"/>
+                    <text x="50" y="40" font-size="20" fill="white" text-anchor="middle" font-weight="bold" font-family="Arial">BYU</text>
+                    <text x="50" y="65" font-size="12" fill="white" text-anchor="middle" font-family="Arial">ACCOUNTING</text>
+                </svg>
+            </div>
+        """, unsafe_allow_html=True)
         
         st.write("")
         st.write("")
@@ -311,5 +329,3 @@ elif st.session_state.page == 'main':
                 annual_dep = (cost - salvage) / life
                 st.success(f"✅ Annual Depreciation: **${annual_dep:,.2f}**")
                 st.info(f"Total Depreciable Amount: ${cost - salvage:,.2f}")
-            
-           
