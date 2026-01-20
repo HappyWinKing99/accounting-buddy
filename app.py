@@ -60,6 +60,25 @@ st.markdown("""
     section[data-testid="stSidebar"] h1 {
         color: #FFFFFF !important;
     }
+    
+    /* ALL BUTTONS - Make them GOLD with WHITE text */
+    .stButton > button {
+        background-color: #CFB53B !important;
+        color: #FFFFFF !important;
+        font-weight: bold !important;
+        border: none !important;
+        font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif !important;
+    }
+    
+    .stButton > button:hover {
+        background-color: #B8A033 !important;
+        color: #FFFFFF !important;
+    }
+    
+    /* Ensure button text is always white */
+    .stButton > button p {
+        color: #FFFFFF !important;
+    }
     </style>
 """, unsafe_allow_html=True)
 
@@ -112,24 +131,24 @@ if st.session_state.page == 'welcome':
         # Custom styled button using HTML/CSS for royal blue square
         button_clicked = st.button("GO", on_click=go_to_main, use_container_width=True)
         
-    # Custom CSS to style the button
-    st.markdown("""
-        <style>
-        /* Make button royal blue and square-ish */
-        .stButton > button {
-            background-color: #002E5D !important;
-            color: white !important;
-            font-size: 24px !important;
-            font-weight: bold !important;
-            padding: 20px 60px !important;
-            border-radius: 8px !important;
-            border: none !important;
-        }
-        .stButton > button:hover {
-            background-color: #003D7A !important;
-        }
-        </style>
-    """, unsafe_allow_html=True)
+        # Custom CSS to style the GO button - GOLD with white text
+        st.markdown("""
+            <style>
+            /* Welcome page GO button - larger and gold */
+            div[data-testid="stVerticalBlock"] > div:has(button) .stButton > button {
+                background-color: #CFB53B !important;
+                color: white !important;
+                font-size: 24px !important;
+                font-weight: bold !important;
+                padding: 20px 60px !important;
+                border-radius: 8px !important;
+                border: none !important;
+            }
+            div[data-testid="stVerticalBlock"] > div:has(button) .stButton > button:hover {
+                background-color: #B8A033 !important;
+            }
+            </style>
+        """, unsafe_allow_html=True)
 
 # --- 4. MAIN APP (Hidden until "Continue" is clicked) ---
 elif st.session_state.page == 'main':
