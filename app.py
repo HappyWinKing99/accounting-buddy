@@ -1307,17 +1307,7 @@ elif page == "📕 ACC 402 - Cost Accounting":
                 api_key = st.secrets["ANTHROPIC_API_KEY"]
                 
                 # ====================================================================
-                # PASTE YOUR FULL TEXTBOOK CONTENT BELOW THIS LINE
-                # ====================================================================
-                FULL_TEXTBOOK_CONTENT = """
-=== PASTE YOUR COMPLETE TEXTBOOK CONTENT HERE ===
-
-You'll copy and paste all your textbook chapters (1, 3, 4, 6, 7) here.
-Make sure it's between the triple quotes.
-"""
-                # ====================================================================
-                # END OF TEXTBOOK CONTENT
-                # ====================================================================
+            
                 
                 # Prepare system prompt with FULL textbook content
                 system_prompt = f"""You are the Managerial Accounting Master Tutor, a specialized AI expert designed to help a junior-level accounting student master the material in their textbook.
