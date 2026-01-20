@@ -488,6 +488,21 @@ elif st.session_state.page == 'main':
                             st.success(f"✅ API Key retrieved successfully!")
                             st.write(f"Key length: {len(api_key)} characters")
                             st.write(f"Key starts with: {api_key[:15]}...")
+                            st.write(f"Key ends with: ...{api_key[-10:]}")
+                            
+                            # Check for common issues
+                            if api_key != api_key.strip():
+                                st.warning("⚠️ API key has leading/trailing spaces!")
+                                api_key = api_key.strip()
+                                st.info("Trimmed spaces from key")
+                            
+                            if '\n' in api_key or '\r' in api_key:
+                                st.warning("⚠️ API key has newline characters!")
+                                api_key = api_key.replace('\n', '').replace('\r', '')
+                                st.info("Removed newlines from key")
+                            
+                            # Show the exact key format (safely)
+                            st.write(f"Final key length after cleaning: {len(api_key)} characters")
                             
                             # Try simple API call
                             import requests
@@ -506,6 +521,8 @@ elif st.session_state.page == 'main':
                                         {"role": "user", "content": test_question}
                                     ]
                                 }
+                                
+                                st.write("**Sending request to Anthropic API...**")
                                 
                                 try:
                                     response = requests.post(
@@ -529,6 +546,16 @@ elif st.session_state.page == 'main':
                                             'role': 'assistant',
                                             'content': ai_response
                                         })
+                                    elif response.status_code == 401:
+                                        st.error(f"❌ API Error 401: Authentication failed")
+                                        st.write("**This usually means:**")
+                                        st.write("1. The API key is incorrect")
+                                        st.write("2. The API key was deleted from your Anthropic account")
+                                        st.write("3. The API key has extra characters (spaces, quotes, newlines)")
+                                        st.code(response.text)
+                                        
+                                        st.write("**Debug: Check your key at https://console.anthropic.com/settings/keys**")
+                                        st.write("Make sure the key in secrets.toml EXACTLY matches the key shown there")
                                     else:
                                         st.error(f"❌ API Error: {response.status_code}")
                                         st.code(response.text)
