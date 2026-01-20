@@ -3,8 +3,13 @@ import pandas as pd
 import numpy as np
 
 # --- 1. APP CONFIGURATION (Must be the first command) ---
-# This sets the browser tab title and icon
-st.set_page_config(page_title="Accounting Buddy", page_icon="📊")
+# This sets the browser tab title, icon, AND dark mode
+st.set_page_config(
+    page_title="Accounting Buddy", 
+    page_icon="📊",
+    initial_sidebar_state="collapsed",  # Hides sidebar on welcome page
+    layout="centered"
+)
 
 # --- 2. SESSION STATE SETUP (The "Memory") ---
 # Session state is like the app's memory - it remembers things even when the page updates
@@ -18,29 +23,49 @@ def go_to_main():
 
 # --- 3. WELCOME PAGE ---
 if st.session_state.page == 'welcome':
-    st.title("Welcome to your Accounting Study Buddy!")
-    st.write("##### The ultimate tool for BYU Accounting Students")
+    # Add spacing from top
+    st.write("")
+    st.write("")
+    st.write("")
     
-    # Using BYU's official logo from their website
-    # If this doesn't work, we can use an emoji or different image
-    try:
-        st.image("https://brand.byu.edu/sites/default/files/2022-10/BYU_MonogramShield.png", width=300)
-    except:
-        # Backup: just show a big emoji if image fails
-        st.write("# 📊")
+    # Center everything using columns
+    col1, col2, col3 = st.columns([1, 2, 1])
     
-    st.write("")  # Empty line for spacing
-    st.write("### Features:")
-    st.write("✅ Formulas organized by class (ACC 200, 310, 401, 402)")
-    st.write("✅ Built-in calculators for quick computations")
-    st.write("✅ Searchable formula database")
-    st.write("✅ Study tools and examples")
-    
-    st.write("")  # Spacer
-    st.write("Click below to access your formulas and study tools.")
-    
-    # The Button that changes the 'page' state to 'main'
-    st.button("➡️ Continue to App", on_click=go_to_main, type="primary")
+    with col2:
+        # Display BYU Accounting Logo (using a working URL)
+        st.image("https://marriottschool.byu.edu/wp-content/uploads/2021/10/soa-logo.png", width=400)
+        
+        st.write("")
+        st.write("")
+        
+        # Centered welcome message
+        st.markdown("<h1 style='text-align: center;'>Welcome to your Accounting Study Buddy!</h1>", unsafe_allow_html=True)
+        
+        st.write("")
+        st.write("")
+        st.write("")
+        
+        # Custom styled button using HTML/CSS for royal blue square
+        button_clicked = st.button("GO", on_click=go_to_main, use_container_width=True)
+        
+    # Custom CSS to style the button
+    st.markdown("""
+        <style>
+        /* Make button royal blue and square-ish */
+        .stButton > button {
+            background-color: #002E5D !important;
+            color: white !important;
+            font-size: 24px !important;
+            font-weight: bold !important;
+            padding: 20px 60px !important;
+            border-radius: 8px !important;
+            border: none !important;
+        }
+        .stButton > button:hover {
+            background-color: #003D7A !important;
+        }
+        </style>
+    """, unsafe_allow_html=True)
 
 # --- 4. MAIN APP (Hidden until "Continue" is clicked) ---
 elif st.session_state.page == 'main':
@@ -286,3 +311,5 @@ elif st.session_state.page == 'main':
                 annual_dep = (cost - salvage) / life
                 st.success(f"✅ Annual Depreciation: **${annual_dep:,.2f}**")
                 st.info(f"Total Depreciable Amount: ${cost - salvage:,.2f}")
+            
+           
