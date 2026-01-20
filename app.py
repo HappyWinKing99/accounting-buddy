@@ -401,13 +401,13 @@ elif st.session_state.page == 'main':
             st.write("Ask me anything about managerial accounting! I have access to your textbook content from Chapters 1, 3, 4, 6, and 7.")
             
             # Initialize chat history in session state
-            if 'chat_history' not in st.session_state:
-                st.session_state.chat_history = []
+            if 'chat_history_402' not in st.session_state:
+                st.session_state.chat_history_402 = []
             
             # Display chat history
             chat_container = st.container()
             with chat_container:
-                for message in st.session_state.chat_history:
+                for message in st.session_state.chat_history_402:
                     if message['role'] == 'user':
                         st.markdown(f"**You:** {message['content']}")
                     else:
@@ -415,25 +415,34 @@ elif st.session_state.page == 'main':
                     st.write("---")
             
             # User input
-            user_question = st.text_area("Ask your question:", height=100, key="user_input")
+            user_question = st.text_area("Ask your question:", height=100, key="user_input_402")
             
             col1, col2 = st.columns([1, 5])
             with col1:
-                if st.button("Send", type="primary"):
-                    if user_question.strip():
-                        # Add user message to history
-                        st.session_state.chat_history.append({
-                            'role': 'user',
-                            'content': user_question
-                        })
+                send_button = st.button("Send", type="primary", key="send_question_402")
+            
+            with col2:
+                clear_button = st.button("Clear Chat", key="clear_chat_402")
+                
+            if clear_button:
+                st.session_state.chat_history_402 = []
+                st.rerun()
+            
+            if send_button:
+                if user_question.strip():
+                    # Add user message to history
+                    st.session_state.chat_history_402.append({
+                        'role': 'user',
+                        'content': user_question
+                    })
+                    
+                    # Check if API key exists
+                    try:
+                        api_key = st.secrets["ANTHROPIC_API_KEY"]
                         
-                        # Check if API key exists
-                        try:
-                            api_key = st.secrets["ANTHROPIC_API_KEY"]
-                            
-                            # Prepare the system prompt with textbook content
-                            system_prompt = """You are an expert ACC 402 (Managerial/Cost Accounting) tutor for BYU students. 
-                            
+                        # Prepare the system prompt with textbook content
+                        system_prompt = """You are an expert ACC 402 (Managerial/Cost Accounting) tutor for BYU students. 
+
 Your role is to help students understand concepts from their textbook. You have access to the following chapters:
 - Chapter 1: Management Accounting and Cost Management
 - Chapter 3: Basic Cost Management Concepts  
@@ -460,61 +469,53 @@ Key topics you can help with:
 
 Be encouraging, clear, and patient. Always cite which chapter/concept you're referencing."""
 
-                            # Make API call
-                            with st.spinner("Thinking..."):
-                                response = st.session_state.get('api_response', None)
+                        # Make API call
+                        with st.spinner("Thinking..."):
+                            import requests
+                            
+                            headers = {
+                                "Content-Type": "application/json",
+                                "x-api-key": api_key,
+                                "anthropic-version": "2023-06-01"
+                            }
+                            
+                            data = {
+                                "model": "claude-sonnet-4-20250514",
+                                "max_tokens": 2000,
+                                "system": system_prompt,
+                                "messages": [
+                                    {"role": msg['role'], "content": msg['content']} 
+                                    for msg in st.session_state.chat_history_402
+                                ]
+                            }
+                            
+                            try:
+                                api_response = requests.post(
+                                    "https://api.anthropic.com/v1/messages",
+                                    headers=headers,
+                                    json=data
+                                )
                                 
-                                # Simulate API call (you'll need to implement actual API call)
-                                import requests
-                                
-                                headers = {
-                                    "Content-Type": "application/json",
-                                    "x-api-key": api_key,
-                                    "anthropic-version": "2023-06-01"
-                                }
-                                
-                                data = {
-                                    "model": "claude-sonnet-4-20250514",
-                                    "max_tokens": 2000,
-                                    "system": system_prompt,
-                                    "messages": [
-                                        {"role": msg['role'], "content": msg['content']} 
-                                        for msg in st.session_state.chat_history
-                                    ]
-                                }
-                                
-                                try:
-                                    api_response = requests.post(
-                                        "https://api.anthropic.com/v1/messages",
-                                        headers=headers,
-                                        json=data
-                                    )
+                                if api_response.status_code == 200:
+                                    response_data = api_response.json()
+                                    ai_message = response_data['content'][0]['text']
                                     
-                                    if api_response.status_code == 200:
-                                        response_data = api_response.json()
-                                        ai_message = response_data['content'][0]['text']
-                                        
-                                        # Add AI response to history
-                                        st.session_state.chat_history.append({
-                                            'role': 'assistant',
-                                            'content': ai_message
-                                        })
-                                        st.rerun()
-                                    else:
-                                        st.error(f"API Error: {api_response.status_code} - {api_response.text}")
-                                
-                                except Exception as e:
-                                    st.error(f"Error calling API: {str(e)}")
-                        
-                        except KeyError:
-                            st.error("⚠️ API key not found. Please add ANTHROPIC_API_KEY to your .streamlit/secrets.toml file")
-                    else:
-                        st.warning("Please enter a question first!")
-            
-            with col2:
-                if st.button("Clear Chat"):
-                    st.session_state.chat_history = []
-                    st.rerun()
+                                    # Add AI response to history
+                                    st.session_state.chat_history_402.append({
+                                        'role': 'assistant',
+                                        'content': ai_message
+                                    })
+                                    st.rerun()
+                                else:
+                                    st.error(f"API Error: {api_response.status_code} - {api_response.text}")
+                            
+                            except Exception as e:
+                                st.error(f"Error calling API: {str(e)}")
+                    
+                    except KeyError:
+                        st.error("⚠️ API key not found. Please add ANTHROPIC_API_KEY to your .streamlit/secrets.toml file")
+                else:
+                    st.warning("Please enter a question first!")
             
             st.write("---")
             st.write("**💡 Suggested Questions:**")
@@ -526,9 +527,9 @@ Be encouraging, clear, and patient. Always cite which chapter/concept you're ref
                 "How do I calculate break-even point?"
             ]
             
-            for suggestion in suggestions:
-                if st.button(suggestion, key=f"suggest_{suggestion[:20]}"):
-                    st.session_state.chat_history.append({
+            for idx, suggestion in enumerate(suggestions):
+                if st.button(suggestion, key=f"suggest_402_{idx}"):
+                    st.session_state.chat_history_402.append({
                         'role': 'user',
                         'content': suggestion
                     })
