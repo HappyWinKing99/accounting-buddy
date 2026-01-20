@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
+import json
 
 # --- 1. APP CONFIGURATION (Must be the first command) ---
 # This sets the browser tab title, icon, AND forces dark mode
@@ -358,37 +359,180 @@ elif st.session_state.page == 'main':
             st.session_state.selected_page = "🏠 Home"
             st.rerun()
         
-        st.title("📕 ACC 402 - Cost Accounting")
-        st.write("### Key Formulas & Concepts")
+        st.title("📕 ACC 402 - AI Tutor & Study Guide")
         
-        with st.expander("🔴 Contribution Margin", expanded=True):
-            st.write("**Contribution Margin = Sales - Variable Costs**")
-            st.write("*Amount available to cover fixed costs and profit*")
-            st.code("Example: $100,000 - $60,000 = $40,000", language=None)
+        # Tab selection for Formulas vs AI Tutor
+        tab1, tab2 = st.tabs(["📚 Key Formulas", "🤖 AI Tutor"])
         
-        with st.expander("🔴 Contribution Margin Ratio"):
-            st.write("**CM Ratio = Contribution Margin / Sales**")
-            st.write("*Percentage of each sales dollar available for fixed costs*")
-            st.code("Example: $40,000 / $100,000 = 40%", language=None)
+        with tab1:
+            st.write("### Key Formulas & Concepts")
+            
+            with st.expander("🔴 Contribution Margin", expanded=True):
+                st.write("**Contribution Margin = Sales - Variable Costs**")
+                st.write("*Amount available to cover fixed costs and profit*")
+                st.code("Example: $100,000 - $60,000 = $40,000", language=None)
+            
+            with st.expander("🔴 Contribution Margin Ratio"):
+                st.write("**CM Ratio = Contribution Margin / Sales**")
+                st.write("*Percentage of each sales dollar available for fixed costs*")
+                st.code("Example: $40,000 / $100,000 = 40%", language=None)
+            
+            with st.expander("🔴 Break-Even Point (Units)"):
+                st.write("**BEP (Units) = Fixed Costs / CM per Unit**")
+                st.write("*Number of units needed to cover all costs*")
+                st.code("Example: $30,000 / $15 = 2,000 units", language=None)
+            
+            with st.expander("🔴 Break-Even Point (Dollars)"):
+                st.write("**BEP ($) = Fixed Costs / CM Ratio**")
+                st.write("*Sales dollars needed to break even*")
+                st.code("Example: $30,000 / 0.40 = $75,000", language=None)
+            
+            with st.expander("🔴 Target Profit (Units)"):
+                st.write("**Units Needed = (Fixed Costs + Target Profit) / CM per Unit**")
+                st.code("Example: ($30,000 + $20,000) / $15 = 3,333 units", language=None)
+            
+            with st.expander("🔴 Overhead Rate"):
+                st.write("**Predetermined OH Rate = Estimated Overhead / Estimated Activity**")
+                st.write("*Used to apply overhead to jobs*")
+                st.code("Example: $100,000 / 20,000 hours = $5/hour", language=None)
         
-        with st.expander("🔴 Break-Even Point (Units)"):
-            st.write("**BEP (Units) = Fixed Costs / CM per Unit**")
-            st.write("*Number of units needed to cover all costs*")
-            st.code("Example: $30,000 / $15 = 2,000 units", language=None)
-        
-        with st.expander("🔴 Break-Even Point (Dollars)"):
-            st.write("**BEP ($) = Fixed Costs / CM Ratio**")
-            st.write("*Sales dollars needed to break even*")
-            st.code("Example: $30,000 / 0.40 = $75,000", language=None)
-        
-        with st.expander("🔴 Target Profit (Units)"):
-            st.write("**Units Needed = (Fixed Costs + Target Profit) / CM per Unit**")
-            st.code("Example: ($30,000 + $20,000) / $15 = 3,333 units", language=None)
-        
-        with st.expander("🔴 Overhead Rate"):
-            st.write("**Predetermined OH Rate = Estimated Overhead / Estimated Activity**")
-            st.write("*Used to apply overhead to jobs*")
-            st.code("Example: $100,000 / 20,000 hours = $5/hour", language=None)
+        with tab2:
+            st.write("### 🤖 Your ACC 402 AI Study Assistant")
+            st.write("Ask me anything about managerial accounting! I have access to your textbook content from Chapters 1, 3, 4, 6, and 7.")
+            
+            # Initialize chat history in session state
+            if 'chat_history' not in st.session_state:
+                st.session_state.chat_history = []
+            
+            # Display chat history
+            chat_container = st.container()
+            with chat_container:
+                for message in st.session_state.chat_history:
+                    if message['role'] == 'user':
+                        st.markdown(f"**You:** {message['content']}")
+                    else:
+                        st.markdown(f"**AI Tutor:** {message['content']}")
+                    st.write("---")
+            
+            # User input
+            user_question = st.text_area("Ask your question:", height=100, key="user_input")
+            
+            col1, col2 = st.columns([1, 5])
+            with col1:
+                if st.button("Send", type="primary"):
+                    if user_question.strip():
+                        # Add user message to history
+                        st.session_state.chat_history.append({
+                            'role': 'user',
+                            'content': user_question
+                        })
+                        
+                        # Check if API key exists
+                        try:
+                            api_key = st.secrets["ANTHROPIC_API_KEY"]
+                            
+                            # Prepare the system prompt with textbook content
+                            system_prompt = """You are an expert ACC 402 (Managerial/Cost Accounting) tutor for BYU students. 
+                            
+Your role is to help students understand concepts from their textbook. You have access to the following chapters:
+- Chapter 1: Management Accounting and Cost Management
+- Chapter 3: Basic Cost Management Concepts  
+- Chapter 4: Job Costing
+- Chapter 6: Process Costing
+- Chapter 7: Cost Allocation
+
+When answering questions:
+1. Reference specific concepts, formulas, or examples from the textbook
+2. Explain step-by-step for calculations
+3. Use examples similar to those in the textbook
+4. If the student seems confused, break down the concept further
+5. Encourage understanding, not just memorization
+
+Key topics you can help with:
+- Cost behavior (variable, fixed, mixed)
+- Job costing vs process costing
+- Equivalent units and the 5-step process
+- Weighted-average vs FIFO methods
+- Predetermined overhead rates
+- Cost allocation methods (direct, step, reciprocal)
+- Joint product costing
+- Break-even analysis and CVP
+
+Be encouraging, clear, and patient. Always cite which chapter/concept you're referencing."""
+
+                            # Make API call
+                            with st.spinner("Thinking..."):
+                                response = st.session_state.get('api_response', None)
+                                
+                                # Simulate API call (you'll need to implement actual API call)
+                                import requests
+                                
+                                headers = {
+                                    "Content-Type": "application/json",
+                                    "x-api-key": api_key,
+                                    "anthropic-version": "2023-06-01"
+                                }
+                                
+                                data = {
+                                    "model": "claude-sonnet-4-20250514",
+                                    "max_tokens": 2000,
+                                    "system": system_prompt,
+                                    "messages": [
+                                        {"role": msg['role'], "content": msg['content']} 
+                                        for msg in st.session_state.chat_history
+                                    ]
+                                }
+                                
+                                try:
+                                    api_response = requests.post(
+                                        "https://api.anthropic.com/v1/messages",
+                                        headers=headers,
+                                        json=data
+                                    )
+                                    
+                                    if api_response.status_code == 200:
+                                        response_data = api_response.json()
+                                        ai_message = response_data['content'][0]['text']
+                                        
+                                        # Add AI response to history
+                                        st.session_state.chat_history.append({
+                                            'role': 'assistant',
+                                            'content': ai_message
+                                        })
+                                        st.rerun()
+                                    else:
+                                        st.error(f"API Error: {api_response.status_code} - {api_response.text}")
+                                
+                                except Exception as e:
+                                    st.error(f"Error calling API: {str(e)}")
+                        
+                        except KeyError:
+                            st.error("⚠️ API key not found. Please add ANTHROPIC_API_KEY to your .streamlit/secrets.toml file")
+                    else:
+                        st.warning("Please enter a question first!")
+            
+            with col2:
+                if st.button("Clear Chat"):
+                    st.session_state.chat_history = []
+                    st.rerun()
+            
+            st.write("---")
+            st.write("**💡 Suggested Questions:**")
+            suggestions = [
+                "What's the difference between job costing and process costing?",
+                "How do I calculate equivalent units using the FIFO method?",
+                "Explain the reciprocal method of cost allocation",
+                "What is the difference between variable and fixed costs?",
+                "How do I calculate break-even point?"
+            ]
+            
+            for suggestion in suggestions:
+                if st.button(suggestion, key=f"suggest_{suggestion[:20]}"):
+                    st.session_state.chat_history.append({
+                        'role': 'user',
+                        'content': suggestion
+                    })
+                    st.rerun()
 
     # --- PAGE 6: CALCULATORS ---
     elif page == "🧮 Calculators":
