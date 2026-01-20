@@ -851,13 +851,124 @@ END OF TEXTBOOK CONTENT
 """
 
 # ============================================================================
+# CUSTOM CSS - DARK MODE THEME
+# ============================================================================
+st.markdown("""
+    <style>
+    /* Force dark background everywhere */
+    .stApp {
+        background-color: #0E1117;
+        color: #FFFFFF;
+    }
+    
+    /* Make top header bar black */
+    header[data-testid="stHeader"] {
+        background-color: #0E1117 !important;
+    }
+    
+    /* Change all text to white for contrast */
+    .stApp, .stMarkdown, p, span, div, label {
+        color: #FFFFFF !important;
+    }
+    
+    /* Professional font throughout app */
+    .stApp {
+        font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+    }
+    
+    /* Sidebar styling - match dark theme */
+    section[data-testid="stSidebar"] {
+        background-color: #0E1117 !important;
+    }
+    
+    section[data-testid="stSidebar"] > div {
+        background-color: #0E1117 !important;
+    }
+    
+    /* Sidebar text white */
+    section[data-testid="stSidebar"] * {
+        color: #FFFFFF !important;
+    }
+    
+    /* Sidebar radio buttons */
+    section[data-testid="stSidebar"] .row-widget.stRadio > div {
+        background-color: #1E1E1E !important;
+        border-radius: 8px !important;
+        padding: 10px !important;
+    }
+    
+    /* Sidebar title */
+    section[data-testid="stSidebar"] h1 {
+        color: #FFFFFF !important;
+    }
+    
+    /* ALL BUTTONS - Make them GOLD with WHITE text */
+    .stButton > button {
+        background-color: #CFB53B !important;
+        color: #FFFFFF !important;
+        font-weight: bold !important;
+        border: none !important;
+        font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif !important;
+        border-radius: 8px !important;
+        padding: 10px 24px !important;
+        transition: all 0.3s ease !important;
+    }
+    
+    .stButton > button:hover {
+        background-color: #B8A033 !important;
+        color: #FFFFFF !important;
+    }
+    
+    /* Ensure button text is always white */
+    .stButton > button p {
+        color: #FFFFFF !important;
+    }
+    
+    /* Course boxes styling - BLUE boxes with WHITE text */
+    .course-box {
+        background-color: #002E5D;
+        padding: 20px;
+        border-radius: 10px;
+        margin: 10px 0;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    }
+    
+    .course-box h3 {
+        color: #FFFFFF !important;
+        margin-bottom: 10px;
+    }
+    
+    .course-box p {
+        color: #B0B0B0 !important;
+    }
+    </style>
+""", unsafe_allow_html=True)
+
+# ============================================================================
+# SESSION STATE INITIALIZATION
+# ============================================================================
+if 'selected_page' not in st.session_state:
+    st.session_state.selected_page = "🏠 Home"
+
+if 'chat_history_402' not in st.session_state:
+    st.session_state.chat_history_402 = []
+
+# ============================================================================
 # SIDEBAR NAVIGATION
 # ============================================================================
 with st.sidebar:
-    st.image("https://marriottschool.byu.edu/wp-content/uploads/2021/05/Marriott-School-logo.png", 
-             use_column_width=True)
+    # BYU Logo
+    st.markdown("""
+        <div style='text-align: center; margin-bottom: 20px;'>
+            <svg width="150" height="150" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="50" cy="50" r="45" fill="#002E5D"/>
+                <text x="50" y="45" font-size="24" fill="white" text-anchor="middle" font-weight="bold" font-family="Arial">BYU</text>
+                <text x="50" y="65" font-size="10" fill="white" text-anchor="middle" font-family="Arial">ACCOUNTING</text>
+            </svg>
+        </div>
+    """, unsafe_allow_html=True)
     
-    st.title("📚 BYU Accounting Study App")
+    st.title("📚 Study App")
     st.markdown("---")
     
     # Navigation buttons
@@ -916,6 +1027,34 @@ if page == "🏠 Home":
     
     with col2:
         st.info("💡 **Pro Tip:** The ACC 402 AI Tutor has access to your entire textbook - ask it anything!")
+    
+    # Course boxes section
+    st.markdown("---")
+    st.subheader("📚 Quick Access to Courses")
+    
+    col1, col2 = st.columns(2)
+    
+    with col1:
+        st.markdown("""
+        <div class="course-box">
+            <h3>📕 ACC 402 - Cost Accounting</h3>
+            <p>AI Tutor with full textbook access • Practice problems • Formula reference</p>
+        </div>
+        """, unsafe_allow_html=True)
+        if st.button("Go to ACC 402", key="goto_402"):
+            st.session_state.selected_page = "📕 ACC 402 - Cost Accounting"
+            st.rerun()
+    
+    with col2:
+        st.markdown("""
+        <div class="course-box">
+            <h3>🧮 Calculators</h3>
+            <p>Quick calculation tools • Break-even analysis • Overhead rates</p>
+        </div>
+        """, unsafe_allow_html=True)
+        if st.button("Go to Calculators", key="goto_calc"):
+            st.session_state.selected_page = "🧮 Calculators"
+            st.rerun()
 
 # --- PAGE 2: CALCULATORS ---
 elif page == "🧮 Calculators":
@@ -1066,7 +1205,10 @@ elif page == "📊 Break-Even Visualizer":
             title="Break-Even Analysis",
             xaxis_title="Units Sold",
             yaxis_title="Dollars ($)",
-            hovermode='x unified'
+            hovermode='x unified',
+            plot_bgcolor='#0E1117',
+            paper_bgcolor='#0E1117',
+            font=dict(color='white')
         )
         
         st.plotly_chart(fig, use_container_width=True)
@@ -1163,6 +1305,19 @@ elif page == "📕 ACC 402 - Cost Accounting":
             # Check for API key
             try:
                 api_key = st.secrets["ANTHROPIC_API_KEY"]
+                
+                # ====================================================================
+                # PASTE YOUR FULL TEXTBOOK CONTENT BELOW THIS LINE
+                # ====================================================================
+                FULL_TEXTBOOK_CONTENT = """
+=== PASTE YOUR COMPLETE TEXTBOOK CONTENT HERE ===
+
+You'll copy and paste all your textbook chapters (1, 3, 4, 6, 7) here.
+Make sure it's between the triple quotes.
+"""
+                # ====================================================================
+                # END OF TEXTBOOK CONTENT
+                # ====================================================================
                 
                 # Prepare system prompt with FULL textbook content
                 system_prompt = f"""You are the Managerial Accounting Master Tutor, a specialized AI expert designed to help a junior-level accounting student master the material in their textbook.
