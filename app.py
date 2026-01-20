@@ -355,7 +355,7 @@ elif st.session_state.page == 'main':
     # --- PAGE 5: ACC 402 ---
     elif page == "ACC 402 - Cost Accounting":
         # Back to Home button
-        if st.button("← Back to Home", key="back_402"):
+        if st.button("← Back to Home", key="back_to_home_402_unique"):
             st.session_state.selected_page = "🏠 Home"
             st.rerun()
         
@@ -404,9 +404,13 @@ elif st.session_state.page == 'main':
             if 'chat_history_402' not in st.session_state:
                 st.session_state.chat_history_402 = []
             
+            # Initialize a flag for processing
+            if 'processing_402' not in st.session_state:
+                st.session_state.processing_402 = False
+            
             # Display chat history
-            chat_container = st.container()
-            with chat_container:
+            if st.session_state.chat_history_402:
+                st.write("---")
                 for message in st.session_state.chat_history_402:
                     if message['role'] == 'user':
                         st.markdown(f"**You:** {message['content']}")
@@ -414,34 +418,40 @@ elif st.session_state.page == 'main':
                         st.markdown(f"**AI Tutor:** {message['content']}")
                     st.write("---")
             
-            # User input
-            user_question = st.text_area("Ask your question:", height=100, key="user_input_402")
-            
-            col1, col2 = st.columns([1, 5])
-            with col1:
-                send_button = st.button("Send", type="primary", key="send_question_402")
-            
-            with col2:
-                clear_button = st.button("Clear Chat", key="clear_chat_402")
+            # User input form to prevent conflicts
+            with st.form(key="question_form_402", clear_on_submit=True):
+                user_question = st.text_area(
+                    "Ask your question (Press Ctrl+Enter or click Send):", 
+                    height=100, 
+                    key="user_input_form_402",
+                    help="Type your question and press Ctrl+Enter to send, or click the Send button below"
+                )
                 
-            if clear_button:
+                col1, col2 = st.columns([1, 5])
+                with col1:
+                    submit_button = st.form_submit_button("Send", type="primary")
+                with col2:
+                    st.caption("💡 Tip: Press Ctrl+Enter to send your question")
+            
+            # Clear chat button outside the form
+            if st.button("Clear Chat", key="clear_chat_btn_402"):
                 st.session_state.chat_history_402 = []
                 st.rerun()
             
-            if send_button:
-                if user_question.strip():
-                    # Add user message to history
-                    st.session_state.chat_history_402.append({
-                        'role': 'user',
-                        'content': user_question
-                    })
+            # Process the form submission
+            if submit_button and user_question.strip():
+                # Add user message to history
+                st.session_state.chat_history_402.append({
+                    'role': 'user',
+                    'content': user_question
+                })
+                
+                # Check if API key exists
+                try:
+                    api_key = st.secrets["ANTHROPIC_API_KEY"]
                     
-                    # Check if API key exists
-                    try:
-                        api_key = st.secrets["ANTHROPIC_API_KEY"]
-                        
-                        # Prepare the system prompt with textbook content
-                        system_prompt = """You are an expert ACC 402 (Managerial/Cost Accounting) tutor for BYU students. 
+                    # Prepare the system prompt
+                    system_prompt = """You are an expert ACC 402 (Managerial/Cost Accounting) tutor for BYU students. 
 
 Your role is to help students understand concepts from their textbook. You have access to the following chapters:
 - Chapter 1: Management Accounting and Cost Management
@@ -457,65 +467,56 @@ When answering questions:
 4. If the student seems confused, break down the concept further
 5. Encourage understanding, not just memorization
 
-Key topics you can help with:
-- Cost behavior (variable, fixed, mixed)
-- Job costing vs process costing
-- Equivalent units and the 5-step process
-- Weighted-average vs FIFO methods
-- Predetermined overhead rates
-- Cost allocation methods (direct, step, reciprocal)
-- Joint product costing
-- Break-even analysis and CVP
-
 Be encouraging, clear, and patient. Always cite which chapter/concept you're referencing."""
 
-                        # Make API call
-                        with st.spinner("Thinking..."):
-                            import requests
+                    # Make API call
+                    with st.spinner("Thinking..."):
+                        import requests
+                        
+                        headers = {
+                            "Content-Type": "application/json",
+                            "x-api-key": api_key,
+                            "anthropic-version": "2023-06-01"
+                        }
+                        
+                        data = {
+                            "model": "claude-sonnet-4-20250514",
+                            "max_tokens": 2000,
+                            "system": system_prompt,
+                            "messages": [
+                                {"role": msg['role'], "content": msg['content']} 
+                                for msg in st.session_state.chat_history_402
+                            ]
+                        }
+                        
+                        try:
+                            api_response = requests.post(
+                                "https://api.anthropic.com/v1/messages",
+                                headers=headers,
+                                json=data
+                            )
                             
-                            headers = {
-                                "Content-Type": "application/json",
-                                "x-api-key": api_key,
-                                "anthropic-version": "2023-06-01"
-                            }
-                            
-                            data = {
-                                "model": "claude-sonnet-4-20250514",
-                                "max_tokens": 2000,
-                                "system": system_prompt,
-                                "messages": [
-                                    {"role": msg['role'], "content": msg['content']} 
-                                    for msg in st.session_state.chat_history_402
-                                ]
-                            }
-                            
-                            try:
-                                api_response = requests.post(
-                                    "https://api.anthropic.com/v1/messages",
-                                    headers=headers,
-                                    json=data
-                                )
+                            if api_response.status_code == 200:
+                                response_data = api_response.json()
+                                ai_message = response_data['content'][0]['text']
                                 
-                                if api_response.status_code == 200:
-                                    response_data = api_response.json()
-                                    ai_message = response_data['content'][0]['text']
-                                    
-                                    # Add AI response to history
-                                    st.session_state.chat_history_402.append({
-                                        'role': 'assistant',
-                                        'content': ai_message
-                                    })
-                                    st.rerun()
-                                else:
-                                    st.error(f"API Error: {api_response.status_code} - {api_response.text}")
-                            
-                            except Exception as e:
-                                st.error(f"Error calling API: {str(e)}")
-                    
-                    except KeyError:
-                        st.error("⚠️ API key not found. Please add ANTHROPIC_API_KEY to your .streamlit/secrets.toml file")
-                else:
-                    st.warning("Please enter a question first!")
+                                # Add AI response to history
+                                st.session_state.chat_history_402.append({
+                                    'role': 'assistant',
+                                    'content': ai_message
+                                })
+                                st.rerun()
+                            else:
+                                st.error(f"API Error: {api_response.status_code} - {api_response.text}")
+                        
+                        except Exception as e:
+                            st.error(f"Error calling API: {str(e)}")
+                
+                except KeyError:
+                    st.error("⚠️ API key not found. Please add ANTHROPIC_API_KEY to your .streamlit/secrets.toml file")
+            
+            elif submit_button:
+                st.warning("Please enter a question first!")
             
             st.write("---")
             st.write("**💡 Suggested Questions:**")
@@ -528,7 +529,7 @@ Be encouraging, clear, and patient. Always cite which chapter/concept you're ref
             ]
             
             for idx, suggestion in enumerate(suggestions):
-                if st.button(suggestion, key=f"suggest_402_{idx}"):
+                if st.button(suggestion, key=f"suggest_btn_402_{idx}"):
                     st.session_state.chat_history_402.append({
                         'role': 'user',
                         'content': suggestion
