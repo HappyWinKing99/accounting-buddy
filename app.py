@@ -159,14 +159,21 @@ elif st.session_state.page == 'main':
     
     # If user clicked a course box from home, switch to that page
     if st.session_state.selected_page:
-        page = st.session_state.selected_page
+        default_page = st.session_state.selected_page
         st.session_state.selected_page = None  # Reset after using
     else:
-        # Radio buttons create a selection menu - only one can be selected at a time
-        page = st.sidebar.radio(
-            "Select Your Class:", 
-            ["🏠 Home", "ACC 200 - Intro", "ACC 310 - Intermediate I", "ACC 401 - Intermediate II", "ACC 402 - Cost Accounting", "🧮 Calculators"]
-        )
+        # Use the current page from session state if it exists
+        default_page = st.session_state.get('current_page', "🏠 Home")
+    
+    # Radio buttons create a selection menu - only one can be selected at a time
+    page = st.sidebar.radio(
+        "Select Your Class:", 
+        ["🏠 Home", "ACC 200 - Intro", "ACC 310 - Intermediate I", "ACC 401 - Intermediate II", "ACC 402 - Cost Accounting", "🧮 Calculators"],
+        index=["🏠 Home", "ACC 200 - Intro", "ACC 310 - Intermediate I", "ACC 401 - Intermediate II", "ACC 402 - Cost Accounting", "🧮 Calculators"].index(default_page) if default_page in ["🏠 Home", "ACC 200 - Intro", "ACC 310 - Intermediate I", "ACC 401 - Intermediate II", "ACC 402 - Cost Accounting", "🧮 Calculators"] else 0
+    )
+    
+    # Store the current page in session state
+    st.session_state.current_page = page
 
     # --- PAGE 1: HOME ---
     if page == "🏠 Home":
