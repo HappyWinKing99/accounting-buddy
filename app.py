@@ -356,6 +356,13 @@ elif st.session_state.page == 'main':
     elif page == "ACC 402 - Cost Accounting":
         st.title("📕 ACC 402 - AI Tutor & Study Guide")
         
+        # Debug info
+        if st.checkbox("Show Debug Info", key="debug_402"):
+            st.write("**Session State:**")
+            st.write(f"Current page: {st.session_state.page}")
+            st.write(f"Selected page: {st.session_state.get('selected_page', 'None')}")
+            st.write(f"Chat history length: {len(st.session_state.get('chat_history_402', []))}")
+        
         # Tab selection for Formulas vs AI Tutor
         tab1, tab2 = st.tabs(["📚 Key Formulas", "🤖 AI Tutor"])
         
@@ -403,152 +410,126 @@ elif st.session_state.page == 'main':
                 st.rerun()
                 
             st.write("### 🤖 Your ACC 402 AI Study Assistant")
-            st.write("Ask me anything about managerial accounting! I have access to your textbook content from Chapters 1, 3, 4, 6, and 7.")
             
             # Initialize chat history in session state
             if 'chat_history_402' not in st.session_state:
                 st.session_state.chat_history_402 = []
             
+            # Initialize processing flag
+            if 'is_processing_402' not in st.session_state:
+                st.session_state.is_processing_402 = False
+            
             # Display chat history
             if st.session_state.chat_history_402:
                 st.write("### 💬 Chat History")
-                for message in st.session_state.chat_history_402:
+                for idx, message in enumerate(st.session_state.chat_history_402):
                     if message['role'] == 'user':
                         st.markdown(f"**You:** {message['content']}")
                     else:
                         st.markdown(f"**AI Tutor:** {message['content']}")
-                    st.write("---")
+                    if idx < len(st.session_state.chat_history_402) - 1:
+                        st.write("---")
             
             st.write("### 📝 Ask a Question")
             
-            # User input form to prevent conflicts
-            with st.form(key="acc402_question_form", clear_on_submit=True):
-                user_question = st.text_area(
-                    "Type your question here (Press Ctrl+Enter or click Send):", 
-                    height=100, 
-                    key="acc402_user_input",
-                    help="Type your question and press Ctrl+Enter to send, or click the Send button below"
-                )
-                
-                submit_col, tip_col = st.columns([1, 5])
-                with submit_col:
-                    submit_button = st.form_submit_button("Send 📤", type="primary", use_container_width=True)
-                with tip_col:
-                    st.caption("💡 Tip: Press Ctrl+Enter to send")
+            # Simple button test (NOT using form)
+            st.write("**Test Mode (Simple Input):**")
+            test_question = st.text_input("Type a test question:", key="test_input_402")
             
-            # Clear chat button (outside form)
-            if st.button("🗑️ Clear Chat History", key="clear_chat_history_402"):
-                st.session_state.chat_history_402 = []
-                st.rerun()
-            
-            # Process the form submission
-            if submit_button:
-                if user_question and user_question.strip():
-                    # Add user message to history
+            if st.button("🧪 Test Send (Simple)", key="test_send_simple_402"):
+                if test_question.strip():
+                    st.success(f"✅ Button clicked! Question: {test_question}")
+                    st.info("If you see this message, the button works. The issue is with the API call or form.")
+                    
+                    # Try to add to chat history
                     st.session_state.chat_history_402.append({
                         'role': 'user',
-                        'content': user_question.strip()
+                        'content': test_question
                     })
                     
-                    # Check if API key exists
+                    # Check for API key
                     try:
                         api_key = st.secrets["ANTHROPIC_API_KEY"]
+                        st.success(f"✅ API Key found! Length: {len(api_key)} characters")
                         
-                        # Prepare the system prompt
-                        system_prompt = """You are an expert ACC 402 (Managerial/Cost Accounting) tutor for BYU students. 
-
-Your role is to help students understand concepts from their textbook. You have access to the following chapters:
-- Chapter 1: Management Accounting and Cost Management
-- Chapter 3: Basic Cost Management Concepts  
-- Chapter 4: Job Costing
-- Chapter 6: Process Costing
-- Chapter 7: Cost Allocation
-
-When answering questions:
-1. Reference specific concepts, formulas, or examples from the textbook
-2. Explain step-by-step for calculations
-3. Use examples similar to those in the textbook
-4. If the student seems confused, break down the concept further
-5. Encourage understanding, not just memorization
-
-Be encouraging, clear, and patient. Always cite which chapter/concept you're referencing."""
-
-                        # Make API call
-                        with st.spinner("🤔 Thinking..."):
-                            import requests
-                            
+                        # Try simple API call
+                        import requests
+                        
+                        with st.spinner("Testing API call..."):
                             headers = {
                                 "Content-Type": "application/json",
                                 "x-api-key": api_key,
                                 "anthropic-version": "2023-06-01"
                             }
                             
-                            # Build messages for API
-                            messages = []
-                            for msg in st.session_state.chat_history_402:
-                                messages.append({
-                                    "role": msg['role'],
-                                    "content": msg['content']
-                                })
-                            
                             data = {
                                 "model": "claude-sonnet-4-20250514",
-                                "max_tokens": 2000,
-                                "system": system_prompt,
-                                "messages": messages
+                                "max_tokens": 500,
+                                "messages": [
+                                    {"role": "user", "content": test_question}
+                                ]
                             }
                             
                             try:
-                                api_response = requests.post(
+                                response = requests.post(
                                     "https://api.anthropic.com/v1/messages",
                                     headers=headers,
                                     json=data,
                                     timeout=30
                                 )
                                 
-                                if api_response.status_code == 200:
-                                    response_data = api_response.json()
-                                    ai_message = response_data['content'][0]['text']
+                                st.write(f"**API Response Status:** {response.status_code}")
+                                
+                                if response.status_code == 200:
+                                    result = response.json()
+                                    ai_response = result['content'][0]['text']
+                                    st.success("✅ API call successful!")
+                                    st.write("**AI Response:**")
+                                    st.write(ai_response)
                                     
-                                    # Add AI response to history
+                                    # Add to history
                                     st.session_state.chat_history_402.append({
                                         'role': 'assistant',
-                                        'content': ai_message
+                                        'content': ai_response
                                     })
-                                    st.rerun()
                                 else:
-                                    st.error(f"❌ API Error: {api_response.status_code}")
-                                    st.error(f"Response: {api_response.text}")
-                            
-                            except requests.exceptions.Timeout:
-                                st.error("⏱️ Request timed out. Please try again.")
+                                    st.error(f"❌ API Error: {response.status_code}")
+                                    st.code(response.text)
+                                    
                             except Exception as e:
-                                st.error(f"❌ Error: {str(e)}")
-                    
+                                st.error(f"❌ API Call Error: {str(e)}")
+                                
                     except KeyError:
-                        st.error("⚠️ API key not found in secrets.toml")
-                        st.info("Add this line to .streamlit/secrets.toml:\nANTHROPIC_API_KEY = \"your-key-here\"")
+                        st.error("❌ API Key not found in secrets!")
+                        st.info("Check your .streamlit/secrets.toml file")
                 else:
-                    st.warning("⚠️ Please enter a question before clicking Send!")
+                    st.warning("Please enter a question!")
             
             st.write("---")
             st.write("**💡 Suggested Questions:**")
             
-            suggestions = [
-                "What's the difference between job costing and process costing?",
-                "How do I calculate equivalent units using the FIFO method?",
-                "Explain the reciprocal method of cost allocation",
-                "What is the difference between variable and fixed costs?",
-                "How do I calculate break-even point?"
-            ]
-            
-            for idx, suggestion in enumerate(suggestions):
-                if st.button(f"📌 {suggestion}", key=f"suggestion_btn_{idx}"):
+            col1, col2 = st.columns(2)
+            with col1:
+                if st.button("What is job costing?", key="sug1_402"):
                     st.session_state.chat_history_402.append({
                         'role': 'user',
-                        'content': suggestion
+                        'content': "What is job costing?"
                     })
-                    st.rerun()
+                    st.info("Question added to chat! (Testing if this works)")
+            
+            with col2:
+                if st.button("What is process costing?", key="sug2_402"):
+                    st.session_state.chat_history_402.append({
+                        'role': 'user',
+                        'content': "What is process costing?"
+                    })
+                    st.info("Question added to chat! (Testing if this works)")
+            
+            # Clear button
+            if st.button("🗑️ Clear Chat", key="clear_402"):
+                st.session_state.chat_history_402 = []
+                st.success("Chat cleared!")
+                st.rerun()
 
     # --- PAGE 6: CALCULATORS ---
     elif page == "🧮 Calculators":
