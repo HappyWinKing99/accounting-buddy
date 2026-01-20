@@ -43,6 +43,10 @@ st.markdown("""
 if 'page' not in st.session_state:
     st.session_state.page = 'welcome'  # Start on welcome page
 
+# Track which class is selected from home page
+if 'selected_page' not in st.session_state:
+    st.session_state.selected_page = None
+
 # This function changes the page to 'main' when button is clicked
 def go_to_main():
     st.session_state.page = 'main'
@@ -107,35 +111,66 @@ elif st.session_state.page == 'main':
     # --- SIDEBAR NAVIGATION ---
     st.sidebar.title("📚 Navigation")
     
-    # Radio buttons create a selection menu - only one can be selected at a time
-    page = st.sidebar.radio(
-        "Select Your Class:", 
-        ["🏠 Home", "ACC 200 - Intro", "ACC 310 - Intermediate I", "ACC 401 - Intermediate II", "ACC 402 - Cost Accounting", "🧮 Calculators"]
-    )
+    # If user clicked a course box from home, switch to that page
+    if st.session_state.selected_page:
+        page = st.session_state.selected_page
+        st.session_state.selected_page = None  # Reset after using
+    else:
+        # Radio buttons create a selection menu - only one can be selected at a time
+        page = st.sidebar.radio(
+            "Select Your Class:", 
+            ["🏠 Home", "ACC 200 - Intro", "ACC 310 - Intermediate I", "ACC 401 - Intermediate II", "ACC 402 - Cost Accounting", "🧮 Calculators"]
+        )
 
     # --- PAGE 1: HOME ---
     if page == "🏠 Home":
-        st.title("📊 BYU Accounting Study Dashboard")
-        st.info("👈 Select a class from the sidebar to view formulas and concepts!")
+        # Centered title in blue square box
+        st.markdown("""
+            <div style='text-align: center; margin-bottom: 40px;'>
+                <div style='background-color: #002E5D; padding: 25px; border-radius: 12px; display: inline-block;'>
+                    <h1 style='color: white; margin: 0; font-family: Segoe UI, Helvetica, Arial, sans-serif;'>BYU ACCOUNTING DASHBOARD</h1>
+                </div>
+            </div>
+        """, unsafe_allow_html=True)
         
-        st.write("### 📖 Available Classes")
+        st.info("👇 Select a class below to view formulas and concepts!")
         
-        # Create 2 columns for a cleaner layout
+        st.write("")
+        st.write("### 📖 Select Your Class")
+        st.write("")
+        
+        # Create clickable course boxes
         col1, col2 = st.columns(2)
         
         with col1:
-            st.write("**ACC 200** - Introduction to Accounting")
-            st.write("*Basic accounting principles, financial statements, journal entries*")
+            # ACC 200 Box
+            if st.button("📘 ACC 200\nIntroduction to Accounting\n\nBasic principles, financial statements, journal entries", 
+                        key="acc200", use_container_width=True, type="secondary"):
+                st.session_state.selected_page = "ACC 200 - Intro"
+                st.rerun()
+            
             st.write("")
-            st.write("**ACC 310** - Intermediate Accounting I")
-            st.write("*Revenue recognition, cash, receivables, inventory*")
+            
+            # ACC 401 Box
+            if st.button("📙 ACC 401\nIntermediate Accounting II\n\nLong-term assets, liabilities, bonds, leases", 
+                        key="acc401", use_container_width=True, type="secondary"):
+                st.session_state.selected_page = "ACC 401 - Intermediate II"
+                st.rerun()
         
         with col2:
-            st.write("**ACC 401** - Intermediate Accounting II")
-            st.write("*Long-term assets, liabilities, bonds, leases*")
+            # ACC 310 Box
+            if st.button("📗 ACC 310\nIntermediate Accounting I\n\nRevenue recognition, cash, receivables, inventory", 
+                        key="acc310", use_container_width=True, type="secondary"):
+                st.session_state.selected_page = "ACC 310 - Intermediate I"
+                st.rerun()
+            
             st.write("")
-            st.write("**ACC 402** - Cost Accounting")
-            st.write("*Job costing, process costing, activity-based costing*")
+            
+            # ACC 402 Box
+            if st.button("📕 ACC 402\nCost Accounting\n\nJob costing, process costing, activity-based costing", 
+                        key="acc402", use_container_width=True, type="secondary"):
+                st.session_state.selected_page = "ACC 402 - Cost Accounting"
+                st.rerun()
         
         st.write("---")
         st.write("### 🎯 Quick Stats")
@@ -143,6 +178,29 @@ elif st.session_state.page == 'main':
         col1.metric("Total Formulas", "25+")
         col2.metric("Classes Covered", "4")
         col3.metric("Calculators", "5+")
+        
+        # Add CSS for course boxes
+        st.markdown("""
+            <style>
+            /* Style the course selection buttons */
+            div[data-testid="column"] button[kind="secondary"] {
+                height: 160px !important;
+                background-color: #1E1E1E !important;
+                border: 2px solid #002E5D !important;
+                border-radius: 12px !important;
+                font-size: 16px !important;
+                white-space: pre-line !important;
+                text-align: left !important;
+                padding: 20px !important;
+                transition: all 0.3s ease !important;
+            }
+            div[data-testid="column"] button[kind="secondary"]:hover {
+                background-color: #002E5D !important;
+                transform: translateY(-3px) !important;
+                box-shadow: 0 6px 20px rgba(0, 46, 93, 0.4) !important;
+            }
+            </style>
+        """, unsafe_allow_html=True)
 
     # --- PAGE 2: ACC 200 ---
     elif page == "ACC 200 - Intro":
