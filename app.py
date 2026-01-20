@@ -34,6 +34,32 @@ st.markdown("""
     .stApp {
         font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
     }
+    
+    /* Sidebar styling - match dark theme */
+    section[data-testid="stSidebar"] {
+        background-color: #0E1117 !important;
+    }
+    
+    section[data-testid="stSidebar"] > div {
+        background-color: #0E1117 !important;
+    }
+    
+    /* Sidebar text white */
+    section[data-testid="stSidebar"] * {
+        color: #FFFFFF !important;
+    }
+    
+    /* Sidebar radio buttons */
+    section[data-testid="stSidebar"] .row-widget.stRadio > div {
+        background-color: #1E1E1E !important;
+        border-radius: 8px !important;
+        padding: 10px !important;
+    }
+    
+    /* Sidebar title */
+    section[data-testid="stSidebar"] h1 {
+        color: #FFFFFF !important;
+    }
     </style>
 """, unsafe_allow_html=True)
 
@@ -144,31 +170,55 @@ elif st.session_state.page == 'main':
         
         with col1:
             # ACC 200 Box
-            if st.button("📘 ACC 200\nIntroduction to Accounting\n\nBasic principles, financial statements, journal entries", 
-                        key="acc200", use_container_width=True, type="secondary"):
+            st.markdown("""
+                <div style='background-color: #002E5D; padding: 25px; border-radius: 12px; margin-bottom: 20px; cursor: pointer;'>
+                    <h3 style='color: white; margin: 0;'>📘 ACC 200</h3>
+                    <p style='color: white; margin: 10px 0 0 0;'><strong>Introduction to Accounting</strong></p>
+                    <p style='color: #B0B0B0; margin: 5px 0 0 0; font-size: 14px;'>Basic principles, financial statements, journal entries</p>
+                </div>
+            """, unsafe_allow_html=True)
+            if st.button("Go to ACC 200", key="btn_acc200", use_container_width=True):
                 st.session_state.selected_page = "ACC 200 - Intro"
                 st.rerun()
             
             st.write("")
             
             # ACC 401 Box
-            if st.button("📙 ACC 401\nIntermediate Accounting II\n\nLong-term assets, liabilities, bonds, leases", 
-                        key="acc401", use_container_width=True, type="secondary"):
+            st.markdown("""
+                <div style='background-color: #002E5D; padding: 25px; border-radius: 12px; margin-bottom: 20px;'>
+                    <h3 style='color: white; margin: 0;'>📙 ACC 401</h3>
+                    <p style='color: white; margin: 10px 0 0 0;'><strong>Intermediate Accounting II</strong></p>
+                    <p style='color: #B0B0B0; margin: 5px 0 0 0; font-size: 14px;'>Long-term assets, liabilities, bonds, leases</p>
+                </div>
+            """, unsafe_allow_html=True)
+            if st.button("Go to ACC 401", key="btn_acc401", use_container_width=True):
                 st.session_state.selected_page = "ACC 401 - Intermediate II"
                 st.rerun()
         
         with col2:
             # ACC 310 Box
-            if st.button("📗 ACC 310\nIntermediate Accounting I\n\nRevenue recognition, cash, receivables, inventory", 
-                        key="acc310", use_container_width=True, type="secondary"):
+            st.markdown("""
+                <div style='background-color: #002E5D; padding: 25px; border-radius: 12px; margin-bottom: 20px;'>
+                    <h3 style='color: white; margin: 0;'>📗 ACC 310</h3>
+                    <p style='color: white; margin: 10px 0 0 0;'><strong>Intermediate Accounting I</strong></p>
+                    <p style='color: #B0B0B0; margin: 5px 0 0 0; font-size: 14px;'>Revenue recognition, cash, receivables, inventory</p>
+                </div>
+            """, unsafe_allow_html=True)
+            if st.button("Go to ACC 310", key="btn_acc310", use_container_width=True):
                 st.session_state.selected_page = "ACC 310 - Intermediate I"
                 st.rerun()
             
             st.write("")
             
             # ACC 402 Box
-            if st.button("📕 ACC 402\nCost Accounting\n\nJob costing, process costing, activity-based costing", 
-                        key="acc402", use_container_width=True, type="secondary"):
+            st.markdown("""
+                <div style='background-color: #002E5D; padding: 25px; border-radius: 12px; margin-bottom: 20px;'>
+                    <h3 style='color: white; margin: 0;'>📕 ACC 402</h3>
+                    <p style='color: white; margin: 10px 0 0 0;'><strong>Cost Accounting</strong></p>
+                    <p style='color: #B0B0B0; margin: 5px 0 0 0; font-size: 14px;'>Job costing, process costing, activity-based costing</p>
+                </div>
+            """, unsafe_allow_html=True)
+            if st.button("Go to ACC 402", key="btn_acc402", use_container_width=True):
                 st.session_state.selected_page = "ACC 402 - Cost Accounting"
                 st.rerun()
         
@@ -178,32 +228,14 @@ elif st.session_state.page == 'main':
         col1.metric("Total Formulas", "25+")
         col2.metric("Classes Covered", "4")
         col3.metric("Calculators", "5+")
-        
-        # Add CSS for course boxes
-        st.markdown("""
-            <style>
-            /* Style the course selection buttons */
-            div[data-testid="column"] button[kind="secondary"] {
-                height: 160px !important;
-                background-color: #1E1E1E !important;
-                border: 2px solid #002E5D !important;
-                border-radius: 12px !important;
-                font-size: 16px !important;
-                white-space: pre-line !important;
-                text-align: left !important;
-                padding: 20px !important;
-                transition: all 0.3s ease !important;
-            }
-            div[data-testid="column"] button[kind="secondary"]:hover {
-                background-color: #002E5D !important;
-                transform: translateY(-3px) !important;
-                box-shadow: 0 6px 20px rgba(0, 46, 93, 0.4) !important;
-            }
-            </style>
-        """, unsafe_allow_html=True)
 
     # --- PAGE 2: ACC 200 ---
     elif page == "ACC 200 - Intro":
+        # Back to Home button
+        if st.button("← Back to Home", key="back_200"):
+            st.session_state.selected_page = "🏠 Home"
+            st.rerun()
+        
         st.title("📘 ACC 200 - Introduction to Accounting")
         st.write("### Key Formulas & Concepts")
         
@@ -231,6 +263,11 @@ elif st.session_state.page == 'main':
 
     # --- PAGE 3: ACC 310 ---
     elif page == "ACC 310 - Intermediate I":
+        # Back to Home button
+        if st.button("← Back to Home", key="back_310"):
+            st.session_state.selected_page = "🏠 Home"
+            st.rerun()
+        
         st.title("📗 ACC 310 - Intermediate Accounting I")
         st.write("### Key Formulas & Concepts")
         
@@ -262,6 +299,11 @@ elif st.session_state.page == 'main':
 
     # --- PAGE 4: ACC 401 ---
     elif page == "ACC 401 - Intermediate II":
+        # Back to Home button
+        if st.button("← Back to Home", key="back_401"):
+            st.session_state.selected_page = "🏠 Home"
+            st.rerun()
+        
         st.title("📙 ACC 401 - Intermediate Accounting II")
         st.write("### Key Formulas & Concepts")
         
@@ -292,6 +334,11 @@ elif st.session_state.page == 'main':
 
     # --- PAGE 5: ACC 402 ---
     elif page == "ACC 402 - Cost Accounting":
+        # Back to Home button
+        if st.button("← Back to Home", key="back_402"):
+            st.session_state.selected_page = "🏠 Home"
+            st.rerun()
+        
         st.title("📕 ACC 402 - Cost Accounting")
         st.write("### Key Formulas & Concepts")
         
@@ -326,6 +373,11 @@ elif st.session_state.page == 'main':
 
     # --- PAGE 6: CALCULATORS ---
     elif page == "🧮 Calculators":
+        # Back to Home button
+        if st.button("← Back to Home", key="back_calc"):
+            st.session_state.selected_page = "🏠 Home"
+            st.rerun()
+        
         st.title("🧮 Quick Calculators")
         
         calc_type = st.selectbox("Choose a Calculator:", [
