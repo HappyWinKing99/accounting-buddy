@@ -454,61 +454,94 @@ elif st.session_state.page == 'main':
                         'content': test_question
                     })
                     
-                    # Check for API key
+                    # Check for API key with detailed debugging
+                    st.write("**Checking for API key...**")
+                    
                     try:
-                        api_key = st.secrets["ANTHROPIC_API_KEY"]
-                        st.success(f"✅ API Key found! Length: {len(api_key)} characters")
+                        # Try to access secrets
+                        st.write("Secrets object exists:", hasattr(st, 'secrets'))
                         
-                        # Try simple API call
-                        import requests
+                        if hasattr(st, 'secrets'):
+                            st.write("Secrets keys available:", list(st.secrets.keys()) if hasattr(st.secrets, 'keys') else "Cannot list keys")
                         
-                        with st.spinner("Testing API call..."):
-                            headers = {
-                                "Content-Type": "application/json",
-                                "x-api-key": api_key,
-                                "anthropic-version": "2023-06-01"
-                            }
+                        # Try different ways to access the key
+                        api_key = None
+                        
+                        # Method 1: Direct access
+                        try:
+                            api_key = st.secrets["ANTHROPIC_API_KEY"]
+                            st.success(f"✅ Method 1 worked! API Key found! First 10 chars: {api_key[:10]}...")
+                        except Exception as e1:
+                            st.warning(f"Method 1 failed: {str(e1)}")
                             
-                            data = {
-                                "model": "claude-sonnet-4-20250514",
-                                "max_tokens": 500,
-                                "messages": [
-                                    {"role": "user", "content": test_question}
-                                ]
-                            }
-                            
+                            # Method 2: Using get
                             try:
-                                response = requests.post(
-                                    "https://api.anthropic.com/v1/messages",
-                                    headers=headers,
-                                    json=data,
-                                    timeout=30
-                                )
-                                
-                                st.write(f"**API Response Status:** {response.status_code}")
-                                
-                                if response.status_code == 200:
-                                    result = response.json()
-                                    ai_response = result['content'][0]['text']
-                                    st.success("✅ API call successful!")
-                                    st.write("**AI Response:**")
-                                    st.write(ai_response)
-                                    
-                                    # Add to history
-                                    st.session_state.chat_history_402.append({
-                                        'role': 'assistant',
-                                        'content': ai_response
-                                    })
+                                api_key = st.secrets.get("ANTHROPIC_API_KEY")
+                                if api_key:
+                                    st.success(f"✅ Method 2 worked! API Key found! First 10 chars: {api_key[:10]}...")
                                 else:
-                                    st.error(f"❌ API Error: {response.status_code}")
-                                    st.code(response.text)
-                                    
-                            except Exception as e:
-                                st.error(f"❌ API Call Error: {str(e)}")
+                                    st.error("Method 2: Key is None")
+                            except Exception as e2:
+                                st.error(f"Method 2 also failed: {str(e2)}")
+                        
+                        if api_key:
+                            st.success(f"✅ API Key retrieved successfully!")
+                            st.write(f"Key length: {len(api_key)} characters")
+                            st.write(f"Key starts with: {api_key[:15]}...")
+                            
+                            # Try simple API call
+                            import requests
+                            
+                            with st.spinner("Testing API call..."):
+                                headers = {
+                                    "Content-Type": "application/json",
+                                    "x-api-key": api_key,
+                                    "anthropic-version": "2023-06-01"
+                                }
                                 
-                    except KeyError:
-                        st.error("❌ API Key not found in secrets!")
-                        st.info("Check your .streamlit/secrets.toml file")
+                                data = {
+                                    "model": "claude-sonnet-4-20250514",
+                                    "max_tokens": 500,
+                                    "messages": [
+                                        {"role": "user", "content": test_question}
+                                    ]
+                                }
+                                
+                                try:
+                                    response = requests.post(
+                                        "https://api.anthropic.com/v1/messages",
+                                        headers=headers,
+                                        json=data,
+                                        timeout=30
+                                    )
+                                    
+                                    st.write(f"**API Response Status:** {response.status_code}")
+                                    
+                                    if response.status_code == 200:
+                                        result = response.json()
+                                        ai_response = result['content'][0]['text']
+                                        st.success("✅ API call successful!")
+                                        st.write("**AI Response:**")
+                                        st.write(ai_response)
+                                        
+                                        # Add to history
+                                        st.session_state.chat_history_402.append({
+                                            'role': 'assistant',
+                                            'content': ai_response
+                                        })
+                                    else:
+                                        st.error(f"❌ API Error: {response.status_code}")
+                                        st.code(response.text)
+                                        
+                                except Exception as e:
+                                    st.error(f"❌ API Call Error: {str(e)}")
+                        else:
+                            st.error("❌ Could not retrieve API key using any method")
+                            
+                    except Exception as e:
+                        st.error(f"❌ Fatal error checking for API key: {str(e)}")
+                        st.info("Make sure your .streamlit/secrets.toml file exists and contains:")
+                        st.code('ANTHROPIC_API_KEY = "your-key-here"')
                 else:
                     st.warning("Please enter a question!")
             
