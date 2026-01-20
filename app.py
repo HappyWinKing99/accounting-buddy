@@ -14,9 +14,25 @@ st.set_page_config(
 # Force dark mode with custom theme
 st.markdown("""
     <style>
-    /* Force dark background */
+    /* Force dark background everywhere */
     .stApp {
         background-color: #0E1117;
+        color: #FFFFFF;
+    }
+    
+    /* Make top header bar black */
+    header[data-testid="stHeader"] {
+        background-color: #0E1117 !important;
+    }
+    
+    /* Change all text to white for contrast */
+    .stApp, .stMarkdown, p, span, div, label {
+        color: #FFFFFF !important;
+    }
+    
+    /* Professional font throughout app */
+    .stApp {
+        font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
     }
     </style>
 """, unsafe_allow_html=True)
@@ -42,13 +58,13 @@ if st.session_state.page == 'welcome':
     col1, col2, col3 = st.columns([1, 2, 1])
     
     with col2:
-        # BYU Cougar Logo (simple, guaranteed to work)
+        # BYU Accounting Logo - Square with rounded corners
         st.markdown("""
             <div style='text-align: center;'>
-                <svg width="200" height="200" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                    <circle cx="50" cy="50" r="45" fill="#002E5D"/>
-                    <text x="50" y="40" font-size="20" fill="white" text-anchor="middle" font-weight="bold" font-family="Arial">BYU</text>
-                    <text x="50" y="65" font-size="12" fill="white" text-anchor="middle" font-family="Arial">ACCOUNTING</text>
+                <svg width="220" height="220" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="5" y="5" width="90" height="90" rx="8" ry="8" fill="#002E5D"/>
+                    <text x="50" y="42" font-size="22" fill="white" text-anchor="middle" font-weight="bold" font-family="Segoe UI, Helvetica, Arial, sans-serif">BYU</text>
+                    <text x="50" y="65" font-size="10" fill="white" text-anchor="middle" font-family="Segoe UI, Helvetica, Arial, sans-serif" letter-spacing="1">ACCOUNTING</text>
                 </svg>
             </div>
         """, unsafe_allow_html=True)
