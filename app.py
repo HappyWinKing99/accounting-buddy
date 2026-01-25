@@ -1399,6 +1399,13 @@ with st.sidebar:
 # ============================================================================
 
 page = st.session_state.selected_page
+# ============================================================================
+# UPDATED HOMEPAGE - CLEANER & MORE POLISHED
+# ============================================================================
+# Find your existing: if page == "🏠 Home":
+# Replace EVERYTHING in that section (until "elif page == "🧮 Calculators":")
+# with the code below
+# ============================================================================
 
 # --- PAGE 1: HOME ---
 if page == "🏠 Home":
@@ -1412,163 +1419,131 @@ if page == "🏠 Home":
         height=0
     )
     
-    st.markdown("<br>", unsafe_allow_html=True)
-    
+    # Clean, minimal hero section
     st.markdown("""
-        <div style='text-align: center; padding: 40px 20px 40px 20px;'>
-            <div style='margin-bottom: 40px;'>
-                <svg width="220" height="220" viewBox="0 0 220 220" xmlns="http://www.w3.org/2000/svg">
-                    <circle cx="110" cy="110" r="105" fill="#002E5D"/>
-                    <text x="110" y="85" font-size="48" fill="white" text-anchor="middle" font-weight="bold" font-family="Arial, sans-serif">BYU</text>
-                    <text x="110" y="115" font-size="14" fill="#CFB53B" text-anchor="middle" font-family="Arial, sans-serif" letter-spacing="3">MARRIOTT SCHOOL</text>
-                    <line x1="60" y1="130" x2="160" y2="130" stroke="#CFB53B" stroke-width="1" opacity="0.6"/>
-                    <text x="110" y="155" font-size="18" fill="white" text-anchor="middle" font-family="Arial, sans-serif" letter-spacing="4">ACCOUNTING</text>
-                    <text x="110" y="178" font-size="12" fill="#AAAAAA" text-anchor="middle" font-family="Arial, sans-serif" letter-spacing="2">STUDY HUB</text>
-                </svg>
-            </div>
-            <h1 style='color: #FFFFFF; font-size: 3.2em; margin-bottom: 15px; font-weight: 700; letter-spacing: 2px;'>
+        <div style='text-align: center; padding: 60px 20px 40px 20px;'>
+            <h1 style='
+                color: #FFFFFF; 
+                font-size: 2.8em; 
+                margin-bottom: 8px; 
+                font-weight: 300; 
+                letter-spacing: 1px;
+            '>
                 Accounting Study Hub
             </h1>
-            <p style='color: #CFB53B; font-size: 1.1em; margin-top: 0; font-weight: 600; letter-spacing: 4px; text-transform: uppercase;'>
-                Brigham Young University
+            <p style='
+                color: #CFB53B; 
+                font-size: 0.95em; 
+                letter-spacing: 3px; 
+                text-transform: uppercase;
+                margin-bottom: 30px;
+            '>
+                BYU Marriott School of Business
             </p>
-            <p style='color: #888888; font-size: 1em; margin-top: 25px; max-width: 550px; margin-left: auto; margin-right: auto; line-height: 1.7;'>
-                AI-powered study tools designed to help you master managerial accounting concepts and ace your exams.
+            <p style='
+                color: #666; 
+                font-size: 1em; 
+                max-width: 500px; 
+                margin: 0 auto;
+                line-height: 1.6;
+            '>
+                AI-powered tools to help you master managerial accounting.
             </p>
         </div>
     """, unsafe_allow_html=True)
     
+    # Subtle divider
     st.markdown("""
-        <div style='display: flex; align-items: center; justify-content: center; margin: 40px 0;'>
-            <div style='flex: 1; height: 1px; background: linear-gradient(to right, transparent, #2D2D4A, transparent);'></div>
-        </div>
+        <div style='
+            width: 60px; 
+            height: 2px; 
+            background: #CFB53B; 
+            margin: 30px auto 50px auto;
+            opacity: 0.6;
+        '></div>
     """, unsafe_allow_html=True)
     
-    st.markdown("""
-        <h2 style='text-align: center; color: #FFFFFF; font-weight: 400; letter-spacing: 1px; margin-bottom: 40px;'>
-            Get Started
-        </h2>
-    """, unsafe_allow_html=True)
-    
-    col1, col2 = st.columns(2, gap="large")
+    # Three clean feature cards
+    col1, col2, col3 = st.columns(3, gap="medium")
     
     with col1:
         st.markdown("""
-        <div style='
-            background: linear-gradient(145deg, #002E5D, #001A3A);
-            padding: 30px;
-            border-radius: 15px;
-            border: 1px solid #003D7A;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            height: 100%;
-        '>
-            <div style='font-size: 2.5em; margin-bottom: 15px;'>📕</div>
-            <h3 style='color: #FFFFFF; margin-bottom: 10px; font-size: 1.4em; font-weight: 500;'>
-                ACC 402
-            </h3>
-            <p style='color: #CFB53B; font-size: 0.9em; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 1px;'>
-                Managerial Accounting
-            </p>
-            <p style='color: #AAAAAA; font-size: 0.95em; line-height: 1.6;'>
-                AI Tutor with full textbook access covering Chapters 1, 3, 4, 6, and 7. Get instant help with concepts, formulas, and practice problems.
-            </p>
-        </div>
+            <div style='
+                background: #12121a;
+                padding: 35px 25px;
+                border-radius: 12px;
+                text-align: center;
+                border: 1px solid #1e1e2e;
+                height: 200px;
+            '>
+                <div style='font-size: 2.2em; margin-bottom: 15px;'>🤖</div>
+                <h3 style='color: #FFFFFF; font-size: 1.1em; font-weight: 500; margin-bottom: 8px;'>
+                    AI Tutor
+                </h3>
+                <p style='color: #555; font-size: 0.85em; line-height: 1.5;'>
+                    Ask questions about your textbook
+                </p>
+            </div>
         """, unsafe_allow_html=True)
-        st.markdown("<br>", unsafe_allow_html=True)
-        if st.button("Launch ACC 402 →", key="goto_402", use_container_width=True):
-            st.session_state.selected_page = "📕 ACC 402 - Managerial Accounting"
-            st.rerun()
     
     with col2:
         st.markdown("""
-        <div style='
-            background: linear-gradient(145deg, #1A1A2E, #151525);
-            padding: 30px;
-            border-radius: 15px;
-            border: 1px solid #2D2D4A;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            height: 100%;
-        '>
-            <div style='font-size: 2.5em; margin-bottom: 15px;'>🧮</div>
-            <h3 style='color: #FFFFFF; margin-bottom: 10px; font-size: 1.4em; font-weight: 500;'>
-                Calculators
-            </h3>
-            <p style='color: #CFB53B; font-size: 0.9em; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 1px;'>
-                Quick Tools
-            </p>
-            <p style='color: #AAAAAA; font-size: 0.95em; line-height: 1.6;'>
-                Contribution margin, break-even analysis, overhead rates, and more. Get instant answers to common accounting calculations.
-            </p>
-        </div>
+            <div style='
+                background: #12121a;
+                padding: 35px 25px;
+                border-radius: 12px;
+                text-align: center;
+                border: 1px solid #1e1e2e;
+                height: 200px;
+            '>
+                <div style='font-size: 2.2em; margin-bottom: 15px;'>🧮</div>
+                <h3 style='color: #FFFFFF; font-size: 1.1em; font-weight: 500; margin-bottom: 8px;'>
+                    Calculators
+                </h3>
+                <p style='color: #555; font-size: 0.85em; line-height: 1.5;'>
+                    Break-even, contribution margin & more
+                </p>
+            </div>
         """, unsafe_allow_html=True)
-        st.markdown("<br>", unsafe_allow_html=True)
-        if st.button("Open Calculators →", key="goto_calc", use_container_width=True):
-            st.session_state.selected_page = "🧮 Calculators"
-            st.rerun()
-    
-    st.markdown("<br><br>", unsafe_allow_html=True)
-    
-    col3, col4 = st.columns(2, gap="large")
     
     with col3:
         st.markdown("""
-        <div style='
-            background: linear-gradient(145deg, #1A1A2E, #151525);
-            padding: 30px;
-            border-radius: 15px;
-            border: 1px solid #2D2D4A;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            height: 100%;
-        '>
-            <div style='font-size: 2.5em; margin-bottom: 15px;'>📖</div>
-            <h3 style='color: #FFFFFF; margin-bottom: 10px; font-size: 1.4em; font-weight: 500;'>
-                Formula Database
-            </h3>
-            <p style='color: #CFB53B; font-size: 0.9em; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 1px;'>
-                Quick Reference
-            </p>
-            <p style='color: #AAAAAA; font-size: 0.95em; line-height: 1.6;'>
-                Searchable database of key accounting formulas. Find exactly what you need for homework and exams.
-            </p>
-        </div>
+            <div style='
+                background: #12121a;
+                padding: 35px 25px;
+                border-radius: 12px;
+                text-align: center;
+                border: 1px solid #1e1e2e;
+                height: 200px;
+            '>
+                <div style='font-size: 2.2em; margin-bottom: 15px;'>📖</div>
+                <h3 style='color: #FFFFFF; font-size: 1.1em; font-weight: 500; margin-bottom: 8px;'>
+                    Formula Reference
+                </h3>
+                <p style='color: #555; font-size: 0.85em; line-height: 1.5;'>
+                    Searchable database of key formulas
+                </p>
+            </div>
         """, unsafe_allow_html=True)
-        st.markdown("<br>", unsafe_allow_html=True)
-        if st.button("Browse Formulas →", key="goto_formulas", use_container_width=True):
-            st.session_state.selected_page = "📖 Formula Database"
-            st.rerun()
-    
-    with col4:
-        st.markdown("""
-        <div style='
-            background: linear-gradient(145deg, #1A1A2E, #151525);
-            padding: 30px;
-            border-radius: 15px;
-            border: 1px solid #2D2D4A;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            height: 100%;
-        '>
-            <div style='font-size: 2.5em; margin-bottom: 15px;'>📊</div>
-            <h3 style='color: #FFFFFF; margin-bottom: 10px; font-size: 1.4em; font-weight: 500;'>
-                Break-Even Visualizer
-            </h3>
-            <p style='color: #CFB53B; font-size: 0.9em; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 1px;'>
-                Interactive Charts
-            </p>
-            <p style='color: #AAAAAA; font-size: 0.95em; line-height: 1.6;'>
-                Visualize cost-volume-profit relationships with interactive charts. See your break-even point come to life.
-            </p>
-        </div>
-        """, unsafe_allow_html=True)
-        st.markdown("<br>", unsafe_allow_html=True)
-        if st.button("Open Visualizer →", key="goto_viz", use_container_width=True):
-            st.session_state.selected_page = "📊 Break-Even Visualizer"
-            st.rerun()
     
     st.markdown("<br><br>", unsafe_allow_html=True)
+    
+    # Single prominent CTA button
+    col_left, col_center, col_right = st.columns([1, 2, 1])
+    with col_center:
+        if st.button("Open ACC 402 AI Tutor →", key="main_cta", use_container_width=True):
+            st.session_state.selected_page = "📕 ACC 402 - Managerial Accounting"
+            st.rerun()
+    
+    # Minimal footer
     st.markdown("""
-        <div style='text-align: center; padding: 30px 20px; border-top: 1px solid #2D2D4A;'>
-            <p style='color: #555; font-size: 0.85em;'>
-                Built with AI & Data Analytics • BYU Marriott School of Business
+        <div style='
+            text-align: center; 
+            padding: 60px 20px 30px 20px;
+            margin-top: 40px;
+        '>
+            <p style='color: #333; font-size: 0.8em;'>
+                Built with AI for Data Analytics · ACC 597R
             </p>
         </div>
     """, unsafe_allow_html=True)
