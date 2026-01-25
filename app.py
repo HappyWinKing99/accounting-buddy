@@ -1235,48 +1235,16 @@ elif page == "📕 ACC 402 - Cost Accounting":
     
     st.title("📕 ACC 402 - AI Tutor & Study Guide")
     
-    tab1, tab2 = st.tabs(["📚 Key Formulas", "🤖 AI Tutor"])
+    # Swapped tab order - AI Tutor is now first/default
+    tab1, tab2 = st.tabs(["🤖 AI Tutor", "📚 Key Formulas"])
     
     with tab1:
-        st.write("### Key Formulas & Concepts")
-        
-        with st.expander("🔴 Contribution Margin", expanded=True):
-            st.write("**Contribution Margin = Sales - Variable Costs**")
-            st.write("*Amount available to cover fixed costs and profit*")
-            st.code("Example: $100,000 - $60,000 = $40,000", language=None)
-        
-        with st.expander("🔴 Contribution Margin Ratio"):
-            st.write("**CM Ratio = Contribution Margin / Sales**")
-            st.write("*Percentage of each sales dollar available for fixed costs*")
-            st.code("Example: $40,000 / $100,000 = 40%", language=None)
-        
-        with st.expander("🔴 Break-Even Point (Units)"):
-            st.write("**BEP (Units) = Fixed Costs / CM per Unit**")
-            st.write("*Number of units needed to cover all costs*")
-            st.code("Example: $30,000 / $15 = 2,000 units", language=None)
-        
-        with st.expander("🔴 Break-Even Point (Dollars)"):
-            st.write("**BEP ($) = Fixed Costs / CM Ratio**")
-            st.write("*Sales dollars needed to break even*")
-            st.code("Example: $30,000 / 0.40 = $75,000", language=None)
-        
-        with st.expander("🔴 Predetermined Overhead Rate"):
-            st.write("**Rate = Estimated Overhead / Estimated Activity**")
-            st.write("*Used to apply overhead to jobs*")
-            st.code("Example: $100,000 / 20,000 hours = $5/hour", language=None)
-        
-        with st.expander("🔴 Equivalent Units (Weighted-Average)"):
-            st.write("**EU = Units Completed + (Ending WIP × % Complete)**")
-            st.write("*Measures work done in a period*")
-            st.code("Example: 44,000 + (6,000 × 50%) = 47,000 EU", language=None)
-        
-        with st.expander("🔴 Cost of Goods Manufactured"):
-            st.write("**COGM = Beg. WIP + Manufacturing Costs - Ending WIP**")
-            st.write("*Total cost of units completed in production*")
-    
-    with tab2:
         st.write("### 🤖 Your ACC 402 AI Study Assistant")
         st.info("💡 This AI tutor has **word-for-word access** to your full textbook (Chapters 1, 3, 4, 6, and 7). Ask anything!")
+        
+        # Initialize trigger flag for topic/suggestion buttons
+        if 'trigger_ai_call' not in st.session_state:
+            st.session_state.trigger_ai_call = False
         
         # Quick Topic Buttons
         st.markdown("**📖 Quick Topics:**")
@@ -1295,6 +1263,7 @@ elif page == "📕 ACC 402 - Cost Accounting":
                         'role': 'user',
                         'content': question
                     })
+                    st.session_state.trigger_ai_call = True
                     st.rerun()
         
         st.markdown("---")
@@ -1370,20 +1339,31 @@ elif page == "📕 ACC 402 - Cost Accounting":
                     mime="text/plain"
                 )
         
-        # Process submission
+        # Check if we need to trigger AI call (from button click or form submit)
+        should_call_api = False
+        
+        # If form was submitted with a question
         if submit_button and user_question.strip():
-            # Add user message to history
             st.session_state.chat_history_402.append({
                 'role': 'user',
                 'content': user_question
             })
-            
-            # Check for API key
-            try:
-                api_key = st.secrets["ANTHROPIC_API_KEY"]
-                
-                # Prepare system prompt with FULL textbook content
-                system_prompt = f"""You are the Managerial Accounting Master Tutor, a specialized AI expert designed to help a junior-level accounting student master the material in their textbook.
+            should_call_api = True
+        
+        # If a topic/suggestion button was clicked
+        if st.session_state.trigger_ai_call:
+            should_call_api = True
+            st.session_state.trigger_ai_call = False
+        
+        # Process API call
+        if should_call_api and st.session_state.chat_history_402:
+            # Only call if the last message is from the user (not already answered)
+            if st.session_state.chat_history_402[-1]['role'] == 'user':
+                try:
+                    api_key = st.secrets["ANTHROPIC_API_KEY"]
+                    
+                    # Prepare system prompt with FULL textbook content
+                    system_prompt = f"""You are the Managerial Accounting Master Tutor, a specialized AI expert designed to help a junior-level accounting student master the material in their textbook.
 
 Your goal is to provide clear, accurate, and exam-focused guidance based strictly on the textbook data provided below.
 
@@ -1408,68 +1388,68 @@ INTERACTION PROTOCOLS:
 {FULL_TEXTBOOK_CONTENT}
 
 Now answer the student's question based on this textbook content."""
-                
-                # Make API call
-                with st.spinner("🤔 Thinking..."):
-                    headers = {
-                        "Content-Type": "application/json",
-                        "x-api-key": api_key,
-                        "anthropic-version": "2023-06-01"
-                    }
                     
-                    # Build conversation history for API
-                    api_messages = []
-                    for msg in st.session_state.chat_history_402:
-                        api_messages.append({
-                            "role": msg['role'],
-                            "content": msg['content']
-                        })
-                    
-                    data = {
-                        "model": model_choice,
-                        "max_tokens": 4096,
-                        "system": system_prompt,
-                        "messages": api_messages
-                    }
-                    
-                    try:
-                        response = requests.post(
-                            "https://api.anthropic.com/v1/messages",
-                            headers=headers,
-                            json=data,
-                            timeout=60
-                        )
+                    # Make API call
+                    with st.spinner("🤔 Thinking..."):
+                        headers = {
+                            "Content-Type": "application/json",
+                            "x-api-key": api_key,
+                            "anthropic-version": "2023-06-01"
+                        }
                         
-                        if response.status_code == 200:
-                            response_data = response.json()
-                            
-                            # Safe extraction of AI message
-                            if response_data.get('content') and len(response_data['content']) > 0:
-                                ai_message = response_data['content'][0]['text']
-                            else:
-                                ai_message = "I'm sorry, I couldn't generate a response. Please try again."
-                            
-                            # Add AI response to history
-                            st.session_state.chat_history_402.append({
-                                'role': 'assistant',
-                                'content': ai_message
+                        # Build conversation history for API
+                        api_messages = []
+                        for msg in st.session_state.chat_history_402:
+                            api_messages.append({
+                                "role": msg['role'],
+                                "content": msg['content']
                             })
-                            st.rerun()
-                        else:
-                            st.error(f"❌ API Error: {response.status_code}")
-                            st.code(response.text)
-                    
-                    except requests.exceptions.Timeout:
-                        st.error("❌ Request timed out. Please try again.")
-                    except requests.exceptions.RequestException as e:
-                        st.error(f"❌ Network error: {str(e)}")
-                    except Exception as e:
-                        st.error(f"❌ Error calling API: {str(e)}")
-            
-            except KeyError:
-                st.error("⚠️ API key not found. Please add your Anthropic API key to Streamlit secrets.")
-                st.info("Add this to `.streamlit/secrets.toml`:")
-                st.code('ANTHROPIC_API_KEY = "your-key-here"')
+                        
+                        data = {
+                            "model": model_choice,
+                            "max_tokens": 4096,
+                            "system": system_prompt,
+                            "messages": api_messages
+                        }
+                        
+                        try:
+                            response = requests.post(
+                                "https://api.anthropic.com/v1/messages",
+                                headers=headers,
+                                json=data,
+                                timeout=60
+                            )
+                            
+                            if response.status_code == 200:
+                                response_data = response.json()
+                                
+                                # Safe extraction of AI message
+                                if response_data.get('content') and len(response_data['content']) > 0:
+                                    ai_message = response_data['content'][0]['text']
+                                else:
+                                    ai_message = "I'm sorry, I couldn't generate a response. Please try again."
+                                
+                                # Add AI response to history
+                                st.session_state.chat_history_402.append({
+                                    'role': 'assistant',
+                                    'content': ai_message
+                                })
+                                st.rerun()
+                            else:
+                                st.error(f"❌ API Error: {response.status_code}")
+                                st.code(response.text)
+                        
+                        except requests.exceptions.Timeout:
+                            st.error("❌ Request timed out. Please try again.")
+                        except requests.exceptions.RequestException as e:
+                            st.error(f"❌ Network error: {str(e)}")
+                        except Exception as e:
+                            st.error(f"❌ Error calling API: {str(e)}")
+                
+                except KeyError:
+                    st.error("⚠️ API key not found. Please add your Anthropic API key to Streamlit secrets.")
+                    st.info("Add this to `.streamlit/secrets.toml`:")
+                    st.code('ANTHROPIC_API_KEY = "your-key-here"')
         
         # Suggested questions
         st.markdown("---")
@@ -1491,4 +1471,42 @@ Now answer the student's question based on this textbook content."""
                         'role': 'user',
                         'content': suggestion
                     })
+                    st.session_state.trigger_ai_call = True
                     st.rerun()
+    
+    with tab2:
+        st.write("### Key Formulas & Concepts")
+        
+        with st.expander("🔴 Contribution Margin", expanded=True):
+            st.write("**Contribution Margin = Sales - Variable Costs**")
+            st.write("*Amount available to cover fixed costs and profit*")
+            st.code("Example: $100,000 - $60,000 = $40,000", language=None)
+        
+        with st.expander("🔴 Contribution Margin Ratio"):
+            st.write("**CM Ratio = Contribution Margin / Sales**")
+            st.write("*Percentage of each sales dollar available for fixed costs*")
+            st.code("Example: $40,000 / $100,000 = 40%", language=None)
+        
+        with st.expander("🔴 Break-Even Point (Units)"):
+            st.write("**BEP (Units) = Fixed Costs / CM per Unit**")
+            st.write("*Number of units needed to cover all costs*")
+            st.code("Example: $30,000 / $15 = 2,000 units", language=None)
+        
+        with st.expander("🔴 Break-Even Point (Dollars)"):
+            st.write("**BEP ($) = Fixed Costs / CM Ratio**")
+            st.write("*Sales dollars needed to break even*")
+            st.code("Example: $30,000 / 0.40 = $75,000", language=None)
+        
+        with st.expander("🔴 Predetermined Overhead Rate"):
+            st.write("**Rate = Estimated Overhead / Estimated Activity**")
+            st.write("*Used to apply overhead to jobs*")
+            st.code("Example: $100,000 / 20,000 hours = $5/hour", language=None)
+        
+        with st.expander("🔴 Equivalent Units (Weighted-Average)"):
+            st.write("**EU = Units Completed + (Ending WIP × % Complete)**")
+            st.write("*Measures work done in a period*")
+            st.code("Example: 44,000 + (6,000 × 50%) = 47,000 EU", language=None)
+        
+        with st.expander("🔴 Cost of Goods Manufactured"):
+            st.write("**COGM = Beg. WIP + Manufacturing Costs - Ending WIP**")
+            st.write("*Total cost of units completed in production*")
