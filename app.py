@@ -1347,34 +1347,43 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # ============================================================================
-# SCROLL TO TOP ON PAGE CHANGE
+# SCROLL TO TOP ON PAGE CHANGE - Using anchor approach
 # ============================================================================
+# Create an invisible anchor at the very top
+st.markdown('<div id="top-anchor"></div>', unsafe_allow_html=True)
+
+# Track page changes
 if 'last_page' not in st.session_state:
     st.session_state.last_page = ""
 
+# If page changed, use JavaScript to scroll
 if st.session_state.last_page != st.session_state.selected_page:
     st.session_state.last_page = st.session_state.selected_page
-
-st.markdown("""
-    <script>
-        window.scrollTo(0, 0);
-        
-        var mainContainer = window.parent.document.querySelector('[data-testid="stAppViewContainer"]');
-        if (mainContainer) {
-            mainContainer.scrollTo(0, 0);
-        }
-        
-        var mainBlock = window.parent.document.querySelector('.main');
-        if (mainBlock) {
-            mainBlock.scrollTo(0, 0);
-        }
-        
-        var stApp = window.parent.document.querySelector('.stApp');
-        if (stApp) {
-            stApp.scrollTo(0, 0);
-        }
-    </script>
-""", unsafe_allow_html=True)
+    
+    # More aggressive scroll approach
+    st.markdown("""
+        <style>
+            /* Force scroll position */
+            .main .block-container {
+                scroll-margin-top: 0px;
+            }
+        </style>
+        <script>
+            // Wait for page to load then scroll
+            setTimeout(function() {
+                window.parent.document.querySelector('section.main').scrollTo(0, 0);
+            }, 100);
+            
+            setTimeout(function() {
+                var element = window.parent.document.querySelector('[data-testid="stAppViewContainer"]');
+                if (element) element.scrollTop = 0;
+            }, 100);
+            
+            setTimeout(function() {
+                window.parent.scrollTo(0, 0);
+            }, 100);
+        </script>
+    """, unsafe_allow_html=True)
 
 # ============================================================================
 # SIDEBAR NAVIGATION
