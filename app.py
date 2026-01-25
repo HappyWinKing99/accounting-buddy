@@ -855,29 +855,24 @@ END OF TEXTBOOK CONTENT
 st.markdown("""
     <style>
     /* ===== GLOBAL STYLES ===== */
-    /* Force dark background everywhere */
     .stApp {
         background-color: #0E1117;
         color: #FFFFFF;
     }
     
-    /* Make top header bar black */
     header[data-testid="stHeader"] {
         background-color: #0E1117 !important;
     }
     
-    /* Professional font throughout app */
     .stApp {
         font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
     }
     
     /* ===== TEXT COLORS ===== */
-    /* Change all text to white for contrast */
     .stApp, .stMarkdown, p, span, div, label, li, td, th {
         color: #FFFFFF !important;
     }
     
-    /* Code blocks */
     code {
         color: #FFFFFF !important;
         background-color: #1E1E1E !important;
@@ -889,43 +884,43 @@ st.markdown("""
     
     /* ===== SIDEBAR STYLING ===== */
     section[data-testid="stSidebar"] {
-        background-color: #0E1117 !important;
+        background-color: #0A0A0F !important;
+        border-right: 1px solid #1E1E1E !important;
     }
     
     section[data-testid="stSidebar"] > div {
-        background-color: #0E1117 !important;
+        background-color: #0A0A0F !important;
     }
     
     section[data-testid="stSidebar"] * {
         color: #FFFFFF !important;
     }
     
-    section[data-testid="stSidebar"] .row-widget.stRadio > div {
-        background-color: #1E1E1E !important;
-        border-radius: 8px !important;
-        padding: 10px !important;
-    }
-    
     section[data-testid="stSidebar"] h1 {
         color: #FFFFFF !important;
+        font-weight: 600 !important;
+        letter-spacing: 1px !important;
     }
     
     /* ===== ALL BUTTONS - GOLD WITH WHITE TEXT ===== */
-    /* Regular buttons */
     .stButton > button {
-        background-color: #CFB53B !important;
+        background: linear-gradient(145deg, #CFB53B, #B8A033) !important;
         color: #FFFFFF !important;
-        font-weight: bold !important;
+        font-weight: 600 !important;
         border: none !important;
         font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif !important;
-        border-radius: 8px !important;
-        padding: 10px 24px !important;
+        border-radius: 10px !important;
+        padding: 12px 28px !important;
         transition: all 0.3s ease !important;
+        box-shadow: 0 4px 15px rgba(207, 181, 59, 0.2) !important;
+        letter-spacing: 0.5px !important;
     }
     
     .stButton > button:hover {
-        background-color: #B8A033 !important;
+        background: linear-gradient(145deg, #E0C64C, #CFB53B) !important;
         color: #FFFFFF !important;
+        box-shadow: 0 6px 20px rgba(207, 181, 59, 0.3) !important;
+        transform: translateY(-2px) !important;
     }
     
     .stButton > button p {
@@ -934,19 +929,19 @@ st.markdown("""
     
     /* Download buttons */
     .stDownloadButton > button {
-        background-color: #CFB53B !important;
+        background: linear-gradient(145deg, #CFB53B, #B8A033) !important;
         color: #FFFFFF !important;
-        font-weight: bold !important;
+        font-weight: 600 !important;
         border: none !important;
-        font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif !important;
-        border-radius: 8px !important;
-        padding: 10px 24px !important;
+        border-radius: 10px !important;
+        padding: 12px 28px !important;
         transition: all 0.3s ease !important;
+        box-shadow: 0 4px 15px rgba(207, 181, 59, 0.2) !important;
     }
     
     .stDownloadButton > button:hover {
-        background-color: #B8A033 !important;
-        color: #FFFFFF !important;
+        background: linear-gradient(145deg, #E0C64C, #CFB53B) !important;
+        transform: translateY(-2px) !important;
     }
     
     .stDownloadButton > button p, .stDownloadButton > button span {
@@ -955,47 +950,47 @@ st.markdown("""
     
     /* Form submit buttons */
     .stFormSubmitButton > button {
-        background-color: #CFB53B !important;
+        background: linear-gradient(145deg, #CFB53B, #B8A033) !important;
         color: #FFFFFF !important;
-        font-weight: bold !important;
+        font-weight: 600 !important;
         border: none !important;
-        border-radius: 8px !important;
+        border-radius: 10px !important;
+        box-shadow: 0 4px 15px rgba(207, 181, 59, 0.2) !important;
     }
     
     .stFormSubmitButton > button:hover {
-        background-color: #B8A033 !important;
-        color: #FFFFFF !important;
+        background: linear-gradient(145deg, #E0C64C, #CFB53B) !important;
+        transform: translateY(-2px) !important;
     }
     
     .stFormSubmitButton > button p {
         color: #FFFFFF !important;
     }
-/* ===== EXPANDERS ===== */
-    /* Expander container */
+    
+    /* ===== EXPANDERS ===== */
     [data-testid="stExpander"] {
-        background-color: #1E1E1E !important;
-        border: 1px solid #333 !important;
-        border-radius: 8px !important;
+        background-color: #1A1A2E !important;
+        border: 1px solid #2D2D4A !important;
+        border-radius: 12px !important;
+        overflow: hidden !important;
     }
     
-    /* Expander header - always dark background with white text */
     [data-testid="stExpander"] > details > summary {
-        background-color: #1E1E1E !important;
+        background-color: #1A1A2E !important;
         color: #FFFFFF !important;
-        border-radius: 8px !important;
-        padding: 10px 15px !important;
+        border-radius: 12px !important;
+        padding: 15px 20px !important;
+        font-weight: 500 !important;
     }
     
-    /* Keep header dark even when expanded/focused/hovered */
     [data-testid="stExpander"] > details > summary:hover,
     [data-testid="stExpander"] > details > summary:focus,
     [data-testid="stExpander"] > details > summary:active,
     [data-testid="stExpander"] > details[open] > summary {
-        background-color: #2D2D2D !important;
+        background-color: #252542 !important;
         color: #FFFFFF !important;
     }
     
-    /* Text inside expander header */
     [data-testid="stExpander"] > details > summary p,
     [data-testid="stExpander"] > details > summary span,
     [data-testid="stExpander"] > details > summary svg {
@@ -1003,14 +998,12 @@ st.markdown("""
         fill: #FFFFFF !important;
     }
     
-    /* Expander content area */
     [data-testid="stExpander"] div[data-testid="stExpanderDetails"] {
-        background-color: #1A1A2E !important;
-        border-top: 1px solid #333 !important;
-        padding: 15px !important;
+        background-color: #12121F !important;
+        border-top: 1px solid #2D2D4A !important;
+        padding: 20px !important;
     }
     
-    /* All text inside expander content */
     [data-testid="stExpander"] div[data-testid="stExpanderDetails"] p,
     [data-testid="stExpander"] div[data-testid="stExpanderDetails"] span,
     [data-testid="stExpander"] div[data-testid="stExpanderDetails"] div,
@@ -1020,16 +1013,15 @@ st.markdown("""
         color: #FFFFFF !important;
     }
     
-    /* Legacy expander classes for older Streamlit versions */
     .streamlit-expanderHeader {
-        background-color: #1E1E1E !important;
+        background-color: #1A1A2E !important;
         color: #FFFFFF !important;
     }
     
     .streamlit-expanderHeader:hover,
     .streamlit-expanderHeader:focus,
     .streamlit-expanderHeader:active {
-        background-color: #2D2D2D !important;
+        background-color: #252542 !important;
         color: #FFFFFF !important;
     }
     
@@ -1039,8 +1031,8 @@ st.markdown("""
     }
     
     .streamlit-expanderContent {
-        background-color: #1A1A2E !important;
-        border: 1px solid #333 !important;
+        background-color: #12121F !important;
+        border: 1px solid #2D2D4A !important;
     }
     
     .streamlit-expanderContent * {
@@ -1048,75 +1040,95 @@ st.markdown("""
     }
     
     /* ===== INPUT FIELDS ===== */
-    /* Text inputs */
     .stTextInput > div > div > input {
-        background-color: #1E1E1E !important;
+        background-color: #1A1A2E !important;
         color: #FFFFFF !important;
-        border: 1px solid #444 !important;
-        border-radius: 8px !important;
+        border: 1px solid #2D2D4A !important;
+        border-radius: 10px !important;
+        padding: 12px 15px !important;
+    }
+    
+    .stTextInput > div > div > input:focus {
+        border-color: #CFB53B !important;
+        box-shadow: 0 0 0 2px rgba(207, 181, 59, 0.2) !important;
     }
     
     .stTextInput label {
         color: #FFFFFF !important;
+        font-weight: 500 !important;
     }
     
     /* Text areas - WHITE background for readability */
     .stTextArea > div > div > textarea {
         background-color: #FFFFFF !important;
         color: #000000 !important;
-        border: 1px solid #444 !important;
-        border-radius: 8px !important;
+        border: 1px solid #2D2D4A !important;
+        border-radius: 10px !important;
+        padding: 12px 15px !important;
     }
     
-    .stTextArea label {
-        color: #FFFFFF !important;
+    .stTextArea > div > div > textarea:focus {
+        border-color: #CFB53B !important;
+        box-shadow: 0 0 0 2px rgba(207, 181, 59, 0.2) !important;
     }
     
-    /* Placeholder text in text area */
     .stTextArea > div > div > textarea::placeholder {
         color: #666666 !important;
     }
     
+    .stTextArea label {
+        color: #FFFFFF !important;
+        font-weight: 500 !important;
+    }
+    
     /* Number inputs */
     .stNumberInput > div > div > input {
-        background-color: #1E1E1E !important;
+        background-color: #1A1A2E !important;
         color: #FFFFFF !important;
-        border: 1px solid #444 !important;
-        border-radius: 8px !important;
+        border: 1px solid #2D2D4A !important;
+        border-radius: 10px !important;
+        padding: 12px 15px !important;
+    }
+    
+    .stNumberInput > div > div > input:focus {
+        border-color: #CFB53B !important;
     }
     
     .stNumberInput label {
         color: #FFFFFF !important;
+        font-weight: 500 !important;
     }
     
     /* Select boxes / dropdowns */
     .stSelectbox > div > div {
-        background-color: #1E1E1E !important;
+        background-color: #1A1A2E !important;
         color: #FFFFFF !important;
-        border: 1px solid #444 !important;
-        border-radius: 8px !important;
+        border: 1px solid #2D2D4A !important;
+        border-radius: 10px !important;
     }
     
     .stSelectbox label {
         color: #FFFFFF !important;
+        font-weight: 500 !important;
     }
     
     .stSelectbox > div > div > div {
         color: #FFFFFF !important;
     }
     
-    /* Dropdown menu items */
     [data-baseweb="menu"] {
-        background-color: #1E1E1E !important;
+        background-color: #1A1A2E !important;
+        border: 1px solid #2D2D4A !important;
+        border-radius: 10px !important;
     }
     
     [data-baseweb="menu"] li {
         color: #FFFFFF !important;
-        background-color: #1E1E1E !important;
+        background-color: #1A1A2E !important;
     }
     
     [data-baseweb="menu"] li:hover {
-        background-color: #333 !important;
+        background-color: #252542 !important;
     }
     
     /* ===== RADIO BUTTONS ===== */
@@ -1134,20 +1146,24 @@ st.markdown("""
     
     /* ===== TABS ===== */
     .stTabs [data-baseweb="tab-list"] {
-        background-color: #0E1117 !important;
-        gap: 8px;
+        background-color: transparent !important;
+        gap: 10px;
+        border-bottom: 1px solid #2D2D4A !important;
+        padding-bottom: 0 !important;
     }
     
     .stTabs [data-baseweb="tab"] {
-        background-color: #1E1E1E !important;
-        color: #FFFFFF !important;
-        border-radius: 8px 8px 0 0 !important;
-        border: 1px solid #333 !important;
-        padding: 10px 20px !important;
+        background-color: transparent !important;
+        color: #888888 !important;
+        border-radius: 10px 10px 0 0 !important;
+        border: none !important;
+        padding: 15px 25px !important;
+        font-weight: 500 !important;
+        letter-spacing: 0.5px !important;
     }
     
     .stTabs [data-baseweb="tab"]:hover {
-        background-color: #2D2D2D !important;
+        background-color: #1A1A2E !important;
         color: #FFFFFF !important;
     }
     
@@ -1158,39 +1174,37 @@ st.markdown("""
     }
     
     .stTabs [data-baseweb="tab-panel"] {
-        background-color: #0E1117 !important;
+        background-color: transparent !important;
+        padding-top: 30px !important;
     }
     
     /* ===== INFO/SUCCESS/WARNING/ERROR BOXES ===== */
     .stAlert {
-        background-color: #1E1E1E !important;
+        background-color: #1A1A2E !important;
         color: #FFFFFF !important;
-        border-radius: 8px !important;
+        border-radius: 12px !important;
+        border: 1px solid #2D2D4A !important;
     }
     
     .stAlert p, .stAlert span, .stAlert div {
         color: #FFFFFF !important;
     }
     
-    /* Info box */
     [data-testid="stAlert"][data-baseweb="notification"]:has(div[data-testid="stNotificationContentInfo"]) {
         background-color: #1E3A5F !important;
         border-left: 4px solid #4A90D9 !important;
     }
     
-    /* Success box */
     [data-testid="stAlert"][data-baseweb="notification"]:has(div[data-testid="stNotificationContentSuccess"]) {
         background-color: #1E3E1E !important;
         border-left: 4px solid #4CAF50 !important;
     }
     
-    /* Warning box */
     [data-testid="stAlert"][data-baseweb="notification"]:has(div[data-testid="stNotificationContentWarning"]) {
         background-color: #3E3A1E !important;
         border-left: 4px solid #FFC107 !important;
     }
     
-    /* Error box */
     [data-testid="stAlert"][data-baseweb="notification"]:has(div[data-testid="stNotificationContentError"]) {
         background-color: #3E1E1E !important;
         border-left: 4px solid #F44336 !important;
@@ -1210,31 +1224,14 @@ st.markdown("""
         color: #AAAAAA !important;
     }
     
-    /* ===== CUSTOM CLASSES ===== */
-    /* Course boxes styling - BLUE boxes with WHITE text */
-    .course-box {
-        background-color: #002E5D;
-        padding: 20px;
-        border-radius: 10px;
-        margin: 10px 0;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-    }
-    
-    .course-box h3 {
-        color: #FFFFFF !important;
-        margin-bottom: 10px;
-    }
-    
-    .course-box p {
-        color: #B0B0B0 !important;
-    }
-    
-    /* Chat message styling */
+    /* ===== CHAT STYLING ===== */
     .user-message {
-        background-color: #1E3A5F;
-        padding: 15px;
-        border-radius: 10px;
-        margin: 10px 0;
+        background: linear-gradient(145deg, #1E3A5F, #162D4A);
+        padding: 20px;
+        border-radius: 15px;
+        margin: 15px 0;
+        border: 1px solid #2D4A6F;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
     }
     
     .user-message strong, .user-message br, .user-message * {
@@ -1242,11 +1239,15 @@ st.markdown("""
     }
     
     .ai-message {
-        background-color: #2D2D2D;
-        padding: 15px;
-        border-radius: 10px;
-        margin: 10px 0;
+        background: linear-gradient(145deg, #1A1A2E, #151525);
+        padding: 20px;
+        border-radius: 15px;
+        margin: 15px 0;
         border-left: 4px solid #CFB53B;
+        border-top: 1px solid #2D2D4A;
+        border-right: 1px solid #2D2D4A;
+        border-bottom: 1px solid #2D2D4A;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
     }
     
     .ai-message strong, .ai-message * {
@@ -1264,7 +1265,7 @@ st.markdown("""
     
     /* ===== HORIZONTAL RULE ===== */
     hr {
-        border-color: #333 !important;
+        border-color: #2D2D4A !important;
     }
     
     /* ===== LINKS ===== */
@@ -1283,16 +1284,16 @@ st.markdown("""
     }
     
     ::-webkit-scrollbar-track {
-        background: #1E1E1E;
+        background: #0E1117;
     }
     
     ::-webkit-scrollbar-thumb {
-        background: #444;
+        background: #2D2D4A;
         border-radius: 4px;
     }
     
     ::-webkit-scrollbar-thumb:hover {
-        background: #555;
+        background: #3D3D5A;
     }
     
     /* ===== MARKDOWN SPECIFIC ===== */
@@ -1301,111 +1302,46 @@ st.markdown("""
         color: #FFFFFF !important;
     }
     
-    /* ===== TABLES ===== */
-    .stTable {
-        background-color: #1E1E1E !important;
+    /* ===== PAGE HEADERS ===== */
+    .page-header {
+        text-align: center;
+        padding: 40px 20px;
+        margin-bottom: 30px;
+        background: linear-gradient(180deg, #0E1117 0%, #1A1A2E 100%);
+        border-radius: 0 0 20px 20px;
+        border-bottom: 1px solid #2D2D4A;
     }
     
-    .stTable th {
-        background-color: #002E5D !important;
+    .page-header h1 {
         color: #FFFFFF !important;
+        font-size: 2.5em !important;
+        font-weight: 700 !important;
+        letter-spacing: 1px !important;
+        margin-bottom: 10px !important;
     }
     
-    .stTable td {
-        background-color: #1E1E1E !important;
-        color: #FFFFFF !important;
+    .page-header p {
+        color: #888888 !important;
+        font-size: 1.1em !important;
     }
     
-    /* Dataframe styling */
-    [data-testid="stDataFrame"] {
-        background-color: #1E1E1E !important;
+    /* ===== CARD STYLING ===== */
+    .pro-card {
+        background: linear-gradient(145deg, #1A1A2E, #151525);
+        padding: 25px;
+        border-radius: 15px;
+        border: 1px solid #2D2D4A;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        margin-bottom: 20px;
     }
     
-    [data-testid="stDataFrame"] * {
-        color: #FFFFFF !important;
-        background-color: #1E1E1E !important;
-    }
-    
-    /* ===== METRIC STYLING ===== */
-    [data-testid="stMetric"] {
-        background-color: #1E1E1E !important;
-        padding: 15px !important;
-        border-radius: 8px !important;
-    }
-    
-    [data-testid="stMetric"] label {
-        color: #AAAAAA !important;
-    }
-    
-    [data-testid="stMetric"] [data-testid="stMetricValue"] {
-        color: #FFFFFF !important;
-    }
-    
-    /* ===== MULTISELECT ===== */
-    .stMultiSelect > div > div {
-        background-color: #1E1E1E !important;
-        color: #FFFFFF !important;
-        border: 1px solid #444 !important;
-    }
-    
-    .stMultiSelect span {
-        color: #FFFFFF !important;
-    }
-    
-    /* ===== CHECKBOX ===== */
-    .stCheckbox label {
-        color: #FFFFFF !important;
-    }
-    
-    .stCheckbox span {
-        color: #FFFFFF !important;
-    }
-    
-    /* ===== FILE UPLOADER ===== */
-    [data-testid="stFileUploader"] {
-        background-color: #1E1E1E !important;
-        border: 1px dashed #444 !important;
-        border-radius: 8px !important;
-    }
-    
-    [data-testid="stFileUploader"] * {
-        color: #FFFFFF !important;
-    }
-    
-    /* ===== SLIDER ===== */
-    .stSlider label {
-        color: #FFFFFF !important;
-    }
-    
-    .stSlider [data-testid="stTickBarMin"], 
-    .stSlider [data-testid="stTickBarMax"] {
-        color: #FFFFFF !important;
-    }
-    
-    /* ===== DATE/TIME INPUT ===== */
-    .stDateInput > div > div > input,
-    .stTimeInput > div > div > input {
-        background-color: #1E1E1E !important;
-        color: #FFFFFF !important;
-        border: 1px solid #444 !important;
-    }
-    
-    .stDateInput label, .stTimeInput label {
-        color: #FFFFFF !important;
-    }
-    
-    /* ===== COLUMN CONTAINER ===== */
-    [data-testid="column"] {
-        background-color: transparent !important;
-    }
-    
-    /* ===== POPOVER/TOOLTIP ===== */
-    [data-baseweb="popover"] {
-        background-color: #1E1E1E !important;
-    }
-    
-    [data-baseweb="popover"] * {
-        color: #FFFFFF !important;
+    .pro-card-blue {
+        background: linear-gradient(145deg, #002E5D, #001A3A);
+        padding: 25px;
+        border-radius: 15px;
+        border: 1px solid #003D7A;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        margin-bottom: 20px;
     }
     </style>
 """, unsafe_allow_html=True)
@@ -1414,18 +1350,25 @@ st.markdown("""
 # SIDEBAR NAVIGATION
 # ============================================================================
 with st.sidebar:
-    # BYU Logo
+    # BYU Logo in sidebar
     st.markdown("""
-        <div style='text-align: center; margin-bottom: 20px;'>
-            <svg width="150" height="150" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="50" cy="50" r="45" fill="#002E5D"/>
-                <text x="50" y="45" font-size="24" fill="white" text-anchor="middle" font-weight="bold" font-family="Arial">BYU</text>
-                <text x="50" y="65" font-size="10" fill="white" text-anchor="middle" font-family="Arial">ACCOUNTING</text>
+        <div style='text-align: center; margin-bottom: 30px; padding-top: 10px;'>
+            <svg width="140" height="140" viewBox="0 0 220 220" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="110" cy="110" r="105" fill="#002E5D"/>
+                <text x="110" y="85" font-size="48" fill="white" text-anchor="middle" font-weight="bold" font-family="Arial, sans-serif">BYU</text>
+                <text x="110" y="115" font-size="14" fill="#CFB53B" text-anchor="middle" font-family="Arial, sans-serif" letter-spacing="3">MARRIOTT SCHOOL</text>
+                <line x1="60" y1="130" x2="160" y2="130" stroke="#CFB53B" stroke-width="1" opacity="0.6"/>
+                <text x="110" y="155" font-size="18" fill="white" text-anchor="middle" font-family="Arial, sans-serif" letter-spacing="4">ACCOUNTING</text>
             </svg>
         </div>
     """, unsafe_allow_html=True)
     
-    st.title("📚 Study App")
+    st.markdown("""
+        <p style='text-align: center; color: #CFB53B; font-size: 0.9em; letter-spacing: 2px; margin-bottom: 30px;'>
+            STUDY HUB
+        </p>
+    """, unsafe_allow_html=True)
+    
     st.markdown("---")
     
     # Navigation buttons
@@ -1434,7 +1377,7 @@ with st.sidebar:
         "🧮 Calculators",
         "📖 Formula Database",
         "📊 Break-Even Visualizer",
-        "📕 ACC 402 - Cost Accounting"
+        "📕 ACC 402 - Managerial Accounting"
     ]
     
     for page_name in pages:
@@ -1443,35 +1386,35 @@ with st.sidebar:
             st.rerun()
     
     st.markdown("---")
-    st.markdown("**Created for BYU Accounting Students**")
-    st.markdown("*Using AI & Data Analytics*")
+    
+    st.markdown("""
+        <div style='text-align: center; padding: 20px 0;'>
+            <p style='color: #666666; font-size: 0.8em; margin-bottom: 5px;'>Created for</p>
+            <p style='color: #FFFFFF; font-size: 0.9em; font-weight: 500;'>BYU Accounting Students</p>
+            <p style='color: #CFB53B; font-size: 0.75em; margin-top: 10px;'>AI & Data Analytics</p>
+        </div>
+    """, unsafe_allow_html=True)
 
 # ============================================================================
 # MAIN CONTENT AREA
 # ============================================================================
 
 page = st.session_state.selected_page
+
 # --- PAGE 1: HOME ---
 if page == "🏠 Home":
-    # Add spacing at top
     st.markdown("<br>", unsafe_allow_html=True)
     
-# Professional hero section with larger logo and bold welcome
+    # Professional hero section
     st.markdown("""
         <div style='text-align: center; padding: 40px 20px 40px 20px;'>
             <div style='margin-bottom: 40px;'>
                 <svg width="220" height="220" viewBox="0 0 220 220" xmlns="http://www.w3.org/2000/svg">
-                    <!-- Main circle -->
                     <circle cx="110" cy="110" r="105" fill="#002E5D"/>
-                    <!-- BYU Text -->
                     <text x="110" y="85" font-size="48" fill="white" text-anchor="middle" font-weight="bold" font-family="Arial, sans-serif">BYU</text>
-                    <!-- Marriott School Text -->
                     <text x="110" y="115" font-size="14" fill="#CFB53B" text-anchor="middle" font-family="Arial, sans-serif" letter-spacing="3">MARRIOTT SCHOOL</text>
-                    <!-- Divider line -->
                     <line x1="60" y1="130" x2="160" y2="130" stroke="#CFB53B" stroke-width="1" opacity="0.6"/>
-                    <!-- Accounting Text -->
                     <text x="110" y="155" font-size="18" fill="white" text-anchor="middle" font-family="Arial, sans-serif" letter-spacing="4">ACCOUNTING</text>
-                    <!-- Study Hub Text -->
                     <text x="110" y="178" font-size="12" fill="#AAAAAA" text-anchor="middle" font-family="Arial, sans-serif" letter-spacing="2">STUDY HUB</text>
                 </svg>
             </div>
@@ -1482,25 +1425,26 @@ if page == "🏠 Home":
                 Brigham Young University
             </p>
             <p style='color: #888888; font-size: 1em; margin-top: 25px; max-width: 550px; margin-left: auto; margin-right: auto; line-height: 1.7;'>
-                AI-powered study tools designed to help you master cost accounting concepts and ace your exams.
+                AI-powered study tools designed to help you master managerial accounting concepts and ace your exams.
             </p>
         </div>
     """, unsafe_allow_html=True)
-    # Divider with style
+    
+    # Divider
     st.markdown("""
         <div style='display: flex; align-items: center; justify-content: center; margin: 40px 0;'>
-            <div style='flex: 1; height: 1px; background: linear-gradient(to right, transparent, #333, transparent);'></div>
+            <div style='flex: 1; height: 1px; background: linear-gradient(to right, transparent, #2D2D4A, transparent);'></div>
         </div>
     """, unsafe_allow_html=True)
     
     # Section header
     st.markdown("""
-        <h2 style='text-align: center; color: #FFFFFF; font-weight: 400; letter-spacing: 1px; margin-bottom: 30px;'>
+        <h2 style='text-align: center; color: #FFFFFF; font-weight: 400; letter-spacing: 1px; margin-bottom: 40px;'>
             Get Started
         </h2>
     """, unsafe_allow_html=True)
     
-    # Course cards with improved styling
+    # Course cards
     col1, col2 = st.columns(2, gap="large")
     
     with col1:
@@ -1512,14 +1456,13 @@ if page == "🏠 Home":
             border: 1px solid #003D7A;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
             height: 100%;
-            transition: transform 0.3s ease;
         '>
             <div style='font-size: 2.5em; margin-bottom: 15px;'>📕</div>
             <h3 style='color: #FFFFFF; margin-bottom: 10px; font-size: 1.4em; font-weight: 500;'>
                 ACC 402
             </h3>
             <p style='color: #CFB53B; font-size: 0.9em; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 1px;'>
-                Cost Accounting
+                Managerial Accounting
             </p>
             <p style='color: #AAAAAA; font-size: 0.95em; line-height: 1.6;'>
                 AI Tutor with full textbook access covering Chapters 1, 3, 4, 6, and 7. Get instant help with concepts, formulas, and practice problems.
@@ -1528,19 +1471,18 @@ if page == "🏠 Home":
         """, unsafe_allow_html=True)
         st.markdown("<br>", unsafe_allow_html=True)
         if st.button("Launch ACC 402 →", key="goto_402", use_container_width=True):
-            st.session_state.selected_page = "📕 ACC 402 - Cost Accounting"
+            st.session_state.selected_page = "📕 ACC 402 - Managerial Accounting"
             st.rerun()
     
     with col2:
         st.markdown("""
         <div style='
-            background: linear-gradient(145deg, #1E1E1E, #151515);
+            background: linear-gradient(145deg, #1A1A2E, #151525);
             padding: 30px;
             border-radius: 15px;
-            border: 1px solid #333;
+            border: 1px solid #2D2D4A;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
             height: 100%;
-            transition: transform 0.3s ease;
         '>
             <div style='font-size: 2.5em; margin-bottom: 15px;'>🧮</div>
             <h3 style='color: #FFFFFF; margin-bottom: 10px; font-size: 1.4em; font-weight: 500;'>
@@ -1559,7 +1501,6 @@ if page == "🏠 Home":
             st.session_state.selected_page = "🧮 Calculators"
             st.rerun()
     
-    # Additional tools row
     st.markdown("<br><br>", unsafe_allow_html=True)
     
     col3, col4 = st.columns(2, gap="large")
@@ -1567,10 +1508,10 @@ if page == "🏠 Home":
     with col3:
         st.markdown("""
         <div style='
-            background: linear-gradient(145deg, #1E1E1E, #151515);
+            background: linear-gradient(145deg, #1A1A2E, #151525);
             padding: 30px;
             border-radius: 15px;
-            border: 1px solid #333;
+            border: 1px solid #2D2D4A;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
             height: 100%;
         '>
@@ -1594,10 +1535,10 @@ if page == "🏠 Home":
     with col4:
         st.markdown("""
         <div style='
-            background: linear-gradient(145deg, #1E1E1E, #151515);
+            background: linear-gradient(145deg, #1A1A2E, #151525);
             padding: 30px;
             border-radius: 15px;
-            border: 1px solid #333;
+            border: 1px solid #2D2D4A;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
             height: 100%;
         '>
@@ -1621,7 +1562,7 @@ if page == "🏠 Home":
     # Footer
     st.markdown("<br><br>", unsafe_allow_html=True)
     st.markdown("""
-        <div style='text-align: center; padding: 30px 20px; border-top: 1px solid #222;'>
+        <div style='text-align: center; padding: 30px 20px; border-top: 1px solid #2D2D4A;'>
             <p style='color: #555; font-size: 0.85em;'>
                 Built with AI & Data Analytics • BYU Marriott School of Business
             </p>
@@ -1630,11 +1571,19 @@ if page == "🏠 Home":
 
 # --- PAGE 2: CALCULATORS ---
 elif page == "🧮 Calculators":
+    # Page header
+    st.markdown("""
+        <div class='page-header'>
+            <h1>🧮 Accounting Calculators</h1>
+            <p>Quick calculation tools for common accounting problems</p>
+        </div>
+    """, unsafe_allow_html=True)
+    
     if st.button("← Back to Home", key="back_calc"):
         st.session_state.selected_page = "🏠 Home"
         st.rerun()
     
-    st.title("🧮 Accounting Calculators")
+    st.markdown("<br>", unsafe_allow_html=True)
     
     calc_type = st.selectbox(
         "Choose a calculator:",
@@ -1642,107 +1591,226 @@ elif page == "🧮 Calculators":
          "Target Profit", "Overhead Rate"]
     )
     
-    st.markdown("---")
+    st.markdown("<br>", unsafe_allow_html=True)
+    
+    # Calculator card
+    st.markdown("""
+        <div style='
+            background: linear-gradient(145deg, #1A1A2E, #151525);
+            padding: 30px;
+            border-radius: 15px;
+            border: 1px solid #2D2D4A;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            margin-bottom: 20px;
+        '>
+    """, unsafe_allow_html=True)
     
     if calc_type == "Contribution Margin":
         st.subheader("Contribution Margin Calculator")
-        sales = st.number_input("Sales ($)", min_value=0.0, value=100000.0, step=1000.0)
-        var_costs = st.number_input("Variable Costs ($)", min_value=0.0, value=60000.0, step=1000.0)
+        st.markdown("<p style='color: #888888; margin-bottom: 20px;'>Calculate the amount available to cover fixed costs and generate profit.</p>", unsafe_allow_html=True)
+        
+        col1, col2 = st.columns(2)
+        with col1:
+            sales = st.number_input("Sales ($)", min_value=0.0, value=100000.0, step=1000.0)
+        with col2:
+            var_costs = st.number_input("Variable Costs ($)", min_value=0.0, value=60000.0, step=1000.0)
         
         if st.button("Calculate", key="cm_calc"):
             cm = sales - var_costs
             cm_ratio = (cm / sales * 100) if sales > 0 else 0
             
-            st.success(f"**Contribution Margin:** ${cm:,.2f}")
-            st.success(f"**CM Ratio:** {cm_ratio:.2f}%")
+            st.markdown("<br>", unsafe_allow_html=True)
+            col1, col2 = st.columns(2)
+            with col1:
+                st.success(f"**Contribution Margin:** ${cm:,.2f}")
+            with col2:
+                st.success(f"**CM Ratio:** {cm_ratio:.2f}%")
     
     elif calc_type == "Break-Even Point (Units)":
         st.subheader("Break-Even Point (Units)")
-        fixed = st.number_input("Fixed Costs ($)", min_value=0.0, value=30000.0, step=1000.0)
-        cm_unit = st.number_input("CM per Unit ($)", min_value=0.01, value=15.0, step=1.0)
+        st.markdown("<p style='color: #888888; margin-bottom: 20px;'>Calculate the number of units needed to cover all costs.</p>", unsafe_allow_html=True)
+        
+        col1, col2 = st.columns(2)
+        with col1:
+            fixed = st.number_input("Fixed Costs ($)", min_value=0.0, value=30000.0, step=1000.0)
+        with col2:
+            cm_unit = st.number_input("CM per Unit ($)", min_value=0.01, value=15.0, step=1.0)
         
         if st.button("Calculate", key="bep_units"):
             bep = fixed / cm_unit
+            st.markdown("<br>", unsafe_allow_html=True)
             st.success(f"**Break-Even Point:** {bep:,.0f} units")
     
     elif calc_type == "Break-Even Point (Dollars)":
         st.subheader("Break-Even Point (Dollars)")
-        fixed = st.number_input("Fixed Costs ($)", min_value=0.0, value=30000.0, step=1000.0)
-        cm_ratio = st.number_input("CM Ratio (%)", min_value=0.01, max_value=100.0, value=40.0, step=1.0)
+        st.markdown("<p style='color: #888888; margin-bottom: 20px;'>Calculate the sales dollars needed to break even.</p>", unsafe_allow_html=True)
+        
+        col1, col2 = st.columns(2)
+        with col1:
+            fixed = st.number_input("Fixed Costs ($)", min_value=0.0, value=30000.0, step=1000.0)
+        with col2:
+            cm_ratio = st.number_input("CM Ratio (%)", min_value=0.01, max_value=100.0, value=40.0, step=1.0)
         
         if st.button("Calculate", key="bep_dollars"):
             bep = fixed / (cm_ratio / 100)
+            st.markdown("<br>", unsafe_allow_html=True)
             st.success(f"**Break-Even Point:** ${bep:,.2f}")
     
     elif calc_type == "Target Profit":
         st.subheader("Target Profit Calculator")
-        fixed = st.number_input("Fixed Costs ($)", min_value=0.0, value=30000.0, step=1000.0)
-        target = st.number_input("Target Profit ($)", min_value=0.0, value=20000.0, step=1000.0)
-        cm_unit = st.number_input("CM per Unit ($)", min_value=0.01, value=15.0, step=1.0)
+        st.markdown("<p style='color: #888888; margin-bottom: 20px;'>Calculate units needed to achieve a target profit.</p>", unsafe_allow_html=True)
+        
+        col1, col2, col3 = st.columns(3)
+        with col1:
+            fixed = st.number_input("Fixed Costs ($)", min_value=0.0, value=30000.0, step=1000.0)
+        with col2:
+            target = st.number_input("Target Profit ($)", min_value=0.0, value=20000.0, step=1000.0)
+        with col3:
+            cm_unit = st.number_input("CM per Unit ($)", min_value=0.01, value=15.0, step=1.0)
         
         if st.button("Calculate", key="target_profit"):
             units = (fixed + target) / cm_unit
+            st.markdown("<br>", unsafe_allow_html=True)
             st.success(f"**Units Needed:** {units:,.0f} units")
     
     elif calc_type == "Overhead Rate":
         st.subheader("Predetermined Overhead Rate")
-        est_oh = st.number_input("Estimated Overhead ($)", min_value=0.0, value=100000.0, step=1000.0)
-        est_activity = st.number_input("Estimated Activity (hours)", min_value=1.0, value=20000.0, step=100.0)
+        st.markdown("<p style='color: #888888; margin-bottom: 20px;'>Calculate the rate used to apply overhead to jobs.</p>", unsafe_allow_html=True)
+        
+        col1, col2 = st.columns(2)
+        with col1:
+            est_oh = st.number_input("Estimated Overhead ($)", min_value=0.0, value=100000.0, step=1000.0)
+        with col2:
+            est_activity = st.number_input("Estimated Activity (hours)", min_value=1.0, value=20000.0, step=100.0)
         
         if st.button("Calculate", key="oh_rate"):
             rate = est_oh / est_activity
+            st.markdown("<br>", unsafe_allow_html=True)
             st.success(f"**Overhead Rate:** ${rate:.2f} per hour")
+    
+    st.markdown("</div>", unsafe_allow_html=True)
 
 # --- PAGE 3: FORMULA DATABASE ---
 elif page == "📖 Formula Database":
+    # Page header
+    st.markdown("""
+        <div class='page-header'>
+            <h1>📖 Formula Database</h1>
+            <p>Quick reference for key accounting formulas</p>
+        </div>
+    """, unsafe_allow_html=True)
+    
     if st.button("← Back to Home", key="back_formula"):
         st.session_state.selected_page = "🏠 Home"
         st.rerun()
     
-    st.title("📖 Accounting Formula Database")
+    st.markdown("<br>", unsafe_allow_html=True)
     
     search = st.text_input("🔍 Search formulas (e.g., 'contribution', 'overhead', 'cost')")
     
     formulas = {
-        "Contribution Margin": "Sales - Variable Costs",
-        "Contribution Margin Ratio": "Contribution Margin ÷ Sales",
-        "Break-Even Point (Units)": "Fixed Costs ÷ CM per Unit",
-        "Break-Even Point (Dollars)": "Fixed Costs ÷ CM Ratio",
-        "Target Profit (Units)": "(Fixed Costs + Target Profit) ÷ CM per Unit",
-        "Predetermined Overhead Rate": "Estimated Overhead ÷ Estimated Activity",
-        "Applied Overhead": "Predetermined Rate × Actual Activity",
-        "Prime Costs": "Direct Materials + Direct Labor",
-        "Conversion Costs": "Direct Labor + Factory Overhead",
-        "Cost of Goods Manufactured": "Beginning WIP + Manufacturing Costs - Ending WIP",
-        "Cost of Goods Sold": "Beginning FG + COGM - Ending FG",
-        "Equivalent Units (WA)": "Units Completed + (Ending WIP × % Complete)",
-        "Equivalent Units (FIFO)": "Work to Complete Beg. WIP + Started & Completed + (Ending WIP × % Complete)"
+        "Contribution Margin": {
+            "formula": "Sales - Variable Costs",
+            "description": "Amount available to cover fixed costs and profit"
+        },
+        "Contribution Margin Ratio": {
+            "formula": "Contribution Margin ÷ Sales",
+            "description": "Percentage of each sales dollar available for fixed costs"
+        },
+        "Break-Even Point (Units)": {
+            "formula": "Fixed Costs ÷ CM per Unit",
+            "description": "Number of units needed to cover all costs"
+        },
+        "Break-Even Point (Dollars)": {
+            "formula": "Fixed Costs ÷ CM Ratio",
+            "description": "Sales dollars needed to break even"
+        },
+        "Target Profit (Units)": {
+            "formula": "(Fixed Costs + Target Profit) ÷ CM per Unit",
+            "description": "Units needed to achieve desired profit"
+        },
+        "Predetermined Overhead Rate": {
+            "formula": "Estimated Overhead ÷ Estimated Activity",
+            "description": "Rate used to apply overhead to jobs"
+        },
+        "Applied Overhead": {
+            "formula": "Predetermined Rate × Actual Activity",
+            "description": "Overhead allocated to a specific job"
+        },
+        "Prime Costs": {
+            "formula": "Direct Materials + Direct Labor",
+            "description": "Direct costs of production"
+        },
+        "Conversion Costs": {
+            "formula": "Direct Labor + Factory Overhead",
+            "description": "Costs to convert materials into finished goods"
+        },
+        "Cost of Goods Manufactured": {
+            "formula": "Beginning WIP + Manufacturing Costs - Ending WIP",
+            "description": "Total cost of units completed in production"
+        },
+        "Cost of Goods Sold": {
+            "formula": "Beginning FG + COGM - Ending FG",
+            "description": "Cost of inventory sold during the period"
+        },
+        "Equivalent Units (Weighted-Average)": {
+            "formula": "Units Completed + (Ending WIP × % Complete)",
+            "description": "Measures work done in a period"
+        },
+        "Equivalent Units (FIFO)": {
+            "formula": "Work to Complete Beg. WIP + Started & Completed + (Ending WIP × % Complete)",
+            "description": "Measures current period work only"
+        }
     }
     
-    st.markdown("---")
+    st.markdown("<br>", unsafe_allow_html=True)
     
     if search:
         filtered = {k: v for k, v in formulas.items() if search.lower() in k.lower()}
         if filtered:
-            for name, formula in filtered.items():
-                with st.expander(f"🔹 {name}"):
-                    st.code(formula)
+            for name, data in filtered.items():
+                with st.expander(f"📐 {name}"):
+                    st.markdown(f"**Formula:**")
+                    st.code(data["formula"], language=None)
+                    st.markdown(f"*{data['description']}*")
         else:
             st.warning("No formulas found. Try a different search term.")
     else:
-        for name, formula in formulas.items():
-            with st.expander(f"🔹 {name}"):
-                st.code(formula)
+        for name, data in formulas.items():
+            with st.expander(f"📐 {name}"):
+                st.markdown(f"**Formula:**")
+                st.code(data["formula"], language=None)
+                st.markdown(f"*{data['description']}*")
 
 # --- PAGE 4: BREAK-EVEN VISUALIZER ---
 elif page == "📊 Break-Even Visualizer":
+    # Page header
+    st.markdown("""
+        <div class='page-header'>
+            <h1>📊 Break-Even Visualizer</h1>
+            <p>Interactive cost-volume-profit analysis</p>
+        </div>
+    """, unsafe_allow_html=True)
+    
     if st.button("← Back to Home", key="back_viz"):
         st.session_state.selected_page = "🏠 Home"
         st.rerun()
     
-    st.title("📊 Break-Even Visualizer")
+    st.markdown("<br>", unsafe_allow_html=True)
     
-    st.markdown("**Enter your data to see the break-even chart:**")
+    # Input card
+    st.markdown("""
+        <div style='
+            background: linear-gradient(145deg, #1A1A2E, #151525);
+            padding: 30px;
+            border-radius: 15px;
+            border: 1px solid #2D2D4A;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            margin-bottom: 30px;
+        '>
+            <h3 style='color: #FFFFFF; margin-bottom: 20px;'>Enter Your Data</h3>
+        </div>
+    """, unsafe_allow_html=True)
     
     col1, col2 = st.columns(2)
     
@@ -1754,7 +1822,9 @@ elif page == "📊 Break-Even Visualizer":
         fixed_costs = st.number_input("Total Fixed Costs ($)", min_value=0.0, value=40000.0, step=1000.0)
         max_units = st.number_input("Max Units to Display", min_value=100, value=5000, step=100)
     
-    if st.button("Generate Chart", key="gen_chart"):
+    st.markdown("<br>", unsafe_allow_html=True)
+    
+    if st.button("Generate Chart", key="gen_chart", use_container_width=True):
         units = list(range(0, max_units + 1, 100))
         revenue = [price * u for u in units]
         total_cost = [fixed_costs + (var_cost * u) for u in units]
@@ -1762,52 +1832,99 @@ elif page == "📊 Break-Even Visualizer":
         fig = go.Figure()
         
         fig.add_trace(go.Scatter(x=units, y=revenue, mode='lines', name='Revenue', 
-                                 line=dict(color='green', width=3)))
+                                 line=dict(color='#4CAF50', width=3)))
         fig.add_trace(go.Scatter(x=units, y=total_cost, mode='lines', name='Total Cost', 
-                                 line=dict(color='red', width=3)))
+                                 line=dict(color='#F44336', width=3)))
         
         bep_units = fixed_costs / (price - var_cost) if price > var_cost else 0
         bep_revenue = price * bep_units
         
         fig.add_trace(go.Scatter(x=[bep_units], y=[bep_revenue], mode='markers', 
                                  name='Break-Even Point',
-                                 marker=dict(color='blue', size=12)))
+                                 marker=dict(color='#CFB53B', size=15, symbol='diamond')))
         
         fig.update_layout(
-            title="Break-Even Analysis",
+            title=dict(text="Break-Even Analysis", font=dict(size=24, color='white')),
             xaxis_title="Units Sold",
             yaxis_title="Dollars ($)",
             hovermode='x unified',
             plot_bgcolor='#0E1117',
             paper_bgcolor='#0E1117',
-            font=dict(color='white')
+            font=dict(color='white'),
+            legend=dict(
+                bgcolor='rgba(0,0,0,0)',
+                font=dict(color='white')
+            ),
+            xaxis=dict(gridcolor='#2D2D4A', zerolinecolor='#2D2D4A'),
+            yaxis=dict(gridcolor='#2D2D4A', zerolinecolor='#2D2D4A')
         )
         
         st.plotly_chart(fig, use_container_width=True)
         
-        st.success(f"**Break-Even Point:** {bep_units:,.0f} units or ${bep_revenue:,.2f}")
+        # Results card
+        col1, col2, col3 = st.columns(3)
+        with col1:
+            st.markdown(f"""
+                <div style='background: linear-gradient(145deg, #002E5D, #001A3A); padding: 20px; border-radius: 12px; text-align: center;'>
+                    <p style='color: #888; margin-bottom: 5px; font-size: 0.9em;'>Break-Even Units</p>
+                    <p style='color: #FFFFFF; font-size: 1.8em; font-weight: 700; margin: 0;'>{bep_units:,.0f}</p>
+                </div>
+            """, unsafe_allow_html=True)
+        with col2:
+            st.markdown(f"""
+                <div style='background: linear-gradient(145deg, #002E5D, #001A3A); padding: 20px; border-radius: 12px; text-align: center;'>
+                    <p style='color: #888; margin-bottom: 5px; font-size: 0.9em;'>Break-Even Revenue</p>
+                    <p style='color: #FFFFFF; font-size: 1.8em; font-weight: 700; margin: 0;'>${bep_revenue:,.0f}</p>
+                </div>
+            """, unsafe_allow_html=True)
+        with col3:
+            cm_per_unit = price - var_cost
+            st.markdown(f"""
+                <div style='background: linear-gradient(145deg, #002E5D, #001A3A); padding: 20px; border-radius: 12px; text-align: center;'>
+                    <p style='color: #888; margin-bottom: 5px; font-size: 0.9em;'>CM per Unit</p>
+                    <p style='color: #FFFFFF; font-size: 1.8em; font-weight: 700; margin: 0;'>${cm_per_unit:,.2f}</p>
+                </div>
+            """, unsafe_allow_html=True)
 
 # --- PAGE 5: ACC 402 AI TUTOR ---
-elif page == "📕 ACC 402 - Cost Accounting":
+elif page == "📕 ACC 402 - Managerial Accounting":
+    # Page header
+    st.markdown("""
+        <div class='page-header'>
+            <h1>📕 ACC 402 - Managerial Accounting</h1>
+            <p>AI-powered study assistant with full textbook access</p>
+        </div>
+    """, unsafe_allow_html=True)
+    
     if st.button("← Back to Home", key="back_402"):
         st.session_state.selected_page = "🏠 Home"
         st.rerun()
     
-    st.title("📕 ACC 402 - AI Tutor & Study Guide")
+    st.markdown("<br>", unsafe_allow_html=True)
     
-    # Swapped tab order - AI Tutor is now first/default
+    # Tabs
     tab1, tab2 = st.tabs(["🤖 AI Tutor", "📚 Key Formulas"])
     
     with tab1:
-        st.write("### 🤖 Your ACC 402 AI Study Assistant")
-        st.info("💡 This AI tutor has **word-for-word access** to your full textbook (Chapters 1, 3, 4, 6, and 7). Ask anything!")
+        st.markdown("""
+            <div style='
+                background: linear-gradient(145deg, #002E5D, #001A3A);
+                padding: 25px;
+                border-radius: 15px;
+                border: 1px solid #003D7A;
+                margin-bottom: 30px;
+            '>
+                <h3 style='color: #FFFFFF; margin-bottom: 10px;'>🤖 Your ACC 402 AI Study Assistant</h3>
+                <p style='color: #AAAAAA; margin: 0;'>This AI tutor has <strong style='color: #CFB53B;'>word-for-word access</strong> to your full textbook (Chapters 1, 3, 4, 6, and 7). Ask anything!</p>
+            </div>
+        """, unsafe_allow_html=True)
         
-        # Initialize trigger flag for topic/suggestion buttons
+        # Initialize trigger flag
         if 'trigger_ai_call' not in st.session_state:
             st.session_state.trigger_ai_call = False
         
         # Quick Topic Buttons
-        st.markdown("**📖 Quick Topics:**")
+        st.markdown("<p style='color: #FFFFFF; font-weight: 500; margin-bottom: 15px;'>📖 Quick Topics:</p>", unsafe_allow_html=True)
         topic_cols = st.columns(5)
         topics = [
             ("Ch 1", "Summarize the key concepts from Chapter 1 on Management Accounting"),
@@ -1826,7 +1943,7 @@ elif page == "📕 ACC 402 - Cost Accounting":
                     st.session_state.trigger_ai_call = True
                     st.rerun()
         
-        st.markdown("---")
+        st.markdown("<br>", unsafe_allow_html=True)
         
         # AI Settings
         with st.expander("⚙️ AI Settings"):
@@ -1838,7 +1955,7 @@ elif page == "📕 ACC 402 - Cost Accounting":
             )
             st.caption("💡 Tip: Use Haiku for simple questions, Sonnet for complex explanations")
         
-        # Display chat history with better styling
+        # Display chat history
         if st.session_state.chat_history_402:
             for message in st.session_state.chat_history_402:
                 if message['role'] == 'user':
@@ -1854,7 +1971,7 @@ elif page == "📕 ACC 402 - Cost Accounting":
                     </div>
                     """, unsafe_allow_html=True)
                     st.markdown(message['content'])
-            st.markdown("---")
+            st.markdown("<br>", unsafe_allow_html=True)
         
         # User input
         if 'waiting_for_response' not in st.session_state:
@@ -1876,7 +1993,7 @@ elif page == "📕 ACC 402 - Cost Accounting":
                     disabled=st.session_state.waiting_for_response
                 )
         
-        # Action buttons row
+        # Action buttons
         btn_col1, btn_col2, btn_col3 = st.columns([1, 1, 3])
         
         with btn_col1:
@@ -1886,7 +2003,6 @@ elif page == "📕 ACC 402 - Cost Accounting":
                 st.rerun()
         
         with btn_col2:
-            # Export chat feature
             if st.session_state.chat_history_402:
                 chat_export = "\n\n".join([
                     f"{'You' if m['role'] == 'user' else 'AI Tutor'}: {m['content']}" 
@@ -1899,10 +2015,9 @@ elif page == "📕 ACC 402 - Cost Accounting":
                     mime="text/plain"
                 )
         
-        # Check if we need to trigger AI call (from button click or form submit)
+        # Check if we need to trigger AI call
         should_call_api = False
         
-        # If form was submitted with a question
         if submit_button and user_question.strip():
             st.session_state.chat_history_402.append({
                 'role': 'user',
@@ -1910,19 +2025,16 @@ elif page == "📕 ACC 402 - Cost Accounting":
             })
             should_call_api = True
         
-        # If a topic/suggestion button was clicked
         if st.session_state.trigger_ai_call:
             should_call_api = True
             st.session_state.trigger_ai_call = False
         
         # Process API call
         if should_call_api and st.session_state.chat_history_402:
-            # Only call if the last message is from the user (not already answered)
             if st.session_state.chat_history_402[-1]['role'] == 'user':
                 try:
                     api_key = st.secrets["ANTHROPIC_API_KEY"]
                     
-                    # Prepare system prompt with FULL textbook content
                     system_prompt = f"""You are the Managerial Accounting Master Tutor, a specialized AI expert designed to help a junior-level accounting student master the material in their textbook.
 
 Your goal is to provide clear, accurate, and exam-focused guidance based strictly on the textbook data provided below.
@@ -1949,7 +2061,6 @@ INTERACTION PROTOCOLS:
 
 Now answer the student's question based on this textbook content."""
                     
-                    # Make API call
                     with st.spinner("🤔 Thinking..."):
                         headers = {
                             "Content-Type": "application/json",
@@ -1957,7 +2068,6 @@ Now answer the student's question based on this textbook content."""
                             "anthropic-version": "2023-06-01"
                         }
                         
-                        # Build conversation history for API
                         api_messages = []
                         for msg in st.session_state.chat_history_402:
                             api_messages.append({
@@ -1983,13 +2093,11 @@ Now answer the student's question based on this textbook content."""
                             if response.status_code == 200:
                                 response_data = response.json()
                                 
-                                # Safe extraction of AI message
                                 if response_data.get('content') and len(response_data['content']) > 0:
                                     ai_message = response_data['content'][0]['text']
                                 else:
                                     ai_message = "I'm sorry, I couldn't generate a response. Please try again."
                                 
-                                # Add AI response to history
                                 st.session_state.chat_history_402.append({
                                     'role': 'assistant',
                                     'content': ai_message
@@ -2012,8 +2120,8 @@ Now answer the student's question based on this textbook content."""
                     st.code('ANTHROPIC_API_KEY = "your-key-here"')
         
         # Suggested questions
-        st.markdown("---")
-        st.markdown("**💡 Suggested Questions:**")
+        st.markdown("<br>", unsafe_allow_html=True)
+        st.markdown("<p style='color: #FFFFFF; font-weight: 500;'>💡 Suggested Questions:</p>", unsafe_allow_html=True)
         
         suggestions = [
             "What's the difference between job costing and process costing?",
@@ -2035,38 +2143,54 @@ Now answer the student's question based on this textbook content."""
                     st.rerun()
     
     with tab2:
-        st.write("### Key Formulas & Concepts")
+        st.markdown("""
+            <div style='
+                background: linear-gradient(145deg, #1A1A2E, #151525);
+                padding: 25px;
+                border-radius: 15px;
+                border: 1px solid #2D2D4A;
+                margin-bottom: 30px;
+            '>
+                <h3 style='color: #FFFFFF; margin-bottom: 10px;'>📚 Key Formulas & Concepts</h3>
+                <p style='color: #AAAAAA; margin: 0;'>Quick reference for essential managerial accounting formulas</p>
+            </div>
+        """, unsafe_allow_html=True)
         
-        with st.expander("🔴 Contribution Margin", expanded=True):
-            st.write("**Contribution Margin = Sales - Variable Costs**")
-            st.write("*Amount available to cover fixed costs and profit*")
+        with st.expander("📐 Contribution Margin", expanded=True):
+            st.markdown("**Formula:** `Contribution Margin = Sales - Variable Costs`")
+            st.markdown("*Amount available to cover fixed costs and profit*")
             st.code("Example: $100,000 - $60,000 = $40,000", language=None)
         
-        with st.expander("🔴 Contribution Margin Ratio"):
-            st.write("**CM Ratio = Contribution Margin / Sales**")
-            st.write("*Percentage of each sales dollar available for fixed costs*")
+        with st.expander("📐 Contribution Margin Ratio"):
+            st.markdown("**Formula:** `CM Ratio = Contribution Margin / Sales`")
+            st.markdown("*Percentage of each sales dollar available for fixed costs*")
             st.code("Example: $40,000 / $100,000 = 40%", language=None)
         
-        with st.expander("🔴 Break-Even Point (Units)"):
-            st.write("**BEP (Units) = Fixed Costs / CM per Unit**")
-            st.write("*Number of units needed to cover all costs*")
+        with st.expander("📐 Break-Even Point (Units)"):
+            st.markdown("**Formula:** `BEP (Units) = Fixed Costs / CM per Unit`")
+            st.markdown("*Number of units needed to cover all costs*")
             st.code("Example: $30,000 / $15 = 2,000 units", language=None)
         
-        with st.expander("🔴 Break-Even Point (Dollars)"):
-            st.write("**BEP ($) = Fixed Costs / CM Ratio**")
-            st.write("*Sales dollars needed to break even*")
+        with st.expander("📐 Break-Even Point (Dollars)"):
+            st.markdown("**Formula:** `BEP ($) = Fixed Costs / CM Ratio`")
+            st.markdown("*Sales dollars needed to break even*")
             st.code("Example: $30,000 / 0.40 = $75,000", language=None)
         
-        with st.expander("🔴 Predetermined Overhead Rate"):
-            st.write("**Rate = Estimated Overhead / Estimated Activity**")
-            st.write("*Used to apply overhead to jobs*")
+        with st.expander("📐 Predetermined Overhead Rate"):
+            st.markdown("**Formula:** `Rate = Estimated Overhead / Estimated Activity`")
+            st.markdown("*Used to apply overhead to jobs*")
             st.code("Example: $100,000 / 20,000 hours = $5/hour", language=None)
         
-        with st.expander("🔴 Equivalent Units (Weighted-Average)"):
-            st.write("**EU = Units Completed + (Ending WIP × % Complete)**")
-            st.write("*Measures work done in a period*")
+        with st.expander("📐 Equivalent Units (Weighted-Average)"):
+            st.markdown("**Formula:** `EU = Units Completed + (Ending WIP × % Complete)`")
+            st.markdown("*Measures work done in a period*")
             st.code("Example: 44,000 + (6,000 × 50%) = 47,000 EU", language=None)
         
-        with st.expander("🔴 Cost of Goods Manufactured"):
-            st.write("**COGM = Beg. WIP + Manufacturing Costs - Ending WIP**")
-            st.write("*Total cost of units completed in production*")
+        with st.expander("📐 Cost of Goods Manufactured"):
+            st.markdown("**Formula:** `COGM = Beg. WIP + Manufacturing Costs - Ending WIP`")
+            st.markdown("*Total cost of units completed in production*")
+        
+        with st.expander("📐 Prime Costs vs Conversion Costs"):
+            st.markdown("**Prime Costs:** `Direct Materials + Direct Labor`")
+            st.markdown("**Conversion Costs:** `Direct Labor + Factory Overhead`")
+            st.markdown("*Prime costs are direct inputs; conversion costs transform materials into finished goods*")
