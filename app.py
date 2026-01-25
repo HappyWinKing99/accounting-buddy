@@ -854,6 +854,7 @@ END OF TEXTBOOK CONTENT
 # ============================================================================
 st.markdown("""
     <style>
+    /* ===== GLOBAL STYLES ===== */
     /* Force dark background everywhere */
     .stApp {
         background-color: #0E1117;
@@ -865,17 +866,28 @@ st.markdown("""
         background-color: #0E1117 !important;
     }
     
-    /* Change all text to white for contrast */
-    .stApp, .stMarkdown, p, span, div, label {
-        color: #FFFFFF !important;
-    }
-    
     /* Professional font throughout app */
     .stApp {
         font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
     }
     
-    /* Sidebar styling - match dark theme */
+    /* ===== TEXT COLORS ===== */
+    /* Change all text to white for contrast */
+    .stApp, .stMarkdown, p, span, div, label, li, td, th {
+        color: #FFFFFF !important;
+    }
+    
+    /* Code blocks */
+    code {
+        color: #FFFFFF !important;
+        background-color: #1E1E1E !important;
+    }
+    
+    .stCodeBlock, pre {
+        background-color: #1E1E1E !important;
+    }
+    
+    /* ===== SIDEBAR STYLING ===== */
     section[data-testid="stSidebar"] {
         background-color: #0E1117 !important;
     }
@@ -884,24 +896,22 @@ st.markdown("""
         background-color: #0E1117 !important;
     }
     
-    /* Sidebar text white */
     section[data-testid="stSidebar"] * {
         color: #FFFFFF !important;
     }
     
-    /* Sidebar radio buttons */
     section[data-testid="stSidebar"] .row-widget.stRadio > div {
         background-color: #1E1E1E !important;
         border-radius: 8px !important;
         padding: 10px !important;
     }
     
-    /* Sidebar title */
     section[data-testid="stSidebar"] h1 {
         color: #FFFFFF !important;
     }
     
-    /* ALL BUTTONS - Make them GOLD with WHITE text */
+    /* ===== ALL BUTTONS - GOLD WITH WHITE TEXT ===== */
+    /* Regular buttons */
     .stButton > button {
         background-color: #CFB53B !important;
         color: #FFFFFF !important;
@@ -918,11 +928,253 @@ st.markdown("""
         color: #FFFFFF !important;
     }
     
-    /* Ensure button text is always white */
     .stButton > button p {
         color: #FFFFFF !important;
     }
     
+    /* Download buttons */
+    .stDownloadButton > button {
+        background-color: #CFB53B !important;
+        color: #FFFFFF !important;
+        font-weight: bold !important;
+        border: none !important;
+        font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif !important;
+        border-radius: 8px !important;
+        padding: 10px 24px !important;
+        transition: all 0.3s ease !important;
+    }
+    
+    .stDownloadButton > button:hover {
+        background-color: #B8A033 !important;
+        color: #FFFFFF !important;
+    }
+    
+    .stDownloadButton > button p, .stDownloadButton > button span {
+        color: #FFFFFF !important;
+    }
+    
+    /* Form submit buttons */
+    .stFormSubmitButton > button {
+        background-color: #CFB53B !important;
+        color: #FFFFFF !important;
+        font-weight: bold !important;
+        border: none !important;
+        border-radius: 8px !important;
+    }
+    
+    .stFormSubmitButton > button:hover {
+        background-color: #B8A033 !important;
+        color: #FFFFFF !important;
+    }
+    
+    .stFormSubmitButton > button p {
+        color: #FFFFFF !important;
+    }
+    
+    /* ===== EXPANDERS ===== */
+    .streamlit-expanderHeader {
+        background-color: #1E1E1E !important;
+        color: #FFFFFF !important;
+        border-radius: 8px !important;
+    }
+    
+    .streamlit-expanderHeader p, .streamlit-expanderHeader span {
+        color: #FFFFFF !important;
+    }
+    
+    .streamlit-expanderContent {
+        background-color: #1A1A2E !important;
+        border: 1px solid #333 !important;
+        border-radius: 0 0 8px 8px !important;
+    }
+    
+    .streamlit-expanderContent p, .streamlit-expanderContent span, 
+    .streamlit-expanderContent div, .streamlit-expanderContent li {
+        color: #FFFFFF !important;
+    }
+    
+    /* Target expander by data-testid */
+    [data-testid="stExpander"] {
+        background-color: #1E1E1E !important;
+        border: 1px solid #333 !important;
+        border-radius: 8px !important;
+    }
+    
+    [data-testid="stExpander"] summary {
+        color: #FFFFFF !important;
+    }
+    
+    [data-testid="stExpander"] summary p {
+        color: #FFFFFF !important;
+    }
+    
+    [data-testid="stExpander"] div[data-testid="stExpanderDetails"] {
+        background-color: #1A1A2E !important;
+    }
+    
+    [data-testid="stExpander"] div[data-testid="stExpanderDetails"] * {
+        color: #FFFFFF !important;
+    }
+    
+    /* ===== INPUT FIELDS ===== */
+    /* Text inputs */
+    .stTextInput > div > div > input {
+        background-color: #1E1E1E !important;
+        color: #FFFFFF !important;
+        border: 1px solid #444 !important;
+        border-radius: 8px !important;
+    }
+    
+    .stTextInput label {
+        color: #FFFFFF !important;
+    }
+    
+    /* Text areas */
+    .stTextArea > div > div > textarea {
+        background-color: #1E1E1E !important;
+        color: #FFFFFF !important;
+        border: 1px solid #444 !important;
+        border-radius: 8px !important;
+    }
+    
+    .stTextArea label {
+        color: #FFFFFF !important;
+    }
+    
+    /* Number inputs */
+    .stNumberInput > div > div > input {
+        background-color: #1E1E1E !important;
+        color: #FFFFFF !important;
+        border: 1px solid #444 !important;
+        border-radius: 8px !important;
+    }
+    
+    .stNumberInput label {
+        color: #FFFFFF !important;
+    }
+    
+    /* Select boxes / dropdowns */
+    .stSelectbox > div > div {
+        background-color: #1E1E1E !important;
+        color: #FFFFFF !important;
+        border: 1px solid #444 !important;
+        border-radius: 8px !important;
+    }
+    
+    .stSelectbox label {
+        color: #FFFFFF !important;
+    }
+    
+    .stSelectbox > div > div > div {
+        color: #FFFFFF !important;
+    }
+    
+    /* Dropdown menu items */
+    [data-baseweb="menu"] {
+        background-color: #1E1E1E !important;
+    }
+    
+    [data-baseweb="menu"] li {
+        color: #FFFFFF !important;
+        background-color: #1E1E1E !important;
+    }
+    
+    [data-baseweb="menu"] li:hover {
+        background-color: #333 !important;
+    }
+    
+    /* ===== RADIO BUTTONS ===== */
+    .stRadio > div {
+        background-color: transparent !important;
+    }
+    
+    .stRadio label {
+        color: #FFFFFF !important;
+    }
+    
+    .stRadio > div > label > div[data-testid="stMarkdownContainer"] p {
+        color: #FFFFFF !important;
+    }
+    
+    /* ===== TABS ===== */
+    .stTabs [data-baseweb="tab-list"] {
+        background-color: #0E1117 !important;
+        gap: 8px;
+    }
+    
+    .stTabs [data-baseweb="tab"] {
+        background-color: #1E1E1E !important;
+        color: #FFFFFF !important;
+        border-radius: 8px 8px 0 0 !important;
+        border: 1px solid #333 !important;
+        padding: 10px 20px !important;
+    }
+    
+    .stTabs [data-baseweb="tab"]:hover {
+        background-color: #2D2D2D !important;
+        color: #FFFFFF !important;
+    }
+    
+    .stTabs [aria-selected="true"] {
+        background-color: #002E5D !important;
+        color: #FFFFFF !important;
+        border-bottom: 3px solid #CFB53B !important;
+    }
+    
+    .stTabs [data-baseweb="tab-panel"] {
+        background-color: #0E1117 !important;
+    }
+    
+    /* ===== INFO/SUCCESS/WARNING/ERROR BOXES ===== */
+    .stAlert {
+        background-color: #1E1E1E !important;
+        color: #FFFFFF !important;
+        border-radius: 8px !important;
+    }
+    
+    .stAlert p, .stAlert span, .stAlert div {
+        color: #FFFFFF !important;
+    }
+    
+    /* Info box */
+    [data-testid="stAlert"][data-baseweb="notification"]:has(div[data-testid="stNotificationContentInfo"]) {
+        background-color: #1E3A5F !important;
+        border-left: 4px solid #4A90D9 !important;
+    }
+    
+    /* Success box */
+    [data-testid="stAlert"][data-baseweb="notification"]:has(div[data-testid="stNotificationContentSuccess"]) {
+        background-color: #1E3E1E !important;
+        border-left: 4px solid #4CAF50 !important;
+    }
+    
+    /* Warning box */
+    [data-testid="stAlert"][data-baseweb="notification"]:has(div[data-testid="stNotificationContentWarning"]) {
+        background-color: #3E3A1E !important;
+        border-left: 4px solid #FFC107 !important;
+    }
+    
+    /* Error box */
+    [data-testid="stAlert"][data-baseweb="notification"]:has(div[data-testid="stNotificationContentError"]) {
+        background-color: #3E1E1E !important;
+        border-left: 4px solid #F44336 !important;
+    }
+    
+    /* ===== SPINNER ===== */
+    .stSpinner > div {
+        color: #FFFFFF !important;
+    }
+    
+    /* ===== CAPTION TEXT ===== */
+    .stCaption, [data-testid="stCaptionContainer"] {
+        color: #AAAAAA !important;
+    }
+    
+    .stCaption p {
+        color: #AAAAAA !important;
+    }
+    
+    /* ===== CUSTOM CLASSES ===== */
     /* Course boxes styling - BLUE boxes with WHITE text */
     .course-box {
         background-color: #002E5D;
@@ -949,6 +1201,10 @@ st.markdown("""
         margin: 10px 0;
     }
     
+    .user-message strong, .user-message br, .user-message * {
+        color: #FFFFFF !important;
+    }
+    
     .ai-message {
         background-color: #2D2D2D;
         padding: 15px;
@@ -957,10 +1213,163 @@ st.markdown("""
         border-left: 4px solid #CFB53B;
     }
     
-    /* Topic buttons - smaller style */
-    .topic-btn button {
-        font-size: 12px !important;
-        padding: 5px 10px !important;
+    .ai-message strong, .ai-message * {
+        color: #FFFFFF !important;
+    }
+    
+    /* ===== PLOTLY CHARTS ===== */
+    .js-plotly-plot .plotly .modebar {
+        background-color: transparent !important;
+    }
+    
+    .js-plotly-plot .plotly .modebar-btn path {
+        fill: #FFFFFF !important;
+    }
+    
+    /* ===== HORIZONTAL RULE ===== */
+    hr {
+        border-color: #333 !important;
+    }
+    
+    /* ===== LINKS ===== */
+    a {
+        color: #CFB53B !important;
+    }
+    
+    a:hover {
+        color: #E8D066 !important;
+    }
+    
+    /* ===== SCROLLBAR STYLING ===== */
+    ::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+    }
+    
+    ::-webkit-scrollbar-track {
+        background: #1E1E1E;
+    }
+    
+    ::-webkit-scrollbar-thumb {
+        background: #444;
+        border-radius: 4px;
+    }
+    
+    ::-webkit-scrollbar-thumb:hover {
+        background: #555;
+    }
+    
+    /* ===== MARKDOWN SPECIFIC ===== */
+    .stMarkdown h1, .stMarkdown h2, .stMarkdown h3, 
+    .stMarkdown h4, .stMarkdown h5, .stMarkdown h6 {
+        color: #FFFFFF !important;
+    }
+    
+    /* ===== TABLES ===== */
+    .stTable {
+        background-color: #1E1E1E !important;
+    }
+    
+    .stTable th {
+        background-color: #002E5D !important;
+        color: #FFFFFF !important;
+    }
+    
+    .stTable td {
+        background-color: #1E1E1E !important;
+        color: #FFFFFF !important;
+    }
+    
+    /* Dataframe styling */
+    [data-testid="stDataFrame"] {
+        background-color: #1E1E1E !important;
+    }
+    
+    [data-testid="stDataFrame"] * {
+        color: #FFFFFF !important;
+        background-color: #1E1E1E !important;
+    }
+    
+    /* ===== METRIC STYLING ===== */
+    [data-testid="stMetric"] {
+        background-color: #1E1E1E !important;
+        padding: 15px !important;
+        border-radius: 8px !important;
+    }
+    
+    [data-testid="stMetric"] label {
+        color: #AAAAAA !important;
+    }
+    
+    [data-testid="stMetric"] [data-testid="stMetricValue"] {
+        color: #FFFFFF !important;
+    }
+    
+    /* ===== MULTISELECT ===== */
+    .stMultiSelect > div > div {
+        background-color: #1E1E1E !important;
+        color: #FFFFFF !important;
+        border: 1px solid #444 !important;
+    }
+    
+    .stMultiSelect span {
+        color: #FFFFFF !important;
+    }
+    
+    /* ===== CHECKBOX ===== */
+    .stCheckbox label {
+        color: #FFFFFF !important;
+    }
+    
+    .stCheckbox span {
+        color: #FFFFFF !important;
+    }
+    
+    /* ===== FILE UPLOADER ===== */
+    [data-testid="stFileUploader"] {
+        background-color: #1E1E1E !important;
+        border: 1px dashed #444 !important;
+        border-radius: 8px !important;
+    }
+    
+    [data-testid="stFileUploader"] * {
+        color: #FFFFFF !important;
+    }
+    
+    /* ===== SLIDER ===== */
+    .stSlider label {
+        color: #FFFFFF !important;
+    }
+    
+    .stSlider [data-testid="stTickBarMin"], 
+    .stSlider [data-testid="stTickBarMax"] {
+        color: #FFFFFF !important;
+    }
+    
+    /* ===== DATE/TIME INPUT ===== */
+    .stDateInput > div > div > input,
+    .stTimeInput > div > div > input {
+        background-color: #1E1E1E !important;
+        color: #FFFFFF !important;
+        border: 1px solid #444 !important;
+    }
+    
+    .stDateInput label, .stTimeInput label {
+        color: #FFFFFF !important;
+    }
+    
+    /* ===== COLUMN CONTAINER ===== */
+    [data-testid="column"] {
+        background-color: transparent !important;
+    }
+    
+    /* ===== POPOVER/TOOLTIP ===== */
+    [data-baseweb="popover"] {
+        background-color: #1E1E1E !important;
+    }
+    
+    [data-baseweb="popover"] * {
+        color: #FFFFFF !important;
     }
     </style>
 """, unsafe_allow_html=True)
