@@ -23,6 +23,10 @@ if 'selected_page' not in st.session_state:
 if 'chat_history_402' not in st.session_state:
     st.session_state.chat_history_402 = []
 
+
+if 'chat_history_405' not in st.session_state:
+    st.session_state.chat_history_405 = []
+
 # ============================================================================
 # FULL TEXTBOOK CONTENT FOR AI REFERENCE
 # ============================================================================
@@ -1187,6 +1191,7 @@ KEY FORMULAS FOR PROCESS COSTING:
 ===
 END OF TEXTBOOK CONTENT
 """
+
 # ============================================================================
 # CUSTOM CSS - DARK MODE THEME
 # ============================================================================
@@ -1713,7 +1718,8 @@ with st.sidebar:
         "🧮 Calculators",
         "📖 Formula Database",
         "📊 Break-Even Visualizer",
-        "📕 ACC 402 - Managerial Accounting"
+        "📕 ACC 402 - Managerial Accounting",
+        "📗 ACC 405 - Tax Accounting"
     ]
     
     for page_name in pages:
@@ -1736,13 +1742,6 @@ with st.sidebar:
 # ============================================================================
 
 page = st.session_state.selected_page
-# ============================================================================
-# UPDATED HOMEPAGE - CLEANER & MORE POLISHED
-# ============================================================================
-# Find your existing: if page == "🏠 Home":
-# Replace EVERYTHING in that section (until "elif page == "🧮 Calculators":")
-# with the code below
-# ============================================================================
 
 # --- PAGE 1: HOME ---
 if page == "🏠 Home":
@@ -1826,6 +1825,37 @@ if page == "🏠 Home":
     with col2:
         st.markdown("""
         <div style='
+            background: linear-gradient(145deg, #1B5E20, #0D3D12);
+            padding: 30px;
+            border-radius: 15px;
+            border: 1px solid #2E7D32;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            height: 100%;
+        '>
+            <div style='font-size: 2.5em; margin-bottom: 15px;'>📗</div>
+            <h3 style='color: #FFFFFF; margin-bottom: 10px; font-size: 1.4em; font-weight: 500;'>
+                ACC 405
+            </h3>
+            <p style='color: #81C784; font-size: 0.9em; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 1px;'>
+                Tax Accounting
+            </p>
+            <p style='color: #AAAAAA; font-size: 0.95em; line-height: 1.6;'>
+                AI Tutor with full tax textbook access. Get help with tax concepts, calculations, and filing requirements.
+            </p>
+        </div>
+        """, unsafe_allow_html=True)
+        st.markdown("<br>", unsafe_allow_html=True)
+        if st.button("Launch ACC 405 →", key="goto_405", use_container_width=True):
+            st.session_state.selected_page = "📗 ACC 405 - Tax Accounting"
+            st.rerun()
+    
+    st.markdown("<br><br>", unsafe_allow_html=True)
+    
+    col3, col4 = st.columns(2, gap="large")
+    
+    with col3:
+        st.markdown("""
+        <div style='
             background: linear-gradient(145deg, #1A1A2E, #151525);
             padding: 30px;
             border-radius: 15px;
@@ -1850,11 +1880,7 @@ if page == "🏠 Home":
             st.session_state.selected_page = "🧮 Calculators"
             st.rerun()
     
-    st.markdown("<br><br>", unsafe_allow_html=True)
-    
-    col3, col4 = st.columns(2, gap="large")
-    
-    with col3:
+    with col4:
         st.markdown("""
         <div style='
             background: linear-gradient(145deg, #1A1A2E, #151525);
@@ -1879,33 +1905,6 @@ if page == "🏠 Home":
         st.markdown("<br>", unsafe_allow_html=True)
         if st.button("Browse Formulas →", key="goto_formulas", use_container_width=True):
             st.session_state.selected_page = "📖 Formula Database"
-            st.rerun()
-    
-    with col4:
-        st.markdown("""
-        <div style='
-            background: linear-gradient(145deg, #1A1A2E, #151525);
-            padding: 30px;
-            border-radius: 15px;
-            border: 1px solid #2D2D4A;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            height: 100%;
-        '>
-            <div style='font-size: 2.5em; margin-bottom: 15px;'>📊</div>
-            <h3 style='color: #FFFFFF; margin-bottom: 10px; font-size: 1.4em; font-weight: 500;'>
-                Break-Even Visualizer
-            </h3>
-            <p style='color: #CFB53B; font-size: 0.9em; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 1px;'>
-                Interactive Charts
-            </p>
-            <p style='color: #AAAAAA; font-size: 0.95em; line-height: 1.6;'>
-                Visualize cost-volume-profit relationships with interactive charts. See your break-even point come to life.
-            </p>
-        </div>
-        """, unsafe_allow_html=True)
-        st.markdown("<br>", unsafe_allow_html=True)
-        if st.button("Open Visualizer →", key="goto_viz", use_container_width=True):
-            st.session_state.selected_page = "📊 Break-Even Visualizer"
             st.rerun()
     
     st.markdown("<br><br>", unsafe_allow_html=True)
@@ -2565,3 +2564,366 @@ Now answer the student's question based on this textbook content."""
             st.markdown("**Prime Costs:** `Direct Materials + Direct Labor`")
             st.markdown("**Conversion Costs:** `Direct Labor + Factory Overhead`")
             st.markdown("*Prime costs are direct inputs; conversion costs transform materials into finished goods*")
+
+# --- PAGE 6: ACC 405 TAX ACCOUNTING ---
+elif page == "📗 ACC 405 - Tax Accounting":
+    # Scroll to top
+    st.components.v1.html(
+        """
+        <script>
+            window.parent.document.querySelector('section.main').scrollTo(0, 0);
+        </script>
+        """,
+        height=0
+    )
+    
+    st.markdown("""
+        <div class='page-header'>
+            <h1>📗 ACC 405 - Tax Accounting</h1>
+            <p>AI-powered study assistant with full textbook access</p>
+        </div>
+    """, unsafe_allow_html=True)
+    
+    if st.button("← Back to Home", key="back_405"):
+        st.session_state.selected_page = "🏠 Home"
+        st.rerun()
+    
+    st.markdown("<br>", unsafe_allow_html=True)
+    
+    tab1, tab2 = st.tabs(["🤖 AI Tutor", "📚 Key Concepts"])
+    
+    with tab1:
+        st.markdown("""
+            <div style='
+                background: linear-gradient(145deg, #1B5E20, #0D3D12);
+                padding: 25px;
+                border-radius: 15px;
+                border: 1px solid #2E7D32;
+                margin-bottom: 30px;
+            '>
+                <h3 style='color: #FFFFFF; margin-bottom: 10px;'>🤖 Your ACC 405 AI Study Assistant</h3>
+                <p style='color: #AAAAAA; margin: 0;'>This AI tutor has <strong style='color: #81C784;'>word-for-word access</strong> to your full tax accounting textbook. Ask anything!</p>
+            </div>
+        """, unsafe_allow_html=True)
+        
+        if 'trigger_ai_call_405' not in st.session_state:
+            st.session_state.trigger_ai_call_405 = False
+        
+        st.markdown("<p style='color: #FFFFFF; font-weight: 500; margin-bottom: 15px;'>📖 Quick Topics:</p>", unsafe_allow_html=True)
+        topic_cols = st.columns(5)
+        topics_405 = [
+            ("Filing Status", "Explain the different filing statuses and when to use each one"),
+            ("Deductions", "What is the difference between standard and itemized deductions?"),
+            ("Credits", "Explain the major tax credits available to individuals"),
+            ("Income", "What types of income are taxable vs non-taxable?"),
+            ("Capital Gains", "Explain how capital gains and losses are taxed")
+        ]
+        for idx, (label, question) in enumerate(topics_405):
+            with topic_cols[idx]:
+                if st.button(label, key=f"topic_405_{idx}", use_container_width=True):
+                    st.session_state.chat_history_405.append({
+                        'role': 'user',
+                        'content': question
+                    })
+                    st.session_state.trigger_ai_call_405 = True
+                    st.rerun()
+        
+        st.markdown("<br>", unsafe_allow_html=True)
+        
+        with st.expander("⚙️ AI Settings"):
+            model_choice_405 = st.radio(
+                "Model (Haiku is faster & cheaper, Sonnet is smarter):",
+                ["claude-sonnet-4-20250514", "claude-haiku-3-5-20241022"],
+                index=0,
+                horizontal=True,
+                key="model_405"
+            )
+            st.caption("💡 Tip: Use Haiku for simple questions, Sonnet for complex explanations")
+        
+        if st.session_state.chat_history_405:
+            for message in st.session_state.chat_history_405:
+                if message['role'] == 'user':
+                    st.markdown(f"""
+                    <div class="user-message">
+                        <strong>🧑‍🎓 You:</strong><br>{message['content']}
+                    </div>
+                    """, unsafe_allow_html=True)
+                else:
+                    st.markdown(f"""
+                    <div class="ai-message">
+                        <strong>🤖 AI Tutor:</strong>
+                    </div>
+                    """, unsafe_allow_html=True)
+                    st.markdown(message['content'])
+            st.markdown("<br>", unsafe_allow_html=True)
+        
+        if 'waiting_for_response_405' not in st.session_state:
+            st.session_state.waiting_for_response_405 = False
+        
+        with st.form(key="question_form_405", clear_on_submit=True):
+            user_question_405 = st.text_area(
+                "Ask your question:", 
+                height=100,
+                placeholder="Example: How do I calculate adjusted gross income?",
+                disabled=st.session_state.waiting_for_response_405,
+                key="question_input_405"
+            )
+            
+            col1, col2 = st.columns([1, 5])
+            with col1:
+                submit_button_405 = st.form_submit_button(
+                    "Send" if not st.session_state.waiting_for_response_405 else "Thinking...", 
+                    type="primary",
+                    disabled=st.session_state.waiting_for_response_405
+                )
+        
+        btn_col1, btn_col2, btn_col3 = st.columns([1, 1, 3])
+        
+        with btn_col1:
+            if st.button("🗑️ Clear Chat", key="clear_chat_405"):
+                st.session_state.chat_history_405 = []
+                st.success("Chat cleared!")
+                st.rerun()
+        
+        with btn_col2:
+            if st.session_state.chat_history_405:
+                chat_export_405 = "\n\n".join([
+                    f"{'You' if m['role'] == 'user' else 'AI Tutor'}: {m['content']}" 
+                    for m in st.session_state.chat_history_405
+                ])
+                st.download_button(
+                    "📥 Export Chat",
+                    chat_export_405,
+                    file_name="acc405_study_session.txt",
+                    mime="text/plain",
+                    key="export_405"
+                )
+        
+        should_call_api_405 = False
+        
+        if submit_button_405 and user_question_405.strip():
+            st.session_state.chat_history_405.append({
+                'role': 'user',
+                'content': user_question_405
+            })
+            should_call_api_405 = True
+        
+        if st.session_state.trigger_ai_call_405:
+            should_call_api_405 = True
+            st.session_state.trigger_ai_call_405 = False
+        
+        if should_call_api_405 and st.session_state.chat_history_405:
+            if st.session_state.chat_history_405[-1]['role'] == 'user':
+                try:
+                    api_key = st.secrets["ANTHROPIC_API_KEY"]
+                    
+                    system_prompt_405 = f"""You are the Tax Accounting Master Tutor, a specialized AI expert designed to help a student master federal tax accounting material.
+
+Your goal is to provide clear, accurate, and exam-focused guidance based strictly on the textbook data provided below.
+
+CORE RESPONSIBILITIES:
+1. Knowledge Retrieval: Use the provided textbook content as your primary source of truth
+2. Concept Simplification: Use the Feynman Technique - explain simply, then provide practical examples
+3. Problem Solving: For tax calculations, walk through solutions step-by-step
+4. Exam Prep: Create practice questions when asked
+
+FORMATTING GUIDELINES:
+- Use clear formatting for tax calculations and examples
+- Use bolding for key terms
+- Use bullet points for lists of requirements or qualifications
+- Use tables for tax brackets, phase-outs, and comparisons
+- Be professional, encouraging, and academically rigorous
+
+INTERACTION PROTOCOLS:
+- If the student is confused, ask clarifying questions
+- Check their work and point out errors
+- Always cite which chapter/section you're referencing
+- Reference current tax law and note any recent changes
+
+{FULL_TAX_TEXTBOOK_CONTENT}
+
+Now answer the student's question based on this textbook content."""
+                    
+                    with st.spinner("🤔 Thinking..."):
+                        headers = {
+                            "Content-Type": "application/json",
+                            "x-api-key": api_key,
+                            "anthropic-version": "2023-06-01"
+                        }
+                        
+                        api_messages_405 = []
+                        for msg in st.session_state.chat_history_405:
+                            api_messages_405.append({
+                                "role": msg['role'],
+                                "content": msg['content']
+                            })
+                        
+                        data = {
+                            "model": model_choice_405,
+                            "max_tokens": 4096,
+                            "system": system_prompt_405,
+                            "messages": api_messages_405
+                        }
+                        
+                        try:
+                            response = requests.post(
+                                "https://api.anthropic.com/v1/messages",
+                                headers=headers,
+                                json=data,
+                                timeout=60
+                            )
+                            
+                            if response.status_code == 200:
+                                response_data = response.json()
+                                
+                                if response_data.get('content') and len(response_data['content']) > 0:
+                                    ai_message = response_data['content'][0]['text']
+                                else:
+                                    ai_message = "I'm sorry, I couldn't generate a response. Please try again."
+                                
+                                st.session_state.chat_history_405.append({
+                                    'role': 'assistant',
+                                    'content': ai_message
+                                })
+                                st.rerun()
+                            else:
+                                st.error(f"❌ API Error: {response.status_code}")
+                                st.code(response.text)
+                        
+                        except requests.exceptions.Timeout:
+                            st.error("❌ Request timed out. Please try again.")
+                        except requests.exceptions.RequestException as e:
+                            st.error(f"❌ Network error: {str(e)}")
+                        except Exception as e:
+                            st.error(f"❌ Error calling API: {str(e)}")
+                
+                except KeyError:
+                    st.error("⚠️ API key not found. Please add your Anthropic API key to Streamlit secrets.")
+                    st.info("Add this to `.streamlit/secrets.toml`:")
+                    st.code('ANTHROPIC_API_KEY = "your-key-here"')
+        
+        st.markdown("<br>", unsafe_allow_html=True)
+        st.markdown("<p style='color: #FFFFFF; font-weight: 500;'>💡 Suggested Questions:</p>", unsafe_allow_html=True)
+        
+        suggestions_405 = [
+            "What is the difference between a tax deduction and a tax credit?",
+            "How do I determine my filing status?",
+            "What expenses can be itemized on Schedule A?",
+            "Explain the rules for qualifying dependents",
+            "How are long-term capital gains taxed differently than ordinary income?"
+        ]
+        
+        cols = st.columns(2)
+        for idx, suggestion in enumerate(suggestions_405):
+            with cols[idx % 2]:
+                if st.button(f"📌 {suggestion}", key=f"suggest_405_{idx}"):
+                    st.session_state.chat_history_405.append({
+                        'role': 'user',
+                        'content': suggestion
+                    })
+                    st.session_state.trigger_ai_call_405 = True
+                    st.rerun()
+    
+    with tab2:
+        st.markdown("""
+            <div style='
+                background: linear-gradient(145deg, #1A1A2E, #151525);
+                padding: 25px;
+                border-radius: 15px;
+                border: 1px solid #2D2D4A;
+                margin-bottom: 30px;
+            '>
+                <h3 style='color: #FFFFFF; margin-bottom: 10px;'>📚 Key Tax Concepts & Formulas</h3>
+                <p style='color: #AAAAAA; margin: 0;'>Quick reference for essential tax accounting concepts</p>
+            </div>
+        """, unsafe_allow_html=True)
+        
+        with st.expander("📐 Tax Formula (Individual)", expanded=True):
+            st.markdown("**Formula:**")
+            st.code("""Gross Income
+- Adjustments (Above-the-Line Deductions)
+= Adjusted Gross Income (AGI)
+- Standard Deduction OR Itemized Deductions
+- Qualified Business Income Deduction (if applicable)
+= Taxable Income
+× Tax Rate(s)
+= Tax Liability
+- Tax Credits
++ Other Taxes (Self-Employment, etc.)
+= Total Tax
+- Payments & Withholdings
+= Tax Due or Refund""", language=None)
+        
+        with st.expander("📐 Adjusted Gross Income (AGI)"):
+            st.markdown("**Formula:** `AGI = Gross Income - Above-the-Line Deductions`")
+            st.markdown("*Above-the-line deductions include: Student loan interest, IRA contributions, HSA contributions, Self-employment tax (50%), Alimony paid (pre-2019 agreements)*")
+        
+        with st.expander("📐 Standard Deduction (2024)"):
+            st.markdown("**Amounts:**")
+            st.code("""Single: $14,600
+Married Filing Jointly: $29,200
+Married Filing Separately: $14,600
+Head of Household: $21,900
+Additional for 65+ or Blind: $1,550 (married) / $1,950 (single)""", language=None)
+        
+        with st.expander("📐 Capital Gains Tax Rates (2024)"):
+            st.markdown("**Long-Term Capital Gains (held > 1 year):**")
+            st.code("""0% Rate: Up to $47,025 (Single) / $94,050 (MFJ)
+15% Rate: $47,026 - $518,900 (Single) / $94,051 - $583,750 (MFJ)
+20% Rate: Above $518,900 (Single) / Above $583,750 (MFJ)""", language=None)
+            st.markdown("*Short-term capital gains (held ≤ 1 year) are taxed as ordinary income*")
+        
+        with st.expander("📐 Filing Status Requirements"):
+            st.markdown("""
+**Single:** Unmarried, legally separated, or divorced on Dec 31
+
+**Married Filing Jointly (MFJ):** Married on Dec 31, both spouses report all income
+
+**Married Filing Separately (MFS):** Married but file separate returns
+
+**Head of Household (HoH):** Unmarried + paid >50% of household costs + qualifying person lived with you >6 months
+
+**Qualifying Surviving Spouse:** Spouse died in prior 2 years + dependent child + paid >50% of household costs
+            """)
+        
+        with st.expander("📐 Dependency Tests"):
+            st.markdown("""
+**Qualifying Child (must meet ALL):**
+1. Relationship test (child, sibling, or descendant)
+2. Age test (under 19, or under 24 if full-time student, or permanently disabled)
+3. Residency test (lived with taxpayer >6 months)
+4. Support test (child did not provide >50% of own support)
+5. Joint return test (child did not file joint return)
+
+**Qualifying Relative (must meet ALL):**
+1. Not a qualifying child of anyone
+2. Relationship OR member of household test
+3. Gross income test (< $5,050 in 2024)
+4. Support test (taxpayer provided >50% of support)
+            """)
+        
+        with st.expander("📐 Common Tax Credits"):
+            st.markdown("""
+**Child Tax Credit:** Up to $2,000 per qualifying child under 17
+
+**Earned Income Tax Credit (EITC):** Refundable credit for low-to-moderate income workers
+
+**American Opportunity Credit:** Up to $2,500 per student for first 4 years of college (40% refundable)
+
+**Lifetime Learning Credit:** Up to $2,000 per return for education expenses
+
+**Child and Dependent Care Credit:** 20-35% of up to $3,000 expenses (1 child) or $6,000 (2+ children)
+
+**Saver's Credit:** Up to $1,000 ($2,000 MFJ) for retirement contributions
+            """)
+        
+        with st.expander("📐 Self-Employment Tax"):
+            st.markdown("**Formula:** `SE Tax = Net SE Income × 92.35% × 15.3%`")
+            st.markdown("""
+*Components:*
+- Social Security: 12.4% (on first $168,600 in 2024)
+- Medicare: 2.9% (no limit)
+- Additional Medicare: 0.9% (on income > $200,000 single / $250,000 MFJ)
+
+*Note: 50% of SE tax is deductible as an above-the-line deduction*
+            """)
