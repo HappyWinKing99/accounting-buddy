@@ -1192,6 +1192,1306 @@ KEY FORMULAS FOR PROCESS COSTING:
 END OF TEXTBOOK CONTENT
 """
 
+============================================================================
+
+FULL_TAX_TEXTBOOK_CONTENT = """
+================================================================================
+=== COMPLETE TEXTBOOK CONTENT FOR ACC 405 - FEDERAL TAX ACCOUNTING ===
+================================================================================
+
+This is the authoritative source for all ACC 405 Tax Accounting questions.
+When answering questions, always cite the specific chapter and section.
+
+================================================================================
+TUTOR INSTRUCTIONS AND GUIDELINES
+================================================================================
+
+1. Core Responsibilities
+
+Primary Source: Use the provided textbook content as the "Gold Standard" for all explanations. If a specific tax rule or threshold in the textbook differs from general knowledge (due to the tax year the book covers), prioritize the textbook's version.
+
+Code Citations: Whenever possible, link concepts to the relevant Internal Revenue Code (IRC) Sections or Treasury Regulations if mentioned in the text.
+
+Logical Framework: Teach tax through the "Tax Formula" (Gross Income → Adjustments → AGI → Deductions → Taxable Income). Always clarify if a deduction is Above-the-Line (for AGI) or Itemized (from AGI).
+
+Practice Problems: Generate "Fact Patterns" where the user must calculate a taxpayer's tax liability, basis in property, or deductible amount based on the provided text.
+
+2. Formatting & Style Guidelines
+
+Tax Tables: Use Markdown tables to display tax brackets, standard deductions, and phase-out thresholds for clarity.
+
+Calculations: Use LaTeX for all mathematical steps.
+
+Visual Organization: Use bolding for critical terms (e.g., Constructive Receipt, Capital Asset, Material Participation).
+
+3. Interaction Protocols
+
+The "Socratic" Method: If the user asks for an answer to a homework problem, do not give it immediately. Ask clarifying questions to guide them to the answer.
+
+Update Alerts: If a user asks about a law that has significantly changed in 2026, acknowledge the textbook's rule first, then provide a brief "Real-World 2026 Update" for context.
+
+Exam Readiness: At the end of a session, offer to create a "Quick Reference Sheet" for the chapter discussed.
+
+================================================================================
+CHAPTER 4: THE INDIVIDUAL INCOME TAX FORMULA
+================================================================================
+
+LO 4-1: The Individual Income Tax Formula
+
+Taxable income is the tax base for the individual income tax. The formula includes four new from AGI deductions introduced by the One Beautiful Big Bill Act of 2025 (OBBBA), signed into law on July 4, 2025.
+
+EXHIBIT 4-1: Individual Income Tax Formula
+
+Gross income
+Minus: For AGI (above the line) deductions
+Equals: Adjusted gross income (AGI)
+Minus: From AGI (below the line) deductions:
+    (1) Greater of:
+        (a) Standard deduction or
+        (b) Itemized deductions
+    (2) Deductions for seniors*
+    (3) Deduction for qualified car loan interest*
+    (4) Deduction for qualified tip income*
+    (5) Deduction for qualified overtime compensation*
+    (6) Deduction for qualified business income
+Equals: Taxable income
+Times: Tax rates
+Equals: Income tax liability
+Plus: Other taxes
+Equals: Total tax
+Minus: Credits
+Minus: Prepayments
+Equals: Taxes due or (refund)
+
+*Deductions introduced by the One Big Beautiful Bill Act of 2025.
+
+---
+
+GROSS INCOME
+
+The U.S. tax laws are based on the all-inclusive income concept. Under this concept, gross income generally includes all realized income from whatever source derived. Realized income is generally income generated in a transaction with a second party in which there is a measurable change in property rights between parties.
+
+Certain tax provisions allow taxpayers to permanently exclude specific types of realized income from gross income (exclusions), and other provisions allow taxpayers to defer including certain types of realized income items in gross income until a subsequent year (deferrals).
+
+EXHIBIT 4-3: Partial Listing of Common Income Items
+
+| Income Item | Character |
+|-------------|-----------|
+| Compensation for services including fringe benefits | Ordinary |
+| Business income | Ordinary |
+| Gains from selling property | Ordinary or capital |
+| Interest and dividends | Ordinary or qualified dividend |
+| Rents and royalties | Ordinary |
+| Alimony received (pre-2019 decree) and annuities | Ordinary |
+| Retirement income | Ordinary |
+| Income from the discharge of indebtedness | Ordinary |
+
+EXHIBIT 4-4: Partial Listing of Common Exclusions and Deferrals
+
+| Item | Exclusion or Deferral |
+|------|----------------------|
+| Interest income from municipal bonds | Exclusion |
+| Gifts and inheritance | Exclusion |
+| Alimony received (post-2018 decree) | Exclusion |
+| Gain on sale of personal residence | Exclusion |
+| Life insurance proceeds | Exclusion |
+| Installment sale | Deferral |
+| Like-kind exchange | Deferral |
+
+---
+
+CHARACTER OF INCOME
+
+The type of income is commonly referred to as the character of income. The most common characters are:
+
+**Ordinary:** Income or loss taxed at ordinary rates provided in the tax rate schedules, and is not capital in character.
+
+**Capital:** Gains or losses on the disposition or sale of capital assets. Capital assets are all assets other than:
+- Accounts receivable from the sale of goods or services
+- Inventory and other assets held for sale in the ordinary course of business
+- Assets used in a trade or business, including supplies
+
+Thus, capital assets include nonbusiness assets such as personal-use automobiles or personal residences and assets held for investment such as stocks and bonds.
+
+The capital gain or loss from the sale of a particular capital asset is:
+- Long-term: when the taxpayer has owned the asset for MORE than a year before selling
+- Short-term: when the taxpayer has owned the asset for one year or LESS before selling
+
+When determining holding period, the acquisition date is NOT counted but the disposition date IS counted.
+
+Capital Gain/Loss Netting Process:
+1. Sort capital gains/losses into long-term and short-term categories
+2. Combine gains and losses within each category
+3. If both categories yield gains or both yield losses, netting is complete
+4. Otherwise, combine long-term and short-term outcomes for a final net gain or loss
+
+Taxpayers may deduct up to $3,000 of net capital loss for the year ($1,500 for married filing separately). Net capital losses are deducted for AGI. Excess losses carry over to the next year.
+
+Net short-term capital gains are taxed at ordinary income rates. Net long-term capital gains (net capital gains) are taxed at preferential rates of 0%, 15%, or 20% depending on taxable income level.
+
+**Qualified dividend:** Dividends meeting the qualified dividend requirements are taxed at the same preferential rate as net capital gains. Non-qualified dividends are taxed at ordinary rates. Qualified dividends are NOT included in the capital gain/loss netting process.
+
+Example 4-1:
+Rodney earned a salary of $84,000, and Anita earned a salary of $66,000. They also received $600 of interest income from corporate bonds and $300 of interest income from municipal bonds.
+
+Gross income = $150,600 ($84,000 + $66,000 + $600)
+*The $300 of municipal bond interest is excluded from gross income.
+
+Character: Salary and corporate bond interest are ordinary income. Municipal bond interest is excluded.
+
+---
+
+DEDUCTIONS
+
+Deductions reduce taxable income. Unlike the all-inclusive treatment of income, deductions are not allowed unless a specific tax law allows them. Thus, deductions are a matter of legislative grace.
+
+Two types of deductions:
+1. For AGI deductions (above the line)
+2. From AGI deductions (below the line)
+
+Gross income - For AGI deductions = AGI
+AGI - From AGI deductions = Taxable income
+
+KEY FACTS: For and From AGI Deductions
+
+For AGI deductions:
+- Reduce AGI
+- Referred to as deductions "above the line"
+- Generally more valuable than from AGI deductions
+
+From AGI deductions:
+- Deduct from AGI to determine taxable income
+- Referred to as deductions "below the line"
+
+---
+
+FOR AGI DEDUCTIONS
+
+For AGI deductions tend to be associated with business activities and certain investing activities. The "line" is AGI (line 11 on Form 1040).
+
+EXHIBIT 4-5: Partial Listing of Common for AGI Deductions
+
+| For AGI Deduction |
+|-------------------|
+| Alimony paid (pre-2019 decree) |
+| Health insurance deduction for self-employed taxpayers |
+| Rental and royalty expenses |
+| Net capital losses [limited to $3,000 ($1,500 for MFS)] |
+| One-half of self-employment taxes paid |
+| Business expenses |
+| Losses on dispositions of assets used in a trade or business |
+| Contributions to qualified retirement accounts (401k, traditional IRA) |
+
+---
+
+FROM AGI DEDUCTIONS
+
+From AGI deductions include:
+- Itemized deductions OR standard deduction (greater of the two)
+- Qualified business income (QBI) deduction
+- Four OBBBA deductions (seniors, car loan interest, tip income, overtime compensation)
+
+The QBI deduction and the four OBBBA deductions are deductible regardless of whether a taxpayer itemizes or takes the standard deduction.
+
+EXHIBIT 4-6: Primary Categories of Itemized Deductions
+
+Medical and dental expenses: Deductible to the extent exceeding 7.5% of AGI.
+
+Taxes: State and local income taxes, sales taxes, real estate taxes, personal property taxes [OBBBA limits aggregate deduction to $40,000 ($20,000 if MFS)].
+
+Interest expense: Mortgage and investment interest expense.
+
+Gifts to charity (charitable contributions).
+
+Other miscellaneous deductions: Gambling losses (to extent of winnings) and certain other deductions.
+
+EXHIBIT 4-7: Standard Deduction Amounts by Filing Status
+
+| Filing Status | 2024 | 2025 |
+|---------------|------|------|
+| Married filing jointly | $29,200 | $31,500 |
+| Qualifying surviving spouse | $29,200 | $31,500 |
+| Married filing separately | $14,600 | $15,750 |
+| Head of household | $21,900 | $23,625 |
+| Single | $14,600 | $15,750 |
+
+Additional standard deduction for age 65+ and/or blind:
+- 2025: $1,600 for married taxpayers; $2,000 for unmarried taxpayers
+- 2024: $1,550 for married taxpayers; $1,950 for unmarried taxpayers
+
+For dependents: Standard deduction is greater of (1) $1,350 or (2) $450 plus earned income, not to exceed the regular standard deduction.
+
+EXHIBIT 4-8: From AGI Deductions (OBBBA Provisions)
+
+**Deduction for seniors:** $6,000 for taxpayers at least age 65 at year-end. Subject to AGI-based phase-out. Not available for MFS.
+
+**Deduction for qualified car loan interest:** Up to $10,000. Loan must be for vehicle purchased after December 31, 2024, with final assembly in the United States. Subject to AGI-based phase-out.
+
+**Deduction for qualified tip income:** Up to $25,000 of qualified tips received. Subject to AGI-based phase-out. Not available for MFS.
+
+**Deduction for qualified overtime compensation:** Up to $12,500 ($25,000 if MFJ) of qualified overtime compensation. Subject to AGI-based phase-out. Not available for MFS.
+
+**Deduction for qualified business income:** 20% of QBI, subject to phase-out based on taxable income before the QBI deduction.
+
+---
+
+INCOME TAX CALCULATION
+
+After determining taxable income, taxpayers calculate regular income tax liability using tax tables (if taxable income under $100,000) or tax rate schedules.
+
+---
+
+OTHER TAXES
+
+In addition to regular income tax, individuals may pay:
+- Alternative minimum tax (AMT)
+- Self-employment taxes
+- 3.8% net investment income tax (on unearned income for high-AGI taxpayers)
+- 0.9% additional Medicare tax (on earned income for high-AGI taxpayers)
+
+---
+
+TAX CREDITS
+
+Tax credits directly reduce taxes payable (unlike deductions, which reduce taxable income).
+
+A $1 deduction reduces taxes by $1 × marginal tax rate
+A $1 credit reduces taxes by $1
+
+Common tax credits:
+- Child tax credit: $2,200 for qualifying children under age 17
+- $500 credit for other qualifying dependents
+- Child and dependent care credit
+- Earned income credit
+- American opportunity credit
+- Lifetime learning credit
+
+These credits are subject to full or partial phase-out for higher-income taxpayers.
+
+---
+
+TAX PREPAYMENTS
+
+Tax prepayments include:
+1. Withholdings from salary, wages, or other income sources
+2. Estimated tax payments made directly to IRS
+3. Prior-year overpayments applied to current year
+
+If prepayments > total tax after credits → refund
+If prepayments < total tax after credits → tax due (and potentially underpayment penalty)
+
+================================================================================
+LO 4-2: DEPENDENTS OF THE TAXPAYER
+================================================================================
+
+Although taxpayers cannot claim a deduction for dependents, determining who qualifies as a dependent is necessary for:
+- Filing status determination
+- Eligibility for certain tax credits
+- Other tax-related computations
+
+DEPENDENCY REQUIREMENTS
+
+To qualify as a dependent, an individual must:
+1. Be a citizen or resident of the United States, Canada, or Mexico
+2. Not file a joint return with their spouse (with limited exceptions)
+3. Be either a qualifying child OR a qualifying relative of the taxpayer
+
+---
+
+QUALIFYING CHILD
+
+Must satisfy four tests: (1) relationship, (2) age, (3) residence, and (4) support.
+
+**Relationship test:**
+Must be an eligible relative including:
+- Child or descendant of a child (includes adopted child, stepchild, eligible foster child)
+- Sibling or descendant of sibling (includes half-brother, half-sister, stepbrother, stepsister)
+
+**Age test:**
+Must be younger than the taxpayer AND either:
+- Under age 19 at end of year, OR
+- Under age 24 at end of year and a full-time student (in school full-time during any part of 5 calendar months)
+- Exception: Any age if permanently and totally disabled
+
+**Residence test:**
+Must have same principal residence as taxpayer for more than half the year. Temporary absences (illness, education, etc.) count as living in taxpayer's home.
+
+**Support test:**
+The qualifying child must NOT have provided more than half of their own support. Support includes: food, clothing, recreation, medical care, child care, lodging, education (scholarships excluded from calculation for full-time students).
+
+TIEBREAKING RULES (when person is qualifying child to multiple taxpayers):
+
+1. Parent vs. nonparent: Parent has priority
+2. Multiple parents: Parent with whom child resided longest has priority; if equal time, parent with higher AGI
+3. Multiple nonparents: Nonparent with highest AGI has priority
+
+Note: Noncustodial parent can claim child if custodial parent signs Form 8332.
+
+---
+
+QUALIFYING RELATIVE
+
+A person who is NOT a qualifying child and satisfies: (1) relationship test, (2) support test, and (3) gross income test.
+
+**Relationship test (more inclusive than qualifying child):**
+Either:
+- Has a "qualifying family relationship" with taxpayer (descendant, ancestor, sibling, stepparent, niece/nephew, aunt/uncle, in-laws), OR
+- Lives with taxpayer for entire year as member of household
+
+Note: Cousins do NOT qualify under the family relationship test.
+
+**Support test:**
+Taxpayer must pay MORE than half of the qualifying relative's support/living expenses.
+
+Multiple Support Agreement: When no one taxpayer pays over half:
+- Taxpayer and others together provide over half the support
+- Taxpayer contributed over 10% of support
+- Others who contributed over 10% sign statements agreeing not to claim the dependent
+
+**Gross income test:**
+Qualifying relative's gross income must be less than $5,200 in 2025.
+
+EXHIBIT 4-9: Summary of Dependency Requirements
+
+| Test | Qualifying Child | Qualifying Relative |
+|------|------------------|---------------------|
+| Relationship | Child, stepchild, foster child, sibling, or descendant | Descendant, ancestor, sibling, step-relatives, in-laws, OR member of household for entire year |
+| Age | Under 19, or under 24 if full-time student, or any age if disabled. Must be younger than taxpayer. | Not applicable |
+| Residence | Lives with taxpayer more than half the year | Not applicable |
+| Support | Child must NOT provide more than half of own support | Taxpayer must provide MORE than half of support |
+| Gross income | Not applicable | Less than $5,200 (2025) |
+| Other | Not applicable | Not a qualifying child |
+
+An individual who is a dependent of another CANNOT claim any dependents.
+
+================================================================================
+LO 4-3: FILING STATUS
+================================================================================
+
+Filing status is determined by marital status at year-end and whether the taxpayer has dependents.
+
+Filing status determines:
+- Applicable tax rate schedule
+- Standard deduction amount
+- AGI thresholds for tax benefit reductions
+
+Five filing statuses:
+1. Married filing jointly (MFJ)
+2. Married filing separately (MFS)
+3. Qualifying surviving spouse (QSS)
+4. Single
+5. Head of household (HoH)
+
+---
+
+MARRIED FILING JOINTLY AND MARRIED FILING SEPARATELY
+
+To be married for tax purposes, must be married on the LAST DAY of the year. If spouse dies during year, surviving spouse is considered married at year-end (unless remarried).
+
+**MFJ:** Combine income and deductions; share joint and several liability (both responsible for entire tax).
+
+**MFS:** Each spouse reports own income and deductions separately. Tax items are generally half of MFJ amounts. If one spouse itemizes, the other must also itemize (even if standard deduction is higher).
+
+Generally, MFS is a tax disadvantage but may be chosen for non-tax reasons (liability protection, not in contact with spouse).
+
+---
+
+ABANDONED SPOUSE (Married Individual Treated as Unmarried)
+
+A married taxpayer is treated as unmarried if ALL of the following are met:
+1. Married at end of year (or not legally separated)
+2. Does not file joint return
+3. Pays more than half the costs of maintaining home for entire year
+4. Home is principal residence for a child (who is taxpayer's dependent) for more than half the year
+5. Lived apart from other spouse for last six months of year
+
+Taxpayers meeting these requirements qualify for head of household filing status.
+
+---
+
+QUALIFYING SURVIVING SPOUSE
+
+Available for TWO years after year of spouse's death if:
+1. Taxpayer remains unmarried
+2. Taxpayer pays over half the cost of maintaining household where a dependent child lived for the entire year
+
+The dependent child must be a child or stepchild (not foster child) of the taxpayer.
+
+---
+
+SINGLE
+
+Unmarried taxpayers who do not qualify for head of household.
+
+---
+
+HEAD OF HOUSEHOLD
+
+More favorable than MFS and Single, but less favorable than MFJ and QSS.
+
+Requirements:
+1. Unmarried (or treated as unmarried under abandoned spouse rules) at year-end
+2. Not a qualifying surviving spouse
+3. Pay more than half the costs of keeping up a home for the year
+4. Have a "qualifying person" live in taxpayer's home for more than half the year
+
+Exception: If qualifying person is taxpayer's dependent PARENT, the parent does NOT have to live with the taxpayer (but taxpayer must pay over half the cost of parent's household).
+
+Special rules:
+- A qualifying person may only qualify ONE taxpayer for HoH status
+- Multiple support agreement dependents are NOT qualifying persons
+- For divorced parents, custodial parent can use child as qualifying person even if noncustodial parent claims the dependency exemption
+
+KEY FACTS: Filing Status Summary
+
+**Married taxpayers:**
+- MFJ: Both spouses liable for joint tax
+- MFS: Each spouse liable only for own tax; generally a disadvantage
+- QSS: Available 2 years after spouse's death if maintaining household for dependent child
+
+**Unmarried taxpayers:**
+- Single: No dependents (or no qualifying person)
+- HoH: Maintaining household for qualifying person
+
+================================================================================
+CHAPTER 5: REALIZATION AND RECOGNITION OF INCOME
+================================================================================
+
+LO 5-1: What Is Included in Gross Income?
+
+IRC §61(a): "Gross income means all income from whatever source derived."
+
+Reg. §1.61-1(a): "Gross income means all income from whatever source derived, unless excluded by law. Gross income includes income realized in any form, whether in money, property, or services."
+
+Taxpayers recognize gross income when:
+1. They receive an economic benefit
+2. They realize the income
+3. No tax provision allows them to exclude or defer the income
+
+---
+
+ECONOMIC BENEFIT
+
+Must receive something of value (cash, property, services, or debt relief).
+
+Borrowing money is NOT an economic benefit because the cash received is offset by the liability to repay.
+
+---
+
+REALIZATION PRINCIPLE
+
+Income is realized when:
+1. A transaction occurs with another party
+2. The transaction results in a measurable change in property rights
+
+Advantages of realization principle:
+1. Objective measurement (parties agree to value)
+2. Wherewithal to pay (transaction provides funds for taxes)
+
+---
+
+RECOGNITION
+
+Taxpayers must include realized economic benefits in gross income unless a specific provision allows exclusion or deferral.
+
+---
+
+OTHER INCOME CONCEPTS
+
+**Form of Receipt:**
+Income is realized whether received as money, property, or services. Barter transactions create taxable income at fair market value.
+
+**Return of Capital Principle:**
+When selling property, taxpayers may recover their cost (tax basis) tax-free. Only the gain (proceeds minus basis) is taxable.
+
+**Tax Benefit Rule:**
+Refunds of previously deducted amounts are included in income to the extent the prior deduction produced a tax benefit.
+
+---
+
+WHEN DO TAXPAYERS RECOGNIZE INCOME?
+
+KEY FACTS: Income Recognition
+- Cash-method taxpayers recognize income when received
+- Income is realized regardless of form (money, property, or services)
+- Income is taxed when taxpayer has right to receive without substantial restrictions
+
+**Accounting Methods:**
+- Accrual method: Income recognized when earned; expenses deducted when incurred
+- Cash method: Income recognized when received; expenses deducted when paid
+Most individuals use the cash method.
+
+**Constructive Receipt Doctrine:**
+Cash-method taxpayers recognize income when actually or constructively received. Constructive receipt occurs when:
+- Income is credited to taxpayer's account, OR
+- Income is unconditionally available to taxpayer
+- Taxpayer is aware of availability
+- No restrictions on taxpayer's control
+
+Example: Bonus check available December 28 but not picked up until January 2 is taxable in the year it became available.
+
+**Claim of Right Doctrine:**
+Income is realized if received with no restrictions on use (no obligation to repay).
+
+---
+
+WHO RECOGNIZES THE INCOME?
+
+**Assignment of Income Doctrine:**
+- Income from services is taxed to the person who EARNED it
+- Income from property is taxed to the person who OWNS the property
+
+To shift income from property, must transfer ownership of the property itself.
+
+**Community Property Systems:**
+Nine states: Arizona, California, Idaho, Louisiana, Nevada, New Mexico, Texas, Washington, Wisconsin
+
+In community property states:
+- Half of each spouse's earned income is included in the other spouse's gross income
+- Half of community property income is included in each spouse's gross income
+
+================================================================================
+LO 5-2: TYPES OF INCOME
+================================================================================
+
+**INCOME FROM SERVICES (Earned Income)**
+
+Includes salary, wages, fees, and unemployment compensation. Rarely exempt from taxation.
+
+---
+
+**INCOME FROM PROPERTY (Unearned Income)**
+
+Includes gains/losses from property sales, dividends, interest, rents, royalties, and annuities.
+
+Qualified dividends and long-term capital gains are taxed at preferential rates.
+
+---
+
+**ANNUITIES**
+
+An investment paying a stream of equal payments over time.
+
+Two types:
+1. Fixed period annuities
+2. Life annuities
+
+Tax treatment: Part of each payment is nontaxable return of capital; remainder is gross income.
+
+Annuity Exclusion Ratio = Original Investment / Expected Value of Annuity
+
+For fixed annuities: Expected value = number of payments × payment amount
+
+For life annuities: Use IRS tables for expected return multiple based on age.
+
+EXHIBIT 5-1: Expected Return Multiple for Single-Life Annuity
+
+| Age at Start | Expected Return Multiple |
+|--------------|-------------------------|
+| 68 | 17.6 |
+| 69 | 16.8 |
+| 70 | 16.0 |
+| 71 | 15.3 |
+| 72 | 14.6 |
+
+If taxpayer outlives life expectancy: "Extra" payments are fully taxable.
+If taxpayer dies early: Unrecovered investment is deducted on final return.
+
+---
+
+**PROPERTY DISPOSITIONS**
+
+EXHIBIT 5-2: Formula for Gain/Loss
+
+Sales proceeds
+- Selling expenses
+= Amount realized
+- Tax basis (investment)
+= Gain (Loss) on sale
+
+KEY FACTS: Return of Capital
+- Taxpayers recover capital invested tax-free
+- Annuity payments are part income, part return of capital
+- Gain/loss = sale proceeds minus tax basis
+
+---
+
+**OTHER SOURCES OF GROSS INCOME**
+
+**Income from Flow-Through Entities:**
+Partnership and S corporation income "flows through" to owners based on ownership percentage. Owners are taxed on their share whether or not cash is distributed. Each item retains its character (e.g., dividends remain dividends).
+
+**Alimony:**
+Definition: Cash transfer under written separation agreement or divorce decree; not designated as other than alimony; spouses don't live together; payments stop at recipient's death.
+
+Pre-2019 agreements: Alimony is income to recipient, deductible for AGI by payor.
+Post-2018 agreements: Alimony is NOT income to recipient, NOT deductible by payor.
+
+Child support: Never taxable to recipient, never deductible by payor.
+Property divisions: Not taxable events.
+
+**Prizes, Awards, and Gambling Winnings:**
+Generally included in gross income.
+
+Exceptions:
+1. Scientific/literary/charitable awards (Nobel Prize) if: selected without entering; no future services required; transferred to charity
+2. Employee awards for length of service/safety: up to $400 of tangible property
+3. Olympic medals/prize money if AGI doesn't exceed $1 million
+
+Gambling: Include all winnings in gross income; deduct losses only to extent of winnings (as itemized deduction).
+
+**Social Security Benefits:**
+Up to 85% may be taxable depending on filing status and modified AGI.
+
+Single taxpayers:
+- Modified AGI + 50% of benefits ≤ $25,000: Not taxable
+- $25,000 < Modified AGI + 50% of benefits ≤ $34,000: Lesser of 50% of benefits or 50% of (Modified AGI + 50% of benefits - $25,000)
+- Modified AGI + 50% of benefits > $34,000: Up to 85% taxable
+
+MFJ taxpayers:
+- Thresholds are $32,000 and $44,000
+
+MFS taxpayers:
+- Up to 85% of benefits taxable (no favorable threshold)
+
+**Imputed Income:**
+Indirect economic benefits included in gross income.
+
+Bargain purchases:
+- Employee from employer: Taxable compensation (but discounts on goods up to employer's gross profit % and services up to 20% are excluded)
+- Shareholder from corporation: Taxable dividend
+- Family members: Gift
+
+Below-market loans:
+- Imputed interest = Loan principal × (Federal rate - Actual rate)
+- Imputed interest is income to lender, expense to borrower
+- The "return" of imputed interest is treated based on relationship (compensation, dividend, or gift)
+- Exception: Loans of $10,000 or less
+
+**Discharge of Indebtedness:**
+Generally included in gross income when debt is forgiven.
+
+Exceptions:
+- Insolvent taxpayers: Excluded to extent of insolvency
+- Student loan discharges: Most excluded after 2020 and before 2026
+
+KEY FACTS: Other Sources of Income
+- Pre-2019 alimony: Taxable to recipient
+- Post-2018 alimony: Not taxable to recipient
+- Awards: Generally taxable unless meeting narrow exceptions
+- Social Security: Up to 85% taxable depending on AGI
+- Discharge of debt: Taxable unless insolvent
+
+================================================================================
+LO 5-3: EXCLUSION PROVISIONS
+================================================================================
+
+Exclusions allow taxpayers to permanently remove certain income from the tax base.
+
+Congress allows exclusions for two primary reasons:
+1. To subsidize or encourage particular activities
+2. To be fair to taxpayers (mitigate double taxation)
+
+---
+
+**COMMON EXCLUSIONS**
+
+**Municipal Bond Interest:**
+Interest on state and local government bonds is excluded from federal gross income. This subsidizes state/local governments by allowing them to offer lower interest rates.
+
+Note: U.S. government bond interest (Treasury bills) IS taxable for federal purposes but exempt for state/local purposes.
+
+**Gains on Sale of Personal Residence:**
+Exclude up to $250,000 ($500,000 if MFJ) of gain.
+
+Requirements:
+- Ownership test: Owned residence for 2+ years during 5-year period ending on sale date
+- Use test: Used as principal residence for 2+ years during 5-year period ending on sale date
+
+Limited to one exclusion every two years.
+
+MFJ: Full $500,000 if either spouse meets ownership test and BOTH meet use test. Reduced to $250,000 if either spouse used exclusion in prior 2 years.
+
+**Fringe Benefits:**
+Many employer-provided benefits are excluded from employee's gross income.
+
+EXHIBIT 5-3: Common Qualified Fringe Benefits
+
+| Benefit | Exclusion |
+|---------|-----------|
+| Medical/dental insurance [§106] | Full exclusion |
+| Group-term life insurance [§79] | Up to $50,000 coverage |
+| De minimis benefits [§132(a)(4)] | Small, infrequent benefits |
+| Meals and lodging [§119] | If on premises, for employer's convenience, and lodging is condition of employment |
+| Educational assistance [§127] | Up to $5,250 |
+| No additional cost services [§132(a)(1)] | Services with no substantial cost to employer |
+| Qualified employee discounts [§132(a)(2)] | Goods up to gross profit %; services up to 20% |
+| Dependent care benefits [§129] | Up to $5,000 |
+| Working condition fringe [§132(a)(3)] | Benefits that would be deductible if employee paid |
+| Qualified transportation [§132(a)(5)] | Up to $325/month parking; up to $325/month transit |
+| Cafeteria plans [§125] | Tax-free to extent choosing nontaxable benefits |
+| FSA (medical) [§125] | Up to $3,300 in 2025; $660 carryover |
+| HSA [§106; §223] | Up to $4,300 self-only ($8,550 family) in 2025; extra $1,000 if age 55+ |
+
+Employee expense reimbursements: Excluded under an accountable plan (requires documentation of legitimate business expenses).
+
+---
+
+**EDUCATION-RELATED EXCLUSIONS**
+
+**Scholarships:**
+Excludable: Tuition, fees, books, supplies, required equipment (for degree-seeking students).
+Taxable: Room, board, payments for services.
+
+Athletic scholarships: Excludable if university expects but doesn't require participation; not cancelled if student can't participate. NIL payments are fully taxable.
+
+KEY FACTS: Education Exclusions
+- Scholarships for tuition/fees/books/supplies are excludable
+- Room and board are taxable
+- Series EE bond interest is excludable if used for qualified higher education (subject to AGI phase-out)
+
+**529 Plans:**
+Earnings distributed tax-free if used for:
+- Qualified higher-education expenses (no annual limit)
+- K-12 tuition ($10,000 limit in 2025; $20,000 in 2026)
+
+**Coverdell Accounts:**
+$2,000 annual contribution limit per beneficiary. Earnings tax-free for qualified education expenses (K-12 and higher education). Contribution eligibility phases out at AGI $190,000-$220,000 (MFJ) or $95,000-$110,000 (others).
+
+**U.S. Series EE Bonds:**
+Interest excludable if proceeds used for higher-education expenses of taxpayer, spouse, or dependent. Subject to modified AGI phase-out.
+
+---
+
+**EXCLUSIONS THAT MITIGATE DOUBLE TAXATION**
+
+**Gifts and Inheritances:**
+Excluded from recipient's income. Subject to transfer taxes (gift tax or estate tax) paid by transferor.
+
+**Life Insurance Proceeds:**
+Death benefits excluded from beneficiary's income.
+Exceptions:
+- Installment payments: Interest portion is taxable
+- Policy transferred for valuable consideration: Only purchase price and subsequent premiums excluded
+
+Early receipt:
+- Terminally ill (expected death within 24 months): Fully excluded
+- Chronically ill: Excluded to extent used for long-term care
+
+Cashing out policy: Recognize ordinary income to extent proceeds exceed premiums paid.
+
+**Foreign-Earned Income:**
+Exclude up to $130,000 (2025) of foreign-earned income from personal services.
+
+Requirements: Tax home in foreign country AND either:
+- Bona fide resident of foreign country for entire calendar year, OR
+- Present in foreign country for 330 days in consecutive 12-month period
+
+Pro-rated if qualifying period spans two tax years.
+
+Housing exclusion: Employer-provided housing costs exceeding 16% of $130,000 ($20,800), up to 14% of $130,000 ($18,200).
+
+KEY FACTS: Exclusions to Mitigate Double Taxation
+- Gifts and inheritances: Excluded (subject to transfer taxes)
+- Foreign-earned income: Up to $130,000 (2025) if meeting residency requirements
+- Life insurance: Death benefits excluded
+
+---
+
+**SICKNESS AND INJURY-RELATED EXCLUSIONS**
+
+KEY FACTS: Sickness and Injury Exclusions
+- Workers' compensation: Fully excluded
+- Physical injury damages: Excluded (but punitive damages are taxable)
+- Health insurance reimbursements: Excluded
+- Disability benefits: Excluded if taxpayer paid premiums (or employer-paid premiums were taxable compensation)
+
+**Workers' Compensation:**
+Payments from state-sponsored workers' compensation plans are excluded. (Unemployment compensation is fully TAXABLE.)
+
+**Payments for Personal Injury:**
+Compensatory damages for physical injury or physical sickness: Excluded (including emotional distress associated with physical injury).
+Punitive damages: Fully taxable.
+Emotional distress NOT associated with physical injury: Taxable.
+
+**Health Care Reimbursement:**
+Reimbursements from health and accident insurance for medical expenses are excluded (regardless of who purchased the policy).
+
+**Disability Insurance:**
+Disability benefits are excluded if:
+- Taxpayer purchased the policy, OR
+- Employer-paid premiums were treated as taxable compensation to employee
+
+If employer-paid premiums were a nontaxable fringe benefit: Disability benefits are TAXABLE.
+
+================================================================================
+CHAPTER 6: INDIVIDUAL DEDUCTIONS
+================================================================================
+
+LO 6-1: DEDUCTIONS FOR AGI
+
+Congress allows taxpayers to claim a variety of deductions for AGI, classified into three categories:
+1. Deductions directly related to business activities
+2. Deductions indirectly related to business activities
+3. Deductions subsidizing specific activities
+
+---
+
+DEDUCTIONS DIRECTLY RELATED TO BUSINESS ACTIVITIES
+
+Business activities (trade or business): Require a relatively high level of involvement or effort. Examples: full-time employee, self-employed individuals.
+
+Investment activities: Profit-motivated but don't require high degree of involvement. Examples: buying land or stock for appreciation.
+
+EXHIBIT 6-1: Business and Investment Expense Deductions
+
+| Activity Type | For AGI | From AGI | Not Deductible |
+|---------------|---------|----------|----------------|
+| Business | Self-employed business expenses | QBI deduction; Tip income deduction; Overtime deduction | Unreimbursed employee expenses |
+| Investment | Rental and royalty expenses | Investment interest expense | Other investment expenses |
+
+**Trade or Business Expenses:**
+Deductible if directly related to business and ordinary and necessary for the activity. Reported on Schedule C.
+
+**Rental and Royalty Expenses:**
+Deductible for AGI on Schedule E, even if activity is considered an investment rather than a trade or business.
+
+**Losses on Dispositions:**
+Business asset losses: Deductible for AGI.
+Capital losses: Deductible against capital gains; up to $3,000 net capital loss per year ($1,500 for MFS). Excess carries forward indefinitely.
+
+**Flow-Through Entities:**
+Partnership, LLC, and S corporation income/losses flow through to owners on Schedule E, subject to basis, at-risk, passive loss, and excess business loss limitations.
+
+**Excess Business Loss Limitation:**
+Taxpayers cannot deduct excess business losses. Excess = aggregate business deductions minus (aggregate business income + threshold amount).
+
+Threshold amounts for 2025:
+- MFJ: $626,000
+- All others: $313,000
+
+Excess business losses carry forward as NOL.
+
+---
+
+DEDUCTIONS INDIRECTLY RELATED TO BUSINESS ACTIVITIES
+
+**Moving Expenses:**
+Generally NOT deductible (and employer reimbursements are taxable).
+Exception: Members of Armed Forces on active duty moving pursuant to military order.
+
+**Health Insurance Deduction for Self-Employed:**
+Self-employed taxpayers may deduct health insurance premiums for self, spouse, dependents, and children under 27 as a for AGI deduction.
+Limited to self-employment income from the specific trade or business.
+NOT allowed if eligible to participate in employer-provided health plan (including spouse's employer plan).
+
+**Self-Employment Tax Deduction:**
+Self-employed individuals pay self-employment tax (both employee and employer shares of Social Security and Medicare).
+May deduct the EMPLOYER PORTION (50%) of self-employment tax for AGI.
+
+**Deductions for IRAs:**
+Deductible contributions to traditional IRAs are for AGI deductions.
+Amount depends on filing status, participation in employer-sponsored plan, and modified AGI.
+Distributions taxed as ordinary income; early distributions (before 59½) subject to 10% penalty.
+
+**Health Savings Accounts (HSAs):**
+For individuals covered by high-deductible health plan with no other health coverage.
+
+2025 high-deductible plan requirements:
+- Minimum deductible: $1,650 self-only; $3,300 family
+- Maximum out-of-pocket: $8,300 self-only; $16,600 family
+
+2025 contribution limits (deductible for AGI):
+- $4,300 self-only; $8,550 family
+- Additional $1,000 if age 55+
+
+Distributions tax-free if for qualified medical expenses. Otherwise taxed as ordinary income plus 20% penalty (unless disabled, 65+, or deceased).
+
+**Penalty for Early Withdrawal of Savings:**
+Interest forfeited as penalty for early CD withdrawal is deductible for AGI.
+
+---
+
+DEDUCTIONS SUBSIDIZING SPECIFIC ACTIVITIES
+
+**Interest on Qualified Education Loans:**
+
+KEY FACTS: Education Loan Interest
+- Up to $2,500 deductible for AGI
+- Must be qualified education loan (proceeds for qualified education expenses)
+- Phase-out for higher AGI taxpayers
+
+Qualified education expenses: Tuition, fees, books, room and board, other necessary expenses for taxpayer, spouse, or dependent attending postsecondary institution.
+
+EXHIBIT 6-4: Education Loan Interest Limitations
+
+| Modified AGI | Deduction |
+|--------------|-----------|
+| Not over $85,000 ($170,000 MFJ) | Up to $2,500 |
+| $85,000-$100,000 ($170,000-$200,000 MFJ) | Phased out |
+| $100,000+ ($200,000+ MFJ) | Zero |
+
+Phase-out percentage:
+- Single/HoH: (Modified AGI - $85,000) / $15,000
+- MFJ: (Modified AGI - $170,000) / $30,000
+
+MFS: NOT eligible for deduction.
+
+================================================================================
+LO 6-2: DEDUCTIONS FROM AGI - ITEMIZED DEDUCTIONS
+================================================================================
+
+Itemized deductions include personal expenses allowed to subsidize desirable activities (home ownership, charitable giving) or provide relief for involuntary reduction in ability to pay (medical expenses).
+
+---
+
+**MEDICAL EXPENSES**
+
+Designed to provide relief for taxpayers whose ability to pay is seriously hindered by health circumstances.
+
+Qualified medical expenses include:
+- Care, prevention, diagnosis, or cure of injury, disease, or bodily function
+- Not reimbursed by insurance or paid through FSA/HSA
+- For taxpayer, spouse, and dependents
+
+Common medical expenses:
+- Prescription medication, insulin, medical aids (eyeglasses, wheelchairs)
+- Payments to medical providers and facilities
+- Transportation for medical purposes (21 cents/mile in 2025)
+- Long-term care facilities
+- Health insurance premiums (if not deducted for AGI)
+- Long-term care insurance
+
+NOT deductible: Cosmetic surgery (unless for congenital abnormality, injury/accident, or disfiguring disease); over-the-counter medicines.
+
+**Medical Expense Deduction Limitation:**
+Deductible amount = Unreimbursed qualified medical expenses - 7.5% of AGI
+
+This is a FLOOR limitation (eliminates deduction for amounts below the floor).
+
+---
+
+**TAXES**
+
+Deductible taxes:
+- State and local income taxes (or sales taxes, by election)
+- State and local real estate taxes (personal or investment property)
+- State and local personal property taxes (based on value of property)
+
+**OBBBA SALT Limitation (2025):**
+Total state and local tax deduction limited to $40,000 ($20,000 for MFS).
+Foreign income taxes are NOT subject to this limit.
+
+**Phase-out of SALT cap:**
+Cap reduced by 30% of (modified AGI - $500,000).
+- $500,000 threshold ($250,000 for MFS)
+- Cap cannot go below $10,000 ($5,000 for MFS)
+
+---
+
+**INTEREST**
+
+Two types of deductible interest:
+
+**1. Home Mortgage Interest:**
+Deductible on acquisition indebtedness secured by qualified residence (principal residence + one other).
+
+Acquisition indebtedness: Debt incurred to acquire, construct, or substantially improve the residence.
+
+Limits on acquisition indebtedness:
+- Post-December 15, 2017 debt: $750,000 ($375,000 MFS)
+- Pre-December 16, 2017 debt: $1,000,000 ($500,000 MFS)
+
+**2. Investment Interest:**
+Interest on loans to purchase investment assets (stocks, bonds, land).
+Limited to net investment income. Excess carries forward.
+
+NOT deductible: Personal credit card interest; personal auto loan interest (but see OBBBA car loan interest deduction below).
+
+---
+
+**CHARITABLE CONTRIBUTIONS**
+
+Deductible contributions to qualified domestic charitable organizations (educational, religious, scientific, governmental, public activities).
+
+NOT deductible: Political/campaign contributions.
+
+**Contributions of Money:**
+Cash, check, electronic transfer, credit card, payroll deduction.
+Transportation for charity: 14 cents/mile.
+Services provided to charity: NOT deductible (but out-of-pocket expenses are).
+
+If receiving goods/services in exchange: Deduct only amount exceeding FMV of goods/services received.
+
+**Contributions of Property:**
+
+*Capital Gain Property:*
+- Held more than one year
+- Would generate long-term capital gain if sold
+- Includes investment assets, business assets, personal-use assets
+- Deduct FMV (generally)
+
+Exception: Tangible personal property used for unrelated purpose by charity → deduct basis only.
+
+*Ordinary Income Property:*
+- Assets held one year or less
+- Inventory
+- Depreciation recapture property
+- Assets that have declined in value
+- Deduct lesser of FMV or basis
+
+**Charitable Contribution AGI Limitations:**
+
+EXHIBIT 6-9: Charitable Contribution Limits
+
+| Contribution Type | Public Charity | Private Nonoperating Foundation |
+|-------------------|----------------|--------------------------------|
+| Cash | 60% of AGI | 30% of AGI |
+| Capital gain property | 30% of AGI (FMV) | 20% of AGI (basis)* |
+| Ordinary income property | 50% of AGI (lesser of FMV or basis) | 30% of AGI |
+
+*FMV if publicly traded stock.
+
+Order of applying limitations:
+1. 60% contributions
+2. 50% contributions
+3. 30% contributions
+4. 20% contributions
+
+Excess contributions carry forward 5 years.
+
+---
+
+**CASUALTY AND THEFT LOSSES ON PERSONAL-USE ASSETS**
+
+Generally NOT deductible.
+
+Exception: Losses attributable to federally declared disaster.
+- $100 floor per casualty
+- 10% of AGI floor for all casualties
+
+---
+
+**OTHER ITEMIZED DEDUCTIONS**
+
+NOT deductible after 2017:
+- Employee business expenses
+- Tax preparation fees
+- Investment expenses (other than investment interest)
+- Hobby expenses
+
+KEY FACTS: Other Itemized Deductions
+- Employee expenses, tax prep fees, investment expenses, hobby expenses: NOT deductible
+- Gambling losses: Deductible to extent of gambling winnings (as itemized deduction)
+
+Still deductible:
+- Gambling losses (to extent of winnings)
+- Casualty/theft losses on investment property
+- Unrecovered cost of life annuity (if taxpayer died before full recovery)
+
+================================================================================
+LO 6-3: THE STANDARD DEDUCTION
+================================================================================
+
+Taxpayers deduct the GREATER of standard deduction or itemized deductions.
+
+Standard deduction varies by filing status, age, and eyesight.
+
+EXHIBIT 6-11: Standard Deduction Amounts
+
+**2024:**
+| Filing Status | Basic | Additional (Age 65+/Blind) |
+|---------------|-------|---------------------------|
+| MFJ/QSS | $29,200 | $1,550 |
+| HoH | $21,900 | $1,950 |
+| Single | $14,600 | $1,950 |
+| MFS | $14,600 | $1,550 |
+
+**2025:**
+| Filing Status | Basic | Additional (Age 65+/Blind) |
+|---------------|-------|---------------------------|
+| MFJ/QSS | $31,500 | $1,600 |
+| HoH | $23,625 | $2,000 |
+| Single | $15,750 | $2,000 |
+| MFS | $15,750 | $1,600 |
+
+Additional standard deduction: One for age 65+, one for blind (can get both).
+
+**Dependents' Standard Deduction:**
+Greater of:
+1. $1,350, OR
+2. $450 + earned income (not to exceed regular standard deduction)
+
+Additional amounts for age/blindness still apply to dependents.
+
+**Bunching Strategy:**
+Shift itemized deductions into one year to exceed standard deduction, then take standard deduction in alternate years. Works well for charitable contributions.
+
+================================================================================
+LO 6-4: OTHER FROM AGI DEDUCTIONS
+================================================================================
+
+Five from AGI deductions available regardless of itemizing or taking standard deduction:
+1. Qualified Business Income (QBI) deduction
+2. Qualified Tip Income deduction (OBBBA)
+3. Qualified Overtime Compensation deduction (OBBBA)
+4. Qualified Car Loan Interest deduction (OBBBA)
+5. Deduction for Seniors (OBBBA)
+
+---
+
+**DEDUCTION FOR QUALIFIED BUSINESS INCOME (QBI)**
+
+KEY FACTS: QBI Deduction
+- From AGI deduction in ADDITION to standard/itemized deductions
+- Limited to qualified trades or businesses
+- Subject to multiple limitations
+
+Deduction = Lesser of:
+1. 20% of QBI from qualified trade or business (after wage limit) + 20% of qualified REIT dividends and qualified PTP income, OR
+2. 20% of (taxable income - net capital gains including qualified dividends)
+
+**Qualified Trade or Business:**
+Any trade or business EXCEPT:
+- Specified service trade or business (SSTB)
+- Trade or business of being an employee
+
+**Specified Service Trade or Business (SSTB):**
+Services in: health, law, consulting, accounting, actuarial science, performing arts, athletics, financial services, brokerage services.
+Also: Any business where principal asset is reputation/skill of employees/owners.
+Also: Investing, investment management, trading in securities/commodities.
+
+NOT SSTB: Architecture and engineering (always qualify for QBI deduction).
+
+Rental activities: May qualify if considered trade or business based on facts and circumstances.
+
+**Income Thresholds for SSTB Exclusion:**
+
+If taxable income (before QBI deduction) is:
+- Below $197,300 ($394,600 MFJ; $197,300 MFS): SSTB exclusion doesn't apply (business qualifies)
+- Above $247,300 ($494,600 MFJ; $247,300 MFS): SSTB fully excluded (no QBI deduction for that business)
+- Between thresholds: Phase-in over $50,000 range ($100,000 MFJ)
+
+**Qualified Business Income:**
+Net qualified items of income, gain, deduction, and loss from qualified trade or business in the United States.
+
+NOT included: Capital gains/losses, dividends, interest not allocable to trade or business, tip income deducted as qualified tip income.
+
+Reduced by: Deductible portion of SE taxes, self-employed health insurance deduction, contributions to qualified self-employed retirement plans.
+
+If QBI is a loss: Carries forward to next year.
+
+**Wage-Based Limitation:**
+QBI deduction cannot exceed GREATER of:
+1. 50% of wages paid, OR
+2. 25% of wages + 2.5% of unadjusted basis of qualified property
+
+Wage limit applies separately to each qualified trade or business.
+
+**When Wage Limit Applies:**
+- Taxable income below $197,300 ($394,600 MFJ): Wage limit does NOT apply
+- Taxable income above $247,300 ($494,600 MFJ): Wage limit fully applies
+- Between thresholds: Wage limit phases in over $50,000 range ($100,000 MFJ)
+
+---
+
+**DEDUCTION FOR QUALIFIED TIP INCOME (OBBBA 2025-2028)**
+
+Deduct up to $25,000 of qualified tips properly reported.
+
+Qualified tips:
+- Cash tips in occupation where tipping was customary before January 1, 2025
+- Voluntary, not negotiated
+- NOT received in SSTB
+
+Phase-out: Reduced by $100 for every $1,000 of modified AGI over $150,000 ($300,000 MFJ).
+Fully phased out at $400,000 AGI ($550,000 MFJ).
+
+Must file MFJ if married (not available for MFS).
+
+---
+
+**DEDUCTION FOR QUALIFIED OVERTIME COMPENSATION (OBBBA 2025-2028)**
+
+Deduct up to $12,500 ($25,000 MFJ) of qualified overtime compensation properly reported on W-2 or 1099.
+
+Qualified overtime: Overtime required under Fair Labor Standards Act (hours beyond 40/week).
+Does NOT include qualified tip income.
+
+Phase-out: Reduced by $100 for every $1,000 of modified AGI over $150,000 ($300,000 MFJ).
+Fully phased out at $275,000 AGI ($550,000 MFJ).
+
+Must file MFJ if married (not available for MFS).
+
+---
+
+**DEDUCTION FOR QUALIFIED CAR LOAN INTEREST (OBBBA 2025-2028)**
+
+Deduct up to $10,000 of qualified car loan interest per year.
+
+Requirements:
+- Debt incurred after December 31, 2024
+- For purchase of new personal use vehicle (car, minivan, SUV, pickup, motorcycle under 14,000 lbs)
+- Final assembly in United States
+- Must report VIN on tax return
+- Lender must file information return with IRS
+- Vehicle's original use must begin with taxpayer
+
+Phase-out: Reduced by $200 for every $1,000 (or portion) of modified AGI over $100,000 ($200,000 MFJ).
+Fully phased out at $149,001 AGI ($249,001 MFJ).
+
+---
+
+**DEDUCTION FOR SENIORS (OBBBA 2025-2028)**
+
+$6,000 deduction for taxpayers age 65+ at year-end.
+$6,000 additional for spouse age 65+ (MFJ only).
+
+Must file MFJ if married (not available for MFS).
+
+Phase-out: Reduced by 6% of (modified AGI - $75,000).
+- $75,000 threshold ($150,000 MFJ)
+- Fully phased out at $175,000 ($250,000 MFJ with one 65+; $350,000 MFJ with both 65+)
+
+================================================================================
+SUMMARY: TAXABLE INCOME CALCULATION
+================================================================================
+
+1. Gross Income (all income from whatever source derived, unless excluded)
+
+2. Minus: For AGI Deductions
+   - Business expenses (Schedule C)
+   - Rental/royalty expenses (Schedule E)
+   - Capital losses (up to $3,000)
+   - Self-employment tax (50%)
+   - Self-employed health insurance
+   - IRA contributions
+   - HSA contributions
+   - Student loan interest (up to $2,500)
+   - Alimony paid (pre-2019 agreements)
+   - Early withdrawal penalties
+
+3. Equals: Adjusted Gross Income (AGI)
+
+4. Minus: From AGI Deductions
+   - Greater of:
+     a. Standard deduction, OR
+     b. Itemized deductions (medical, taxes, interest, charity, other)
+   - PLUS (regardless of itemizing):
+     - QBI deduction (20% of qualified business income)
+     - Senior deduction ($6,000 if 65+)
+     - Qualified car loan interest (up to $10,000)
+     - Qualified tip income (up to $25,000)
+     - Qualified overtime (up to $12,500/$25,000)
+
+5. Equals: TAXABLE INCOME
+
+================================================================================
+=== END OF ACC 405 TAX TEXTBOOK CONTENT ===
+================================================================================
+"""
+
+
 # ============================================================================
 # CUSTOM CSS - DARK MODE THEME
 # ============================================================================
