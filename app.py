@@ -848,6 +848,360 @@ The method for achieving constant gross margin percentages for joint products in
 
 ===
 
+# ============================================================================
+# ADD THIS CONTENT TO YOUR TEXTBOOK
+# ============================================================================
+# 
+# LOCATION: Find your FULL_TEXTBOOK_CONTENT variable (around line 27)
+# 
+# Look for this line near the end of the textbook content:
+#     END OF TEXTBOOK CONTENT
+#     """
+#
+# ADD the content below BEFORE "END OF TEXTBOOK CONTENT"
+# (so it becomes part of the textbook the AI can reference)
+#
+# ============================================================================
+
+
+===
+
+PROCESS COSTING LECTURE NOTES (SUPPLEMENTAL)
+
+PROCESS COSTING, PART 1
+
+As you recall from earlier in the semester, job-order costing is used for assigning costs to jobs or units that we can individually distinguish and manage. With job-order costing, costs are assigned to specific units. When a job is completed, the costs associated with that job move from the Work in Process Inventory account to the Finished Goods Inventory account.
+
+Process costing is a method of assigning costs to products, similar to job-order costing. Process costing is used for assigning costs to jobs or units that are not individually distinguishable (e.g., identical products that are mass produced). Because jobs are indistinguishable, it really isn't possible to assign costs to specific units as is done with job order costing. Instead, we assign costs to departments and then calculate an average cost per unit for each department for a given time period. We then take the number of units that move out of a given department in a given time period and multiply that by the average cost per unit to determine the cost transferred out of the department each period.
+
+Equivalent Units
+
+Getting an average cost per unit in process costing requires two components: the total cost for the department in a given period (the numerator), and the total number of units made in the department in a given period (the denominator). Conceptually, this is fairly straightforward. For example, if total costs assigned to a given department in a given time period are $1,000, and total units made during that time period in that department are 100, we would have:
+
+Average Cost per Unit = Total Costs / Total Units = $1,000 / 100 units = $10
+
+Calculation of the numerator (the total cost incurred for a department in a given period) involves directly tracing costs (direct labor and direct materials) and allocating overhead (e.g., via a traditional costing system or activity-based costing) to a department for a specific time period.
+
+Calculation of the denominator (the total number of units made in the department in a given period) is complicated by the fact that some units are started and completed in a given period, some units are started but not completed in a given period, and some units that were started last period are completed this period. One approach to calculating the "total units made" is to simply add up all the units we worked on in a given period. Let's think about the implications of using this approach.
+
+First, recall that with process costing we are trying to determine the costs that get transferred out of a department when a unit is transferred out of the department. This is the purpose of calculating the average cost per unit. We will multiply the cost per unit by the number of units transferred out to get the costs transferred out. If we use the total units worked on in calculating our average cost per unit, we are implicitly assuming that each unit received the same amount of work, or, in other words, we are assuming that each unit incurred the same costs. But surely the units we started and completed this period incurred more costs than units we started but did not complete.
+
+To address this problem, we use the concept of "equivalent units." Equivalent units expresses some number of incomplete units as a smaller number of completed units. One way of thinking about the number of equivalent units is that the company could have produced this number of completed units, given the amount of costs incurred. For example, if we have 100 units that are 30% complete (on average), we would have made 30 "equivalent units."
+
+Using equivalent units, we can now express the number of units made this period in a way that accounts for the fact that we didn't do the same amount of work on each unit. We can now divide the total cost for a department this period by the total number of equivalent units "done" or "made" this period to get a cost per equivalent unit for the department for the period. For example, if total costs assigned to a given department in a given time period are $1,000, and total equivalent units are 50, we have:
+
+Average Cost per Equivalent Unit (EU) = Total Costs / Total EU = $1,000 / 50 EU = $20
+
+Because a completed unit is equal to one equivalent unit (since it is 100% complete), we can now multiply the cost per equivalent unit by the number of physical units transferred out of the department to determine the cost that should be transferred out of the department. For example, if we transferred out 10 units, we would have:
+
+Costs transferred out = Cost per EU × # of units transferred out = $20 × 10 = $200
+
+Tracking Cost Types Separately
+
+Not all costs are incurred at the same rate and at the same time during production. For example, raw materials might come in all at once at the beginning (or end) of the production process, while conversion costs (labor and overhead) are often incurred fairly evenly throughout production. Thus, for 100 physical units, we might have incurred 100% of the material costs (we have 100 "equivalent units of direct materials") but only incurred 20% of the conversion costs (we have 20 "equivalent units of conversion"). Once again, determining the number for our denominator (the total number of equivalent units made in the department in a given period) becomes more complicated: it depends on the cost type we are considering.
+
+To address this complexity, we will compute a cost per equivalent unit by cost type, rather than in total. Note: this is only necessary if the costs are incurred at different times or different rates during production. For example, we can have a cost per equivalent unit for direct materials, a cost per equivalent unit for direct labor, and a cost per equivalent unit for overhead. Indeed, we could dissect our cost types even further. For example, if we had two types of direct material that enter production at different times during production, we could calculate a cost per equivalent unit for Direct Material 1 and a cost per equivalent unit for Direct Material 2. Often, because labor and overhead costs are incurred at about the same rate, we combine these two cost types into a single "conversion cost."
+
+Using T-Accounts for Process Costing
+
+There are multiple methods for calculating and tracking the flow of costs in process costing. Perhaps the most straightforward way is to organize physical units, equivalent units, and costs into multiple T-accounts.
+
+EXAMPLE PROBLEM: JOW TOYS, INC. - MOLDING DEPARTMENT
+
+Jow Toys, Inc. manufactures plastic yo-yos. The body of the yo-yo is produced in the molding department and is then transferred to the finishing department. In February, the molding department reported the following:
+
+a. In the molding department, all direct materials are added at the beginning of the production process. Conversion costs are incurred evenly during production.
+
+b. Beginning work in process consisted of 5,000 units, 20 percent complete with respect to direct labor and overhead. Costs in beginning inventory were for direct materials ($500) and conversion ($200).
+
+c. Costs added to production during the month were for direct materials ($1,400) and conversion ($3,332).
+
+d. During the month, 7,000 units were started. At the end of the month, the 4,000 units remaining in ending inventory were 70 percent complete.
+
+e. For costing purposes, Jow assumes that the first units in are the first out (FIFO).
+
+SOLUTION - PHYSICAL UNITS T-ACCOUNT:
+
+Let's begin by considering the flow of physical units in the molding department. Since we know the beginning inventory of physical units (5,000), the new units we began work on (7,000), and the ending inventory (4,000), we can calculate the units transferred out (8,000).
+
+Physical Units (Molding):
+- Beginning: 5,000
+- New Units: 7,000
+- Transferred Out: 8,000 (calculated as plug)
+- Ending: 4,000
+
+SOLUTION - EQUIVALENT UNITS OF DIRECT MATERIAL:
+
+Because the problem tells us that all materials are added as soon as production begins, we know that each physical unit is 100% complete with respect to direct materials. This means our T-account for equivalent units of direct materials will be identical to the physical units.
+
+Equivalent Units of Direct Material (Molding):
+- Beginning: 5,000
+- New EU: 7,000
+- Transferred Out: 8,000
+- Ending: 4,000
+
+SOLUTION - EQUIVALENT UNITS OF CONVERSION:
+
+For conversion, we know that the beginning inventory is 20% complete with respect to direct labor and overhead (i.e., conversion), so we multiply the beginning inventory of physical units (5,000) by 20% to get the beginning inventory of equivalent units of conversion (1,000).
+
+Next, we know that the ending inventory of physical units (4,000) is 70% complete with respect to conversion, so we multiply the ending inventory of physical units by 70% to get the ending inventory of equivalent units of conversion (2,800).
+
+We also know that all units transferred out are 100% complete with respect to conversion, or we wouldn't be transferring them out. Thus, we multiply the units transferred out (8,000) by 100% to get the equivalent units of conversion transferred out (8,000).
+
+Finally, because we know the beginning inventory, the ending inventory, and the units transferred out, we can calculate the new equivalent units of conversion this period (9,800).
+
+Equivalent Units of Conversion (Molding):
+- Beginning: 1,000 (5,000 × 20%)
+- New EU: 9,800 (calculated as plug)
+- Transferred Out: 8,000
+- Ending: 2,800 (4,000 × 70%)
+
+Note: The 9,800 equivalent units represent the work done during the current production period. If needed, we could directly compute this plug figure:
+- Jow Toys had 5,000 units in beginning inventory. These units were 20% done, so Jow did another 80% of work on these units before they were transferred out: 5,000 × 0.80 = 4,000 equivalent units
+- Then Jow started and completed another 3,000 units (8,000 units transferred out minus the 5,000 units that were originally in beginning inventory). Because all of the work for these 3,000 units that were started and completed was done this period, we have another 3,000 equivalent units.
+- Finally, the ending inventory was 70% complete. Assuming FIFO, these units were started this period but not completed. In other words, all 70% of the work done on these units was done this period: 4,000 × 0.70 = 2,800 equivalent units
+- All told: 4,000 + 3,000 + 2,800 = 9,800 equivalent units of work done in the current period.
+
+SOLUTION - COST PER EQUIVALENT UNIT:
+
+We now have all the information we need to calculate our cost per equivalent unit.
+
+Direct Materials:
+- New direct material costs this period: $1,400
+- Equivalent units of direct material this period: 7,000
+- Cost per equivalent unit of direct material: $1,400 ÷ 7,000 = $0.20
+
+Conversion:
+- New conversion costs this period: $3,332
+- Equivalent units of conversion this period: 9,800
+- Cost per equivalent unit of conversion: $3,332 ÷ 9,800 = $0.34
+
+SOLUTION - DIRECT MATERIAL COST T-ACCOUNT:
+
+We know that we incurred $1,400 in new direct material costs this period. We also know that we have $500 of direct materials costs in beginning inventory. Because Jow assumes FIFO, we know that we will transfer out at least $500 of direct materials costs (the costs associated with the 5,000 equivalent units of direct materials in beginning inventory).
+
+But there are more costs to transfer out. We know that we transferred out 8,000 equivalent units of direct materials, and we want to know what cost is associated with these equivalent units. The $500 of direct materials costs in beginning inventory are the costs associated with the 5,000 equivalent units of direct materials in beginning inventory. To determine the cost of the remaining equivalent units of direct materials transferred we take 8,000 – 5,000 = 3,000 equivalent units to account for. We then multiply 3,000 by the cost per equivalent unit of direct materials: 3,000 × $0.20 = $600.
+
+Direct Material Cost (Molding):
+- Beginning: $500
+- New Costs: $1,400
+- Transferred Out (from Beg. Bal.): $500
+- Transferred Out: $600
+- Ending: $800 (calculated as plug)
+
+IMPORTANT: We don't multiply the cost per equivalent unit by the total equivalent units transferred out (8,000). Doing so would imply that all 8,000 equivalent units of work was done this period; but we know that some of that work was done last period. When we transferred out the $500 that was in our beginning balance, we accounted for the cost associated with last period. By multiplying this period's cost per equivalent unit of direct materials by the difference between the units transferred out (8,000) and the units we started with in beginning inventory (5,000), we are calculating the new costs incurred this period to be transferred out.
+
+SOLUTION - CONVERSION COST T-ACCOUNT:
+
+We know that we have $3,332 in new conversion costs this period. We also know that we have $200 of conversion costs in beginning inventory. Assuming FIFO, we know that we will transfer out at least $200 of conversion costs—the costs associated with the 1,000 equivalent units of conversion in beginning inventory.
+
+But we transferred out a total of 8,000 equivalent units of conversion, so we still have 8,000 – 1,000 = 7,000 equivalent units of conversion to account for. To determine the cost of these remaining equivalent units of conversion transferred out, we multiply 7,000 by the cost per equivalent unit of conversion: 7,000 × $0.34 = $2,380.
+
+Conversion Cost (Molding):
+- Beginning: $200
+- New Costs: $3,332
+- Transferred Out (from Beg. Bal.): $200
+- Transferred Out: $2,380
+- Ending: $952 (calculated as plug, or verified: 2,800 × $0.34 = $952)
+
+SOLUTION - TOTAL COSTS:
+
+Total cost transferred out of the molding department: $500 + $600 + $200 + $2,380 = $3,680
+
+Total cost remaining in the molding department ending work in process: $800 + $952 = $1,752
+
+---
+
+PROCESS COSTING, PART 2
+
+Multiple Production Departments
+
+Most manufacturing processes involve several stages of production. For costing purposes, we divide these stages up into different departments. Usually, these departments match the physical flow of production, if not the layout of the factory floor. As units are transferred out of one department and go to another department, the costs go with them.
+
+For example, in the problem given above, yo-yos are moved from the molding department to the finishing department. As the physical units are transferred out of the molding department and transferred in to the finishing department, the associated costs move with them. New costs will then be incurred in the second department.
+
+However, it is important to recognize that while units are 100% complete with respect to costs from the previous department (by definition, or the units wouldn't have been transferred out of the previous department) the new costs incurred in the second department may be incurred over time. In other words, units may be only partially complete with respect to new costs in the current department, but will always be 100% complete with respect to costs transferred-in from the previous department.
+
+Thus, in addition to potentially tracking direct materials costs, direct labor costs, and overhead costs separately in the new department, we must also track "transferred-in" costs separately. This will require the calculation of a "cost per equivalent unit transferred in," separate from our other costs per equivalent unit in the second (or later) department in the production process.
+
+Spoilage
+
+Spoilage in a production process refers to units, either fully- or partially-completed, that do not meet quality specifications and are discarded or sold at reduced prices.
+
+Normal spoilage is spoilage that is considered inherent in the production process—it is a part of the cost of manufacturing good units. Thus, the cost of normal spoilage is included as part of the cost of non-spoiled units in inventory accounts on the balance sheet.
+
+Abnormal spoilage should not happen under normal operating conditions and is considered avoidable. Because abnormal spoilage is not considered part of the cost of manufacturing good units (it is, as its name implies, abnormal), the costs associated with abnormal spoilage are not tracked in inventory accounts on the balance sheet (like other manufacturing costs), but are instead tracked on the income statement as a loss from abnormal spoilage.
+
+Because work on a unit stops as soon as the unit is deemed to be spoiled, spoilage will further complicate our calculation of equivalent units: spoiled units may not have incurred as many costs as non-spoiled units if work on spoiled units was stopped before the unit was completed. If units are inspected when they are 100% complete, then the spoiled equivalent units equal the physical units deemed to be spoiled. If, however, inspection happens before units are 100% complete, spoiled equivalent units will be less than the physical units that are spoiled.
+
+For example, if 100 units are inspected when they are 80% complete and 10 units are deemed spoiled, we only have 8 spoiled equivalent units.
+
+Note: We typically assume that spoiled units were all new in the current period—they did not come from our beginning inventory. This will simplify our calculations and eliminate the need to attempt to distinguish between units that are identical.
+
+EXAMPLE PROBLEM: JOW TOYS, INC. - FINISHING DEPARTMENT
+
+Jow Toys, Inc. manufactures plastic yo-yos. The body of the yo-yo is transferred into the finishing department from the molding department. Conversion occurs continuously in the finishing department. Materials are added at the end of production in the finishing department (the string is attached and the yo-yo is moved to finished goods). In February, the finishing department reported the following:
+
+a. Yo-yos are inspected in the finishing department when they are 80% complete with respect to conversion.
+
+b. Beginning work in process consisted of 2,000 units, 40 percent complete with respect to conversion. Conversion costs in beginning inventory were $1,560. Transferred-in costs in beginning inventory were $1,264.
+
+c. Costs added to production during the month for direct materials were $882 and for conversion were $2,226.
+
+d. At the end of the month, the 2,500 units remaining in ending inventory were 30 percent complete.
+
+e. For February, 7,350 units were transferred out to finished goods.
+
+f. Normal spoilage for a given period is considered to be 100 units.
+
+g. For costing purposes, Jow assumes that the first units in are the first out (FIFO).
+
+SOLUTION - PHYSICAL UNITS T-ACCOUNT:
+
+We know the beginning inventory of physical units (2,000), the ending inventory (2,500), and the units transferred out (7,350). From our earlier calculations, we also know that 8,000 units were transferred in from the molding department. Our plug number, then, is the number of units that were spoiled (150). Because this number is greater than 100, we have 100 physical units of normal spoilage and 50 units (150 – 100 = 50) of abnormal spoilage.
+
+Physical Units (Finishing):
+- Beginning: 2,000
+- New Units: 8,000
+- Transferred Out: 7,350
+- Normal Spoilage: 100
+- Abnormal Spoilage: 50
+- Ending: 2,500
+
+SOLUTION - EQUIVALENT UNITS TRANSFERRED-IN:
+
+Because units are, by definition, 100% complete with respect to their transferred-in costs, our T-account for equivalent units transferred-in will be identical to the physical units. This includes our spoiled units, because these units have 100% of their transferred-in cost.
+
+Equivalent Units Transferred-In (Finishing):
+- Beginning: 2,000
+- New EU: 8,000
+- Transferred Out: 7,350
+- Normal Spoilage: 100
+- Abnormal Spoilage: 50
+- Ending: 2,500
+
+SOLUTION - EQUIVALENT UNITS OF CONVERSION:
+
+For conversion, we know that the beginning inventory is 40% complete, so: 2,000 × 40% = 800 beginning equivalent units.
+
+The ending inventory is 30% complete: 2,500 × 30% = 750 ending equivalent units.
+
+All units transferred out are 100% complete: 7,350 × 100% = 7,350 equivalent units transferred out.
+
+For spoilage, units are inspected when they are only 80% complete with respect to conversion:
+- Normal spoilage: 100 × 80% = 80 equivalent units
+- Abnormal spoilage: 50 × 80% = 40 equivalent units
+
+New equivalent units of conversion this period: 7,420 (calculated as plug)
+
+Equivalent Units of Conversion (Finishing):
+- Beginning: 800
+- New EU: 7,420
+- Transferred Out: 7,350
+- Normal Spoilage: 80
+- Abnormal Spoilage: 40
+- Ending: 750
+
+SOLUTION - EQUIVALENT UNITS OF DIRECT MATERIAL:
+
+Materials are not added until the end of production. This means physical units in beginning and ending inventory are 0% complete with respect to direct materials for the finishing department—if they had their materials (the string) they would be complete and would no longer be in work in process.
+
+Units transferred out are 100% complete with respect to direct materials, so our plug number, the new equivalent units of direct materials, is equal to our units transferred out.
+
+Note: Spoiled units have 0% of direct materials because they are inspected at 80% complete, before materials are added at 100%.
+
+Equivalent Units of Direct Material (Finishing):
+- Beginning: 0
+- New EU: 7,350
+- Transferred Out: 7,350
+- Ending: 0
+
+SOLUTION - COST PER EQUIVALENT UNIT:
+
+Transferred-In:
+- New transferred-in costs this period: $3,680
+- Equivalent units transferred in: 8,000
+- Cost per equivalent unit transferred in: $3,680 ÷ 8,000 = $0.46
+
+Direct Materials:
+- New direct material costs this period: $882
+- Equivalent units of direct material this period: 7,350
+- Cost per equivalent unit of direct material: $882 ÷ 7,350 = $0.12
+
+Conversion:
+- New conversion costs this period: $2,226
+- Equivalent units of conversion this period: 7,420
+- Cost per equivalent unit of conversion: $2,226 ÷ 7,420 = $0.30
+
+SOLUTION - TRANSFERRED-IN COST T-ACCOUNT:
+
+Transferred-In Cost (Finishing):
+- Beginning: $1,264
+- New Costs: $3,680
+- Transferred Out (from Beg. Bal.): $1,264
+- Transferred Out: $2,461 (calculated: (7,350 - 2,000) × $0.46 = 5,350 × $0.46)
+- Normal Spoilage: $46 (100 × $0.46)
+- Abnormal Spoilage: $23 (50 × $0.46)
+- Ending: $1,150 (2,500 × $0.46)
+
+SOLUTION - DIRECT MATERIAL COST T-ACCOUNT:
+
+Direct Material Cost (Finishing):
+- Beginning: $0
+- New Costs: $882
+- Transferred Out: $882 (7,350 × $0.12)
+- Ending: $0
+
+SOLUTION - CONVERSION COST T-ACCOUNT:
+
+Conversion Cost (Finishing):
+- Beginning: $1,560
+- New Costs: $2,226
+- Transferred Out (from Beg. Bal.): $1,560
+- Transferred Out: $1,965 (calculated: (7,350 - 800) × $0.30 = 6,550 × $0.30)
+- Normal Spoilage: $24 (80 × $0.30)
+- Abnormal Spoilage: $12 (40 × $0.30)
+- Ending: $225 (750 × $0.30)
+
+SOLUTION - FINAL CALCULATIONS:
+
+Total cost transferred to Finished Goods Inventory (includes normal spoilage):
+$1,264 + $2,461 + $46 + $882 + $1,560 + $1,965 + $24 = $8,202
+
+Total cost transferred to Loss from Abnormal Spoilage:
+$23 + $0 + $12 = $35
+
+Total cost remaining in ending work in process:
+$1,150 + $0 + $225 = $1,375
+
+SOLUTION - MASTER ACCOUNT (Work in Process Inventory - Finishing):
+
+Work in Process Inventory (Finishing):
+- Beginning: $2,824 ($1,264 + $1,560)
+- New Costs: $6,788 ($3,680 + $882 + $2,226)
+- Transferred Out (from Beg. Bal.): $2,824
+- Transferred Out: $5,308
+- Normal Spoilage: $70 ($46 + $24)
+- Abnormal Spoilage: $35 ($23 + $12)
+- Ending: $1,375
+
+KEY FORMULAS FOR PROCESS COSTING:
+
+1. Cost per Equivalent Unit = New Costs This Period / New Equivalent Units This Period
+
+2. FIFO Equivalent Units = Units Transferred Out + Ending WIP EU - Beginning WIP EU
+
+3. Weighted-Average Equivalent Units = Units Transferred Out + Ending WIP EU
+
+4. Cost Transferred Out (FIFO) = Beginning Inventory Cost + (Units Transferred Out - Beginning Units) × Cost per EU
+
+5. Ending Inventory Cost = Ending Equivalent Units × Cost per Equivalent Unit
+
+6. Total Cost Transferred to Finished Goods = All Transferred Out Costs + Normal Spoilage Costs
+
+7. Loss from Abnormal Spoilage = Abnormal Spoilage Units × Cost per EU (for each cost type)
+
+===
 END OF TEXTBOOK CONTENT
 """
 # ============================================================================
