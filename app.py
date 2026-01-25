@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 import plotly.graph_objects as go
 import requests
+import time  # Add this import
 
 # ============================================================================
 # APP CONFIGURATION (Must be the first command)
@@ -1347,43 +1348,15 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # ============================================================================
-# SCROLL TO TOP ON PAGE CHANGE - Using anchor approach
+# SCROLL TO TOP ON PAGE CHANGE
 # ============================================================================
-# Create an invisible anchor at the very top
-st.markdown('<div id="top-anchor"></div>', unsafe_allow_html=True)
-
-# Track page changes
 if 'last_page' not in st.session_state:
     st.session_state.last_page = ""
 
-# If page changed, use JavaScript to scroll
 if st.session_state.last_page != st.session_state.selected_page:
     st.session_state.last_page = st.session_state.selected_page
-    
-    # More aggressive scroll approach
-    st.markdown("""
-        <style>
-            /* Force scroll position */
-            .main .block-container {
-                scroll-margin-top: 0px;
-            }
-        </style>
-        <script>
-            // Wait for page to load then scroll
-            setTimeout(function() {
-                window.parent.document.querySelector('section.main').scrollTo(0, 0);
-            }, 100);
-            
-            setTimeout(function() {
-                var element = window.parent.document.querySelector('[data-testid="stAppViewContainer"]');
-                if (element) element.scrollTop = 0;
-            }, 100);
-            
-            setTimeout(function() {
-                window.parent.scrollTo(0, 0);
-            }, 100);
-        </script>
-    """, unsafe_allow_html=True)
+    # Set a query param to force URL change which resets scroll
+    st.query_params["page"] = st.session_state.selected_page.replace(" ", "_")
 
 # ============================================================================
 # SIDEBAR NAVIGATION
