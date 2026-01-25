@@ -1451,30 +1451,41 @@ with st.sidebar:
 # ============================================================================
 
 page = st.session_state.selected_page
-
 # --- PAGE 1: HOME ---
 if page == "🏠 Home":
     # Add spacing at top
     st.markdown("<br>", unsafe_allow_html=True)
     
-    # Professional hero section with logo and welcome
+    # Professional hero section with larger logo and bold welcome
     st.markdown("""
-        <div style='text-align: center; padding: 60px 20px 40px 20px;'>
-            <div style='margin-bottom: 30px;'>
-                <svg width="120" height="120" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                    <circle cx="50" cy="50" r="48" fill="#002E5D" stroke="#CFB53B" stroke-width="3"/>
-                    <text x="50" y="42" font-size="22" fill="white" text-anchor="middle" font-weight="bold" font-family="Arial">BYU</text>
-                    <text x="50" y="58" font-size="8" fill="#CFB53B" text-anchor="middle" font-family="Arial" letter-spacing="2">MARRIOTT SCHOOL</text>
-                    <text x="50" y="72" font-size="9" fill="white" text-anchor="middle" font-family="Arial">ACCOUNTING</text>
+        <div style='text-align: center; padding: 40px 20px 40px 20px;'>
+            <div style='margin-bottom: 40px;'>
+                <svg width="220" height="220" viewBox="0 0 220 220" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Outer ring -->
+                    <circle cx="110" cy="110" r="105" fill="none" stroke="#CFB53B" stroke-width="4"/>
+                    <!-- Main circle -->
+                    <circle cx="110" cy="110" r="95" fill="#002E5D"/>
+                    <!-- Inner accent ring -->
+                    <circle cx="110" cy="110" r="80" fill="none" stroke="#CFB53B" stroke-width="1" opacity="0.5"/>
+                    <!-- BYU Text -->
+                    <text x="110" y="85" font-size="48" fill="white" text-anchor="middle" font-weight="bold" font-family="Arial, sans-serif">BYU</text>
+                    <!-- Marriott School Text -->
+                    <text x="110" y="115" font-size="14" fill="#CFB53B" text-anchor="middle" font-family="Arial, sans-serif" letter-spacing="3">MARRIOTT SCHOOL</text>
+                    <!-- Divider line -->
+                    <line x1="60" y1="130" x2="160" y2="130" stroke="#CFB53B" stroke-width="1" opacity="0.6"/>
+                    <!-- Accounting Text -->
+                    <text x="110" y="155" font-size="18" fill="white" text-anchor="middle" font-family="Arial, sans-serif" letter-spacing="4">ACCOUNTING</text>
+                    <!-- Study Hub Text -->
+                    <text x="110" y="178" font-size="12" fill="#AAAAAA" text-anchor="middle" font-family="Arial, sans-serif" letter-spacing="2">STUDY HUB</text>
                 </svg>
             </div>
-            <h1 style='color: #FFFFFF; font-size: 2.8em; margin-bottom: 15px; font-weight: 300; letter-spacing: 1px;'>
+            <h1 style='color: #FFFFFF; font-size: 3.2em; margin-bottom: 15px; font-weight: 700; letter-spacing: 2px;'>
                 Accounting Study Hub
             </h1>
-            <p style='color: #CFB53B; font-size: 1.1em; margin-top: 0; font-weight: 500; letter-spacing: 3px; text-transform: uppercase;'>
+            <p style='color: #CFB53B; font-size: 1.1em; margin-top: 0; font-weight: 600; letter-spacing: 4px; text-transform: uppercase;'>
                 Brigham Young University
             </p>
-            <p style='color: #888888; font-size: 1em; margin-top: 20px; max-width: 500px; margin-left: auto; margin-right: auto; line-height: 1.6;'>
+            <p style='color: #888888; font-size: 1em; margin-top: 25px; max-width: 550px; margin-left: auto; margin-right: auto; line-height: 1.7;'>
                 AI-powered study tools designed to help you master cost accounting concepts and ace your exams.
             </p>
         </div>
