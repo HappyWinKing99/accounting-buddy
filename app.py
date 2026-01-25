@@ -848,23 +848,6 @@ The method for achieving constant gross margin percentages for joint products in
 
 ===
 
-# ============================================================================
-# ADD THIS CONTENT TO YOUR TEXTBOOK
-# ============================================================================
-# 
-# LOCATION: Find your FULL_TEXTBOOK_CONTENT variable (around line 27)
-# 
-# Look for this line near the end of the textbook content:
-#     END OF TEXTBOOK CONTENT
-#     """
-#
-# ADD the content below BEFORE "END OF TEXTBOOK CONTENT"
-# (so it becomes part of the textbook the AI can reference)
-#
-# ============================================================================
-
-
-===
 
 PROCESS COSTING LECTURE NOTES (SUPPLEMENTAL)
 
