@@ -849,7 +849,6 @@ The method for achieving constant gross margin percentages for joint products in
 
 END OF TEXTBOOK CONTENT
 """
-
 # ============================================================================
 # CUSTOM CSS - DARK MODE THEME
 # ============================================================================
@@ -941,17 +940,30 @@ st.markdown("""
     .course-box p {
         color: #B0B0B0 !important;
     }
+    
+    /* Chat message styling */
+    .user-message {
+        background-color: #1E3A5F;
+        padding: 15px;
+        border-radius: 10px;
+        margin: 10px 0;
+    }
+    
+    .ai-message {
+        background-color: #2D2D2D;
+        padding: 15px;
+        border-radius: 10px;
+        margin: 10px 0;
+        border-left: 4px solid #CFB53B;
+    }
+    
+    /* Topic buttons - smaller style */
+    .topic-btn button {
+        font-size: 12px !important;
+        padding: 5px 10px !important;
+    }
     </style>
 """, unsafe_allow_html=True)
-
-# ============================================================================
-# SESSION STATE INITIALIZATION
-# ============================================================================
-if 'selected_page' not in st.session_state:
-    st.session_state.selected_page = "🏠 Home"
-
-if 'chat_history_402' not in st.session_state:
-    st.session_state.chat_history_402 = []
 
 # ============================================================================
 # SIDEBAR NAVIGATION
@@ -1266,33 +1278,97 @@ elif page == "📕 ACC 402 - Cost Accounting":
         st.write("### 🤖 Your ACC 402 AI Study Assistant")
         st.info("💡 This AI tutor has **word-for-word access** to your full textbook (Chapters 1, 3, 4, 6, and 7). Ask anything!")
         
-        # Display chat history
+        # Quick Topic Buttons
+        st.markdown("**📖 Quick Topics:**")
+        topic_cols = st.columns(5)
+        topics = [
+            ("Ch 1", "Summarize the key concepts from Chapter 1 on Management Accounting"),
+            ("Ch 3", "What are the key concepts from Chapter 3 on Basic Cost Management?"),
+            ("Ch 4", "Explain job costing from Chapter 4"),
+            ("Ch 6", "Walk me through process costing from Chapter 6"),
+            ("Ch 7", "Explain cost allocation methods from Chapter 7")
+        ]
+        for idx, (label, question) in enumerate(topics):
+            with topic_cols[idx]:
+                if st.button(label, key=f"topic_{idx}", use_container_width=True):
+                    st.session_state.chat_history_402.append({
+                        'role': 'user',
+                        'content': question
+                    })
+                    st.rerun()
+        
+        st.markdown("---")
+        
+        # AI Settings
+        with st.expander("⚙️ AI Settings"):
+            model_choice = st.radio(
+                "Model (Haiku is faster & cheaper, Sonnet is smarter):",
+                ["claude-sonnet-4-20250514", "claude-haiku-3-5-20241022"],
+                index=0,
+                horizontal=True
+            )
+            st.caption("💡 Tip: Use Haiku for simple questions, Sonnet for complex explanations")
+        
+        # Display chat history with better styling
         if st.session_state.chat_history_402:
-            st.markdown("---")
             for message in st.session_state.chat_history_402:
                 if message['role'] == 'user':
-                    st.markdown(f"**You:** {message['content']}")
+                    st.markdown(f"""
+                    <div class="user-message">
+                        <strong>🧑‍🎓 You:</strong><br>{message['content']}
+                    </div>
+                    """, unsafe_allow_html=True)
                 else:
-                    st.markdown(f"**AI Tutor:** {message['content']}")
-                st.markdown("---")
+                    st.markdown(f"""
+                    <div class="ai-message">
+                        <strong>🤖 AI Tutor:</strong>
+                    </div>
+                    """, unsafe_allow_html=True)
+                    st.markdown(message['content'])
+            st.markdown("---")
         
         # User input
+        if 'waiting_for_response' not in st.session_state:
+            st.session_state.waiting_for_response = False
+        
         with st.form(key="question_form_402", clear_on_submit=True):
             user_question = st.text_area(
                 "Ask your question:", 
                 height=100,
-                placeholder="Example: What is the difference between job costing and process costing?"
+                placeholder="Example: What is the difference between job costing and process costing?",
+                disabled=st.session_state.waiting_for_response
             )
             
             col1, col2 = st.columns([1, 5])
             with col1:
-                submit_button = st.form_submit_button("Send", type="primary")
+                submit_button = st.form_submit_button(
+                    "Send" if not st.session_state.waiting_for_response else "Thinking...", 
+                    type="primary",
+                    disabled=st.session_state.waiting_for_response
+                )
         
-        # Clear chat button
-        if st.button("🗑️ Clear Chat", key="clear_chat_402"):
-            st.session_state.chat_history_402 = []
-            st.success("Chat cleared!")
-            st.rerun()
+        # Action buttons row
+        btn_col1, btn_col2, btn_col3 = st.columns([1, 1, 3])
+        
+        with btn_col1:
+            if st.button("🗑️ Clear Chat", key="clear_chat_402"):
+                st.session_state.chat_history_402 = []
+                st.success("Chat cleared!")
+                st.rerun()
+        
+        with btn_col2:
+            # Export chat feature
+            if st.session_state.chat_history_402:
+                chat_export = "\n\n".join([
+                    f"{'You' if m['role'] == 'user' else 'AI Tutor'}: {m['content']}" 
+                    for m in st.session_state.chat_history_402
+                ])
+                st.download_button(
+                    "📥 Export Chat",
+                    chat_export,
+                    file_name="acc402_study_session.txt",
+                    mime="text/plain"
+                )
         
         # Process submission
         if submit_button and user_question.strip():
@@ -1305,9 +1381,6 @@ elif page == "📕 ACC 402 - Cost Accounting":
             # Check for API key
             try:
                 api_key = st.secrets["ANTHROPIC_API_KEY"]
-                
-                # ====================================================================
-            
                 
                 # Prepare system prompt with FULL textbook content
                 system_prompt = f"""You are the Managerial Accounting Master Tutor, a specialized AI expert designed to help a junior-level accounting student master the material in their textbook.
@@ -1353,7 +1426,7 @@ Now answer the student's question based on this textbook content."""
                         })
                     
                     data = {
-                        "model": "claude-sonnet-4-20250514",
+                        "model": model_choice,
                         "max_tokens": 4096,
                         "system": system_prompt,
                         "messages": api_messages
@@ -1369,7 +1442,12 @@ Now answer the student's question based on this textbook content."""
                         
                         if response.status_code == 200:
                             response_data = response.json()
-                            ai_message = response_data['content'][0]['text']
+                            
+                            # Safe extraction of AI message
+                            if response_data.get('content') and len(response_data['content']) > 0:
+                                ai_message = response_data['content'][0]['text']
+                            else:
+                                ai_message = "I'm sorry, I couldn't generate a response. Please try again."
                             
                             # Add AI response to history
                             st.session_state.chat_history_402.append({
@@ -1381,6 +1459,10 @@ Now answer the student's question based on this textbook content."""
                             st.error(f"❌ API Error: {response.status_code}")
                             st.code(response.text)
                     
+                    except requests.exceptions.Timeout:
+                        st.error("❌ Request timed out. Please try again.")
+                    except requests.exceptions.RequestException as e:
+                        st.error(f"❌ Network error: {str(e)}")
                     except Exception as e:
                         st.error(f"❌ Error calling API: {str(e)}")
             
