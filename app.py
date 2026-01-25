@@ -1456,17 +1456,13 @@ if page == "🏠 Home":
     # Add spacing at top
     st.markdown("<br>", unsafe_allow_html=True)
     
-    # Professional hero section with larger logo and bold welcome
+# Professional hero section with larger logo and bold welcome
     st.markdown("""
         <div style='text-align: center; padding: 40px 20px 40px 20px;'>
             <div style='margin-bottom: 40px;'>
                 <svg width="220" height="220" viewBox="0 0 220 220" xmlns="http://www.w3.org/2000/svg">
-                    <!-- Outer ring -->
-                    <circle cx="110" cy="110" r="105" fill="none" stroke="#CFB53B" stroke-width="4"/>
                     <!-- Main circle -->
-                    <circle cx="110" cy="110" r="95" fill="#002E5D"/>
-                    <!-- Inner accent ring -->
-                    <circle cx="110" cy="110" r="80" fill="none" stroke="#CFB53B" stroke-width="1" opacity="0.5"/>
+                    <circle cx="110" cy="110" r="105" fill="#002E5D"/>
                     <!-- BYU Text -->
                     <text x="110" y="85" font-size="48" fill="white" text-anchor="middle" font-weight="bold" font-family="Arial, sans-serif">BYU</text>
                     <!-- Marriott School Text -->
@@ -1490,7 +1486,6 @@ if page == "🏠 Home":
             </p>
         </div>
     """, unsafe_allow_html=True)
-    
     # Divider with style
     st.markdown("""
         <div style='display: flex; align-items: center; justify-content: center; margin: 40px 0;'>
