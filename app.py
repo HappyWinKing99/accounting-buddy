@@ -1348,17 +1348,6 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # ============================================================================
-# SCROLL TO TOP ON PAGE CHANGE
-# ============================================================================
-if 'last_page' not in st.session_state:
-    st.session_state.last_page = ""
-
-if st.session_state.last_page != st.session_state.selected_page:
-    st.session_state.last_page = st.session_state.selected_page
-    # Set a query param to force URL change which resets scroll
-    st.query_params["page"] = st.session_state.selected_page.replace(" ", "_")
-
-# ============================================================================
 # SIDEBAR NAVIGATION
 # ============================================================================
 with st.sidebar:
@@ -1413,6 +1402,16 @@ page = st.session_state.selected_page
 
 # --- PAGE 1: HOME ---
 if page == "🏠 Home":
+    # Scroll to top
+    st.components.v1.html(
+        """
+        <script>
+            window.parent.document.querySelector('section.main').scrollTo(0, 0);
+        </script>
+        """,
+        height=0
+    )
+    
     st.markdown("<br>", unsafe_allow_html=True)
     
     st.markdown("""
@@ -1576,6 +1575,16 @@ if page == "🏠 Home":
 
 # --- PAGE 2: CALCULATORS ---
 elif page == "🧮 Calculators":
+    # Scroll to top
+    st.components.v1.html(
+        """
+        <script>
+            window.parent.document.querySelector('section.main').scrollTo(0, 0);
+        </script>
+        """,
+        height=0
+    )
+    
     st.markdown("""
         <div class='page-header'>
             <h1>🧮 Accounting Calculators</h1>
@@ -1695,6 +1704,16 @@ elif page == "🧮 Calculators":
 
 # --- PAGE 3: FORMULA DATABASE ---
 elif page == "📖 Formula Database":
+    # Scroll to top
+    st.components.v1.html(
+        """
+        <script>
+            window.parent.document.querySelector('section.main').scrollTo(0, 0);
+        </script>
+        """,
+        height=0
+    )
+    
     st.markdown("""
         <div class='page-header'>
             <h1>📖 Formula Database</h1>
@@ -1786,6 +1805,16 @@ elif page == "📖 Formula Database":
 
 # --- PAGE 4: BREAK-EVEN VISUALIZER ---
 elif page == "📊 Break-Even Visualizer":
+    # Scroll to top
+    st.components.v1.html(
+        """
+        <script>
+            window.parent.document.querySelector('section.main').scrollTo(0, 0);
+        </script>
+        """,
+        height=0
+    )
+    
     st.markdown("""
         <div class='page-header'>
             <h1>📊 Break-Even Visualizer</h1>
@@ -1887,6 +1916,16 @@ elif page == "📊 Break-Even Visualizer":
 
 # --- PAGE 5: ACC 402 AI TUTOR ---
 elif page == "📕 ACC 402 - Managerial Accounting":
+    # Scroll to top
+    st.components.v1.html(
+        """
+        <script>
+            window.parent.document.querySelector('section.main').scrollTo(0, 0);
+        </script>
+        """,
+        height=0
+    )
+    
     st.markdown("""
         <div class='page-header'>
             <h1>📕 ACC 402 - Managerial Accounting</h1>
