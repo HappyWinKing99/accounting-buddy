@@ -1347,10 +1347,39 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # ============================================================================
+# SCROLL TO TOP ON PAGE CHANGE
+# ============================================================================
+if 'last_page' not in st.session_state:
+    st.session_state.last_page = ""
+
+if st.session_state.last_page != st.session_state.selected_page:
+    st.session_state.last_page = st.session_state.selected_page
+
+st.markdown("""
+    <script>
+        window.scrollTo(0, 0);
+        
+        var mainContainer = window.parent.document.querySelector('[data-testid="stAppViewContainer"]');
+        if (mainContainer) {
+            mainContainer.scrollTo(0, 0);
+        }
+        
+        var mainBlock = window.parent.document.querySelector('.main');
+        if (mainBlock) {
+            mainBlock.scrollTo(0, 0);
+        }
+        
+        var stApp = window.parent.document.querySelector('.stApp');
+        if (stApp) {
+            stApp.scrollTo(0, 0);
+        }
+    </script>
+""", unsafe_allow_html=True)
+
+# ============================================================================
 # SIDEBAR NAVIGATION
 # ============================================================================
 with st.sidebar:
-    # BYU Logo in sidebar
     st.markdown("""
         <div style='text-align: center; margin-bottom: 30px; padding-top: 10px;'>
             <svg width="140" height="140" viewBox="0 0 220 220" xmlns="http://www.w3.org/2000/svg">
@@ -1371,7 +1400,6 @@ with st.sidebar:
     
     st.markdown("---")
     
-    # Navigation buttons
     pages = [
         "🏠 Home",
         "🧮 Calculators",
@@ -1405,7 +1433,6 @@ page = st.session_state.selected_page
 if page == "🏠 Home":
     st.markdown("<br>", unsafe_allow_html=True)
     
-    # Professional hero section
     st.markdown("""
         <div style='text-align: center; padding: 40px 20px 40px 20px;'>
             <div style='margin-bottom: 40px;'>
@@ -1430,21 +1457,18 @@ if page == "🏠 Home":
         </div>
     """, unsafe_allow_html=True)
     
-    # Divider
     st.markdown("""
         <div style='display: flex; align-items: center; justify-content: center; margin: 40px 0;'>
             <div style='flex: 1; height: 1px; background: linear-gradient(to right, transparent, #2D2D4A, transparent);'></div>
         </div>
     """, unsafe_allow_html=True)
     
-    # Section header
     st.markdown("""
         <h2 style='text-align: center; color: #FFFFFF; font-weight: 400; letter-spacing: 1px; margin-bottom: 40px;'>
             Get Started
         </h2>
     """, unsafe_allow_html=True)
     
-    # Course cards
     col1, col2 = st.columns(2, gap="large")
     
     with col1:
@@ -1559,7 +1583,6 @@ if page == "🏠 Home":
             st.session_state.selected_page = "📊 Break-Even Visualizer"
             st.rerun()
     
-    # Footer
     st.markdown("<br><br>", unsafe_allow_html=True)
     st.markdown("""
         <div style='text-align: center; padding: 30px 20px; border-top: 1px solid #2D2D4A;'>
@@ -1571,7 +1594,6 @@ if page == "🏠 Home":
 
 # --- PAGE 2: CALCULATORS ---
 elif page == "🧮 Calculators":
-    # Page header
     st.markdown("""
         <div class='page-header'>
             <h1>🧮 Accounting Calculators</h1>
@@ -1593,7 +1615,6 @@ elif page == "🧮 Calculators":
     
     st.markdown("<br>", unsafe_allow_html=True)
     
-    # Calculator card
     st.markdown("""
         <div style='
             background: linear-gradient(145deg, #1A1A2E, #151525);
@@ -1692,7 +1713,6 @@ elif page == "🧮 Calculators":
 
 # --- PAGE 3: FORMULA DATABASE ---
 elif page == "📖 Formula Database":
-    # Page header
     st.markdown("""
         <div class='page-header'>
             <h1>📖 Formula Database</h1>
@@ -1784,7 +1804,6 @@ elif page == "📖 Formula Database":
 
 # --- PAGE 4: BREAK-EVEN VISUALIZER ---
 elif page == "📊 Break-Even Visualizer":
-    # Page header
     st.markdown("""
         <div class='page-header'>
             <h1>📊 Break-Even Visualizer</h1>
@@ -1798,7 +1817,6 @@ elif page == "📊 Break-Even Visualizer":
     
     st.markdown("<br>", unsafe_allow_html=True)
     
-    # Input card
     st.markdown("""
         <div style='
             background: linear-gradient(145deg, #1A1A2E, #151525);
@@ -1861,7 +1879,6 @@ elif page == "📊 Break-Even Visualizer":
         
         st.plotly_chart(fig, use_container_width=True)
         
-        # Results card
         col1, col2, col3 = st.columns(3)
         with col1:
             st.markdown(f"""
@@ -1888,7 +1905,6 @@ elif page == "📊 Break-Even Visualizer":
 
 # --- PAGE 5: ACC 402 AI TUTOR ---
 elif page == "📕 ACC 402 - Managerial Accounting":
-    # Page header
     st.markdown("""
         <div class='page-header'>
             <h1>📕 ACC 402 - Managerial Accounting</h1>
@@ -1902,7 +1918,6 @@ elif page == "📕 ACC 402 - Managerial Accounting":
     
     st.markdown("<br>", unsafe_allow_html=True)
     
-    # Tabs
     tab1, tab2 = st.tabs(["🤖 AI Tutor", "📚 Key Formulas"])
     
     with tab1:
@@ -1919,11 +1934,9 @@ elif page == "📕 ACC 402 - Managerial Accounting":
             </div>
         """, unsafe_allow_html=True)
         
-        # Initialize trigger flag
         if 'trigger_ai_call' not in st.session_state:
             st.session_state.trigger_ai_call = False
         
-        # Quick Topic Buttons
         st.markdown("<p style='color: #FFFFFF; font-weight: 500; margin-bottom: 15px;'>📖 Quick Topics:</p>", unsafe_allow_html=True)
         topic_cols = st.columns(5)
         topics = [
@@ -1945,7 +1958,6 @@ elif page == "📕 ACC 402 - Managerial Accounting":
         
         st.markdown("<br>", unsafe_allow_html=True)
         
-        # AI Settings
         with st.expander("⚙️ AI Settings"):
             model_choice = st.radio(
                 "Model (Haiku is faster & cheaper, Sonnet is smarter):",
@@ -1955,7 +1967,6 @@ elif page == "📕 ACC 402 - Managerial Accounting":
             )
             st.caption("💡 Tip: Use Haiku for simple questions, Sonnet for complex explanations")
         
-        # Display chat history
         if st.session_state.chat_history_402:
             for message in st.session_state.chat_history_402:
                 if message['role'] == 'user':
@@ -1973,7 +1984,6 @@ elif page == "📕 ACC 402 - Managerial Accounting":
                     st.markdown(message['content'])
             st.markdown("<br>", unsafe_allow_html=True)
         
-        # User input
         if 'waiting_for_response' not in st.session_state:
             st.session_state.waiting_for_response = False
         
@@ -1993,7 +2003,6 @@ elif page == "📕 ACC 402 - Managerial Accounting":
                     disabled=st.session_state.waiting_for_response
                 )
         
-        # Action buttons
         btn_col1, btn_col2, btn_col3 = st.columns([1, 1, 3])
         
         with btn_col1:
@@ -2015,7 +2024,6 @@ elif page == "📕 ACC 402 - Managerial Accounting":
                     mime="text/plain"
                 )
         
-        # Check if we need to trigger AI call
         should_call_api = False
         
         if submit_button and user_question.strip():
@@ -2029,7 +2037,6 @@ elif page == "📕 ACC 402 - Managerial Accounting":
             should_call_api = True
             st.session_state.trigger_ai_call = False
         
-        # Process API call
         if should_call_api and st.session_state.chat_history_402:
             if st.session_state.chat_history_402[-1]['role'] == 'user':
                 try:
@@ -2119,7 +2126,6 @@ Now answer the student's question based on this textbook content."""
                     st.info("Add this to `.streamlit/secrets.toml`:")
                     st.code('ANTHROPIC_API_KEY = "your-key-here"')
         
-        # Suggested questions
         st.markdown("<br>", unsafe_allow_html=True)
         st.markdown("<p style='color: #FFFFFF; font-weight: 500;'>💡 Suggested Questions:</p>", unsafe_allow_html=True)
         
