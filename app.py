@@ -1454,46 +1454,173 @@ page = st.session_state.selected_page
 
 # --- PAGE 1: HOME ---
 if page == "🏠 Home":
-    # Centered welcome message
+    # Add spacing at top
+    st.markdown("<br>", unsafe_allow_html=True)
+    
+    # Professional hero section with logo and welcome
     st.markdown("""
-        <div style='text-align: center; padding: 40px 20px;'>
-            <h1 style='color: #FFFFFF; font-size: 2.5em; margin-bottom: 10px;'>
-                Welcome to BYU Accounting Study App! 📚
+        <div style='text-align: center; padding: 60px 20px 40px 20px;'>
+            <div style='margin-bottom: 30px;'>
+                <svg width="120" height="120" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="50" cy="50" r="48" fill="#002E5D" stroke="#CFB53B" stroke-width="3"/>
+                    <text x="50" y="42" font-size="22" fill="white" text-anchor="middle" font-weight="bold" font-family="Arial">BYU</text>
+                    <text x="50" y="58" font-size="8" fill="#CFB53B" text-anchor="middle" font-family="Arial" letter-spacing="2">MARRIOTT SCHOOL</text>
+                    <text x="50" y="72" font-size="9" fill="white" text-anchor="middle" font-family="Arial">ACCOUNTING</text>
+                </svg>
+            </div>
+            <h1 style='color: #FFFFFF; font-size: 2.8em; margin-bottom: 15px; font-weight: 300; letter-spacing: 1px;'>
+                Accounting Study Hub
             </h1>
-            <p style='color: #B0B0B0; font-size: 1.2em; margin-top: 0;'>
-                Your One-Stop Study Resource for Accounting Success
+            <p style='color: #CFB53B; font-size: 1.1em; margin-top: 0; font-weight: 500; letter-spacing: 3px; text-transform: uppercase;'>
+                Brigham Young University
+            </p>
+            <p style='color: #888888; font-size: 1em; margin-top: 20px; max-width: 500px; margin-left: auto; margin-right: auto; line-height: 1.6;'>
+                AI-powered study tools designed to help you master cost accounting concepts and ace your exams.
             </p>
         </div>
     """, unsafe_allow_html=True)
     
-    # Quick Access to Courses section
-    st.markdown("---")
-    st.markdown("<h2 style='text-align: center; color: #FFFFFF;'>📚 Quick Access to Courses</h2>", unsafe_allow_html=True)
-    st.markdown("<br>", unsafe_allow_html=True)
+    # Divider with style
+    st.markdown("""
+        <div style='display: flex; align-items: center; justify-content: center; margin: 40px 0;'>
+            <div style='flex: 1; height: 1px; background: linear-gradient(to right, transparent, #333, transparent);'></div>
+        </div>
+    """, unsafe_allow_html=True)
     
-    col1, col2 = st.columns(2)
+    # Section header
+    st.markdown("""
+        <h2 style='text-align: center; color: #FFFFFF; font-weight: 400; letter-spacing: 1px; margin-bottom: 30px;'>
+            Get Started
+        </h2>
+    """, unsafe_allow_html=True)
+    
+    # Course cards with improved styling
+    col1, col2 = st.columns(2, gap="large")
     
     with col1:
         st.markdown("""
-        <div class="course-box">
-            <h3>📕 ACC 402 - Cost Accounting</h3>
-            <p>AI Tutor with full textbook access • Practice problems • Formula reference</p>
+        <div style='
+            background: linear-gradient(145deg, #002E5D, #001A3A);
+            padding: 30px;
+            border-radius: 15px;
+            border: 1px solid #003D7A;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            height: 100%;
+            transition: transform 0.3s ease;
+        '>
+            <div style='font-size: 2.5em; margin-bottom: 15px;'>📕</div>
+            <h3 style='color: #FFFFFF; margin-bottom: 10px; font-size: 1.4em; font-weight: 500;'>
+                ACC 402
+            </h3>
+            <p style='color: #CFB53B; font-size: 0.9em; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 1px;'>
+                Cost Accounting
+            </p>
+            <p style='color: #AAAAAA; font-size: 0.95em; line-height: 1.6;'>
+                AI Tutor with full textbook access covering Chapters 1, 3, 4, 6, and 7. Get instant help with concepts, formulas, and practice problems.
+            </p>
         </div>
         """, unsafe_allow_html=True)
-        if st.button("Go to ACC 402", key="goto_402"):
+        st.markdown("<br>", unsafe_allow_html=True)
+        if st.button("Launch ACC 402 →", key="goto_402", use_container_width=True):
             st.session_state.selected_page = "📕 ACC 402 - Cost Accounting"
             st.rerun()
     
     with col2:
         st.markdown("""
-        <div class="course-box">
-            <h3>🧮 Calculators</h3>
-            <p>Quick calculation tools • Break-even analysis • Overhead rates</p>
+        <div style='
+            background: linear-gradient(145deg, #1E1E1E, #151515);
+            padding: 30px;
+            border-radius: 15px;
+            border: 1px solid #333;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            height: 100%;
+            transition: transform 0.3s ease;
+        '>
+            <div style='font-size: 2.5em; margin-bottom: 15px;'>🧮</div>
+            <h3 style='color: #FFFFFF; margin-bottom: 10px; font-size: 1.4em; font-weight: 500;'>
+                Calculators
+            </h3>
+            <p style='color: #CFB53B; font-size: 0.9em; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 1px;'>
+                Quick Tools
+            </p>
+            <p style='color: #AAAAAA; font-size: 0.95em; line-height: 1.6;'>
+                Contribution margin, break-even analysis, overhead rates, and more. Get instant answers to common accounting calculations.
+            </p>
         </div>
         """, unsafe_allow_html=True)
-        if st.button("Go to Calculators", key="goto_calc"):
+        st.markdown("<br>", unsafe_allow_html=True)
+        if st.button("Open Calculators →", key="goto_calc", use_container_width=True):
             st.session_state.selected_page = "🧮 Calculators"
             st.rerun()
+    
+    # Additional tools row
+    st.markdown("<br><br>", unsafe_allow_html=True)
+    
+    col3, col4 = st.columns(2, gap="large")
+    
+    with col3:
+        st.markdown("""
+        <div style='
+            background: linear-gradient(145deg, #1E1E1E, #151515);
+            padding: 30px;
+            border-radius: 15px;
+            border: 1px solid #333;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            height: 100%;
+        '>
+            <div style='font-size: 2.5em; margin-bottom: 15px;'>📖</div>
+            <h3 style='color: #FFFFFF; margin-bottom: 10px; font-size: 1.4em; font-weight: 500;'>
+                Formula Database
+            </h3>
+            <p style='color: #CFB53B; font-size: 0.9em; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 1px;'>
+                Quick Reference
+            </p>
+            <p style='color: #AAAAAA; font-size: 0.95em; line-height: 1.6;'>
+                Searchable database of key accounting formulas. Find exactly what you need for homework and exams.
+            </p>
+        </div>
+        """, unsafe_allow_html=True)
+        st.markdown("<br>", unsafe_allow_html=True)
+        if st.button("Browse Formulas →", key="goto_formulas", use_container_width=True):
+            st.session_state.selected_page = "📖 Formula Database"
+            st.rerun()
+    
+    with col4:
+        st.markdown("""
+        <div style='
+            background: linear-gradient(145deg, #1E1E1E, #151515);
+            padding: 30px;
+            border-radius: 15px;
+            border: 1px solid #333;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            height: 100%;
+        '>
+            <div style='font-size: 2.5em; margin-bottom: 15px;'>📊</div>
+            <h3 style='color: #FFFFFF; margin-bottom: 10px; font-size: 1.4em; font-weight: 500;'>
+                Break-Even Visualizer
+            </h3>
+            <p style='color: #CFB53B; font-size: 0.9em; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 1px;'>
+                Interactive Charts
+            </p>
+            <p style='color: #AAAAAA; font-size: 0.95em; line-height: 1.6;'>
+                Visualize cost-volume-profit relationships with interactive charts. See your break-even point come to life.
+            </p>
+        </div>
+        """, unsafe_allow_html=True)
+        st.markdown("<br>", unsafe_allow_html=True)
+        if st.button("Open Visualizer →", key="goto_viz", use_container_width=True):
+            st.session_state.selected_page = "📊 Break-Even Visualizer"
+            st.rerun()
+    
+    # Footer
+    st.markdown("<br><br>", unsafe_allow_html=True)
+    st.markdown("""
+        <div style='text-align: center; padding: 30px 20px; border-top: 1px solid #222;'>
+            <p style='color: #555; font-size: 0.85em;'>
+                Built with AI & Data Analytics • BYU Marriott School of Business
+            </p>
+        </div>
+    """, unsafe_allow_html=True)
 
 # --- PAGE 2: CALCULATORS ---
 elif page == "🧮 Calculators":
