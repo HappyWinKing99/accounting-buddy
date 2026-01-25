@@ -1454,40 +1454,22 @@ page = st.session_state.selected_page
 
 # --- PAGE 1: HOME ---
 if page == "🏠 Home":
-    st.title("Welcome to BYU Accounting Study App! 📚")
+    # Centered welcome message
+    st.markdown("""
+        <div style='text-align: center; padding: 40px 20px;'>
+            <h1 style='color: #FFFFFF; font-size: 2.5em; margin-bottom: 10px;'>
+                Welcome to BYU Accounting Study App! 📚
+            </h1>
+            <p style='color: #B0B0B0; font-size: 1.2em; margin-top: 0;'>
+                Your One-Stop Study Resource for Accounting Success
+            </p>
+        </div>
+    """, unsafe_allow_html=True)
     
-    col1, col2 = st.columns([2, 1])
-    
-    with col1:
-        st.markdown("""
-        ### Your One-Stop Study Resource
-        
-        This app is designed to help you master accounting concepts with:
-        
-        ✅ **Quick Calculators** - Contribution Margin, Break-Even, and more  
-        ✅ **Formula Database** - Search and reference key equations  
-        ✅ **Visual Tools** - Interactive break-even charts  
-        ✅ **AI Tutor** - Get help with ACC 402 concepts 24/7
-        
-        ---
-        
-        #### How to Use This App:
-        1. **Use the sidebar** to navigate between tools
-        2. **Calculators** provide instant results for common accounting problems
-        3. **Formula Database** lets you search for equations by keyword
-        4. **ACC 402 AI Tutor** references your full textbook to answer questions
-        
-        ---
-        
-        **Ready to start?** Choose a tool from the sidebar! 👈
-        """)
-    
-    with col2:
-        st.info("💡 **Pro Tip:** The ACC 402 AI Tutor has access to your entire textbook - ask it anything!")
-    
-    # Course boxes section
+    # Quick Access to Courses section
     st.markdown("---")
-    st.subheader("📚 Quick Access to Courses")
+    st.markdown("<h2 style='text-align: center; color: #FFFFFF;'>📚 Quick Access to Courses</h2>", unsafe_allow_html=True)
+    st.markdown("<br>", unsafe_allow_html=True)
     
     col1, col2 = st.columns(2)
     
