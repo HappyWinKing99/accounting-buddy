@@ -970,49 +970,80 @@ st.markdown("""
     .stFormSubmitButton > button p {
         color: #FFFFFF !important;
     }
-    
-    /* ===== EXPANDERS ===== */
-    .streamlit-expanderHeader {
-        background-color: #1E1E1E !important;
-        color: #FFFFFF !important;
-        border-radius: 8px !important;
-    }
-    
-    .streamlit-expanderHeader p, .streamlit-expanderHeader span {
-        color: #FFFFFF !important;
-    }
-    
-    .streamlit-expanderContent {
-        background-color: #1A1A2E !important;
-        border: 1px solid #333 !important;
-        border-radius: 0 0 8px 8px !important;
-    }
-    
-    .streamlit-expanderContent p, .streamlit-expanderContent span, 
-    .streamlit-expanderContent div, .streamlit-expanderContent li {
-        color: #FFFFFF !important;
-    }
-    
-    /* Target expander by data-testid */
+/* ===== EXPANDERS ===== */
+    /* Expander container */
     [data-testid="stExpander"] {
         background-color: #1E1E1E !important;
         border: 1px solid #333 !important;
         border-radius: 8px !important;
     }
     
-    [data-testid="stExpander"] summary {
+    /* Expander header - always dark background with white text */
+    [data-testid="stExpander"] > details > summary {
+        background-color: #1E1E1E !important;
+        color: #FFFFFF !important;
+        border-radius: 8px !important;
+        padding: 10px 15px !important;
+    }
+    
+    /* Keep header dark even when expanded/focused/hovered */
+    [data-testid="stExpander"] > details > summary:hover,
+    [data-testid="stExpander"] > details > summary:focus,
+    [data-testid="stExpander"] > details > summary:active,
+    [data-testid="stExpander"] > details[open] > summary {
+        background-color: #2D2D2D !important;
         color: #FFFFFF !important;
     }
     
-    [data-testid="stExpander"] summary p {
+    /* Text inside expander header */
+    [data-testid="stExpander"] > details > summary p,
+    [data-testid="stExpander"] > details > summary span,
+    [data-testid="stExpander"] > details > summary svg {
         color: #FFFFFF !important;
+        fill: #FFFFFF !important;
     }
     
+    /* Expander content area */
     [data-testid="stExpander"] div[data-testid="stExpanderDetails"] {
         background-color: #1A1A2E !important;
+        border-top: 1px solid #333 !important;
+        padding: 15px !important;
     }
     
-    [data-testid="stExpander"] div[data-testid="stExpanderDetails"] * {
+    /* All text inside expander content */
+    [data-testid="stExpander"] div[data-testid="stExpanderDetails"] p,
+    [data-testid="stExpander"] div[data-testid="stExpanderDetails"] span,
+    [data-testid="stExpander"] div[data-testid="stExpanderDetails"] div,
+    [data-testid="stExpander"] div[data-testid="stExpanderDetails"] li,
+    [data-testid="stExpander"] div[data-testid="stExpanderDetails"] strong,
+    [data-testid="stExpander"] div[data-testid="stExpanderDetails"] em {
+        color: #FFFFFF !important;
+    }
+    
+    /* Legacy expander classes for older Streamlit versions */
+    .streamlit-expanderHeader {
+        background-color: #1E1E1E !important;
+        color: #FFFFFF !important;
+    }
+    
+    .streamlit-expanderHeader:hover,
+    .streamlit-expanderHeader:focus,
+    .streamlit-expanderHeader:active {
+        background-color: #2D2D2D !important;
+        color: #FFFFFF !important;
+    }
+    
+    .streamlit-expanderHeader p, 
+    .streamlit-expanderHeader span {
+        color: #FFFFFF !important;
+    }
+    
+    .streamlit-expanderContent {
+        background-color: #1A1A2E !important;
+        border: 1px solid #333 !important;
+    }
+    
+    .streamlit-expanderContent * {
         color: #FFFFFF !important;
     }
     
@@ -1029,16 +1060,21 @@ st.markdown("""
         color: #FFFFFF !important;
     }
     
-    /* Text areas */
+    /* Text areas - WHITE background for readability */
     .stTextArea > div > div > textarea {
-        background-color: #1E1E1E !important;
-        color: #FFFFFF !important;
+        background-color: #FFFFFF !important;
+        color: #000000 !important;
         border: 1px solid #444 !important;
         border-radius: 8px !important;
     }
     
     .stTextArea label {
         color: #FFFFFF !important;
+    }
+    
+    /* Placeholder text in text area */
+    .stTextArea > div > div > textarea::placeholder {
+        color: #666666 !important;
     }
     
     /* Number inputs */
