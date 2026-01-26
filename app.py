@@ -2491,500 +2491,65 @@ SUMMARY: TAXABLE INCOME CALCULATION
 """
 
 
+
 # ============================================================================
 # CUSTOM CSS - DARK MODE THEME
 # ============================================================================
 st.markdown("""
     <style>
-    /* ===== GLOBAL STYLES ===== */
-    .stApp {
-        background-color: #0E1117;
-        color: #FFFFFF;
-    }
-    
-    header[data-testid="stHeader"] {
-        background-color: #0E1117 !important;
-    }
-    
-    .stApp {
-        font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
-    }
-    
-    /* ===== TEXT COLORS ===== */
-    .stApp, .stMarkdown, p, span, div, label, li, td, th {
-        color: #FFFFFF !important;
-    }
-    
-    code {
-        color: #FFFFFF !important;
-        background-color: #1E1E1E !important;
-    }
-    
-    .stCodeBlock, pre {
-        background-color: #1E1E1E !important;
-    }
-    
-    /* ===== SIDEBAR STYLING ===== */
-    section[data-testid="stSidebar"] {
-        background-color: #0A0A0F !important;
-        border-right: 1px solid #1E1E1E !important;
-    }
-    
-    section[data-testid="stSidebar"] > div {
-        background-color: #0A0A0F !important;
-    }
-    
-    section[data-testid="stSidebar"] * {
-        color: #FFFFFF !important;
-    }
-    
-    section[data-testid="stSidebar"] h1 {
-        color: #FFFFFF !important;
-        font-weight: 600 !important;
-        letter-spacing: 1px !important;
-    }
-    
-    /* ===== ALL BUTTONS - GOLD WITH WHITE TEXT ===== */
-    .stButton > button {
-        background: linear-gradient(145deg, #CFB53B, #B8A033) !important;
-        color: #FFFFFF !important;
-        font-weight: 600 !important;
-        border: none !important;
-        font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif !important;
-        border-radius: 10px !important;
-        padding: 12px 28px !important;
-        transition: all 0.3s ease !important;
-        box-shadow: 0 4px 15px rgba(207, 181, 59, 0.2) !important;
-        letter-spacing: 0.5px !important;
-    }
-    
-    .stButton > button:hover {
-        background: linear-gradient(145deg, #E0C64C, #CFB53B) !important;
-        color: #FFFFFF !important;
-        box-shadow: 0 6px 20px rgba(207, 181, 59, 0.3) !important;
-        transform: translateY(-2px) !important;
-    }
-    
-    .stButton > button p {
-        color: #FFFFFF !important;
-    }
-    
-    /* Download buttons */
-    .stDownloadButton > button {
-        background: linear-gradient(145deg, #CFB53B, #B8A033) !important;
-        color: #FFFFFF !important;
-        font-weight: 600 !important;
-        border: none !important;
-        border-radius: 10px !important;
-        padding: 12px 28px !important;
-        transition: all 0.3s ease !important;
-        box-shadow: 0 4px 15px rgba(207, 181, 59, 0.2) !important;
-    }
-    
-    .stDownloadButton > button:hover {
-        background: linear-gradient(145deg, #E0C64C, #CFB53B) !important;
-        transform: translateY(-2px) !important;
-    }
-    
-    .stDownloadButton > button p, .stDownloadButton > button span {
-        color: #FFFFFF !important;
-    }
-    
-    /* Form submit buttons */
-    .stFormSubmitButton > button {
-        background: linear-gradient(145deg, #CFB53B, #B8A033) !important;
-        color: #FFFFFF !important;
-        font-weight: 600 !important;
-        border: none !important;
-        border-radius: 10px !important;
-        box-shadow: 0 4px 15px rgba(207, 181, 59, 0.2) !important;
-    }
-    
-    .stFormSubmitButton > button:hover {
-        background: linear-gradient(145deg, #E0C64C, #CFB53B) !important;
-        transform: translateY(-2px) !important;
-    }
-    
-    .stFormSubmitButton > button p {
-        color: #FFFFFF !important;
-    }
-    
-    /* ===== EXPANDERS ===== */
-    [data-testid="stExpander"] {
-        background-color: #1A1A2E !important;
-        border: 1px solid #2D2D4A !important;
-        border-radius: 12px !important;
-        overflow: hidden !important;
-    }
-    
-    [data-testid="stExpander"] > details > summary {
-        background-color: #1A1A2E !important;
-        color: #FFFFFF !important;
-        border-radius: 12px !important;
-        padding: 15px 20px !important;
-        font-weight: 500 !important;
-    }
-    
-    [data-testid="stExpander"] > details > summary:hover,
-    [data-testid="stExpander"] > details > summary:focus,
-    [data-testid="stExpander"] > details > summary:active,
-    [data-testid="stExpander"] > details[open] > summary {
-        background-color: #252542 !important;
-        color: #FFFFFF !important;
-    }
-    
-    [data-testid="stExpander"] > details > summary p,
-    [data-testid="stExpander"] > details > summary span,
-    [data-testid="stExpander"] > details > summary svg {
-        color: #FFFFFF !important;
-        fill: #FFFFFF !important;
-    }
-    
-    [data-testid="stExpander"] div[data-testid="stExpanderDetails"] {
-        background-color: #12121F !important;
-        border-top: 1px solid #2D2D4A !important;
-        padding: 20px !important;
-    }
-    
-    [data-testid="stExpander"] div[data-testid="stExpanderDetails"] p,
-    [data-testid="stExpander"] div[data-testid="stExpanderDetails"] span,
-    [data-testid="stExpander"] div[data-testid="stExpanderDetails"] div,
-    [data-testid="stExpander"] div[data-testid="stExpanderDetails"] li,
-    [data-testid="stExpander"] div[data-testid="stExpanderDetails"] strong,
-    [data-testid="stExpander"] div[data-testid="stExpanderDetails"] em {
-        color: #FFFFFF !important;
-    }
-    
-    .streamlit-expanderHeader {
-        background-color: #1A1A2E !important;
-        color: #FFFFFF !important;
-    }
-    
-    .streamlit-expanderHeader:hover,
-    .streamlit-expanderHeader:focus,
-    .streamlit-expanderHeader:active {
-        background-color: #252542 !important;
-        color: #FFFFFF !important;
-    }
-    
-    .streamlit-expanderHeader p, 
-    .streamlit-expanderHeader span {
-        color: #FFFFFF !important;
-    }
-    
-    .streamlit-expanderContent {
-        background-color: #12121F !important;
-        border: 1px solid #2D2D4A !important;
-    }
-    
-    .streamlit-expanderContent * {
-        color: #FFFFFF !important;
-    }
-    
-    /* ===== INPUT FIELDS ===== */
-    .stTextInput > div > div > input {
-        background-color: #1A1A2E !important;
-        color: #FFFFFF !important;
-        border: 1px solid #2D2D4A !important;
-        border-radius: 10px !important;
-        padding: 12px 15px !important;
-    }
-    
-    .stTextInput > div > div > input:focus {
-        border-color: #CFB53B !important;
-        box-shadow: 0 0 0 2px rgba(207, 181, 59, 0.2) !important;
-    }
-    
-    .stTextInput label {
-        color: #FFFFFF !important;
-        font-weight: 500 !important;
-    }
-    
-    /* Text areas - WHITE background for readability */
-    .stTextArea > div > div > textarea {
-        background-color: #FFFFFF !important;
-        color: #000000 !important;
-        border: 1px solid #2D2D4A !important;
-        border-radius: 10px !important;
-        padding: 12px 15px !important;
-    }
-    
-    .stTextArea > div > div > textarea:focus {
-        border-color: #CFB53B !important;
-        box-shadow: 0 0 0 2px rgba(207, 181, 59, 0.2) !important;
-    }
-    
-    .stTextArea > div > div > textarea::placeholder {
-        color: #666666 !important;
-    }
-    
-    .stTextArea label {
-        color: #FFFFFF !important;
-        font-weight: 500 !important;
-    }
-    
-    /* Number inputs */
-    .stNumberInput > div > div > input {
-        background-color: #1A1A2E !important;
-        color: #FFFFFF !important;
-        border: 1px solid #2D2D4A !important;
-        border-radius: 10px !important;
-        padding: 12px 15px !important;
-    }
-    
-    .stNumberInput > div > div > input:focus {
-        border-color: #CFB53B !important;
-    }
-    
-    .stNumberInput label {
-        color: #FFFFFF !important;
-        font-weight: 500 !important;
-    }
-    
-    /* Select boxes / dropdowns */
-    .stSelectbox > div > div {
-        background-color: #1A1A2E !important;
-        color: #FFFFFF !important;
-        border: 1px solid #2D2D4A !important;
-        border-radius: 10px !important;
-    }
-    
-    .stSelectbox label {
-        color: #FFFFFF !important;
-        font-weight: 500 !important;
-    }
-    
-    .stSelectbox > div > div > div {
-        color: #FFFFFF !important;
-    }
-    
-    [data-baseweb="menu"] {
-        background-color: #1A1A2E !important;
-        border: 1px solid #2D2D4A !important;
-        border-radius: 10px !important;
-    }
-    
-    [data-baseweb="menu"] li {
-        color: #FFFFFF !important;
-        background-color: #1A1A2E !important;
-    }
-    
-    [data-baseweb="menu"] li:hover {
-        background-color: #252542 !important;
-    }
-    
-    /* ===== RADIO BUTTONS ===== */
-    .stRadio > div {
-        background-color: transparent !important;
-    }
-    
-    .stRadio label {
-        color: #FFFFFF !important;
-    }
-    
-    .stRadio > div > label > div[data-testid="stMarkdownContainer"] p {
-        color: #FFFFFF !important;
-    }
-    
-    /* ===== TABS ===== */
-    .stTabs [data-baseweb="tab-list"] {
-        background-color: transparent !important;
-        gap: 10px;
-        border-bottom: 1px solid #2D2D4A !important;
-        padding-bottom: 0 !important;
-    }
-    
-    .stTabs [data-baseweb="tab"] {
-        background-color: transparent !important;
-        color: #888888 !important;
-        border-radius: 10px 10px 0 0 !important;
-        border: none !important;
-        padding: 15px 25px !important;
-        font-weight: 500 !important;
-        letter-spacing: 0.5px !important;
-    }
-    
-    .stTabs [data-baseweb="tab"]:hover {
-        background-color: #1A1A2E !important;
-        color: #FFFFFF !important;
-    }
-    
-    .stTabs [aria-selected="true"] {
-        background-color: #002E5D !important;
-        color: #FFFFFF !important;
-        border-bottom: 3px solid #CFB53B !important;
-    }
-    
-    .stTabs [data-baseweb="tab-panel"] {
-        background-color: transparent !important;
-        padding-top: 30px !important;
-    }
-    
-    /* ===== INFO/SUCCESS/WARNING/ERROR BOXES ===== */
-    .stAlert {
-        background-color: #1A1A2E !important;
-        color: #FFFFFF !important;
-        border-radius: 12px !important;
-        border: 1px solid #2D2D4A !important;
-    }
-    
-    .stAlert p, .stAlert span, .stAlert div {
-        color: #FFFFFF !important;
-    }
-    
-    [data-testid="stAlert"][data-baseweb="notification"]:has(div[data-testid="stNotificationContentInfo"]) {
-        background-color: #1E3A5F !important;
-        border-left: 4px solid #4A90D9 !important;
-    }
-    
-    [data-testid="stAlert"][data-baseweb="notification"]:has(div[data-testid="stNotificationContentSuccess"]) {
-        background-color: #1E3E1E !important;
-        border-left: 4px solid #4CAF50 !important;
-    }
-    
-    [data-testid="stAlert"][data-baseweb="notification"]:has(div[data-testid="stNotificationContentWarning"]) {
-        background-color: #3E3A1E !important;
-        border-left: 4px solid #FFC107 !important;
-    }
-    
-    [data-testid="stAlert"][data-baseweb="notification"]:has(div[data-testid="stNotificationContentError"]) {
-        background-color: #3E1E1E !important;
-        border-left: 4px solid #F44336 !important;
-    }
-    
-    /* ===== SPINNER ===== */
-    .stSpinner > div {
-        color: #FFFFFF !important;
-    }
-    
-    /* ===== CAPTION TEXT ===== */
-    .stCaption, [data-testid="stCaptionContainer"] {
-        color: #AAAAAA !important;
-    }
-    
-    .stCaption p {
-        color: #AAAAAA !important;
-    }
-    
-    /* ===== CHAT STYLING ===== */
-    .user-message {
-        background: linear-gradient(145deg, #1E3A5F, #162D4A);
-        padding: 20px;
-        border-radius: 15px;
-        margin: 15px 0;
-        border: 1px solid #2D4A6F;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-    }
-    
-    .user-message strong, .user-message br, .user-message * {
-        color: #FFFFFF !important;
-    }
-    
-    .ai-message {
-        background: linear-gradient(145deg, #1A1A2E, #151525);
-        padding: 20px;
-        border-radius: 15px;
-        margin: 15px 0;
-        border-left: 4px solid #CFB53B;
-        border-top: 1px solid #2D2D4A;
-        border-right: 1px solid #2D2D4A;
-        border-bottom: 1px solid #2D2D4A;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-    }
-    
-    .ai-message strong, .ai-message * {
-        color: #FFFFFF !important;
-    }
-    
-    /* ===== PLOTLY CHARTS ===== */
-    .js-plotly-plot .plotly .modebar {
-        background-color: transparent !important;
-    }
-    
-    .js-plotly-plot .plotly .modebar-btn path {
-        fill: #FFFFFF !important;
-    }
-    
-    /* ===== HORIZONTAL RULE ===== */
-    hr {
-        border-color: #2D2D4A !important;
-    }
-    
-    /* ===== LINKS ===== */
-    a {
-        color: #CFB53B !important;
-    }
-    
-    a:hover {
-        color: #E8D066 !important;
-    }
-    
-    /* ===== SCROLLBAR STYLING ===== */
-    ::-webkit-scrollbar {
-        width: 8px;
-        height: 8px;
-    }
-    
-    ::-webkit-scrollbar-track {
-        background: #0E1117;
-    }
-    
-    ::-webkit-scrollbar-thumb {
-        background: #2D2D4A;
-        border-radius: 4px;
-    }
-    
-    ::-webkit-scrollbar-thumb:hover {
-        background: #3D3D5A;
-    }
-    
-    /* ===== MARKDOWN SPECIFIC ===== */
-    .stMarkdown h1, .stMarkdown h2, .stMarkdown h3, 
-    .stMarkdown h4, .stMarkdown h5, .stMarkdown h6 {
-        color: #FFFFFF !important;
-    }
-    
-    /* ===== PAGE HEADERS ===== */
-    .page-header {
-        text-align: center;
-        padding: 40px 20px;
-        margin-bottom: 30px;
-        background: linear-gradient(180deg, #0E1117 0%, #1A1A2E 100%);
-        border-radius: 0 0 20px 20px;
-        border-bottom: 1px solid #2D2D4A;
-    }
-    
-    .page-header h1 {
-        color: #FFFFFF !important;
-        font-size: 2.5em !important;
-        font-weight: 700 !important;
-        letter-spacing: 1px !important;
-        margin-bottom: 10px !important;
-    }
-    
-    .page-header p {
-        color: #888888 !important;
-        font-size: 1.1em !important;
-    }
-    
-    /* ===== CARD STYLING ===== */
-    .pro-card {
-        background: linear-gradient(145deg, #1A1A2E, #151525);
-        padding: 25px;
-        border-radius: 15px;
-        border: 1px solid #2D2D4A;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-        margin-bottom: 20px;
-    }
-    
-    .pro-card-blue {
-        background: linear-gradient(145deg, #002E5D, #001A3A);
-        padding: 25px;
-        border-radius: 15px;
-        border: 1px solid #003D7A;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-        margin-bottom: 20px;
-    }
+    .stApp { background-color: #0E1117; color: #FFFFFF; }
+    header[data-testid="stHeader"] { background-color: #0E1117 !important; }
+    .stApp { font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; }
+    .stApp, .stMarkdown, p, span, div, label, li, td, th { color: #FFFFFF !important; }
+    code { color: #FFFFFF !important; background-color: #1E1E1E !important; }
+    .stCodeBlock, pre { background-color: #1E1E1E !important; }
+    section[data-testid="stSidebar"] { background-color: #0A0A0F !important; border-right: 1px solid #1E1E1E !important; }
+    section[data-testid="stSidebar"] > div { background-color: #0A0A0F !important; }
+    section[data-testid="stSidebar"] * { color: #FFFFFF !important; }
+    section[data-testid="stSidebar"] h1 { color: #FFFFFF !important; font-weight: 600 !important; letter-spacing: 1px !important; }
+    .stButton > button { background: linear-gradient(145deg, #CFB53B, #B8A033) !important; color: #FFFFFF !important; font-weight: 600 !important; border: none !important; border-radius: 10px !important; padding: 12px 28px !important; transition: all 0.3s ease !important; box-shadow: 0 4px 15px rgba(207, 181, 59, 0.2) !important; }
+    .stButton > button:hover { background: linear-gradient(145deg, #E0C64C, #CFB53B) !important; transform: translateY(-2px) !important; }
+    .stButton > button p { color: #FFFFFF !important; }
+    .stDownloadButton > button { background: linear-gradient(145deg, #CFB53B, #B8A033) !important; color: #FFFFFF !important; font-weight: 600 !important; border: none !important; border-radius: 10px !important; }
+    .stDownloadButton > button p, .stDownloadButton > button span { color: #FFFFFF !important; }
+    .stFormSubmitButton > button { background: linear-gradient(145deg, #CFB53B, #B8A033) !important; color: #FFFFFF !important; font-weight: 600 !important; border: none !important; border-radius: 10px !important; }
+    .stFormSubmitButton > button p { color: #FFFFFF !important; }
+    [data-testid="stExpander"] { background-color: #1A1A2E !important; border: 1px solid #2D2D4A !important; border-radius: 12px !important; }
+    [data-testid="stExpander"] > details > summary { background-color: #1A1A2E !important; color: #FFFFFF !important; padding: 15px 20px !important; }
+    [data-testid="stExpander"] > details > summary:hover { background-color: #252542 !important; }
+    [data-testid="stExpander"] div[data-testid="stExpanderDetails"] { background-color: #12121F !important; padding: 20px !important; }
+    [data-testid="stExpander"] div[data-testid="stExpanderDetails"] * { color: #FFFFFF !important; }
+    .stTextInput > div > div > input { background-color: #1A1A2E !important; color: #FFFFFF !important; border: 1px solid #2D2D4A !important; border-radius: 10px !important; }
+    .stTextInput > div > div > input:focus { border-color: #CFB53B !important; }
+    .stTextArea > div > div > textarea { background-color: #FFFFFF !important; color: #000000 !important; border: 1px solid #2D2D4A !important; border-radius: 10px !important; }
+    .stTextArea > div > div > textarea::placeholder { color: #666666 !important; }
+    .stNumberInput > div > div > input { background-color: #1A1A2E !important; color: #FFFFFF !important; border: 1px solid #2D2D4A !important; border-radius: 10px !important; }
+    .stSelectbox > div > div { background-color: #1A1A2E !important; color: #FFFFFF !important; border: 1px solid #2D2D4A !important; border-radius: 10px !important; }
+    .stSelectbox > div > div > div { color: #FFFFFF !important; }
+    [data-baseweb="menu"] { background-color: #1A1A2E !important; border: 1px solid #2D2D4A !important; }
+    [data-baseweb="menu"] li { color: #FFFFFF !important; background-color: #1A1A2E !important; }
+    [data-baseweb="menu"] li:hover { background-color: #252542 !important; }
+    .stRadio > div { background-color: transparent !important; }
+    .stRadio label { color: #FFFFFF !important; }
+    .stTabs [data-baseweb="tab-list"] { background-color: transparent !important; gap: 10px; border-bottom: 1px solid #2D2D4A !important; }
+    .stTabs [data-baseweb="tab"] { background-color: transparent !important; color: #888888 !important; border-radius: 10px 10px 0 0 !important; padding: 15px 25px !important; }
+    .stTabs [data-baseweb="tab"]:hover { background-color: #1A1A2E !important; color: #FFFFFF !important; }
+    .stTabs [aria-selected="true"] { background-color: #002E5D !important; color: #FFFFFF !important; border-bottom: 3px solid #CFB53B !important; }
+    .stAlert { background-color: #1A1A2E !important; color: #FFFFFF !important; border-radius: 12px !important; }
+    .stAlert p, .stAlert span, .stAlert div { color: #FFFFFF !important; }
+    .user-message { background: linear-gradient(145deg, #1E3A5F, #162D4A); padding: 20px; border-radius: 15px; margin: 15px 0; border: 1px solid #2D4A6F; }
+    .user-message * { color: #FFFFFF !important; }
+    .ai-message { background: linear-gradient(145deg, #1A1A2E, #151525); padding: 20px; border-radius: 15px; margin: 15px 0; border-left: 4px solid #CFB53B; border-top: 1px solid #2D2D4A; border-right: 1px solid #2D2D4A; border-bottom: 1px solid #2D2D4A; }
+    .ai-message * { color: #FFFFFF !important; }
+    hr { border-color: #2D2D4A !important; }
+    a { color: #CFB53B !important; }
+    a:hover { color: #E8D066 !important; }
+    ::-webkit-scrollbar { width: 8px; height: 8px; }
+    ::-webkit-scrollbar-track { background: #0E1117; }
+    ::-webkit-scrollbar-thumb { background: #2D2D4A; border-radius: 4px; }
+    .page-header { text-align: center; padding: 40px 20px; margin-bottom: 30px; background: linear-gradient(180deg, #0E1117 0%, #1A1A2E 100%); border-radius: 0 0 20px 20px; border-bottom: 1px solid #2D2D4A; }
+    .page-header h1 { color: #FFFFFF !important; font-size: 2.5em !important; font-weight: 700 !important; }
+    .page-header p { color: #888888 !important; font-size: 1.1em !important; }
     </style>
 """, unsafe_allow_html=True)
 
@@ -2996,30 +2561,18 @@ with st.sidebar:
         <div style='text-align: center; margin-bottom: 30px; padding-top: 10px;'>
             <svg width="140" height="140" viewBox="0 0 220 220" xmlns="http://www.w3.org/2000/svg">
                 <circle cx="110" cy="110" r="105" fill="#002E5D"/>
-                <text x="110" y="85" font-size="48" fill="white" text-anchor="middle" font-weight="bold" font-family="Arial, sans-serif">BYU</text>
-                <text x="110" y="115" font-size="14" fill="#CFB53B" text-anchor="middle" font-family="Arial, sans-serif" letter-spacing="3">MARRIOTT SCHOOL</text>
+                <text x="110" y="85" font-size="48" fill="white" text-anchor="middle" font-weight="bold">BYU</text>
+                <text x="110" y="115" font-size="14" fill="#CFB53B" text-anchor="middle" letter-spacing="3">MARRIOTT SCHOOL</text>
                 <line x1="60" y1="130" x2="160" y2="130" stroke="#CFB53B" stroke-width="1" opacity="0.6"/>
-                <text x="110" y="155" font-size="18" fill="white" text-anchor="middle" font-family="Arial, sans-serif" letter-spacing="4">ACCOUNTING</text>
+                <text x="110" y="155" font-size="18" fill="white" text-anchor="middle" letter-spacing="4">ACCOUNTING</text>
             </svg>
         </div>
-    """, unsafe_allow_html=True)
-    
-    st.markdown("""
-        <p style='text-align: center; color: #CFB53B; font-size: 0.9em; letter-spacing: 2px; margin-bottom: 30px;'>
-            STUDY HUB
-        </p>
+        <p style='text-align: center; color: #CFB53B; font-size: 0.9em; letter-spacing: 2px; margin-bottom: 30px;'>STUDY HUB</p>
     """, unsafe_allow_html=True)
     
     st.markdown("---")
     
-    pages = [
-        "🏠 Home",
-        "🧮 Calculators",
-        "📖 Formula Database",
-        "📊 Break-Even Visualizer",
-        "📕 ACC 402 - Managerial Accounting",
-        "📗 ACC 405 - Tax Accounting"
-    ]
+    pages = ["🏠 Home", "🧮 Calculators", "📖 Formula Database", "📊 Break-Even Visualizer", "📕 ACC 402 - Managerial Accounting", "📗 ACC 405 - Tax Accounting"]
     
     for page_name in pages:
         if st.button(page_name, key=f"nav_{page_name}", use_container_width=True):
@@ -3027,1202 +2580,958 @@ with st.sidebar:
             st.rerun()
     
     st.markdown("---")
-    
-    st.markdown("""
-        <div style='text-align: center; padding: 20px 0;'>
-            <p style='color: #666666; font-size: 0.8em; margin-bottom: 5px;'>Created for</p>
-            <p style='color: #FFFFFF; font-size: 0.9em; font-weight: 500;'>BYU Accounting Students</p>
-            <p style='color: #CFB53B; font-size: 0.75em; margin-top: 10px;'>AI & Data Analytics</p>
-        </div>
-    """, unsafe_allow_html=True)
+    st.markdown("<div style='text-align: center; padding: 20px 0;'><p style='color: #666;'>Created for</p><p style='color: #FFF;'>BYU Accounting Students</p><p style='color: #CFB53B;'>AI & Data Analytics</p></div>", unsafe_allow_html=True)
 
 # ============================================================================
 # MAIN CONTENT AREA
 # ============================================================================
-
 page = st.session_state.selected_page
 
-# --- PAGE 1: HOME ---
+# --- HOME PAGE ---
 if page == "🏠 Home":
-    # Scroll to top
-    st.components.v1.html(
-        """
-        <script>
-            window.parent.document.querySelector('section.main').scrollTo(0, 0);
-        </script>
-        """,
-        height=0
-    )
-    
     st.markdown("<br>", unsafe_allow_html=True)
-    
     st.markdown("""
-        <div style='text-align: center; padding: 40px 20px 40px 20px;'>
-            <div style='margin-bottom: 40px;'>
-                <svg width="220" height="220" viewBox="0 0 220 220" xmlns="http://www.w3.org/2000/svg">
-                    <circle cx="110" cy="110" r="105" fill="#002E5D"/>
-                    <text x="110" y="85" font-size="48" fill="white" text-anchor="middle" font-weight="bold" font-family="Arial, sans-serif">BYU</text>
-                    <text x="110" y="115" font-size="14" fill="#CFB53B" text-anchor="middle" font-family="Arial, sans-serif" letter-spacing="3">MARRIOTT SCHOOL</text>
-                    <line x1="60" y1="130" x2="160" y2="130" stroke="#CFB53B" stroke-width="1" opacity="0.6"/>
-                    <text x="110" y="155" font-size="18" fill="white" text-anchor="middle" font-family="Arial, sans-serif" letter-spacing="4">ACCOUNTING</text>
-                    <text x="110" y="178" font-size="12" fill="#AAAAAA" text-anchor="middle" font-family="Arial, sans-serif" letter-spacing="2">STUDY HUB</text>
-                </svg>
-            </div>
-            <h1 style='color: #FFFFFF; font-size: 3.2em; margin-bottom: 15px; font-weight: 700; letter-spacing: 2px;'>
-                Accounting Study Hub
-            </h1>
-            <p style='color: #CFB53B; font-size: 1.1em; margin-top: 0; font-weight: 600; letter-spacing: 4px; text-transform: uppercase;'>
-                Brigham Young University
-            </p>
-            <p style='color: #888888; font-size: 1em; margin-top: 25px; max-width: 550px; margin-left: auto; margin-right: auto; line-height: 1.7;'>
-                AI-powered study tools designed to help you master managerial accounting concepts and ace your exams.
-            </p>
+        <div style='text-align: center; padding: 40px 20px;'>
+            <svg width="180" height="180" viewBox="0 0 220 220" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="110" cy="110" r="105" fill="#002E5D"/>
+                <text x="110" y="85" font-size="48" fill="white" text-anchor="middle" font-weight="bold">BYU</text>
+                <text x="110" y="115" font-size="14" fill="#CFB53B" text-anchor="middle" letter-spacing="3">MARRIOTT SCHOOL</text>
+                <line x1="60" y1="130" x2="160" y2="130" stroke="#CFB53B" stroke-width="1" opacity="0.6"/>
+                <text x="110" y="155" font-size="18" fill="white" text-anchor="middle" letter-spacing="4">ACCOUNTING</text>
+            </svg>
+            <h1 style='color: #FFFFFF; font-size: 3em; margin: 20px 0 10px 0;'>Accounting Study Hub</h1>
+            <p style='color: #CFB53B; letter-spacing: 4px;'>BRIGHAM YOUNG UNIVERSITY</p>
+            <p style='color: #888; margin-top: 20px; max-width: 500px; margin-left: auto; margin-right: auto;'>AI-powered study tools for ACC 402 Managerial Accounting and ACC 405 Federal Tax Accounting</p>
         </div>
     """, unsafe_allow_html=True)
     
-    st.markdown("""
-        <div style='display: flex; align-items: center; justify-content: center; margin: 40px 0;'>
-            <div style='flex: 1; height: 1px; background: linear-gradient(to right, transparent, #2D2D4A, transparent);'></div>
-        </div>
-    """, unsafe_allow_html=True)
-    
-    st.markdown("""
-        <h2 style='text-align: center; color: #FFFFFF; font-weight: 400; letter-spacing: 1px; margin-bottom: 40px;'>
-            Get Started
-        </h2>
-    """, unsafe_allow_html=True)
+    st.markdown("<h2 style='text-align: center; color: #FFF; margin: 40px 0;'>Get Started</h2>", unsafe_allow_html=True)
     
     col1, col2 = st.columns(2, gap="large")
-    
     with col1:
-        st.markdown("""
-        <div style='
-            background: linear-gradient(145deg, #002E5D, #001A3A);
-            padding: 30px;
-            border-radius: 15px;
-            border: 1px solid #003D7A;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            height: 100%;
-        '>
-            <div style='font-size: 2.5em; margin-bottom: 15px;'>📕</div>
-            <h3 style='color: #FFFFFF; margin-bottom: 10px; font-size: 1.4em; font-weight: 500;'>
-                ACC 402
-            </h3>
-            <p style='color: #CFB53B; font-size: 0.9em; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 1px;'>
-                Managerial Accounting
-            </p>
-            <p style='color: #AAAAAA; font-size: 0.95em; line-height: 1.6;'>
-                AI Tutor with full textbook access covering Chapters 1, 3, 4, 6, and 7. Get instant help with concepts, formulas, and practice problems.
-            </p>
-        </div>
-        """, unsafe_allow_html=True)
-        st.markdown("<br>", unsafe_allow_html=True)
+        st.markdown("""<div style='background: linear-gradient(145deg, #002E5D, #001A3A); padding: 30px; border-radius: 15px; border: 1px solid #003D7A;'>
+            <div style='font-size: 2.5em;'>📕</div>
+            <h3 style='color: #FFF;'>ACC 402</h3>
+            <p style='color: #CFB53B;'>MANAGERIAL ACCOUNTING</p>
+            <p style='color: #AAA;'>AI Tutor with Chapters 1, 3, 4, 6, 7. Cost management, job costing, process costing, cost allocation.</p>
+        </div>""", unsafe_allow_html=True)
         if st.button("Launch ACC 402 →", key="goto_402", use_container_width=True):
             st.session_state.selected_page = "📕 ACC 402 - Managerial Accounting"
             st.rerun()
     
     with col2:
-        st.markdown("""
-        <div style='
-            background: linear-gradient(145deg, #1B5E20, #0D3D12);
-            padding: 30px;
-            border-radius: 15px;
-            border: 1px solid #2E7D32;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            height: 100%;
-        '>
-            <div style='font-size: 2.5em; margin-bottom: 15px;'>📗</div>
-            <h3 style='color: #FFFFFF; margin-bottom: 10px; font-size: 1.4em; font-weight: 500;'>
-                ACC 405
-            </h3>
-            <p style='color: #81C784; font-size: 0.9em; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 1px;'>
-                Tax Accounting
-            </p>
-            <p style='color: #AAAAAA; font-size: 0.95em; line-height: 1.6;'>
-                AI Tutor with full tax textbook access. Get help with tax concepts, calculations, and filing requirements.
-            </p>
-        </div>
-        """, unsafe_allow_html=True)
-        st.markdown("<br>", unsafe_allow_html=True)
+        st.markdown("""<div style='background: linear-gradient(145deg, #1B5E20, #0D3D12); padding: 30px; border-radius: 15px; border: 1px solid #2E7D32;'>
+            <div style='font-size: 2.5em;'>📗</div>
+            <h3 style='color: #FFF;'>ACC 405</h3>
+            <p style='color: #81C784;'>FEDERAL TAX ACCOUNTING</p>
+            <p style='color: #AAA;'>AI Tutor with Chapters 4-6. Tax formula, gross income, deductions, OBBBA provisions.</p>
+        </div>""", unsafe_allow_html=True)
         if st.button("Launch ACC 405 →", key="goto_405", use_container_width=True):
             st.session_state.selected_page = "📗 ACC 405 - Tax Accounting"
             st.rerun()
     
-    st.markdown("<br><br>", unsafe_allow_html=True)
-    
+    st.markdown("<br>", unsafe_allow_html=True)
     col3, col4 = st.columns(2, gap="large")
-    
     with col3:
-        st.markdown("""
-        <div style='
-            background: linear-gradient(145deg, #1A1A2E, #151525);
-            padding: 30px;
-            border-radius: 15px;
-            border: 1px solid #2D2D4A;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            height: 100%;
-        '>
-            <div style='font-size: 2.5em; margin-bottom: 15px;'>🧮</div>
-            <h3 style='color: #FFFFFF; margin-bottom: 10px; font-size: 1.4em; font-weight: 500;'>
-                Calculators
-            </h3>
-            <p style='color: #CFB53B; font-size: 0.9em; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 1px;'>
-                Quick Tools
-            </p>
-            <p style='color: #AAAAAA; font-size: 0.95em; line-height: 1.6;'>
-                Contribution margin, break-even analysis, overhead rates, and more. Get instant answers to common accounting calculations.
-            </p>
-        </div>
-        """, unsafe_allow_html=True)
-        st.markdown("<br>", unsafe_allow_html=True)
+        st.markdown("""<div style='background: linear-gradient(145deg, #1A1A2E, #151525); padding: 30px; border-radius: 15px; border: 1px solid #2D2D4A;'>
+            <div style='font-size: 2.5em;'>🧮</div>
+            <h3 style='color: #FFF;'>Calculators</h3>
+            <p style='color: #CFB53B;'>QUICK TOOLS</p>
+            <p style='color: #AAA;'>CVP analysis, equivalent units, overhead rates, taxable income, OBBBA deductions, and more.</p>
+        </div>""", unsafe_allow_html=True)
         if st.button("Open Calculators →", key="goto_calc", use_container_width=True):
             st.session_state.selected_page = "🧮 Calculators"
             st.rerun()
     
     with col4:
-        st.markdown("""
-        <div style='
-            background: linear-gradient(145deg, #1A1A2E, #151525);
-            padding: 30px;
-            border-radius: 15px;
-            border: 1px solid #2D2D4A;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            height: 100%;
-        '>
-            <div style='font-size: 2.5em; margin-bottom: 15px;'>📖</div>
-            <h3 style='color: #FFFFFF; margin-bottom: 10px; font-size: 1.4em; font-weight: 500;'>
-                Formula Database
-            </h3>
-            <p style='color: #CFB53B; font-size: 0.9em; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 1px;'>
-                Quick Reference
-            </p>
-            <p style='color: #AAAAAA; font-size: 0.95em; line-height: 1.6;'>
-                Searchable database of key accounting formulas. Find exactly what you need for homework and exams.
-            </p>
-        </div>
-        """, unsafe_allow_html=True)
-        st.markdown("<br>", unsafe_allow_html=True)
+        st.markdown("""<div style='background: linear-gradient(145deg, #1A1A2E, #151525); padding: 30px; border-radius: 15px; border: 1px solid #2D2D4A;'>
+            <div style='font-size: 2.5em;'>📖</div>
+            <h3 style='color: #FFF;'>Formula Database</h3>
+            <p style='color: #CFB53B;'>QUICK REFERENCE</p>
+            <p style='color: #AAA;'>Searchable formulas for both ACC 402 and ACC 405 courses.</p>
+        </div>""", unsafe_allow_html=True)
         if st.button("Browse Formulas →", key="goto_formulas", use_container_width=True):
             st.session_state.selected_page = "📖 Formula Database"
             st.rerun()
-    
-    st.markdown("<br><br>", unsafe_allow_html=True)
-    st.markdown("""
-        <div style='text-align: center; padding: 30px 20px; border-top: 1px solid #2D2D4A;'>
-            <p style='color: #555; font-size: 0.85em;'>
-                Built with AI & Data Analytics • BYU Marriott School of Business
-            </p>
-        </div>
-    """, unsafe_allow_html=True)
 
-# --- PAGE 2: CALCULATORS ---
+# --- CALCULATORS PAGE ---
 elif page == "🧮 Calculators":
-    # Scroll to top
-    st.components.v1.html(
-        """
-        <script>
-            window.parent.document.querySelector('section.main').scrollTo(0, 0);
-        </script>
-        """,
-        height=0
-    )
-    
-    st.markdown("""
-        <div class='page-header'>
-            <h1>🧮 Accounting Calculators</h1>
-            <p>Quick calculation tools for common accounting problems</p>
-        </div>
-    """, unsafe_allow_html=True)
+    st.markdown("<div class='page-header'><h1>🧮 Accounting Calculators</h1><p>Quick calculation tools for ACC 402 & ACC 405</p></div>", unsafe_allow_html=True)
     
     if st.button("← Back to Home", key="back_calc"):
         st.session_state.selected_page = "🏠 Home"
         st.rerun()
     
-    st.markdown("<br>", unsafe_allow_html=True)
+    calc_tab1, calc_tab2 = st.tabs(["📕 ACC 402 - Managerial", "📗 ACC 405 - Tax"])
     
-    calc_type = st.selectbox(
-        "Choose a calculator:",
-        ["Contribution Margin", "Break-Even Point (Units)", "Break-Even Point (Dollars)", 
-         "Target Profit", "Overhead Rate"]
-    )
-    
-    st.markdown("<br>", unsafe_allow_html=True)
-    
-    st.markdown("""
-        <div style='
-            background: linear-gradient(145deg, #1A1A2E, #151525);
-            padding: 30px;
-            border-radius: 15px;
-            border: 1px solid #2D2D4A;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            margin-bottom: 20px;
-        '>
-    """, unsafe_allow_html=True)
-    
-    if calc_type == "Contribution Margin":
-        st.subheader("Contribution Margin Calculator")
-        st.markdown("<p style='color: #888888; margin-bottom: 20px;'>Calculate the amount available to cover fixed costs and generate profit.</p>", unsafe_allow_html=True)
+    with calc_tab1:
+        calc_type_402 = st.selectbox("Choose a calculator:", 
+            ["Contribution Margin", "Break-Even Point (Units)", "Break-Even Point (Dollars)", 
+             "Target Profit", "Predetermined Overhead Rate", "Applied Overhead",
+             "Equivalent Units (Weighted-Average)", "Equivalent Units (FIFO)",
+             "Cost of Goods Manufactured", "Prime Costs & Conversion Costs"], key="calc_402")
         
-        col1, col2 = st.columns(2)
-        with col1:
-            sales = st.number_input("Sales ($)", min_value=0.0, value=100000.0, step=1000.0)
-        with col2:
-            var_costs = st.number_input("Variable Costs ($)", min_value=0.0, value=60000.0, step=1000.0)
+        st.markdown("<div style='background: #1A1A2E; padding: 25px; border-radius: 15px; border: 1px solid #2D2D4A; margin-top: 20px;'>", unsafe_allow_html=True)
         
-        if st.button("Calculate", key="cm_calc"):
-            cm = sales - var_costs
-            cm_ratio = (cm / sales * 100) if sales > 0 else 0
-            
-            st.markdown("<br>", unsafe_allow_html=True)
+        if calc_type_402 == "Contribution Margin":
+            st.subheader("Contribution Margin Calculator")
             col1, col2 = st.columns(2)
             with col1:
-                st.success(f"**Contribution Margin:** ${cm:,.2f}")
+                sales = st.number_input("Sales ($)", min_value=0.0, value=100000.0, step=1000.0, key="cm_sales")
             with col2:
+                var_costs = st.number_input("Variable Costs ($)", min_value=0.0, value=60000.0, step=1000.0, key="cm_var")
+            if st.button("Calculate", key="cm_calc"):
+                cm = sales - var_costs
+                cm_ratio = (cm / sales * 100) if sales > 0 else 0
+                st.success(f"**Contribution Margin:** ${cm:,.2f}")
                 st.success(f"**CM Ratio:** {cm_ratio:.2f}%")
+                st.info("**Formula:** CM = Sales - Variable Costs")
+        
+        elif calc_type_402 == "Break-Even Point (Units)":
+            st.subheader("Break-Even Point (Units)")
+            col1, col2 = st.columns(2)
+            with col1:
+                fixed = st.number_input("Fixed Costs ($)", min_value=0.0, value=30000.0, step=1000.0, key="bep_fixed")
+            with col2:
+                cm_unit = st.number_input("CM per Unit ($)", min_value=0.01, value=15.0, step=1.0, key="bep_cm")
+            if st.button("Calculate", key="bep_units"):
+                bep = fixed / cm_unit
+                st.success(f"**Break-Even Point:** {bep:,.0f} units")
+                st.info("**Formula:** BEP = Fixed Costs ÷ CM per Unit")
+        
+        elif calc_type_402 == "Break-Even Point (Dollars)":
+            st.subheader("Break-Even Point (Dollars)")
+            col1, col2 = st.columns(2)
+            with col1:
+                fixed = st.number_input("Fixed Costs ($)", min_value=0.0, value=30000.0, step=1000.0, key="bepd_fixed")
+            with col2:
+                cm_ratio = st.number_input("CM Ratio (%)", min_value=0.01, max_value=100.0, value=40.0, step=1.0, key="bepd_ratio")
+            if st.button("Calculate", key="bep_dollars"):
+                bep = fixed / (cm_ratio / 100)
+                st.success(f"**Break-Even Point:** ${bep:,.2f}")
+                st.info("**Formula:** BEP ($) = Fixed Costs ÷ CM Ratio")
+        
+        elif calc_type_402 == "Target Profit":
+            st.subheader("Target Profit Calculator")
+            col1, col2, col3 = st.columns(3)
+            with col1:
+                fixed = st.number_input("Fixed Costs ($)", min_value=0.0, value=30000.0, step=1000.0, key="tp_fixed")
+            with col2:
+                target = st.number_input("Target Profit ($)", min_value=0.0, value=20000.0, step=1000.0, key="tp_target")
+            with col3:
+                cm_unit = st.number_input("CM per Unit ($)", min_value=0.01, value=15.0, step=1.0, key="tp_cm")
+            if st.button("Calculate", key="target_profit"):
+                units = (fixed + target) / cm_unit
+                st.success(f"**Units Needed:** {units:,.0f} units")
+                st.info("**Formula:** Units = (Fixed Costs + Target Profit) ÷ CM per Unit")
+        
+        elif calc_type_402 == "Predetermined Overhead Rate":
+            st.subheader("Predetermined Overhead Rate")
+            col1, col2 = st.columns(2)
+            with col1:
+                est_oh = st.number_input("Estimated Overhead ($)", min_value=0.0, value=100000.0, step=1000.0, key="oh_est")
+            with col2:
+                est_activity = st.number_input("Estimated Activity (hours)", min_value=1.0, value=20000.0, step=100.0, key="oh_activity")
+            if st.button("Calculate", key="oh_rate"):
+                rate = est_oh / est_activity
+                st.success(f"**Predetermined Overhead Rate:** ${rate:.2f} per hour")
+                st.info("**Formula:** POHR = Estimated Overhead ÷ Estimated Activity")
+        
+        elif calc_type_402 == "Applied Overhead":
+            st.subheader("Applied Overhead Calculator")
+            col1, col2 = st.columns(2)
+            with col1:
+                pohr = st.number_input("Predetermined OH Rate ($/hour)", min_value=0.0, value=5.0, step=0.5, key="app_pohr")
+            with col2:
+                actual_hrs = st.number_input("Actual Hours Worked", min_value=0.0, value=1500.0, step=100.0, key="app_hrs")
+            if st.button("Calculate", key="app_oh"):
+                applied = pohr * actual_hrs
+                st.success(f"**Applied Overhead:** ${applied:,.2f}")
+                st.info("**Formula:** Applied OH = POHR × Actual Activity")
+        
+        elif calc_type_402 == "Equivalent Units (Weighted-Average)":
+            st.subheader("Equivalent Units - Weighted-Average Method")
+            col1, col2 = st.columns(2)
+            with col1:
+                completed = st.number_input("Units Completed & Transferred Out", min_value=0, value=8000, step=100, key="wa_comp")
+                ending_wip = st.number_input("Ending WIP Units", min_value=0, value=4000, step=100, key="wa_end")
+            with col2:
+                pct_complete = st.number_input("Ending WIP % Complete", min_value=0.0, max_value=100.0, value=70.0, step=5.0, key="wa_pct")
+            if st.button("Calculate", key="wa_eu"):
+                ending_eu = ending_wip * (pct_complete / 100)
+                total_eu = completed + ending_eu
+                st.success(f"**Total Equivalent Units:** {total_eu:,.0f}")
+                st.info(f"Calculation: {completed:,} + ({ending_wip:,} × {pct_complete}%) = {total_eu:,.0f}")
+        
+        elif calc_type_402 == "Equivalent Units (FIFO)":
+            st.subheader("Equivalent Units - FIFO Method")
+            col1, col2 = st.columns(2)
+            with col1:
+                beg_wip = st.number_input("Beginning WIP Units", min_value=0, value=5000, step=100, key="fifo_beg")
+                beg_pct = st.number_input("Beginning WIP % Complete (prior period)", min_value=0.0, max_value=100.0, value=20.0, step=5.0, key="fifo_beg_pct")
+                completed = st.number_input("Units Completed & Transferred Out", min_value=0, value=8000, step=100, key="fifo_comp")
+            with col2:
+                ending_wip = st.number_input("Ending WIP Units", min_value=0, value=4000, step=100, key="fifo_end")
+                end_pct = st.number_input("Ending WIP % Complete", min_value=0.0, max_value=100.0, value=70.0, step=5.0, key="fifo_end_pct")
+            if st.button("Calculate", key="fifo_eu"):
+                work_on_beg = beg_wip * ((100 - beg_pct) / 100)
+                started_completed = max(0, completed - beg_wip)
+                ending_eu = ending_wip * (end_pct / 100)
+                total_eu = work_on_beg + started_completed + ending_eu
+                st.success(f"**FIFO Equivalent Units:** {total_eu:,.0f}")
+                st.markdown(f"Work to complete Beg. WIP: {work_on_beg:,.0f} | Started & Completed: {started_completed:,} | Ending WIP: {ending_eu:,.0f}")
+        
+        elif calc_type_402 == "Cost of Goods Manufactured":
+            st.subheader("Cost of Goods Manufactured (COGM)")
+            col1, col2 = st.columns(2)
+            with col1:
+                beg_wip = st.number_input("Beginning WIP ($)", min_value=0.0, value=10000.0, step=1000.0, key="cogm_beg")
+                dm = st.number_input("Direct Materials Used ($)", min_value=0.0, value=50000.0, step=1000.0, key="cogm_dm")
+                dl = st.number_input("Direct Labor ($)", min_value=0.0, value=30000.0, step=1000.0, key="cogm_dl")
+            with col2:
+                oh = st.number_input("Factory Overhead Applied ($)", min_value=0.0, value=20000.0, step=1000.0, key="cogm_oh")
+                end_wip = st.number_input("Ending WIP ($)", min_value=0.0, value=15000.0, step=1000.0, key="cogm_end")
+            if st.button("Calculate", key="cogm_calc"):
+                mfg_costs = dm + dl + oh
+                cogm = beg_wip + mfg_costs - end_wip
+                st.success(f"**Cost of Goods Manufactured:** ${cogm:,.2f}")
+                st.info(f"COGM = ${beg_wip:,.0f} + ${mfg_costs:,.0f} - ${end_wip:,.0f}")
+        
+        elif calc_type_402 == "Prime Costs & Conversion Costs":
+            st.subheader("Prime Costs & Conversion Costs")
+            col1, col2, col3 = st.columns(3)
+            with col1:
+                dm = st.number_input("Direct Materials ($)", min_value=0.0, value=50000.0, step=1000.0, key="pc_dm")
+            with col2:
+                dl = st.number_input("Direct Labor ($)", min_value=0.0, value=30000.0, step=1000.0, key="pc_dl")
+            with col3:
+                oh = st.number_input("Factory Overhead ($)", min_value=0.0, value=20000.0, step=1000.0, key="pc_oh")
+            if st.button("Calculate", key="pc_calc"):
+                prime = dm + dl
+                conversion = dl + oh
+                total = dm + dl + oh
+                col1, col2, col3 = st.columns(3)
+                with col1:
+                    st.success(f"**Prime:** ${prime:,.0f}")
+                with col2:
+                    st.success(f"**Conversion:** ${conversion:,.0f}")
+                with col3:
+                    st.success(f"**Total:** ${total:,.0f}")
+                st.info("Prime = DM + DL | Conversion = DL + OH")
+        
+        st.markdown("</div>", unsafe_allow_html=True)
     
-    elif calc_type == "Break-Even Point (Units)":
-        st.subheader("Break-Even Point (Units)")
-        st.markdown("<p style='color: #888888; margin-bottom: 20px;'>Calculate the number of units needed to cover all costs.</p>", unsafe_allow_html=True)
+    with calc_tab2:
+        calc_type_405 = st.selectbox("Choose a calculator:",
+            ["Taxable Income (Individual)", "Standard vs Itemized Deduction (2025)",
+             "Medical Expense Deduction (7.5% Floor)", "SALT Deduction (OBBBA Cap)",
+             "Capital Gains/Losses", "QBI Deduction", "OBBBA Deductions Calculator",
+             "Annuity Exclusion Ratio", "Social Security Taxability"], key="calc_405")
         
-        col1, col2 = st.columns(2)
-        with col1:
-            fixed = st.number_input("Fixed Costs ($)", min_value=0.0, value=30000.0, step=1000.0)
-        with col2:
-            cm_unit = st.number_input("CM per Unit ($)", min_value=0.01, value=15.0, step=1.0)
+        st.markdown("<div style='background: #1A1A2E; padding: 25px; border-radius: 15px; border: 1px solid #2D2D4A; margin-top: 20px;'>", unsafe_allow_html=True)
         
-        if st.button("Calculate", key="bep_units"):
-            bep = fixed / cm_unit
-            st.markdown("<br>", unsafe_allow_html=True)
-            st.success(f"**Break-Even Point:** {bep:,.0f} units")
-    
-    elif calc_type == "Break-Even Point (Dollars)":
-        st.subheader("Break-Even Point (Dollars)")
-        st.markdown("<p style='color: #888888; margin-bottom: 20px;'>Calculate the sales dollars needed to break even.</p>", unsafe_allow_html=True)
+        if calc_type_405 == "Taxable Income (Individual)":
+            st.subheader("Taxable Income Calculator (2025)")
+            col1, col2 = st.columns(2)
+            with col1:
+                gross_income = st.number_input("Gross Income ($)", min_value=0.0, value=85000.0, step=1000.0, key="ti_gross")
+                for_agi = st.number_input("For AGI Deductions ($)", min_value=0.0, value=3000.0, step=500.0, key="ti_for_agi")
+            with col2:
+                filing_status = st.selectbox("Filing Status", ["Single", "MFJ", "MFS", "HoH"], key="ti_status")
+                itemized = st.number_input("Itemized Deductions ($)", min_value=0.0, value=10000.0, step=500.0, key="ti_itemized")
+            qbi = st.number_input("QBI Deduction ($)", min_value=0.0, value=0.0, step=500.0, key="ti_qbi")
+            if st.button("Calculate", key="ti_calc"):
+                std_ded = {"Single": 15750, "MFJ": 31500, "MFS": 15750, "HoH": 23625}
+                agi = gross_income - for_agi
+                deduction = max(std_ded[filing_status], itemized)
+                ded_type = "Standard" if std_ded[filing_status] >= itemized else "Itemized"
+                taxable = max(0, agi - deduction - qbi)
+                st.success(f"**Taxable Income:** ${taxable:,.2f}")
+                st.markdown(f"AGI: ${agi:,.0f} | {ded_type} Deduction: ${deduction:,}")
         
-        col1, col2 = st.columns(2)
-        with col1:
-            fixed = st.number_input("Fixed Costs ($)", min_value=0.0, value=30000.0, step=1000.0)
-        with col2:
-            cm_ratio = st.number_input("CM Ratio (%)", min_value=0.01, max_value=100.0, value=40.0, step=1.0)
+        elif calc_type_405 == "Standard vs Itemized Deduction (2025)":
+            st.subheader("Standard vs Itemized (2025)")
+            col1, col2 = st.columns(2)
+            with col1:
+                filing_status = st.selectbox("Filing Status", ["Single", "MFJ", "MFS", "HoH", "QSS"], key="std_status")
+                age_65 = st.checkbox("Taxpayer Age 65+", key="std_age")
+                blind = st.checkbox("Taxpayer Blind", key="std_blind")
+                spouse_65 = st.checkbox("Spouse Age 65+ (MFJ)", key="std_spouse_age")
+            with col2:
+                medical = st.number_input("Medical (after 7.5% floor)", min_value=0.0, value=0.0, step=500.0, key="std_med")
+                taxes = st.number_input("State/Local Taxes", min_value=0.0, value=8000.0, step=500.0, key="std_tax")
+                interest = st.number_input("Mortgage Interest", min_value=0.0, value=5000.0, step=500.0, key="std_int")
+                charity = st.number_input("Charitable Contributions", min_value=0.0, value=2000.0, step=500.0, key="std_char")
+            if st.button("Calculate", key="std_calc"):
+                std_base = {"Single": 15750, "MFJ": 31500, "MFS": 15750, "HoH": 23625, "QSS": 31500}
+                std = std_base[filing_status]
+                add_amt = 1600 if filing_status in ["MFJ", "MFS", "QSS"] else 2000
+                if age_65: std += add_amt
+                if blind: std += add_amt
+                if spouse_65 and filing_status == "MFJ": std += add_amt
+                salt_cap = 20000 if filing_status == "MFS" else 40000
+                itemized = medical + min(taxes, salt_cap) + interest + charity
+                col1, col2 = st.columns(2)
+                with col1:
+                    st.metric("Standard Deduction", f"${std:,}")
+                with col2:
+                    st.metric("Itemized Deductions", f"${itemized:,.0f}")
+                if std >= itemized:
+                    st.success(f"✅ Take STANDARD deduction - saves ${std - itemized:,.0f} more")
+                else:
+                    st.success(f"✅ ITEMIZE - saves ${itemized - std:,.0f} more")
         
-        if st.button("Calculate", key="bep_dollars"):
-            bep = fixed / (cm_ratio / 100)
-            st.markdown("<br>", unsafe_allow_html=True)
-            st.success(f"**Break-Even Point:** ${bep:,.2f}")
-    
-    elif calc_type == "Target Profit":
-        st.subheader("Target Profit Calculator")
-        st.markdown("<p style='color: #888888; margin-bottom: 20px;'>Calculate units needed to achieve a target profit.</p>", unsafe_allow_html=True)
+        elif calc_type_405 == "Medical Expense Deduction (7.5% Floor)":
+            st.subheader("Medical Expense Deduction")
+            col1, col2 = st.columns(2)
+            with col1:
+                agi = st.number_input("AGI ($)", min_value=0.0, value=80000.0, step=1000.0, key="med_agi")
+            with col2:
+                medical = st.number_input("Total Medical Expenses ($)", min_value=0.0, value=10000.0, step=500.0, key="med_exp")
+            if st.button("Calculate", key="med_calc"):
+                floor = agi * 0.075
+                deductible = max(0, medical - floor)
+                st.success(f"**Deductible Amount:** ${deductible:,.2f}")
+                st.info(f"7.5% Floor: ${floor:,.2f} | Expenses: ${medical:,.2f}")
         
-        col1, col2, col3 = st.columns(3)
-        with col1:
-            fixed = st.number_input("Fixed Costs ($)", min_value=0.0, value=30000.0, step=1000.0)
-        with col2:
-            target = st.number_input("Target Profit ($)", min_value=0.0, value=20000.0, step=1000.0)
-        with col3:
-            cm_unit = st.number_input("CM per Unit ($)", min_value=0.01, value=15.0, step=1.0)
+        elif calc_type_405 == "SALT Deduction (OBBBA Cap)":
+            st.subheader("SALT Deduction (2025 OBBBA)")
+            col1, col2 = st.columns(2)
+            with col1:
+                state_inc = st.number_input("State/Local Income Taxes ($)", min_value=0.0, value=8000.0, step=500.0, key="salt_inc")
+                property_tax = st.number_input("Real Estate Taxes ($)", min_value=0.0, value=6000.0, step=500.0, key="salt_prop")
+            with col2:
+                personal_prop = st.number_input("Personal Property Taxes ($)", min_value=0.0, value=500.0, step=100.0, key="salt_pers")
+                filing = st.selectbox("Filing Status", ["Single/MFJ/HoH", "MFS"], key="salt_status")
+            if st.button("Calculate", key="salt_calc"):
+                total = state_inc + property_tax + personal_prop
+                cap = 20000 if filing == "MFS" else 40000
+                deductible = min(total, cap)
+                st.success(f"**Deductible SALT:** ${deductible:,.2f}")
+                if total > cap:
+                    st.warning(f"⚠️ ${total - cap:,.0f} exceeds cap and is not deductible")
         
-        if st.button("Calculate", key="target_profit"):
-            units = (fixed + target) / cm_unit
-            st.markdown("<br>", unsafe_allow_html=True)
-            st.success(f"**Units Needed:** {units:,.0f} units")
-    
-    elif calc_type == "Overhead Rate":
-        st.subheader("Predetermined Overhead Rate")
-        st.markdown("<p style='color: #888888; margin-bottom: 20px;'>Calculate the rate used to apply overhead to jobs.</p>", unsafe_allow_html=True)
+        elif calc_type_405 == "Capital Gains/Losses":
+            st.subheader("Capital Gains/Losses Calculator")
+            col1, col2 = st.columns(2)
+            with col1:
+                sales_price = st.number_input("Sales Price ($)", min_value=0.0, value=50000.0, step=1000.0, key="cg_sales")
+                basis = st.number_input("Tax Basis ($)", min_value=0.0, value=30000.0, step=1000.0, key="cg_basis")
+            with col2:
+                holding = st.selectbox("Holding Period", ["Long-term (> 1 year)", "Short-term (≤ 1 year)"], key="cg_hold")
+            if st.button("Calculate", key="cg_calc"):
+                gain = sales_price - basis
+                if gain >= 0:
+                    st.success(f"**Capital Gain:** ${gain:,.2f}")
+                    if "Long-term" in holding:
+                        st.info("Long-term gains taxed at 0%, 15%, or 20% depending on income")
+                    else:
+                        st.info("Short-term gains taxed at ordinary income rates")
+                else:
+                    st.success(f"**Capital Loss:** ${abs(gain):,.2f}")
+                    deductible = min(abs(gain), 3000)
+                    st.info(f"Deductible this year: ${deductible:,} | Carryover: ${max(0, abs(gain)-3000):,.0f}")
         
-        col1, col2 = st.columns(2)
-        with col1:
-            est_oh = st.number_input("Estimated Overhead ($)", min_value=0.0, value=100000.0, step=1000.0)
-        with col2:
-            est_activity = st.number_input("Estimated Activity (hours)", min_value=1.0, value=20000.0, step=100.0)
+        elif calc_type_405 == "QBI Deduction":
+            st.subheader("QBI Deduction Calculator (§199A)")
+            col1, col2 = st.columns(2)
+            with col1:
+                qbi = st.number_input("Qualified Business Income ($)", min_value=0.0, value=100000.0, step=1000.0, key="qbi_income")
+                filing = st.selectbox("Filing Status", ["Single/HoH/MFS", "MFJ"], key="qbi_status")
+            with col2:
+                taxable = st.number_input("Taxable Income (before QBI)", min_value=0.0, value=150000.0, step=1000.0, key="qbi_ti")
+                is_sstb = st.checkbox("Is this an SSTB?", key="qbi_sstb")
+            if st.button("Calculate", key="qbi_calc"):
+                threshold = 394600 if filing == "MFJ" else 197300
+                qbi_ded = min(qbi * 0.20, taxable * 0.20)
+                if taxable <= threshold:
+                    st.success(f"**QBI Deduction:** ${qbi_ded:,.2f}")
+                    st.info("Below threshold - full 20% deduction available")
+                elif is_sstb:
+                    st.warning("⚠️ SSTB income may be limited or excluded above threshold")
+                else:
+                    st.success(f"**Tentative QBI Deduction:** ${qbi_ded:,.2f}")
+                    st.warning("Above threshold - wage-based limitation may apply")
         
-        if st.button("Calculate", key="oh_rate"):
-            rate = est_oh / est_activity
-            st.markdown("<br>", unsafe_allow_html=True)
-            st.success(f"**Overhead Rate:** ${rate:.2f} per hour")
-    
-    st.markdown("</div>", unsafe_allow_html=True)
+        elif calc_type_405 == "OBBBA Deductions Calculator":
+            st.subheader("OBBBA From AGI Deductions (2025-2028)")
+            col1, col2 = st.columns(2)
+            with col1:
+                filing = st.selectbox("Filing Status", ["Single/HoH", "MFJ", "MFS"], key="obbba_status")
+                agi = st.number_input("Modified AGI ($)", min_value=0.0, value=120000.0, step=5000.0, key="obbba_agi")
+                age_65 = st.checkbox("Taxpayer Age 65+", key="obbba_age")
+                spouse_65 = st.checkbox("Spouse Age 65+ (MFJ)", key="obbba_spouse")
+            with col2:
+                tips = st.number_input("Qualified Tips ($)", min_value=0.0, value=0.0, step=1000.0, key="obbba_tips")
+                overtime = st.number_input("Qualified Overtime ($)", min_value=0.0, value=0.0, step=1000.0, key="obbba_ot")
+                car_int = st.number_input("Qualified Car Loan Interest ($)", min_value=0.0, value=0.0, step=500.0, key="obbba_car")
+            if st.button("Calculate", key="obbba_calc"):
+                total = 0
+                # Senior Deduction
+                if filing != "MFS" and (age_65 or spouse_65):
+                    senior_base = 6000 * (int(age_65) + int(spouse_65 and filing == "MFJ"))
+                    threshold = 150000 if filing == "MFJ" else 75000
+                    if agi > threshold:
+                        senior_base = max(0, senior_base - (agi - threshold) * 0.06)
+                    total += senior_base
+                    st.success(f"**Senior Deduction:** ${senior_base:,.2f}")
+                # Tips
+                if filing != "MFS" and tips > 0:
+                    tip_max = min(tips, 25000)
+                    threshold = 300000 if filing == "MFJ" else 150000
+                    if agi > threshold:
+                        tip_max = max(0, tip_max - ((agi - threshold) / 1000) * 100)
+                    total += tip_max
+                    st.success(f"**Tip Deduction:** ${tip_max:,.2f}")
+                # Overtime
+                if filing != "MFS" and overtime > 0:
+                    ot_limit = 25000 if filing == "MFJ" else 12500
+                    ot_max = min(overtime, ot_limit)
+                    threshold = 300000 if filing == "MFJ" else 150000
+                    if agi > threshold:
+                        ot_max = max(0, ot_max - ((agi - threshold) / 1000) * 100)
+                    total += ot_max
+                    st.success(f"**Overtime Deduction:** ${ot_max:,.2f}")
+                # Car Loan Interest
+                if car_int > 0:
+                    car_max = min(car_int, 10000)
+                    threshold = 200000 if filing == "MFJ" else 100000
+                    if agi > threshold:
+                        car_max = max(0, car_max - (((agi - threshold) // 1000) + 1) * 200)
+                    total += car_max
+                    st.success(f"**Car Loan Interest Deduction:** ${car_max:,.2f}")
+                st.markdown("---")
+                st.success(f"### Total OBBBA Deductions: ${total:,.2f}")
+        
+        elif calc_type_405 == "Annuity Exclusion Ratio":
+            st.subheader("Annuity Exclusion Ratio")
+            col1, col2 = st.columns(2)
+            with col1:
+                investment = st.number_input("Original Investment ($)", min_value=0.0, value=100000.0, step=5000.0, key="ann_inv")
+                payment = st.number_input("Annual Payment ($)", min_value=0.0, value=8000.0, step=500.0, key="ann_pmt")
+            with col2:
+                ann_type = st.selectbox("Annuity Type", ["Fixed Period", "Life Annuity"], key="ann_type")
+                if ann_type == "Fixed Period":
+                    num_pmts = st.number_input("Number of Payments", min_value=1, value=20, step=1, key="ann_num")
+                else:
+                    age = st.number_input("Age at Start", min_value=50, max_value=90, value=70, step=1, key="ann_age")
+            if st.button("Calculate", key="ann_calc"):
+                if ann_type == "Fixed Period":
+                    expected = num_pmts * payment
+                else:
+                    multiples = {68: 17.6, 69: 16.8, 70: 16.0, 71: 15.3, 72: 14.6}
+                    mult = multiples.get(age, 16.0)
+                    expected = mult * payment
+                ratio = investment / expected
+                tax_free = payment * ratio
+                taxable = payment - tax_free
+                st.success(f"**Exclusion Ratio:** {ratio:.4f} ({ratio*100:.2f}%)")
+                st.info(f"Per Payment: Tax-Free ${tax_free:,.2f} | Taxable ${taxable:,.2f}")
+        
+        elif calc_type_405 == "Social Security Taxability":
+            st.subheader("Social Security Benefits Taxability")
+            col1, col2 = st.columns(2)
+            with col1:
+                ss = st.number_input("SS Benefits Received ($)", min_value=0.0, value=24000.0, step=1000.0, key="ss_ben")
+                other = st.number_input("Other Income (Modified AGI) ($)", min_value=0.0, value=30000.0, step=1000.0, key="ss_other")
+            with col2:
+                filing = st.selectbox("Filing Status", ["Single/HoH", "MFJ", "MFS"], key="ss_status")
+            if st.button("Calculate", key="ss_calc"):
+                provisional = other + (ss * 0.5)
+                if filing == "MFS":
+                    taxable_ss = ss * 0.85
+                elif filing == "Single/HoH":
+                    if provisional <= 25000:
+                        taxable_ss = 0
+                    elif provisional <= 34000:
+                        taxable_ss = min(ss * 0.5, (provisional - 25000) * 0.5)
+                    else:
+                        taxable_ss = min(ss * 0.85, 4500 + (provisional - 34000) * 0.85)
+                else:
+                    if provisional <= 32000:
+                        taxable_ss = 0
+                    elif provisional <= 44000:
+                        taxable_ss = min(ss * 0.5, (provisional - 32000) * 0.5)
+                    else:
+                        taxable_ss = min(ss * 0.85, 6000 + (provisional - 44000) * 0.85)
+                st.success(f"**Taxable Social Security:** ${taxable_ss:,.2f}")
+                st.info(f"Provisional Income: ${provisional:,.0f}")
+        
+        st.markdown("</div>", unsafe_allow_html=True)
 
-# --- PAGE 3: FORMULA DATABASE ---
+# --- FORMULA DATABASE PAGE ---
 elif page == "📖 Formula Database":
-    # Scroll to top
-    st.components.v1.html(
-        """
-        <script>
-            window.parent.document.querySelector('section.main').scrollTo(0, 0);
-        </script>
-        """,
-        height=0
-    )
-    
-    st.markdown("""
-        <div class='page-header'>
-            <h1>📖 Formula Database</h1>
-            <p>Quick reference for key accounting formulas</p>
-        </div>
-    """, unsafe_allow_html=True)
+    st.markdown("<div class='page-header'><h1>📖 Formula Database</h1><p>Quick reference for key formulas</p></div>", unsafe_allow_html=True)
     
     if st.button("← Back to Home", key="back_formula"):
         st.session_state.selected_page = "🏠 Home"
         st.rerun()
     
-    st.markdown("<br>", unsafe_allow_html=True)
+    search = st.text_input("🔍 Search formulas")
     
-    search = st.text_input("🔍 Search formulas (e.g., 'contribution', 'overhead', 'cost')")
+    formula_tab1, formula_tab2 = st.tabs(["📕 ACC 402 Formulas", "📗 ACC 405 Formulas"])
     
-    formulas = {
-        "Contribution Margin": {
-            "formula": "Sales - Variable Costs",
-            "description": "Amount available to cover fixed costs and profit"
-        },
-        "Contribution Margin Ratio": {
-            "formula": "Contribution Margin ÷ Sales",
-            "description": "Percentage of each sales dollar available for fixed costs"
-        },
-        "Break-Even Point (Units)": {
-            "formula": "Fixed Costs ÷ CM per Unit",
-            "description": "Number of units needed to cover all costs"
-        },
-        "Break-Even Point (Dollars)": {
-            "formula": "Fixed Costs ÷ CM Ratio",
-            "description": "Sales dollars needed to break even"
-        },
-        "Target Profit (Units)": {
-            "formula": "(Fixed Costs + Target Profit) ÷ CM per Unit",
-            "description": "Units needed to achieve desired profit"
-        },
-        "Predetermined Overhead Rate": {
-            "formula": "Estimated Overhead ÷ Estimated Activity",
-            "description": "Rate used to apply overhead to jobs"
-        },
-        "Applied Overhead": {
-            "formula": "Predetermined Rate × Actual Activity",
-            "description": "Overhead allocated to a specific job"
-        },
-        "Prime Costs": {
-            "formula": "Direct Materials + Direct Labor",
-            "description": "Direct costs of production"
-        },
-        "Conversion Costs": {
-            "formula": "Direct Labor + Factory Overhead",
-            "description": "Costs to convert materials into finished goods"
-        },
-        "Cost of Goods Manufactured": {
-            "formula": "Beginning WIP + Manufacturing Costs - Ending WIP",
-            "description": "Total cost of units completed in production"
-        },
-        "Cost of Goods Sold": {
-            "formula": "Beginning FG + COGM - Ending FG",
-            "description": "Cost of inventory sold during the period"
-        },
-        "Equivalent Units (Weighted-Average)": {
-            "formula": "Units Completed + (Ending WIP × % Complete)",
-            "description": "Measures work done in a period"
-        },
-        "Equivalent Units (FIFO)": {
-            "formula": "Work to Complete Beg. WIP + Started & Completed + (Ending WIP × % Complete)",
-            "description": "Measures current period work only"
+    with formula_tab1:
+        formulas_402 = {
+            "Contribution Margin": ("Sales - Variable Costs", "Amount to cover fixed costs and profit", "Ch 3"),
+            "CM Ratio": ("CM ÷ Sales", "% of sales for fixed costs", "Ch 3"),
+            "Break-Even (Units)": ("Fixed Costs ÷ CM per Unit", "Units to cover all costs", "Ch 3"),
+            "Break-Even (Dollars)": ("Fixed Costs ÷ CM Ratio", "Sales $ to break even", "Ch 3"),
+            "Target Profit": ("(Fixed + Target) ÷ CM per Unit", "Units for desired profit", "Ch 3"),
+            "POHR": ("Est. Overhead ÷ Est. Activity", "Rate to apply overhead", "Ch 4"),
+            "Applied Overhead": ("POHR × Actual Activity", "OH allocated to job", "Ch 4"),
+            "Prime Costs": ("DM + DL", "Direct production costs", "Ch 3"),
+            "Conversion Costs": ("DL + OH", "Costs to convert materials", "Ch 3"),
+            "Total Product Cost": ("DM + DL + OH", "Full manufacturing cost", "Ch 3"),
+            "COGM": ("Beg WIP + Mfg Costs - End WIP", "Cost of completed units", "Ch 3"),
+            "COGS": ("Beg FG + COGM - End FG", "Cost of inventory sold", "Ch 3"),
+            "EU (Weighted-Avg)": ("Completed + (End WIP × %)", "Total equivalent units", "Ch 6"),
+            "EU (FIFO)": ("Complete Beg + Started&Completed + End EU", "Current period work", "Ch 6"),
+            "Cost per EU": ("Total Costs ÷ Total EU", "Average cost per EU", "Ch 6"),
         }
-    }
-    
-    st.markdown("<br>", unsafe_allow_html=True)
-    
-    if search:
-        filtered = {k: v for k, v in formulas.items() if search.lower() in k.lower()}
-        if filtered:
-            for name, data in filtered.items():
+        for name, (formula, desc, ch) in formulas_402.items():
+            if not search or search.lower() in name.lower() or search.lower() in desc.lower():
                 with st.expander(f"📐 {name}"):
-                    st.markdown(f"**Formula:**")
-                    st.code(data["formula"], language=None)
-                    st.markdown(f"*{data['description']}*")
-        else:
-            st.warning("No formulas found. Try a different search term.")
-    else:
-        for name, data in formulas.items():
-            with st.expander(f"📐 {name}"):
-                st.markdown(f"**Formula:**")
-                st.code(data["formula"], language=None)
-                st.markdown(f"*{data['description']}*")
-
-# --- PAGE 4: BREAK-EVEN VISUALIZER ---
-elif page == "📊 Break-Even Visualizer":
-    # Scroll to top
-    st.components.v1.html(
-        """
-        <script>
-            window.parent.document.querySelector('section.main').scrollTo(0, 0);
-        </script>
-        """,
-        height=0
-    )
+                    st.code(formula, language=None)
+                    st.markdown(f"*{desc}* | {ch}")
     
-    st.markdown("""
-        <div class='page-header'>
-            <h1>📊 Break-Even Visualizer</h1>
-            <p>Interactive cost-volume-profit analysis</p>
-        </div>
-    """, unsafe_allow_html=True)
+    with formula_tab2:
+        formulas_405 = {
+            "Tax Formula": ("Gross Income - For AGI = AGI - From AGI = Taxable Income", "Individual tax calculation", "Ch 4"),
+            "AGI": ("Gross Income - For AGI Deductions", "Above-the-line result", "Ch 4"),
+            "Taxable Income": ("AGI - (Std or Itemized) - QBI - OBBBA", "Tax base", "Ch 4"),
+            "Standard Deduction 2025": ("Single $15,750 | MFJ $31,500 | HoH $23,625", "+$1,600/$2,000 if 65+/blind", "Ch 6"),
+            "Medical Expense Ded": ("Medical Expenses - (7.5% × AGI)", "Floor limitation", "Ch 6"),
+            "SALT Cap (OBBBA)": ("MIN(SALT, $40,000)", "$20,000 for MFS", "Ch 6"),
+            "Capital Gain/Loss": ("Amount Realized - Tax Basis", "Gain or loss on sale", "Ch 4"),
+            "Net Cap Loss Limit": ("MIN(Net Loss, $3,000)", "$1,500 MFS; excess carries forward", "Ch 4"),
+            "QBI Deduction": ("Lesser of: 20% QBI or 20% TI", "Pass-through deduction", "Ch 6"),
+            "QBI Wage Limit": ("Greater of: 50% W-2 or 25% W-2 + 2.5% Property", "Above $197,300/$394,600", "Ch 6"),
+            "Senior Ded (OBBBA)": ("$6,000 (phase-out 6% over $75k/$150k)", "Age 65+; not for MFS", "Ch 6"),
+            "Tip Ded (OBBBA)": ("Up to $25,000 (phase-out over $150k/$300k)", "Qualified tips; not MFS", "Ch 6"),
+            "Overtime Ded (OBBBA)": ("Up to $12,500/$25,000 (phase-out over $150k/$300k)", "FLSA overtime; not MFS", "Ch 6"),
+            "Car Loan Int (OBBBA)": ("Up to $10,000 (phase-out over $100k/$200k)", "New US vehicle after 2024", "Ch 6"),
+            "Annuity Exclusion": ("Investment ÷ Expected Return", "Tax-free portion per payment", "Ch 5"),
+            "Charitable Limits": ("Cash 60% AGI | Cap Gain Prop 30% AGI", "5-year carryforward", "Ch 6"),
+            "Child Tax Credit": ("$2,200 per child under 17", "$500 other dependents", "Ch 4"),
+            "Qualifying Child": ("Relationship + Age + Residence + Support", "All 4 tests required", "Ch 4"),
+            "Qualifying Relative": ("Relationship + Support (>50%) + Income (<$5,200)", "Not a QC of anyone", "Ch 4"),
+            "SE Tax": ("Net SE × 92.35% × 15.3%", "50% deductible for AGI", "Ch 6"),
+            "Student Loan Int": ("Up to $2,500 (phase-out $85k-$100k)", "For AGI; not for MFS", "Ch 6"),
+        }
+        for name, (formula, desc, ch) in formulas_405.items():
+            if not search or search.lower() in name.lower() or search.lower() in desc.lower():
+                with st.expander(f"📐 {name}"):
+                    st.code(formula, language=None)
+                    st.markdown(f"*{desc}* | {ch}")
+
+
+# --- BREAK-EVEN VISUALIZER PAGE ---
+elif page == "📊 Break-Even Visualizer":
+    st.markdown("<div class='page-header'><h1>📊 Break-Even Visualizer</h1><p>Interactive CVP analysis</p></div>", unsafe_allow_html=True)
     
     if st.button("← Back to Home", key="back_viz"):
         st.session_state.selected_page = "🏠 Home"
         st.rerun()
     
-    st.markdown("<br>", unsafe_allow_html=True)
-    
-    st.markdown("""
-        <div style='
-            background: linear-gradient(145deg, #1A1A2E, #151525);
-            padding: 30px;
-            border-radius: 15px;
-            border: 1px solid #2D2D4A;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            margin-bottom: 30px;
-        '>
-            <h3 style='color: #FFFFFF; margin-bottom: 20px;'>Enter Your Data</h3>
-        </div>
-    """, unsafe_allow_html=True)
+    st.markdown("<div style='background: #1A1A2E; padding: 25px; border-radius: 15px; border: 1px solid #2D2D4A;'>", unsafe_allow_html=True)
     
     col1, col2 = st.columns(2)
-    
     with col1:
-        price = st.number_input("Selling Price per Unit ($)", min_value=0.01, value=50.0, step=1.0)
-        var_cost = st.number_input("Variable Cost per Unit ($)", min_value=0.0, value=30.0, step=1.0)
-    
+        price = st.number_input("Selling Price per Unit ($)", min_value=0.01, value=50.0, step=1.0, key="viz_price")
+        var_cost = st.number_input("Variable Cost per Unit ($)", min_value=0.0, value=30.0, step=1.0, key="viz_var")
     with col2:
-        fixed_costs = st.number_input("Total Fixed Costs ($)", min_value=0.0, value=40000.0, step=1000.0)
-        max_units = st.number_input("Max Units to Display", min_value=100, value=5000, step=100)
-    
-    st.markdown("<br>", unsafe_allow_html=True)
+        fixed_costs = st.number_input("Total Fixed Costs ($)", min_value=0.0, value=40000.0, step=1000.0, key="viz_fixed")
+        max_units = st.number_input("Max Units to Display", min_value=100, value=5000, step=100, key="viz_max")
     
     if st.button("Generate Chart", key="gen_chart", use_container_width=True):
-        units = list(range(0, max_units + 1, 100))
-        revenue = [price * u for u in units]
-        total_cost = [fixed_costs + (var_cost * u) for u in units]
-        
-        fig = go.Figure()
-        
-        fig.add_trace(go.Scatter(x=units, y=revenue, mode='lines', name='Revenue', 
-                                 line=dict(color='#4CAF50', width=3)))
-        fig.add_trace(go.Scatter(x=units, y=total_cost, mode='lines', name='Total Cost', 
-                                 line=dict(color='#F44336', width=3)))
-        
-        bep_units = fixed_costs / (price - var_cost) if price > var_cost else 0
-        bep_revenue = price * bep_units
-        
-        fig.add_trace(go.Scatter(x=[bep_units], y=[bep_revenue], mode='markers', 
-                                 name='Break-Even Point',
-                                 marker=dict(color='#CFB53B', size=15, symbol='diamond')))
-        
-        fig.update_layout(
-            title=dict(text="Break-Even Analysis", font=dict(size=24, color='white')),
-            xaxis_title="Units Sold",
-            yaxis_title="Dollars ($)",
-            hovermode='x unified',
-            plot_bgcolor='#0E1117',
-            paper_bgcolor='#0E1117',
-            font=dict(color='white'),
-            legend=dict(
-                bgcolor='rgba(0,0,0,0)',
-                font=dict(color='white')
-            ),
-            xaxis=dict(gridcolor='#2D2D4A', zerolinecolor='#2D2D4A'),
-            yaxis=dict(gridcolor='#2D2D4A', zerolinecolor='#2D2D4A')
-        )
-        
-        st.plotly_chart(fig, use_container_width=True)
-        
-        col1, col2, col3 = st.columns(3)
-        with col1:
-            st.markdown(f"""
-                <div style='background: linear-gradient(145deg, #002E5D, #001A3A); padding: 20px; border-radius: 12px; text-align: center;'>
-                    <p style='color: #888; margin-bottom: 5px; font-size: 0.9em;'>Break-Even Units</p>
-                    <p style='color: #FFFFFF; font-size: 1.8em; font-weight: 700; margin: 0;'>{bep_units:,.0f}</p>
-                </div>
-            """, unsafe_allow_html=True)
-        with col2:
-            st.markdown(f"""
-                <div style='background: linear-gradient(145deg, #002E5D, #001A3A); padding: 20px; border-radius: 12px; text-align: center;'>
-                    <p style='color: #888; margin-bottom: 5px; font-size: 0.9em;'>Break-Even Revenue</p>
-                    <p style='color: #FFFFFF; font-size: 1.8em; font-weight: 700; margin: 0;'>${bep_revenue:,.0f}</p>
-                </div>
-            """, unsafe_allow_html=True)
-        with col3:
-            cm_per_unit = price - var_cost
-            st.markdown(f"""
-                <div style='background: linear-gradient(145deg, #002E5D, #001A3A); padding: 20px; border-radius: 12px; text-align: center;'>
-                    <p style='color: #888; margin-bottom: 5px; font-size: 0.9em;'>CM per Unit</p>
-                    <p style='color: #FFFFFF; font-size: 1.8em; font-weight: 700; margin: 0;'>${cm_per_unit:,.2f}</p>
-                </div>
-            """, unsafe_allow_html=True)
-
-# --- PAGE 5: ACC 402 AI TUTOR ---
-elif page == "📕 ACC 402 - Managerial Accounting":
-    # Scroll to top
-    st.components.v1.html(
-        """
-        <script>
-            window.parent.document.querySelector('section.main').scrollTo(0, 0);
-        </script>
-        """,
-        height=0
-    )
+        if price <= var_cost:
+            st.error("Selling price must be greater than variable cost!")
+        else:
+            units = list(range(0, max_units + 1, max(1, max_units // 50)))
+            revenue = [price * u for u in units]
+            total_cost = [fixed_costs + (var_cost * u) for u in units]
+            
+            fig = go.Figure()
+            fig.add_trace(go.Scatter(x=units, y=revenue, mode='lines', name='Revenue', line=dict(color='#4CAF50', width=3)))
+            fig.add_trace(go.Scatter(x=units, y=total_cost, mode='lines', name='Total Cost', line=dict(color='#F44336', width=3)))
+            
+            bep_units = fixed_costs / (price - var_cost)
+            bep_revenue = price * bep_units
+            fig.add_trace(go.Scatter(x=[bep_units], y=[bep_revenue], mode='markers', name='Break-Even', marker=dict(color='#CFB53B', size=15, symbol='diamond')))
+            
+            fig.update_layout(
+                title=dict(text="Break-Even Analysis", font=dict(size=24, color='white')),
+                xaxis_title="Units Sold", yaxis_title="Dollars ($)",
+                plot_bgcolor='#0E1117', paper_bgcolor='#0E1117',
+                font=dict(color='white'),
+                legend=dict(bgcolor='rgba(0,0,0,0)', font=dict(color='white')),
+                xaxis=dict(gridcolor='#2D2D4A'), yaxis=dict(gridcolor='#2D2D4A')
+            )
+            st.plotly_chart(fig, use_container_width=True)
+            
+            col1, col2, col3 = st.columns(3)
+            with col1:
+                st.metric("Break-Even Units", f"{bep_units:,.0f}")
+            with col2:
+                st.metric("Break-Even Revenue", f"${bep_revenue:,.0f}")
+            with col3:
+                st.metric("CM per Unit", f"${price - var_cost:,.2f}")
     
-    st.markdown("""
-        <div class='page-header'>
-            <h1>📕 ACC 402 - Managerial Accounting</h1>
-            <p>AI-powered study assistant with full textbook access</p>
-        </div>
-    """, unsafe_allow_html=True)
+    st.markdown("</div>", unsafe_allow_html=True)
+
+# --- ACC 402 AI TUTOR PAGE ---
+elif page == "📕 ACC 402 - Managerial Accounting":
+    st.markdown("<div class='page-header'><h1>📕 ACC 402 - Managerial Accounting</h1><p>AI Tutor with full textbook access</p></div>", unsafe_allow_html=True)
     
     if st.button("← Back to Home", key="back_402"):
         st.session_state.selected_page = "🏠 Home"
         st.rerun()
     
-    st.markdown("<br>", unsafe_allow_html=True)
-    
     tab1, tab2 = st.tabs(["🤖 AI Tutor", "📚 Key Formulas"])
     
     with tab1:
-        st.markdown("""
-            <div style='
-                background: linear-gradient(145deg, #002E5D, #001A3A);
-                padding: 25px;
-                border-radius: 15px;
-                border: 1px solid #003D7A;
-                margin-bottom: 30px;
-            '>
-                <h3 style='color: #FFFFFF; margin-bottom: 10px;'>🤖 Your ACC 402 AI Study Assistant</h3>
-                <p style='color: #AAAAAA; margin: 0;'>This AI tutor has <strong style='color: #CFB53B;'>word-for-word access</strong> to your full textbook (Chapters 1, 3, 4, 6, and 7). Ask anything!</p>
-            </div>
-        """, unsafe_allow_html=True)
+        st.markdown("""<div style='background: linear-gradient(145deg, #002E5D, #001A3A); padding: 20px; border-radius: 15px; margin-bottom: 20px;'>
+            <h3 style='color: #FFF;'>🤖 ACC 402 AI Study Assistant</h3>
+            <p style='color: #AAA;'>Full access to Chapters 1, 3, 4, 6, and 7</p>
+        </div>""", unsafe_allow_html=True)
         
         if 'trigger_ai_call' not in st.session_state:
             st.session_state.trigger_ai_call = False
         
-        st.markdown("<p style='color: #FFFFFF; font-weight: 500; margin-bottom: 15px;'>📖 Quick Topics:</p>", unsafe_allow_html=True)
+        st.markdown("<p style='color: #FFF;'>📖 Quick Topics:</p>", unsafe_allow_html=True)
         topic_cols = st.columns(5)
-        topics = [
-            ("Ch 1", "Summarize the key concepts from Chapter 1 on Management Accounting"),
-            ("Ch 3", "What are the key concepts from Chapter 3 on Basic Cost Management?"),
-            ("Ch 4", "Explain job costing from Chapter 4"),
-            ("Ch 6", "Walk me through process costing from Chapter 6"),
-            ("Ch 7", "Explain cost allocation methods from Chapter 7")
-        ]
+        topics = [("Ch 1", "Summarize Chapter 1 on Management Accounting"),
+                  ("Ch 3", "Explain key concepts from Chapter 3 on Basic Cost Management"),
+                  ("Ch 4", "Explain job costing from Chapter 4"),
+                  ("Ch 6", "Walk me through process costing from Chapter 6"),
+                  ("Ch 7", "Explain cost allocation methods from Chapter 7")]
         for idx, (label, question) in enumerate(topics):
             with topic_cols[idx]:
                 if st.button(label, key=f"topic_{idx}", use_container_width=True):
-                    st.session_state.chat_history_402.append({
-                        'role': 'user',
-                        'content': question
-                    })
+                    st.session_state.chat_history_402.append({'role': 'user', 'content': question})
                     st.session_state.trigger_ai_call = True
                     st.rerun()
         
-        st.markdown("<br>", unsafe_allow_html=True)
-        
         with st.expander("⚙️ AI Settings"):
-            model_choice = st.radio(
-                "Model (Haiku is faster & cheaper, Sonnet is smarter):",
-                ["claude-sonnet-4-20250514", "claude-haiku-3-5-20241022"],
-                index=0,
-                horizontal=True
-            )
-            st.caption("💡 Tip: Use Haiku for simple questions, Sonnet for complex explanations")
+            model_choice = st.radio("Model:", ["claude-sonnet-4-20250514", "claude-haiku-3-5-20241022"], horizontal=True)
         
-        if st.session_state.chat_history_402:
-            for message in st.session_state.chat_history_402:
-                if message['role'] == 'user':
-                    st.markdown(f"""
-                    <div class="user-message">
-                        <strong>🧑‍🎓 You:</strong><br>{message['content']}
-                    </div>
-                    """, unsafe_allow_html=True)
-                else:
-                    st.markdown(f"""
-                    <div class="ai-message">
-                        <strong>🤖 AI Tutor:</strong>
-                    </div>
-                    """, unsafe_allow_html=True)
-                    st.markdown(message['content'])
-            st.markdown("<br>", unsafe_allow_html=True)
-        
-        if 'waiting_for_response' not in st.session_state:
-            st.session_state.waiting_for_response = False
+        for message in st.session_state.chat_history_402:
+            if message['role'] == 'user':
+                st.markdown(f"<div class='user-message'><strong>🧑‍🎓 You:</strong><br>{message['content']}</div>", unsafe_allow_html=True)
+            else:
+                st.markdown(f"<div class='ai-message'><strong>🤖 AI Tutor:</strong></div>", unsafe_allow_html=True)
+                st.markdown(message['content'])
         
         with st.form(key="question_form_402", clear_on_submit=True):
-            user_question = st.text_area(
-                "Ask your question:", 
-                height=100,
-                placeholder="Example: What is the difference between job costing and process costing?",
-                disabled=st.session_state.waiting_for_response
-            )
-            
-            col1, col2 = st.columns([1, 5])
-            with col1:
-                submit_button = st.form_submit_button(
-                    "Send" if not st.session_state.waiting_for_response else "Thinking...", 
-                    type="primary",
-                    disabled=st.session_state.waiting_for_response
-                )
+            user_question = st.text_area("Ask your question:", height=100, placeholder="Example: What's the difference between job and process costing?")
+            submit = st.form_submit_button("Send", type="primary")
         
-        btn_col1, btn_col2, btn_col3 = st.columns([1, 1, 3])
-        
-        with btn_col1:
-            if st.button("🗑️ Clear Chat", key="clear_chat_402"):
+        col1, col2 = st.columns([1, 4])
+        with col1:
+            if st.button("🗑️ Clear Chat", key="clear_402"):
                 st.session_state.chat_history_402 = []
-                st.success("Chat cleared!")
                 st.rerun()
-        
-        with btn_col2:
+        with col2:
             if st.session_state.chat_history_402:
-                chat_export = "\n\n".join([
-                    f"{'You' if m['role'] == 'user' else 'AI Tutor'}: {m['content']}" 
-                    for m in st.session_state.chat_history_402
-                ])
-                st.download_button(
-                    "📥 Export Chat",
-                    chat_export,
-                    file_name="acc402_study_session.txt",
-                    mime="text/plain"
-                )
+                export = "\n\n".join([f"{'You' if m['role']=='user' else 'AI'}: {m['content']}" for m in st.session_state.chat_history_402])
+                st.download_button("📥 Export", export, "acc402_chat.txt", "text/plain")
         
-        should_call_api = False
-        
-        if submit_button and user_question.strip():
-            st.session_state.chat_history_402.append({
-                'role': 'user',
-                'content': user_question
-            })
-            should_call_api = True
-        
+        should_call = False
+        if submit and user_question.strip():
+            st.session_state.chat_history_402.append({'role': 'user', 'content': user_question})
+            should_call = True
         if st.session_state.trigger_ai_call:
-            should_call_api = True
+            should_call = True
             st.session_state.trigger_ai_call = False
         
-        if should_call_api and st.session_state.chat_history_402:
-            if st.session_state.chat_history_402[-1]['role'] == 'user':
-                try:
-                    api_key = st.secrets["ANTHROPIC_API_KEY"]
-                    
-                    system_prompt = f"""You are the Managerial Accounting Master Tutor, a specialized AI expert designed to help a junior-level accounting student master the material in their textbook.
-
-Your goal is to provide clear, accurate, and exam-focused guidance based strictly on the textbook data provided below.
-
-CORE RESPONSIBILITIES:
-1. Knowledge Retrieval: Use the provided textbook content as your primary source of truth
-2. Concept Simplification: Use the Feynman Technique - explain simply, then provide practical examples
-3. Problem Solving: For math problems, walk through solutions step-by-step
-4. Exam Prep: Create practice questions when asked
-
-FORMATTING GUIDELINES:
-- Use LaTeX for formulas (e.g., $$\\text{{BEP}} = \\frac{{\\text{{Fixed Costs}}}}{{\\text{{CM per Unit}}}}$$)
-- Use bolding for key terms
-- Use bullet points for lists
-- Use tables for comparisons
-- Be professional, encouraging, and academically rigorous
-
-INTERACTION PROTOCOLS:
-- If the student is confused, ask clarifying questions
-- Check their work and point out errors
-- Always cite which chapter/section you're referencing
-
-{FULL_TEXTBOOK_CONTENT}
-
-Now answer the student's question based on this textbook content."""
-                    
-                    with st.spinner("🤔 Thinking..."):
-                        headers = {
-                            "Content-Type": "application/json",
-                            "x-api-key": api_key,
-                            "anthropic-version": "2023-06-01"
-                        }
-                        
-                        api_messages = []
-                        for msg in st.session_state.chat_history_402:
-                            api_messages.append({
-                                "role": msg['role'],
-                                "content": msg['content']
-                            })
-                        
-                        data = {
-                            "model": model_choice,
-                            "max_tokens": 4096,
-                            "system": system_prompt,
-                            "messages": api_messages
-                        }
-                        
-                        try:
-                            response = requests.post(
-                                "https://api.anthropic.com/v1/messages",
-                                headers=headers,
-                                json=data,
-                                timeout=60
-                            )
-                            
-                            if response.status_code == 200:
-                                response_data = response.json()
-                                
-                                if response_data.get('content') and len(response_data['content']) > 0:
-                                    ai_message = response_data['content'][0]['text']
-                                else:
-                                    ai_message = "I'm sorry, I couldn't generate a response. Please try again."
-                                
-                                st.session_state.chat_history_402.append({
-                                    'role': 'assistant',
-                                    'content': ai_message
-                                })
-                                st.rerun()
-                            else:
-                                st.error(f"❌ API Error: {response.status_code}")
-                                st.code(response.text)
-                        
-                        except requests.exceptions.Timeout:
-                            st.error("❌ Request timed out. Please try again.")
-                        except requests.exceptions.RequestException as e:
-                            st.error(f"❌ Network error: {str(e)}")
-                        except Exception as e:
-                            st.error(f"❌ Error calling API: {str(e)}")
+        if should_call and st.session_state.chat_history_402 and st.session_state.chat_history_402[-1]['role'] == 'user':
+            try:
+                api_key = st.secrets["ANTHROPIC_API_KEY"]
+                system_prompt = f"""You are the Managerial Accounting Master Tutor for ACC 402. Use the textbook content below as your primary source.
                 
-                except KeyError:
-                    st.error("⚠️ API key not found. Please add your Anthropic API key to Streamlit secrets.")
-                    st.info("Add this to `.streamlit/secrets.toml`:")
-                    st.code('ANTHROPIC_API_KEY = "your-key-here"')
+GUIDELINES:
+- Use LaTeX for formulas (e.g., $$BEP = \\frac{{Fixed}}{{CM}}$$)
+- Bold key terms, use bullet points for lists
+- Walk through calculations step-by-step
+- Cite chapters when referencing content
+- Be encouraging and academically rigorous
+
+{FULL_TEXTBOOK_CONTENT}"""
+                
+                with st.spinner("🤔 Thinking..."):
+                    response = requests.post(
+                        "https://api.anthropic.com/v1/messages",
+                        headers={"Content-Type": "application/json", "x-api-key": api_key, "anthropic-version": "2023-06-01"},
+                        json={"model": model_choice, "max_tokens": 4096, "system": system_prompt,
+                              "messages": [{"role": m['role'], "content": m['content']} for m in st.session_state.chat_history_402]},
+                        timeout=60
+                    )
+                    if response.status_code == 200:
+                        ai_msg = response.json()['content'][0]['text']
+                        st.session_state.chat_history_402.append({'role': 'assistant', 'content': ai_msg})
+                        st.rerun()
+                    else:
+                        st.error(f"API Error: {response.status_code}")
+            except KeyError:
+                st.error("⚠️ API key not found. Add ANTHROPIC_API_KEY to secrets.")
+            except Exception as e:
+                st.error(f"Error: {str(e)}")
         
-        st.markdown("<br>", unsafe_allow_html=True)
-        st.markdown("<p style='color: #FFFFFF; font-weight: 500;'>💡 Suggested Questions:</p>", unsafe_allow_html=True)
-        
-        suggestions = [
-            "What's the difference between job costing and process costing?",
-            "How do I calculate equivalent units using the FIFO method?",
-            "Explain the reciprocal method of cost allocation",
-            "What is the difference between variable and fixed costs?",
-            "Walk me through the 5-step production cost report"
-        ]
-        
+        st.markdown("<p style='color: #FFF;'>💡 Suggested Questions:</p>", unsafe_allow_html=True)
+        suggestions = ["What's the difference between job costing and process costing?",
+                       "How do I calculate equivalent units using FIFO?",
+                       "Explain the reciprocal method of cost allocation",
+                       "What are prime costs vs conversion costs?",
+                       "Walk me through a production cost report"]
         cols = st.columns(2)
-        for idx, suggestion in enumerate(suggestions):
+        for idx, s in enumerate(suggestions):
             with cols[idx % 2]:
-                if st.button(f"📌 {suggestion}", key=f"suggest_{idx}"):
-                    st.session_state.chat_history_402.append({
-                        'role': 'user',
-                        'content': suggestion
-                    })
+                if st.button(f"📌 {s[:40]}...", key=f"sug_{idx}"):
+                    st.session_state.chat_history_402.append({'role': 'user', 'content': s})
                     st.session_state.trigger_ai_call = True
                     st.rerun()
     
     with tab2:
-        st.markdown("""
-            <div style='
-                background: linear-gradient(145deg, #1A1A2E, #151525);
-                padding: 25px;
-                border-radius: 15px;
-                border: 1px solid #2D2D4A;
-                margin-bottom: 30px;
-            '>
-                <h3 style='color: #FFFFFF; margin-bottom: 10px;'>📚 Key Formulas & Concepts</h3>
-                <p style='color: #AAAAAA; margin: 0;'>Quick reference for essential managerial accounting formulas</p>
-            </div>
-        """, unsafe_allow_html=True)
-        
-        with st.expander("📐 Contribution Margin", expanded=True):
-            st.markdown("**Formula:** `Contribution Margin = Sales - Variable Costs`")
-            st.markdown("*Amount available to cover fixed costs and profit*")
-            st.code("Example: $100,000 - $60,000 = $40,000", language=None)
-        
-        with st.expander("📐 Contribution Margin Ratio"):
-            st.markdown("**Formula:** `CM Ratio = Contribution Margin / Sales`")
-            st.markdown("*Percentage of each sales dollar available for fixed costs*")
-            st.code("Example: $40,000 / $100,000 = 40%", language=None)
-        
-        with st.expander("📐 Break-Even Point (Units)"):
-            st.markdown("**Formula:** `BEP (Units) = Fixed Costs / CM per Unit`")
-            st.markdown("*Number of units needed to cover all costs*")
-            st.code("Example: $30,000 / $15 = 2,000 units", language=None)
-        
-        with st.expander("📐 Break-Even Point (Dollars)"):
-            st.markdown("**Formula:** `BEP ($) = Fixed Costs / CM Ratio`")
-            st.markdown("*Sales dollars needed to break even*")
-            st.code("Example: $30,000 / 0.40 = $75,000", language=None)
-        
-        with st.expander("📐 Predetermined Overhead Rate"):
-            st.markdown("**Formula:** `Rate = Estimated Overhead / Estimated Activity`")
-            st.markdown("*Used to apply overhead to jobs*")
-            st.code("Example: $100,000 / 20,000 hours = $5/hour", language=None)
-        
-        with st.expander("📐 Equivalent Units (Weighted-Average)"):
-            st.markdown("**Formula:** `EU = Units Completed + (Ending WIP × % Complete)`")
-            st.markdown("*Measures work done in a period*")
-            st.code("Example: 44,000 + (6,000 × 50%) = 47,000 EU", language=None)
-        
-        with st.expander("📐 Cost of Goods Manufactured"):
-            st.markdown("**Formula:** `COGM = Beg. WIP + Manufacturing Costs - Ending WIP`")
-            st.markdown("*Total cost of units completed in production*")
-        
-        with st.expander("📐 Prime Costs vs Conversion Costs"):
-            st.markdown("**Prime Costs:** `Direct Materials + Direct Labor`")
-            st.markdown("**Conversion Costs:** `Direct Labor + Factory Overhead`")
-            st.markdown("*Prime costs are direct inputs; conversion costs transform materials into finished goods*")
+        st.markdown("<h3>📚 Key ACC 402 Formulas</h3>", unsafe_allow_html=True)
+        formulas = [
+            ("Contribution Margin", "Sales - Variable Costs"),
+            ("CM Ratio", "CM ÷ Sales"),
+            ("Break-Even (Units)", "Fixed Costs ÷ CM per Unit"),
+            ("Break-Even ($)", "Fixed Costs ÷ CM Ratio"),
+            ("Target Profit", "(Fixed + Target) ÷ CM per Unit"),
+            ("POHR", "Est. Overhead ÷ Est. Activity"),
+            ("Applied OH", "POHR × Actual Activity"),
+            ("Prime Costs", "DM + DL"),
+            ("Conversion Costs", "DL + OH"),
+            ("COGM", "Beg WIP + Mfg Costs - End WIP"),
+            ("COGS", "Beg FG + COGM - End FG"),
+            ("EU (Weighted-Avg)", "Completed + (End WIP × %)"),
+            ("EU (FIFO)", "Complete Beg + Started&Completed + End EU"),
+        ]
+        for name, formula in formulas:
+            with st.expander(f"📐 {name}"):
+                st.code(formula, language=None)
 
-# --- PAGE 6: ACC 405 TAX ACCOUNTING ---
+# --- ACC 405 AI TUTOR PAGE ---
 elif page == "📗 ACC 405 - Tax Accounting":
-    # Scroll to top
-    st.components.v1.html(
-        """
-        <script>
-            window.parent.document.querySelector('section.main').scrollTo(0, 0);
-        </script>
-        """,
-        height=0
-    )
-    
-    st.markdown("""
-        <div class='page-header'>
-            <h1>📗 ACC 405 - Tax Accounting</h1>
-            <p>AI-powered study assistant with full textbook access</p>
-        </div>
-    """, unsafe_allow_html=True)
+    st.markdown("<div class='page-header'><h1>📗 ACC 405 - Federal Tax Accounting</h1><p>AI Tutor with full textbook access</p></div>", unsafe_allow_html=True)
     
     if st.button("← Back to Home", key="back_405"):
         st.session_state.selected_page = "🏠 Home"
         st.rerun()
     
-    st.markdown("<br>", unsafe_allow_html=True)
-    
     tab1, tab2 = st.tabs(["🤖 AI Tutor", "📚 Key Concepts"])
     
     with tab1:
-        st.markdown("""
-            <div style='
-                background: linear-gradient(145deg, #1B5E20, #0D3D12);
-                padding: 25px;
-                border-radius: 15px;
-                border: 1px solid #2E7D32;
-                margin-bottom: 30px;
-            '>
-                <h3 style='color: #FFFFFF; margin-bottom: 10px;'>🤖 Your ACC 405 AI Study Assistant</h3>
-                <p style='color: #AAAAAA; margin: 0;'>This AI tutor has <strong style='color: #81C784;'>word-for-word access</strong> to your full tax accounting textbook. Ask anything!</p>
-            </div>
-        """, unsafe_allow_html=True)
+        st.markdown("""<div style='background: linear-gradient(145deg, #1B5E20, #0D3D12); padding: 20px; border-radius: 15px; margin-bottom: 20px;'>
+            <h3 style='color: #FFF;'>🤖 ACC 405 AI Study Assistant</h3>
+            <p style='color: #AAA;'>Full access to Chapters 4-6 including OBBBA provisions</p>
+        </div>""", unsafe_allow_html=True)
         
         if 'trigger_ai_call_405' not in st.session_state:
             st.session_state.trigger_ai_call_405 = False
         
-        st.markdown("<p style='color: #FFFFFF; font-weight: 500; margin-bottom: 15px;'>📖 Quick Topics:</p>", unsafe_allow_html=True)
+        st.markdown("<p style='color: #FFF;'>📖 Quick Topics:</p>", unsafe_allow_html=True)
         topic_cols = st.columns(5)
-        topics_405 = [
-            ("Filing Status", "Explain the different filing statuses and when to use each one"),
-            ("Deductions", "What is the difference between standard and itemized deductions?"),
-            ("Credits", "Explain the major tax credits available to individuals"),
-            ("Income", "What types of income are taxable vs non-taxable?"),
-            ("Capital Gains", "Explain how capital gains and losses are taxed")
-        ]
+        topics_405 = [("Ch 4", "Explain the individual income tax formula from Chapter 4"),
+                      ("Ch 5", "What are the key exclusions from gross income in Chapter 5?"),
+                      ("Ch 6", "Walk me through itemized deductions from Chapter 6"),
+                      ("QBI", "Explain the Qualified Business Income (QBI) deduction"),
+                      ("OBBBA", "What are the new OBBBA deductions for 2025?")]
         for idx, (label, question) in enumerate(topics_405):
             with topic_cols[idx]:
                 if st.button(label, key=f"topic_405_{idx}", use_container_width=True):
-                    st.session_state.chat_history_405.append({
-                        'role': 'user',
-                        'content': question
-                    })
+                    st.session_state.chat_history_405.append({'role': 'user', 'content': question})
                     st.session_state.trigger_ai_call_405 = True
                     st.rerun()
         
-        st.markdown("<br>", unsafe_allow_html=True)
-        
         with st.expander("⚙️ AI Settings"):
-            model_choice_405 = st.radio(
-                "Model (Haiku is faster & cheaper, Sonnet is smarter):",
-                ["claude-sonnet-4-20250514", "claude-haiku-3-5-20241022"],
-                index=0,
-                horizontal=True,
-                key="model_405"
-            )
-            st.caption("💡 Tip: Use Haiku for simple questions, Sonnet for complex explanations")
+            model_choice_405 = st.radio("Model:", ["claude-sonnet-4-20250514", "claude-haiku-3-5-20241022"], horizontal=True, key="model_405")
         
-        if st.session_state.chat_history_405:
-            for message in st.session_state.chat_history_405:
-                if message['role'] == 'user':
-                    st.markdown(f"""
-                    <div class="user-message">
-                        <strong>🧑‍🎓 You:</strong><br>{message['content']}
-                    </div>
-                    """, unsafe_allow_html=True)
-                else:
-                    st.markdown(f"""
-                    <div class="ai-message">
-                        <strong>🤖 AI Tutor:</strong>
-                    </div>
-                    """, unsafe_allow_html=True)
-                    st.markdown(message['content'])
-            st.markdown("<br>", unsafe_allow_html=True)
-        
-        if 'waiting_for_response_405' not in st.session_state:
-            st.session_state.waiting_for_response_405 = False
+        for message in st.session_state.chat_history_405:
+            if message['role'] == 'user':
+                st.markdown(f"<div class='user-message'><strong>🧑‍🎓 You:</strong><br>{message['content']}</div>", unsafe_allow_html=True)
+            else:
+                st.markdown(f"<div class='ai-message'><strong>🤖 AI Tutor:</strong></div>", unsafe_allow_html=True)
+                st.markdown(message['content'])
         
         with st.form(key="question_form_405", clear_on_submit=True):
-            user_question_405 = st.text_area(
-                "Ask your question:", 
-                height=100,
-                placeholder="Example: How do I calculate adjusted gross income?",
-                disabled=st.session_state.waiting_for_response_405,
-                key="question_input_405"
-            )
-            
-            col1, col2 = st.columns([1, 5])
-            with col1:
-                submit_button_405 = st.form_submit_button(
-                    "Send" if not st.session_state.waiting_for_response_405 else "Thinking...", 
-                    type="primary",
-                    disabled=st.session_state.waiting_for_response_405
-                )
+            user_question_405 = st.text_area("Ask your question:", height=100, placeholder="Example: How do I calculate AGI?", key="q_405")
+            submit_405 = st.form_submit_button("Send", type="primary")
         
-        btn_col1, btn_col2, btn_col3 = st.columns([1, 1, 3])
-        
-        with btn_col1:
-            if st.button("🗑️ Clear Chat", key="clear_chat_405"):
+        col1, col2 = st.columns([1, 4])
+        with col1:
+            if st.button("🗑️ Clear Chat", key="clear_405"):
                 st.session_state.chat_history_405 = []
-                st.success("Chat cleared!")
                 st.rerun()
-        
-        with btn_col2:
+        with col2:
             if st.session_state.chat_history_405:
-                chat_export_405 = "\n\n".join([
-                    f"{'You' if m['role'] == 'user' else 'AI Tutor'}: {m['content']}" 
-                    for m in st.session_state.chat_history_405
-                ])
-                st.download_button(
-                    "📥 Export Chat",
-                    chat_export_405,
-                    file_name="acc405_study_session.txt",
-                    mime="text/plain",
-                    key="export_405"
-                )
+                export = "\n\n".join([f"{'You' if m['role']=='user' else 'AI'}: {m['content']}" for m in st.session_state.chat_history_405])
+                st.download_button("📥 Export", export, "acc405_chat.txt", "text/plain", key="export_405")
         
-        should_call_api_405 = False
-        
-        if submit_button_405 and user_question_405.strip():
-            st.session_state.chat_history_405.append({
-                'role': 'user',
-                'content': user_question_405
-            })
-            should_call_api_405 = True
-        
+        should_call_405 = False
+        if submit_405 and user_question_405.strip():
+            st.session_state.chat_history_405.append({'role': 'user', 'content': user_question_405})
+            should_call_405 = True
         if st.session_state.trigger_ai_call_405:
-            should_call_api_405 = True
+            should_call_405 = True
             st.session_state.trigger_ai_call_405 = False
         
-        if should_call_api_405 and st.session_state.chat_history_405:
-            if st.session_state.chat_history_405[-1]['role'] == 'user':
-                try:
-                    api_key = st.secrets["ANTHROPIC_API_KEY"]
-                    
-                    system_prompt_405 = f"""You are the Tax Accounting Master Tutor, a specialized AI expert designed to help a student master federal tax accounting material.
+        if should_call_405 and st.session_state.chat_history_405 and st.session_state.chat_history_405[-1]['role'] == 'user':
+            try:
+                api_key = st.secrets["ANTHROPIC_API_KEY"]
+                system_prompt_405 = f"""You are the Tax Accounting Master Tutor for ACC 405. Use the textbook content below as your primary source.
 
-Your goal is to provide clear, accurate, and exam-focused guidance based strictly on the textbook data provided below.
+GUIDELINES:
+- Teach through the Tax Formula (Gross Income → AGI → Deductions → Taxable Income)
+- Clarify if deductions are For AGI (above-the-line) or From AGI (below-the-line)
+- Use tables for tax brackets and phase-outs
+- Walk through calculations step-by-step
+- Reference IRC sections when mentioned in text
+- Cite chapters when referencing content
 
-CORE RESPONSIBILITIES:
-1. Knowledge Retrieval: Use the provided textbook content as your primary source of truth
-2. Concept Simplification: Use the Feynman Technique - explain simply, then provide practical examples
-3. Problem Solving: For tax calculations, walk through solutions step-by-step
-4. Exam Prep: Create practice questions when asked
-
-FORMATTING GUIDELINES:
-- Use clear formatting for tax calculations and examples
-- Use bolding for key terms
-- Use bullet points for lists of requirements or qualifications
-- Use tables for tax brackets, phase-outs, and comparisons
-- Be professional, encouraging, and academically rigorous
-
-INTERACTION PROTOCOLS:
-- If the student is confused, ask clarifying questions
-- Check their work and point out errors
-- Always cite which chapter/section you're referencing
-- Reference current tax law and note any recent changes
-
-{FULL_TAX_TEXTBOOK_CONTENT}
-
-Now answer the student's question based on this textbook content."""
-                    
-                    with st.spinner("🤔 Thinking..."):
-                        headers = {
-                            "Content-Type": "application/json",
-                            "x-api-key": api_key,
-                            "anthropic-version": "2023-06-01"
-                        }
-                        
-                        api_messages_405 = []
-                        for msg in st.session_state.chat_history_405:
-                            api_messages_405.append({
-                                "role": msg['role'],
-                                "content": msg['content']
-                            })
-                        
-                        data = {
-                            "model": model_choice_405,
-                            "max_tokens": 4096,
-                            "system": system_prompt_405,
-                            "messages": api_messages_405
-                        }
-                        
-                        try:
-                            response = requests.post(
-                                "https://api.anthropic.com/v1/messages",
-                                headers=headers,
-                                json=data,
-                                timeout=60
-                            )
-                            
-                            if response.status_code == 200:
-                                response_data = response.json()
-                                
-                                if response_data.get('content') and len(response_data['content']) > 0:
-                                    ai_message = response_data['content'][0]['text']
-                                else:
-                                    ai_message = "I'm sorry, I couldn't generate a response. Please try again."
-                                
-                                st.session_state.chat_history_405.append({
-                                    'role': 'assistant',
-                                    'content': ai_message
-                                })
-                                st.rerun()
-                            else:
-                                st.error(f"❌ API Error: {response.status_code}")
-                                st.code(response.text)
-                        
-                        except requests.exceptions.Timeout:
-                            st.error("❌ Request timed out. Please try again.")
-                        except requests.exceptions.RequestException as e:
-                            st.error(f"❌ Network error: {str(e)}")
-                        except Exception as e:
-                            st.error(f"❌ Error calling API: {str(e)}")
+{FULL_TAX_TEXTBOOK_CONTENT}"""
                 
-                except KeyError:
-                    st.error("⚠️ API key not found. Please add your Anthropic API key to Streamlit secrets.")
-                    st.info("Add this to `.streamlit/secrets.toml`:")
-                    st.code('ANTHROPIC_API_KEY = "your-key-here"')
+                with st.spinner("🤔 Thinking..."):
+                    response = requests.post(
+                        "https://api.anthropic.com/v1/messages",
+                        headers={"Content-Type": "application/json", "x-api-key": api_key, "anthropic-version": "2023-06-01"},
+                        json={"model": model_choice_405, "max_tokens": 4096, "system": system_prompt_405,
+                              "messages": [{"role": m['role'], "content": m['content']} for m in st.session_state.chat_history_405]},
+                        timeout=60
+                    )
+                    if response.status_code == 200:
+                        ai_msg = response.json()['content'][0]['text']
+                        st.session_state.chat_history_405.append({'role': 'assistant', 'content': ai_msg})
+                        st.rerun()
+                    else:
+                        st.error(f"API Error: {response.status_code}")
+            except KeyError:
+                st.error("⚠️ API key not found. Add ANTHROPIC_API_KEY to secrets.")
+            except Exception as e:
+                st.error(f"Error: {str(e)}")
         
-        st.markdown("<br>", unsafe_allow_html=True)
-        st.markdown("<p style='color: #FFFFFF; font-weight: 500;'>💡 Suggested Questions:</p>", unsafe_allow_html=True)
-        
-        suggestions_405 = [
-            "What is the difference between a tax deduction and a tax credit?",
-            "How do I determine my filing status?",
-            "What expenses can be itemized on Schedule A?",
-            "Explain the rules for qualifying dependents",
-            "How are long-term capital gains taxed differently than ordinary income?"
-        ]
-        
+        st.markdown("<p style='color: #FFF;'>💡 Suggested Questions:</p>", unsafe_allow_html=True)
+        suggestions_405 = ["What is the difference between for AGI and from AGI deductions?",
+                           "Explain the qualifying child vs qualifying relative tests",
+                           "How does the QBI deduction work and what are SSTBs?",
+                           "What items are excluded from gross income?",
+                           "Walk me through the SALT limitation under OBBBA"]
         cols = st.columns(2)
-        for idx, suggestion in enumerate(suggestions_405):
+        for idx, s in enumerate(suggestions_405):
             with cols[idx % 2]:
-                if st.button(f"📌 {suggestion}", key=f"suggest_405_{idx}"):
-                    st.session_state.chat_history_405.append({
-                        'role': 'user',
-                        'content': suggestion
-                    })
+                if st.button(f"📌 {s[:40]}...", key=f"sug_405_{idx}"):
+                    st.session_state.chat_history_405.append({'role': 'user', 'content': s})
                     st.session_state.trigger_ai_call_405 = True
                     st.rerun()
     
     with tab2:
-        st.markdown("""
-            <div style='
-                background: linear-gradient(145deg, #1A1A2E, #151525);
-                padding: 25px;
-                border-radius: 15px;
-                border: 1px solid #2D2D4A;
-                margin-bottom: 30px;
-            '>
-                <h3 style='color: #FFFFFF; margin-bottom: 10px;'>📚 Key Tax Concepts & Formulas</h3>
-                <p style='color: #AAAAAA; margin: 0;'>Quick reference for essential tax accounting concepts</p>
-            </div>
-        """, unsafe_allow_html=True)
+        st.markdown("<h3>📚 Key ACC 405 Concepts (2025)</h3>", unsafe_allow_html=True)
         
-        with st.expander("📐 Tax Formula (Individual)", expanded=True):
-            st.markdown("**Formula:**")
+        with st.expander("📐 Individual Tax Formula - Chapter 4", expanded=True):
             st.code("""Gross Income
-- Adjustments (Above-the-Line Deductions)
-= Adjusted Gross Income (AGI)
-- Standard Deduction OR Itemized Deductions
-- Qualified Business Income Deduction (if applicable)
+- For AGI Deductions
+= AGI
+- From AGI Deductions (Standard/Itemized + QBI + OBBBA)
 = Taxable Income
-× Tax Rate(s)
+× Tax Rates
 = Tax Liability
-- Tax Credits
-+ Other Taxes (Self-Employment, etc.)
-= Total Tax
-- Payments & Withholdings
-= Tax Due or Refund""", language=None)
+- Credits - Prepayments
+= Tax Due / Refund""", language=None)
         
-        with st.expander("📐 Adjusted Gross Income (AGI)"):
-            st.markdown("**Formula:** `AGI = Gross Income - Above-the-Line Deductions`")
-            st.markdown("*Above-the-line deductions include: Student loan interest, IRA contributions, HSA contributions, Self-employment tax (50%), Alimony paid (pre-2019 agreements)*")
+        with st.expander("📐 Standard Deduction (2025)"):
+            st.code("""Single: $15,750
+MFJ/QSS: $31,500
+MFS: $15,750
+HoH: $23,625
+Additional (65+ or Blind): $1,600 (married) / $2,000 (unmarried)""", language=None)
         
-        with st.expander("📐 Standard Deduction (2024)"):
-            st.markdown("**Amounts:**")
-            st.code("""Single: $14,600
-Married Filing Jointly: $29,200
-Married Filing Separately: $14,600
-Head of Household: $21,900
-Additional for 65+ or Blind: $1,550 (married) / $1,950 (single)""", language=None)
-        
-        with st.expander("📐 Capital Gains Tax Rates (2024)"):
-            st.markdown("**Long-Term Capital Gains (held > 1 year):**")
-            st.code("""0% Rate: Up to $47,025 (Single) / $94,050 (MFJ)
-15% Rate: $47,026 - $518,900 (Single) / $94,051 - $583,750 (MFJ)
-20% Rate: Above $518,900 (Single) / Above $583,750 (MFJ)""", language=None)
-            st.markdown("*Short-term capital gains (held ≤ 1 year) are taxed as ordinary income*")
-        
-        with st.expander("📐 Filing Status Requirements"):
+        with st.expander("📐 OBBBA From AGI Deductions (2025-2028)"):
             st.markdown("""
-**Single:** Unmarried, legally separated, or divorced on Dec 31
+**Senior Deduction:** $6,000 per taxpayer 65+ | Phase-out: 6% × (AGI - $75k/$150k MFJ) | Not for MFS
 
-**Married Filing Jointly (MFJ):** Married on Dec 31, both spouses report all income
+**Tip Income:** Up to $25,000 | Phase-out: $100 per $1,000 over $150k/$300k MFJ | Not for MFS
 
-**Married Filing Separately (MFS):** Married but file separate returns
+**Overtime:** Up to $12,500 ($25,000 MFJ) | Phase-out: $100 per $1,000 over $150k/$300k MFJ | Not for MFS
 
-**Head of Household (HoH):** Unmarried + paid >50% of household costs + qualifying person lived with you >6 months
+**Car Loan Interest:** Up to $10,000 | Phase-out: $200 per $1,000 over $100k/$200k MFJ | New US vehicle after 12/31/24
 
-**Qualifying Surviving Spouse:** Spouse died in prior 2 years + dependent child + paid >50% of household costs
+**SALT Cap:** $40,000 ($20,000 MFS) - increased from $10,000
             """)
         
-        with st.expander("📐 Dependency Tests"):
+        with st.expander("📐 QBI Deduction (§199A)"):
             st.markdown("""
-**Qualifying Child (must meet ALL):**
-1. Relationship test (child, sibling, or descendant)
-2. Age test (under 19, or under 24 if full-time student, or permanently disabled)
-3. Residency test (lived with taxpayer >6 months)
-4. Support test (child did not provide >50% of own support)
-5. Joint return test (child did not file joint return)
+**Deduction:** Lesser of 20% QBI or 20% (Taxable Income - Net Cap Gains)
 
-**Qualifying Relative (must meet ALL):**
-1. Not a qualifying child of anyone
-2. Relationship OR member of household test
-3. Gross income test (< $5,050 in 2024)
-4. Support test (taxpayer provided >50% of support)
+**Thresholds (2025):** Below $197,300 ($394,600 MFJ) = full deduction | Above $247,300 ($494,600 MFJ) = wage limit fully applies
+
+**SSTB:** Health, law, accounting, consulting, athletics, financial services, etc. - excluded above upper threshold
+
+**Wage Limit:** Greater of 50% W-2 wages OR 25% wages + 2.5% qualified property basis
             """)
         
-        with st.expander("📐 Common Tax Credits"):
+        with st.expander("📐 Dependency Tests - Chapter 4"):
             st.markdown("""
-**Child Tax Credit:** Up to $2,000 per qualifying child under 17
+**Qualifying Child (ALL required):**
+1. Relationship (child, sibling, descendant)
+2. Age (<19, or <24 if student, or disabled)
+3. Residence (>½ year with taxpayer)
+4. Support (child provides <½ own support)
 
-**Earned Income Tax Credit (EITC):** Refundable credit for low-to-moderate income workers
-
-**American Opportunity Credit:** Up to $2,500 per student for first 4 years of college (40% refundable)
-
-**Lifetime Learning Credit:** Up to $2,000 per return for education expenses
-
-**Child and Dependent Care Credit:** 20-35% of up to $3,000 expenses (1 child) or $6,000 (2+ children)
-
-**Saver's Credit:** Up to $1,000 ($2,000 MFJ) for retirement contributions
+**Qualifying Relative (ALL required):**
+1. Relationship OR member of household all year
+2. Support (taxpayer provides >½)
+3. Gross income (<$5,200 in 2025)
+4. Not a qualifying child of anyone
             """)
         
-        with st.expander("📐 Self-Employment Tax"):
-            st.markdown("**Formula:** `SE Tax = Net SE Income × 92.35% × 15.3%`")
+        with st.expander("📐 Filing Status - Chapter 4"):
             st.markdown("""
-*Components:*
-- Social Security: 12.4% (on first $168,600 in 2024)
-- Medicare: 2.9% (no limit)
-- Additional Medicare: 0.9% (on income > $200,000 single / $250,000 MFJ)
+**MFJ:** Married on 12/31; joint and several liability
 
-*Note: 50% of SE tax is deductible as an above-the-line deduction*
+**MFS:** Married but separate; generally disadvantageous
+
+**HoH:** Unmarried + pay >50% home costs + qualifying person >½ year
+
+**QSS:** Spouse died in prior 2 years + dependent child + pay >50% home costs
+
+**Single:** Unmarried and don't qualify for HoH
             """)
+        
+        with st.expander("📐 Itemized Deductions - Chapter 6"):
+            st.markdown("""
+**Medical:** Exceeding 7.5% of AGI floor
+
+**Taxes (SALT):** State/local income OR sales + property taxes | Capped at $40,000 ($20,000 MFS)
+
+**Interest:** Home mortgage (acquisition debt up to $750k) + investment interest (limited to net investment income)
+
+**Charitable:** Cash 60% AGI | Capital gain property 30% AGI | 5-year carryforward
+
+**Other:** Gambling losses (to extent of winnings)
+            """)
+        
+        with st.expander("📐 For AGI Deductions - Chapter 6"):
+            st.markdown("""
+- Self-employed business expenses (Schedule C)
+- Rental/royalty expenses (Schedule E)
+- 50% of self-employment tax
+- Self-employed health insurance
+- IRA/HSA contributions
+- Student loan interest (up to $2,500)
+- Capital losses (up to $3,000)
+- Alimony paid (pre-2019 agreements)
+            """)
+        
+        with st.expander("📐 Capital Gains - Chapter 4"):
+            st.markdown("""
+**Long-term (>1 year):** 0%, 15%, or 20% rates
+
+**Short-term (≤1 year):** Ordinary income rates
+
+**Net Capital Loss:** Deduct up to $3,000/year ($1,500 MFS); excess carries forward
+
+**Netting:** STCG/STCL net together, LTCG/LTCL net together, then net the results
+            """)
+
