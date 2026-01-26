@@ -3367,7 +3367,8 @@ if should_call and st.session_state.chat_history_402 and st.session_state.chat_h
         st.error(f"Error: {str(e)}")
         import traceback
         st.code(traceback.format_exc())  # Full error trace
-GUIDELINES:
+
+    GUIDELINES:
 - Use LaTeX for formulas (e.g., $$BEP = \\frac{{Fixed}}{{CM}}$$)
 - Bold key terms, use bullet points for lists
 - Walk through calculations step-by-step
