@@ -2609,112 +2609,126 @@ page = st.session_state.selected_page
 
 # --- HOME PAGE ---
 if page == "🏠 Home":
-    # 1. CSS: "Apple Glass" Buttons & Glowing Text
+    # 1. CSS: "LIQUID GLASS" & FRESH UI
     st.markdown("""
     <style>
-    /* Remove default header clutter */
+    /* Hide default header */
     header {visibility: hidden;}
     
-    /* 1. THE GLOWING TITLE STYLE */
+    /* 1. THE GLOWING TITLE (Kept the nice purple/blue) */
     .glowing-text {
-        font-size: 3.5rem;
+        font-size: 3.8rem;
         font-weight: 800;
-        background: linear-gradient(to right, #60A5FA, #A78BFA); /* Blue to Purple */
+        background: linear-gradient(90deg, #60A5FA, #A78BFA);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
-        margin-bottom: 10px;
-        filter: drop-shadow(0px 0px 10px rgba(96, 165, 250, 0.3)); /* Soft glow behind text */
+        margin-bottom: 5px;
+        filter: drop-shadow(0 0 15px rgba(167, 139, 250, 0.4));
     }
 
-    /* 2. GLOBAL "APPLE GLASS" BUTTON STYLE */
-    /* This targets ALL buttons on the Home page to remove the 'ugly gold' */
+    /* 2. LIQUID GLASS BUTTONS */
     div.stButton > button {
         width: 100%;
         height: auto;
-        min-height: 160px; /* Ensures consistent big box size */
+        min-height: 170px;
         
-        /* The Clear Glass Look */
-        background: rgba(255, 255, 255, 0.03); /* Extremely subtle transparency */
-        backdrop-filter: blur(16px);           /* Strong frost effect */
-        -webkit-backdrop-filter: blur(16px);
+        /* THE LIQUID BASE: A subtle gradient that we can animate */
+        background: linear-gradient(
+            135deg, 
+            rgba(255, 255, 255, 0.08) 0%, 
+            rgba(255, 255, 255, 0.02) 100%
+        );
+        background-size: 200% 200%; /* Allows us to shift the background */
         
-        /* The Thin White Border */
-        border: 1px solid rgba(255, 255, 255, 0.08);
-        border-radius: 24px; /* Smoother apple-like corners */
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
         
-        /* Text Styling */
-        color: #F8FAFC; /* Crisp White */
-        font-size: 18px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-top: 1px solid rgba(255, 255, 255, 0.2); /* Highlight top edge */
+        border-radius: 28px; /* Super rounded liquid feel */
+        
+        color: #F1F5F9;
+        font-size: 19px;
         font-weight: 500;
         letter-spacing: 0.5px;
-        text-align: center;
         
-        /* Layout */
+        /* Flex layout for icons/text */
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
         padding: 25px;
-        white-space: pre-wrap; /* Allows multi-line text */
+        white-space: pre-wrap;
         line-height: 1.6;
         
-        transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    }
-
-    /* HOVER STATE: Brighter and lifts up */
-    div.stButton > button:hover {
-        transform: translateY(-6px) scale(1.01);
-        background: rgba(255, 255, 255, 0.08); /* Slightly more visible on hover */
-        border: 1px solid rgba(255, 255, 255, 0.25); /* Border brightens */
+        /* Smooth physics */
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         box-shadow: 
-            0 10px 30px rgba(0, 0, 0, 0.2), /* Deep shadow */
-            0 0 15px rgba(96, 165, 250, 0.2); /* Subtle blue outer glow */
-        color: #FFFFFF;
+            0 10px 30px -5px rgba(0, 0, 0, 0.3),
+            inset 0 0 0 1px rgba(255, 255, 255, 0.05); /* Inner light ring */
     }
 
-    /* ACTIVE/CLICK STATE */
+    /* HOVER STATE: The "Flow" Effect */
+    div.stButton > button:hover {
+        transform: translateY(-8px) scale(1.02);
+        
+        /* Shift the gradient to create movement */
+        background-position: 100% 50%;
+        
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        
+        /* A colored glow "under" the glass */
+        box-shadow: 
+            0 20px 40px -10px rgba(96, 165, 250, 0.3), /* Blue-ish glow */
+            0 0 20px rgba(255, 255, 255, 0.1),         /* White halo */
+            inset 0 0 20px rgba(255, 255, 255, 0.05);  /* Inner depth */
+            
+        color: #FFFFFF;
+        text-shadow: 0 0 8px rgba(255,255,255,0.4);
+    }
+
+    /* CLICK STATE: Pressing into the liquid */
     div.stButton > button:active {
-        transform: scale(0.98);
+        transform: scale(0.96) translateY(0);
+        box-shadow: 0 5px 15px rgba(0,0,0,0.2);
         background: rgba(255, 255, 255, 0.1);
     }
     
-    /* Subtle subtitle style inside standard markdown */
-    p { color: #94A3B8; font-size: 1.1rem; }
+    /* Subtext styling */
+    p { color: #94A3B8; font-size: 1.15rem; }
     
     </style>
     """, unsafe_allow_html=True)
 
-    # 2. HEADER SECTION
+    # 2. HEADER
     st.markdown("""
-    <div style='text-align: center; padding: 50px 20px 30px 20px;'>
+    <div style='text-align: center; padding: 60px 20px 40px 20px;'>
         <h1 class='glowing-text'>Study Hub</h1>
-        <p style='color: #94A3B8; font-size: 1.2rem; letter-spacing: 3px; font-weight: 600; text-transform: uppercase; margin-top: -10px;'>BYU Accounting AI Assistant</p>
+        <p style='color: #94A3B8; font-size: 1.1rem; letter-spacing: 4px; font-weight: 600; text-transform: uppercase; opacity: 0.8;'>BYU Accounting AI Assistant</p>
     </div>
     """, unsafe_allow_html=True)
 
-    # 3. MAIN COURSE CARDS
-    st.markdown("<h3 style='color: #F1F5F9; margin-bottom: 20px; font-weight: 600;'>📚 Your Courses</h3>", unsafe_allow_html=True)
+    # 3. COURSES SECTION
+    st.markdown("<h3 style='color: #F8FAFC; margin-bottom: 25px; font-weight: 600; padding-left: 10px; border-left: 4px solid #60A5FA;'>📚 Your Courses</h3>", unsafe_allow_html=True)
     
     c1, c2, c3 = st.columns(3, gap="medium")
     
     with c1:
-        # Using emoji icons within the text for the "App" feel
-        if st.button("📘 ACC 402\nManagerial Accounting\n\nModules: 3/5", use_container_width=True):
+        if st.button("📘 ACC 402\nManagerial Accounting\n\n🔹 Modules: 3/5", use_container_width=True):
             st.session_state.selected_page = "📕 ACC 402 - Managerial Accounting"
             st.rerun()
             
     with c2:
-        if st.button("📗 ACC 405\nFederal Tax\n\nExam Ready: 85%", use_container_width=True):
+        if st.button("📗 ACC 405\nFederal Tax\n\n🔹 Exam Ready: 85%", use_container_width=True):
             st.session_state.selected_page = "📗 ACC 405 - Tax Accounting"
             st.rerun()
             
     with c3:
-        if st.button("📊 Analytics\nWeekly Progress\n\nQuestions: 42", use_container_width=True):
-            st.toast("Analytics updated! You're on a 3-day streak! 🔥")
+        if st.button("📊 Analytics\nWeekly Progress\n\n🔥 Streak: 3 Days", use_container_width=True):
+            st.toast("Analytics updated! You're on fire! 🔥")
 
-    # 4. STUDY TOOLS GRID
-    st.markdown("<h3 style='color: #F1F5F9; margin: 40px 0 20px 0; font-weight: 600;'>🛠️ Study Tools</h3>", unsafe_allow_html=True)
+    # 4. TOOLS SECTION
+    st.markdown("<h3 style='color: #F8FAFC; margin: 50px 0 25px 0; font-weight: 600; padding-left: 10px; border-left: 4px solid #A78BFA;'>🛠️ Study Tools</h3>", unsafe_allow_html=True)
     
     t1, t2, t3, t4 = st.columns(4, gap="small")
     
@@ -2738,8 +2752,8 @@ if page == "🏠 Home":
             st.session_state.selected_page = "🔮 What-If Analyzer"
             st.rerun()
 
-    # 5. REFERENCE TOOLS (Bottom Row)
-    st.markdown("<div style='margin-top: 15px;'></div>", unsafe_allow_html=True)
+    # 5. REFERENCE SECTION
+    st.markdown("<div style='margin-top: 25px;'></div>", unsafe_allow_html=True)
     r1, r2 = st.columns(2, gap="medium")
     
     with r1:
