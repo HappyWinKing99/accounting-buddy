@@ -3389,7 +3389,7 @@ GUIDELINES:
                        "Walk me through a production cost report"]
             cols = st.columns(2)
             for idx, s in enumerate(suggestions):
-            with cols[idx % 2]:
+                with cols[idx % 2]:
                 if st.button(f"📌 {s[:40]}...", key=f"sug_{idx}"):
                     st.session_state.chat_history_402.append({'role': 'user', 'content': s})
                     st.session_state.trigger_ai_call = True
