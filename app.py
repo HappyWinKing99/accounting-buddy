@@ -2606,172 +2606,166 @@ with st.sidebar:
 # ============================================================================
 page = st.session_state.selected_page
 
+
 # --- HOME PAGE ---
 if page == "🏠 Home":
-    # 1. Custom CSS for "Super Wow" Glassmorphism
+    # 1. GLOBAL GLASSMORPHISM CSS
+    # This styles both the HTML cards AND the Streamlit buttons
     st.markdown("""
     <style>
-    /* Container for the cards */
+    /* 1. Background & Layout */
     .glass-container {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
         gap: 20px;
-        padding: 40px 0;
+        padding: 20px 0 40px 0;
     }
 
-    /* The Glass Card */
+    /* 2. Static Glass Cards (For Metrics/Dashboard) */
     .glass-card {
-        background: rgba(255, 255, 255, 0.05);
+        background: rgba(255, 255, 255, 0.03);
         backdrop-filter: blur(16px);
         -webkit-backdrop-filter: blur(16px);
-        border: 1px solid rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.08);
         border-radius: 20px;
-        padding: 30px;
-        box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-        transition: all 0.3s ease-in-out;
+        padding: 25px;
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
         text-align: center;
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
+        transition: transform 0.3s ease;
     }
-
+    
     .glass-card:hover {
-        transform: translateY(-8px);
-        background: rgba(255, 255, 255, 0.1);
-        border: 1px solid rgba(255, 255, 255, 0.3);
-        box-shadow: 0 0 25px rgba(96, 165, 250, 0.4);
+        transform: translateY(-5px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        box-shadow: 0 0 20px rgba(96, 165, 250, 0.2);
     }
 
     .glass-card h3 {
         color: #60A5FA !important;
-        margin-bottom: 10px;
-        font-size: 1.8rem;
-        font-weight: 700;
-    }
-    .glass-card p {
-        color: #E5E7EB !important;
-        font-size: 1.1rem;
-        margin-bottom: 15px;
-    }
-    .glass-card .metric {
-        font-size: 3rem;
-        font-weight: 800;
-        background: -webkit-linear-gradient(#eee, #333);
-        -webkit-background-clip: text;
-        color: #FFFFFF;
-        margin: 10px 0;
-        text-shadow: 0 0 15px rgba(255,255,255,0.4);
+        font-size: 1.5rem;
+        margin-bottom: 5px;
     }
     
-    .glass-card .sub-metric {
-        font-size: 0.9rem;
-        color: #9CA3AF !important;
-        text-transform: uppercase;
-        letter-spacing: 1.5px;
+    .glass-card .metric {
+        font-size: 2.8rem;
+        font-weight: 800;
+        background: linear-gradient(135deg, #FFFFFF 0%, #94A3B8 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        margin: 10px 0;
     }
 
-    /* Tool Grid Styling */
-    .tool-grid {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        gap: 15px;
-        margin-top: 20px;
-    }
-    
+    /* 3. CLICKABLE GLASS BUTTONS (Overrides st.button) */
     div.stButton > button {
-        background: linear-gradient(135deg, #2563EB, #1D4ED8);
-        border: none;
-        color: white;
-        font-weight: bold;
-        border-radius: 12px;
-        padding: 12px 28px;
-        transition: all 0.3s;
-        box-shadow: 0 4px 14px 0 rgba(37, 99, 235, 0.39);
         width: 100%;
         height: 100%;
+        padding: 25px 20px;
+        background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.01) 100%);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 16px;
+        color: #E2E8F0;
+        font-weight: 600;
+        font-size: 1.1rem;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        text-align: center;
     }
+
+    /* Hover State for Buttons */
     div.stButton > button:hover {
-        box-shadow: 0 6px 20px rgba(37, 99, 235, 0.23);
-        transform: scale(1.02);
-        background: linear-gradient(135deg, #3B82F6, #2563EB);
+        transform: translateY(-4px);
+        background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+        border: 1px solid rgba(96, 165, 250, 0.5); /* Blue Border Glow */
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 0 15px rgba(96, 165, 250, 0.3); /* Blue Glow */
+        color: #FFFFFF;
     }
+
+    /* Active/Click State */
+    div.stButton > button:active {
+        transform: translateY(-1px);
+        box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.06);
+    }
+
+    /* Paragraph text inside standard markdown */
+    p { font-size: 1.05rem; }
     </style>
     """, unsafe_allow_html=True)
 
-    # 2. Page Title
+    # 2. Header Section
     st.markdown("""
-    <div style='text-align: center; padding: 50px 0;'>
-        <h1 style='font-size: 4rem; margin-bottom: 0; background: linear-gradient(to right, #60A5FA, #E879F9); -webkit-background-clip: text; -webkit-text-fill-color: transparent;'>Study Hub</h1>
-        <p style='color: #9CA3AF; font-size: 1.5rem; margin-top: 10px;'>BYU Accounting AI Assistant</p>
+    <div style='text-align: center; padding: 40px 0 20px 0;'>
+        <h1 style='font-size: 3.5rem; font-weight: 800; letter-spacing: -1px; background: linear-gradient(to right, #60A5FA, #A78BFA); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 10px;'>Study Hub</h1>
+        <p style='color: #94A3B8; font-size: 1.2rem; letter-spacing: 2px; text-transform: uppercase;'>BYU Accounting AI Assistant</p>
     </div>
     """, unsafe_allow_html=True)
 
-    # 3. Main Dashboard (Top Row)
+    # 3. Glass Dashboard Metrics (Static HTML)
     st.markdown("""
     <div class="glass-container">
         <div class="glass-card">
             <h3>📘 Managerial</h3>
-            <p>ACC 402 AI Tutor</p>
             <div class="metric">3/5</div>
-            <p class="sub-metric">Modules Mastered</p>
+            <p style="color: #94A3B8;">Modules Mastered</p>
         </div>
         <div class="glass-card">
             <h3>📗 Tax</h3>
-            <p>ACC 405 AI Tutor</p>
             <div class="metric">85%</div>
-            <p class="sub-metric">Exam Readiness</p>
+            <p style="color: #94A3B8;">Exam Readiness</p>
         </div>
         <div class="glass-card">
             <h3>📊 Analytics</h3>
-            <p>Weekly Progress</p>
             <div class="metric">42</div>
-            <p class="sub-metric">Questions Solved</p>
+            <p style="color: #94A3B8;">Questions Solved</p>
         </div>
     </div>
     """, unsafe_allow_html=True)
 
-    # 4. Main Course Buttons
+    # 4. Main Course Selection (Clickable Glass Buttons)
+    st.markdown("<h3 style='color: #E2E8F0; margin: 30px 0 15px 0;'>🚀 Launch Course AI</h3>", unsafe_allow_html=True)
     c1, c2 = st.columns(2)
     with c1:
-        if st.button("🚀 Launch ACC 402 Tutor", use_container_width=True):
+        st.markdown("") # Spacer to align if needed
+        if st.button("📘 ACC 402\nManagerial Accounting", use_container_width=True):
             st.session_state.selected_page = "📕 ACC 402 - Managerial Accounting"
             st.rerun()
     with c2:
-        if st.button("🚀 Launch ACC 405 Tutor", use_container_width=True):
+        st.markdown("")
+        if st.button("📗 ACC 405\nFederal Tax Accounting", use_container_width=True):
             st.session_state.selected_page = "📗 ACC 405 - Tax Accounting"
             st.rerun()
 
-    # 5. Tools Grid (Preserving the functionality from the original code)
-    st.markdown("<h3 style='text-align: center; margin-top: 40px; color: #FFF;'>🛠️ Quick Tools</h3>", unsafe_allow_html=True)
+    # 5. Interactive Tools Grid (Clickable Glass Buttons)
+    st.markdown("<h3 style='color: #E2E8F0; margin: 40px 0 15px 0;'>🛠️ Interactive Tools</h3>", unsafe_allow_html=True)
     
     t1, t2, t3, t4 = st.columns(4)
     with t1:
-        if st.button("📝 Practice Exam", use_container_width=True):
+        if st.button("📝 Practice Exam\nGenerator", use_container_width=True):
             st.session_state.selected_page = "📝 Practice Exam Generator"
             st.rerun()
     with t2:
-        if st.button("📊 Break-Even", use_container_width=True):
+        if st.button("📊 Break-Even\nVisualizer", use_container_width=True):
             st.session_state.selected_page = "📊 Break-Even Visualizer"
             st.rerun()
     with t3:
-        if st.button("🗺️ Concept Maps", use_container_width=True):
+        if st.button("🗺️ Concept\nMaps", use_container_width=True):
             st.session_state.selected_page = "🗺️ Concept Maps"
             st.rerun()
     with t4:
-        if st.button("🔮 What-If Tool", use_container_width=True):
+        if st.button("🔮 What-If\nAnalyzer", use_container_width=True):
             st.session_state.selected_page = "🔮 What-If Analyzer"
             st.rerun()
-    
-    # 6. Extra Tools Row
-    t5, t6 = st.columns([1,1])
-    with t5:
-        if st.button("🧮 Calculators", use_container_width=True):
+
+    # 6. Reference Tools (Bottom Row)
+    st.markdown("<div style='margin-top: 20px;'></div>", unsafe_allow_html=True)
+    r1, r2 = st.columns(2)
+    with r1:
+        if st.button("🧮 Quick Calculators", use_container_width=True):
             st.session_state.selected_page = "🧮 Calculators"
             st.rerun()
-    with t6:
-        if st.button("📖 Formula DB", use_container_width=True):
+    with r2:
+        if st.button("📖 Formula Database", use_container_width=True):
             st.session_state.selected_page = "📖 Formula Database"
             st.rerun()
 # --- CALCULATORS PAGE ---
