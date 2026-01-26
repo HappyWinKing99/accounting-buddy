@@ -2609,66 +2609,97 @@ page = st.session_state.selected_page
 
 # --- HOME PAGE ---
 if page == "🏠 Home":
-    # 1. CSS FOR CLICKABLE GLASS CARDS
+    # 1. CSS: "Apple Glass" Buttons & Glowing Text
     st.markdown("""
     <style>
-    /* Remove any weird header decorations */
+    /* Remove default header clutter */
     header {visibility: hidden;}
     
-    /* GLOBAL BUTTON STYLE - THE GLASS CARD LOOK */
+    /* 1. THE GLOWING TITLE STYLE */
+    .glowing-text {
+        font-size: 3.5rem;
+        font-weight: 800;
+        background: linear-gradient(to right, #60A5FA, #A78BFA); /* Blue to Purple */
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        margin-bottom: 10px;
+        filter: drop-shadow(0px 0px 10px rgba(96, 165, 250, 0.3)); /* Soft glow behind text */
+    }
+
+    /* 2. GLOBAL "APPLE GLASS" BUTTON STYLE */
+    /* This targets ALL buttons on the Home page to remove the 'ugly gold' */
     div.stButton > button {
         width: 100%;
-        height: 180px;  /* Fixed height to make them look like big cards */
-        background: rgba(255, 255, 255, 0.05);
-        backdrop-filter: blur(12px);
-        -webkit-backdrop-filter: blur(12px);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        border-radius: 20px;
-        color: #FFFFFF;
+        height: auto;
+        min-height: 160px; /* Ensures consistent big box size */
+        
+        /* The Clear Glass Look */
+        background: rgba(255, 255, 255, 0.03); /* Extremely subtle transparency */
+        backdrop-filter: blur(16px);           /* Strong frost effect */
+        -webkit-backdrop-filter: blur(16px);
+        
+        /* The Thin White Border */
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 24px; /* Smoother apple-like corners */
+        
+        /* Text Styling */
+        color: #F8FAFC; /* Crisp White */
         font-size: 18px;
-        font-weight: 600;
+        font-weight: 500;
+        letter-spacing: 0.5px;
         text-align: center;
-        transition: all 0.3s ease;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-        padding: 20px;
+        
+        /* Layout */
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        line-height: 1.5;
-        white-space: pre-wrap; /* Allows newlines in button text */
+        padding: 25px;
+        white-space: pre-wrap; /* Allows multi-line text */
+        line-height: 1.6;
+        
+        transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     }
 
-    /* HOVER EFFECT - GLOW */
+    /* HOVER STATE: Brighter and lifts up */
     div.stButton > button:hover {
-        transform: translateY(-5px);
-        background: rgba(255, 255, 255, 0.1);
-        border: 1px solid rgba(96, 165, 250, 0.5); /* Blue border on hover */
-        box-shadow: 0 0 20px rgba(96, 165, 250, 0.3);
+        transform: translateY(-6px) scale(1.01);
+        background: rgba(255, 255, 255, 0.08); /* Slightly more visible on hover */
+        border: 1px solid rgba(255, 255, 255, 0.25); /* Border brightens */
+        box-shadow: 
+            0 10px 30px rgba(0, 0, 0, 0.2), /* Deep shadow */
+            0 0 15px rgba(96, 165, 250, 0.2); /* Subtle blue outer glow */
         color: #FFFFFF;
     }
 
-    /* SPECIFIC COLOR OVERRIDES FOR SPECIFIC BUTTONS (Optional polish) */
-    /* You can target specific buttons by order if needed, but the global glass look is cleanest */
+    /* ACTIVE/CLICK STATE */
+    div.stButton > button:active {
+        transform: scale(0.98);
+        background: rgba(255, 255, 255, 0.1);
+    }
+    
+    /* Subtle subtitle style inside standard markdown */
+    p { color: #94A3B8; font-size: 1.1rem; }
     
     </style>
     """, unsafe_allow_html=True)
 
-    # 2. HEADER SECTION (Clean, no weird banners)
+    # 2. HEADER SECTION
     st.markdown("""
-    <div style='text-align: center; padding: 40px 20px 40px 20px;'>
-        <h1 style='color: #FFFFFF; font-size: 3.5em; font-weight: 800; margin-bottom: 10px; text-shadow: 0 0 20px rgba(0,0,0,0.5);'>Study Hub</h1>
-        <p style='color: #60A5FA; font-size: 1.2em; letter-spacing: 3px; font-weight: 600; text-transform: uppercase;'>BYU Accounting AI Assistant</p>
+    <div style='text-align: center; padding: 50px 20px 30px 20px;'>
+        <h1 class='glowing-text'>Study Hub</h1>
+        <p style='color: #94A3B8; font-size: 1.2rem; letter-spacing: 3px; font-weight: 600; text-transform: uppercase; margin-top: -10px;'>BYU Accounting AI Assistant</p>
     </div>
     """, unsafe_allow_html=True)
 
-    # 3. MAIN COURSE CARDS (Clickable Boxes)
-    st.markdown("<h3 style='color: #E2E8F0; margin-bottom: 15px;'>📚 Your Courses</h3>", unsafe_allow_html=True)
+    # 3. MAIN COURSE CARDS
+    st.markdown("<h3 style='color: #F1F5F9; margin-bottom: 20px; font-weight: 600;'>📚 Your Courses</h3>", unsafe_allow_html=True)
     
-    c1, c2, c3 = st.columns(3)
+    c1, c2, c3 = st.columns(3, gap="medium")
     
     with c1:
-        # The content is formatted with newlines (\n) to create a "Card" layout inside the button
+        # Using emoji icons within the text for the "App" feel
         if st.button("📘 ACC 402\nManagerial Accounting\n\nModules: 3/5", use_container_width=True):
             st.session_state.selected_page = "📕 ACC 402 - Managerial Accounting"
             st.rerun()
@@ -2679,14 +2710,13 @@ if page == "🏠 Home":
             st.rerun()
             
     with c3:
-        # Placeholder for analytics since we don't have a dedicated page, it can just refresh or show a toast
         if st.button("📊 Analytics\nWeekly Progress\n\nQuestions: 42", use_container_width=True):
             st.toast("Analytics updated! You're on a 3-day streak! 🔥")
 
-    # 4. STUDY TOOLS GRID (Clickable Boxes)
-    st.markdown("<h3 style='color: #E2E8F0; margin: 40px 0 15px 0;'>🛠️ Study Tools</h3>", unsafe_allow_html=True)
+    # 4. STUDY TOOLS GRID
+    st.markdown("<h3 style='color: #F1F5F9; margin: 40px 0 20px 0; font-weight: 600;'>🛠️ Study Tools</h3>", unsafe_allow_html=True)
     
-    t1, t2, t3, t4 = st.columns(4)
+    t1, t2, t3, t4 = st.columns(4, gap="small")
     
     with t1:
         if st.button("📝 Practice Exam\nGenerator", use_container_width=True):
@@ -2710,7 +2740,7 @@ if page == "🏠 Home":
 
     # 5. REFERENCE TOOLS (Bottom Row)
     st.markdown("<div style='margin-top: 15px;'></div>", unsafe_allow_html=True)
-    r1, r2 = st.columns(2)
+    r1, r2 = st.columns(2, gap="medium")
     
     with r1:
         if st.button("🧮 Quick Calculators\nCVP, Tax, & More", use_container_width=True):
