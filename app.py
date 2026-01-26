@@ -2572,7 +2572,17 @@ with st.sidebar:
     
     st.markdown("---")
     
-    pages = ["🏠 Home", "🧮 Calculators", "📖 Formula Database", "📊 Break-Even Visualizer", "📕 ACC 402 - Managerial Accounting", "📗 ACC 405 - Tax Accounting"]
+ pages = [
+    "🏠 Home",
+    "🧮 Calculators",
+    "📖 Formula Database",
+    "📊 Break-Even Visualizer",
+    "📕 ACC 402 - Managerial Accounting",
+    "📗 ACC 405 - Tax Accounting",
+    "📝 Practice Exam Generator",
+    "🗺️ Concept Maps",
+    "🔮 What-If Analyzer"
+]
     
     for page_name in pages:
         if st.button(page_name, key=f"nav_{page_name}", use_container_width=True):
@@ -3535,3 +3545,1056 @@ Additional (65+ or Blind): $1,600 (married) / $2,000 (unmarried)""", language=No
 **Netting:** STCG/STCL net together, LTCG/LTCL net together, then net the results
             """)
 
+
+# --- PAGE: PRACTICE EXAM GENERATOR ---
+elif page == "📝 Practice Exam Generator":
+    st.markdown("<div class='page-header'><h1>📝 Practice Exam Generator</h1><p>AI-generated practice problems tailored to your textbook</p></div>", unsafe_allow_html=True)
+    
+    if st.button("← Back to Home", key="back_exam"):
+        st.session_state.selected_page = "🏠 Home"
+        st.rerun()
+    
+    # Initialize session state for exam
+    if 'exam_questions' not in st.session_state:
+        st.session_state.exam_questions = []
+    if 'exam_answers' not in st.session_state:
+        st.session_state.exam_answers = {}
+    if 'exam_graded' not in st.session_state:
+        st.session_state.exam_graded = False
+    if 'exam_feedback' not in st.session_state:
+        st.session_state.exam_feedback = {}
+    
+    # Exam Configuration
+    st.markdown("""<div style='background: linear-gradient(145deg, #1A1A2E, #151525); padding: 25px; border-radius: 15px; border: 1px solid #2D2D4A; margin-bottom: 20px;'>
+        <h3 style='color: #CFB53B; margin-bottom: 15px;'>⚙️ Configure Your Practice Exam</h3>
+    </div>""", unsafe_allow_html=True)
+    
+    col1, col2, col3 = st.columns(3)
+    
+    with col1:
+        course = st.selectbox("Select Course", ["ACC 402 - Managerial Accounting", "ACC 405 - Tax Accounting"], key="exam_course")
+    
+    with col2:
+        if "ACC 402" in course:
+            chapter = st.selectbox("Select Chapter/Topic", [
+                "Chapter 1 - Management Accounting Basics",
+                "Chapter 3 - Cost Concepts & Behavior",
+                "Chapter 4 - Job Costing",
+                "Chapter 6 - Process Costing",
+                "Chapter 7 - Cost Allocation",
+                "Mixed - All Chapters"
+            ], key="exam_chapter_402")
+        else:
+            chapter = st.selectbox("Select Chapter/Topic", [
+                "Chapter 4 - Tax Formula & Filing Status",
+                "Chapter 5 - Gross Income & Exclusions",
+                "Chapter 6 - Deductions (For & From AGI)",
+                "OBBBA Provisions (2025)",
+                "QBI Deduction",
+                "Mixed - All Chapters"
+            ], key="exam_chapter_405")
+    
+    with col3:
+        difficulty = st.selectbox("Difficulty Level", ["Easy", "Medium", "Hard", "Mixed"], key="exam_difficulty")
+    
+    col4, col5 = st.columns(2)
+    with col4:
+        num_questions = st.slider("Number of Questions", min_value=3, max_value=10, value=5, key="exam_num")
+    with col5:
+        question_type = st.selectbox("Question Type", ["Mixed", "Calculation Only", "Conceptual Only", "Multiple Choice Only"], key="exam_type")
+    
+    # Generate Exam Button
+    if st.button("🎲 Generate Practice Exam", key="gen_exam", use_container_width=True):
+        try:
+            api_key = st.secrets["ANTHROPIC_API_KEY"]
+            
+            # Select appropriate textbook content
+            textbook = FULL_TEXTBOOK_CONTENT if "ACC 402" in course else FULL_TAX_TEXTBOOK_CONTENT
+            
+            prompt = f"""Generate a practice exam with exactly {num_questions} questions for {course}.
+
+Topic/Chapter: {chapter}
+Difficulty: {difficulty}
+Question Type: {question_type}
+
+IMPORTANT FORMATTING RULES:
+1. Return ONLY valid JSON - no markdown, no code blocks, no explanation
+2. Each question must have: "id", "type", "question", "correct_answer", "explanation"
+3. For calculation questions, include step-by-step solution in explanation
+4. For multiple choice, include "options" array with 4 choices (A, B, C, D)
+5. Make questions realistic and based on the textbook content provided
+
+Return format (pure JSON, no markdown):
+{{"questions": [
+  {{"id": 1, "type": "calculation", "question": "...", "correct_answer": "...", "explanation": "..."}},
+  {{"id": 2, "type": "multiple_choice", "question": "...", "options": ["A. ...", "B. ...", "C. ...", "D. ..."], "correct_answer": "B", "explanation": "..."}},
+  {{"id": 3, "type": "conceptual", "question": "...", "correct_answer": "...", "explanation": "..."}}
+]}}
+
+Base questions on this textbook content:
+{textbook[:15000]}"""
+
+            with st.spinner("🎲 Generating your personalized exam..."):
+                response = requests.post(
+                    "https://api.anthropic.com/v1/messages",
+                    headers={"Content-Type": "application/json", "x-api-key": api_key, "anthropic-version": "2023-06-01"},
+                    json={"model": "claude-sonnet-4-20250514", "max_tokens": 4096,
+                          "messages": [{"role": "user", "content": prompt}]},
+                    timeout=90
+                )
+                
+                if response.status_code == 200:
+                    response_text = response.json()['content'][0]['text']
+                    # Clean up response - remove markdown code blocks if present
+                    response_text = response_text.strip()
+                    if response_text.startswith("```"):
+                        response_text = response_text.split("```")[1]
+                        if response_text.startswith("json"):
+                            response_text = response_text[4:]
+                    response_text = response_text.strip()
+                    
+                    import json
+                    exam_data = json.loads(response_text)
+                    st.session_state.exam_questions = exam_data['questions']
+                    st.session_state.exam_answers = {}
+                    st.session_state.exam_graded = False
+                    st.session_state.exam_feedback = {}
+                    st.success(f"✅ Generated {len(exam_data['questions'])} questions!")
+                    st.rerun()
+                else:
+                    st.error(f"API Error: {response.status_code}")
+        except Exception as e:
+            st.error(f"Error generating exam: {str(e)}")
+    
+    # Display Questions
+    if st.session_state.exam_questions:
+        st.markdown("---")
+        st.markdown("<h2 style='color: #CFB53B;'>📋 Your Practice Exam</h2>", unsafe_allow_html=True)
+        
+        for i, q in enumerate(st.session_state.exam_questions):
+            q_type_icon = {"calculation": "🔢", "multiple_choice": "📝", "conceptual": "💡"}.get(q.get('type', ''), "❓")
+            
+            st.markdown(f"""<div style='background: linear-gradient(145deg, #1E3A5F, #162D4A); padding: 20px; border-radius: 15px; margin: 15px 0; border-left: 4px solid #CFB53B;'>
+                <p style='color: #CFB53B; margin-bottom: 10px;'>{q_type_icon} Question {i+1} ({q.get('type', 'unknown').replace('_', ' ').title()})</p>
+                <p style='color: #FFF; font-size: 1.1em;'>{q['question']}</p>
+            </div>""", unsafe_allow_html=True)
+            
+            # Answer input based on question type
+            if q.get('type') == 'multiple_choice' and 'options' in q:
+                options = q['options']
+                answer = st.radio(
+                    f"Select your answer for Q{i+1}:",
+                    options,
+                    key=f"answer_{i}",
+                    index=None,
+                    disabled=st.session_state.exam_graded
+                )
+                if answer:
+                    st.session_state.exam_answers[i] = answer[0]  # Store just the letter
+            else:
+                answer = st.text_area(
+                    f"Your answer for Q{i+1}:",
+                    key=f"answer_{i}",
+                    height=100,
+                    disabled=st.session_state.exam_graded
+                )
+                if answer:
+                    st.session_state.exam_answers[i] = answer
+            
+            # Show feedback if graded
+            if st.session_state.exam_graded and i in st.session_state.exam_feedback:
+                fb = st.session_state.exam_feedback[i]
+                if fb['correct']:
+                    st.success(f"✅ Correct! {fb['explanation']}")
+                else:
+                    st.error(f"❌ Incorrect. Correct answer: {q['correct_answer']}")
+                    st.info(f"📖 Explanation: {q['explanation']}")
+        
+        # Submit / Grade Button
+        if not st.session_state.exam_graded:
+            if st.button("📊 Submit & Grade My Exam", key="grade_exam", use_container_width=True):
+                if len(st.session_state.exam_answers) < len(st.session_state.exam_questions):
+                    st.warning("Please answer all questions before submitting!")
+                else:
+                    # Grade the exam
+                    correct_count = 0
+                    for i, q in enumerate(st.session_state.exam_questions):
+                        user_answer = st.session_state.exam_answers.get(i, "").strip().upper()
+                        correct_answer = str(q['correct_answer']).strip().upper()
+                        
+                        # For multiple choice, compare just the letter
+                        if q.get('type') == 'multiple_choice':
+                            is_correct = user_answer.startswith(correct_answer[0]) if user_answer else False
+                        else:
+                            # For other types, do a more flexible comparison
+                            is_correct = correct_answer in user_answer or user_answer in correct_answer
+                        
+                        st.session_state.exam_feedback[i] = {
+                            'correct': is_correct,
+                            'explanation': q.get('explanation', '')
+                        }
+                        if is_correct:
+                            correct_count += 1
+                    
+                    st.session_state.exam_graded = True
+                    st.rerun()
+        else:
+            # Show final score
+            correct = sum(1 for fb in st.session_state.exam_feedback.values() if fb['correct'])
+            total = len(st.session_state.exam_questions)
+            pct = (correct / total) * 100
+            
+            if pct >= 80:
+                color = "#4CAF50"
+                msg = "🎉 Excellent work!"
+            elif pct >= 60:
+                color = "#FFC107"
+                msg = "👍 Good job! Keep practicing!"
+            else:
+                color = "#F44336"
+                msg = "📚 Review the material and try again!"
+            
+            st.markdown(f"""<div style='background: linear-gradient(145deg, #1A1A2E, #151525); padding: 30px; border-radius: 15px; text-align: center; margin: 20px 0; border: 2px solid {color};'>
+                <h1 style='color: {color}; font-size: 3em;'>{correct}/{total}</h1>
+                <p style='color: #FFF; font-size: 1.5em;'>{pct:.0f}%</p>
+                <p style='color: #AAA;'>{msg}</p>
+            </div>""", unsafe_allow_html=True)
+            
+            if st.button("🔄 Generate New Exam", key="new_exam", use_container_width=True):
+                st.session_state.exam_questions = []
+                st.session_state.exam_answers = {}
+                st.session_state.exam_graded = False
+                st.session_state.exam_feedback = {}
+                st.rerun()
+
+
+# --- PAGE: CONCEPT MAPS ---
+elif page == "🗺️ Concept Maps":
+    st.markdown("<div class='page-header'><h1>🗺️ Interactive Concept Maps</h1><p>Visual diagrams to understand how concepts connect</p></div>", unsafe_allow_html=True)
+    
+    if st.button("← Back to Home", key="back_maps"):
+        st.session_state.selected_page = "🏠 Home"
+        st.rerun()
+    
+    map_tab1, map_tab2 = st.tabs(["📕 ACC 402 Diagrams", "📗 ACC 405 Diagrams"])
+    
+    with map_tab1:
+        st.markdown("<br>", unsafe_allow_html=True)
+        
+        diagram_choice_402 = st.selectbox("Select a Concept Map:", [
+            "Cost Flow Diagram (Materials → COGS)",
+            "Job Costing vs Process Costing",
+            "Process Costing Steps (5-Step Method)",
+            "Cost Behavior Types",
+            "Cost Allocation Methods",
+            "CVP Analysis Framework"
+        ], key="map_402")
+        
+        st.markdown("<br>", unsafe_allow_html=True)
+        
+        if diagram_choice_402 == "Cost Flow Diagram (Materials → COGS)":
+            st.markdown("""
+            <div style='background: linear-gradient(145deg, #1A1A2E, #151525); padding: 30px; border-radius: 15px; border: 1px solid #2D2D4A;'>
+                <h3 style='color: #CFB53B; text-align: center; margin-bottom: 30px;'>Manufacturing Cost Flow</h3>
+                <div style='display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 10px;'>
+                    <div style='background: #002E5D; padding: 20px; border-radius: 10px; text-align: center; min-width: 120px;'>
+                        <p style='color: #CFB53B; margin: 0; font-size: 0.8em;'>RAW</p>
+                        <p style='color: #FFF; margin: 5px 0; font-weight: bold;'>Materials</p>
+                        <p style='color: #AAA; margin: 0; font-size: 0.8em;'>Inventory</p>
+                    </div>
+                    <div style='color: #CFB53B; font-size: 2em;'>→</div>
+                    <div style='background: #1B5E20; padding: 20px; border-radius: 10px; text-align: center; min-width: 120px;'>
+                        <p style='color: #81C784; margin: 0; font-size: 0.8em;'>WORK IN</p>
+                        <p style='color: #FFF; margin: 5px 0; font-weight: bold;'>Process</p>
+                        <p style='color: #AAA; margin: 0; font-size: 0.8em;'>+ DL + OH</p>
+                    </div>
+                    <div style='color: #CFB53B; font-size: 2em;'>→</div>
+                    <div style='background: #B8860B; padding: 20px; border-radius: 10px; text-align: center; min-width: 120px;'>
+                        <p style='color: #FFE082; margin: 0; font-size: 0.8em;'>FINISHED</p>
+                        <p style='color: #FFF; margin: 5px 0; font-weight: bold;'>Goods</p>
+                        <p style='color: #AAA; margin: 0; font-size: 0.8em;'>Inventory</p>
+                    </div>
+                    <div style='color: #CFB53B; font-size: 2em;'>→</div>
+                    <div style='background: #C62828; padding: 20px; border-radius: 10px; text-align: center; min-width: 120px;'>
+                        <p style='color: #FFCDD2; margin: 0; font-size: 0.8em;'>COST OF</p>
+                        <p style='color: #FFF; margin: 5px 0; font-weight: bold;'>Goods Sold</p>
+                        <p style='color: #AAA; margin: 0; font-size: 0.8em;'>Expense</p>
+                    </div>
+                </div>
+                <div style='margin-top: 30px; padding: 20px; background: #12121F; border-radius: 10px;'>
+                    <p style='color: #CFB53B; font-weight: bold;'>Key Formulas:</p>
+                    <p style='color: #FFF;'>• <b>DM Used</b> = Beg. Materials + Purchases - End. Materials</p>
+                    <p style='color: #FFF;'>• <b>COGM</b> = Beg. WIP + (DM + DL + OH) - End. WIP</p>
+                    <p style='color: #FFF;'>• <b>COGS</b> = Beg. FG + COGM - End. FG</p>
+                </div>
+            </div>
+            """, unsafe_allow_html=True)
+        
+        elif diagram_choice_402 == "Job Costing vs Process Costing":
+            col1, col2 = st.columns(2)
+            with col1:
+                st.markdown("""
+                <div style='background: linear-gradient(145deg, #002E5D, #001A3A); padding: 25px; border-radius: 15px; height: 100%;'>
+                    <h3 style='color: #CFB53B; text-align: center;'>🔧 Job Costing</h3>
+                    <hr style='border-color: #003D7A;'>
+                    <p style='color: #FFF;'><b>Used When:</b></p>
+                    <ul style='color: #AAA;'>
+                        <li>Products are unique/custom</li>
+                        <li>Costs traceable to specific jobs</li>
+                        <li>Low volume, high variety</li>
+                    </ul>
+                    <p style='color: #FFF;'><b>Examples:</b></p>
+                    <ul style='color: #AAA;'>
+                        <li>Custom furniture</li>
+                        <li>Construction projects</li>
+                        <li>Legal cases</li>
+                        <li>Consulting engagements</li>
+                    </ul>
+                    <p style='color: #FFF;'><b>Key Document:</b></p>
+                    <p style='color: #CFB53B;'>Job Cost Sheet</p>
+                </div>
+                """, unsafe_allow_html=True)
+            with col2:
+                st.markdown("""
+                <div style='background: linear-gradient(145deg, #1B5E20, #0D3D12); padding: 25px; border-radius: 15px; height: 100%;'>
+                    <h3 style='color: #81C784; text-align: center;'>🏭 Process Costing</h3>
+                    <hr style='border-color: #2E7D32;'>
+                    <p style='color: #FFF;'><b>Used When:</b></p>
+                    <ul style='color: #AAA;'>
+                        <li>Products are homogeneous</li>
+                        <li>Continuous mass production</li>
+                        <li>High volume, low variety</li>
+                    </ul>
+                    <p style='color: #FFF;'><b>Examples:</b></p>
+                    <ul style='color: #AAA;'>
+                        <li>Oil refining</li>
+                        <li>Food processing</li>
+                        <li>Chemical manufacturing</li>
+                        <li>Paper production</li>
+                    </ul>
+                    <p style='color: #FFF;'><b>Key Document:</b></p>
+                    <p style='color: #81C784;'>Production Cost Report</p>
+                </div>
+                """, unsafe_allow_html=True)
+        
+        elif diagram_choice_402 == "Process Costing Steps (5-Step Method)":
+            st.markdown("""
+            <div style='background: linear-gradient(145deg, #1A1A2E, #151525); padding: 30px; border-radius: 15px; border: 1px solid #2D2D4A;'>
+                <h3 style='color: #CFB53B; text-align: center; margin-bottom: 30px;'>5-Step Process Costing Method</h3>
+            </div>
+            """, unsafe_allow_html=True)
+            
+            steps = [
+                ("1️⃣", "Analyze Physical Flow", "Determine units: Beginning WIP + Started = Transferred Out + Ending WIP", "#002E5D"),
+                ("2️⃣", "Calculate Equivalent Units", "Convert partial units to equivalent whole units for each cost element", "#1565C0"),
+                ("3️⃣", "Determine Total Costs", "Sum beginning inventory costs + current period costs", "#1B5E20"),
+                ("4️⃣", "Compute Cost per EU", "Total Costs ÷ Total Equivalent Units", "#B8860B"),
+                ("5️⃣", "Assign Costs", "Allocate to: Transferred Out + Ending WIP (must equal Step 3)", "#C62828")
+            ]
+            
+            for icon, title, desc, color in steps:
+                st.markdown(f"""
+                <div style='background: {color}; padding: 15px 20px; border-radius: 10px; margin: 10px 0; display: flex; align-items: center;'>
+                    <span style='font-size: 2em; margin-right: 15px;'>{icon}</span>
+                    <div>
+                        <p style='color: #FFF; font-weight: bold; margin: 0;'>{title}</p>
+                        <p style='color: #DDD; margin: 0; font-size: 0.9em;'>{desc}</p>
+                    </div>
+                </div>
+                """, unsafe_allow_html=True)
+        
+        elif diagram_choice_402 == "Cost Behavior Types":
+            st.markdown("""
+            <div style='background: linear-gradient(145deg, #1A1A2E, #151525); padding: 30px; border-radius: 15px; border: 1px solid #2D2D4A;'>
+                <h3 style='color: #CFB53B; text-align: center; margin-bottom: 20px;'>Cost Behavior Patterns</h3>
+            </div>
+            """, unsafe_allow_html=True)
+            
+            # Create visual charts for cost behavior
+            import plotly.graph_objects as go
+            from plotly.subplots import make_subplots
+            
+            fig = make_subplots(rows=2, cols=2, subplot_titles=("Variable Cost (Total)", "Variable Cost (Per Unit)", 
+                                                                 "Fixed Cost (Total)", "Fixed Cost (Per Unit)"))
+            
+            units = list(range(0, 101, 10))
+            
+            # Variable - Total (increases)
+            fig.add_trace(go.Scatter(x=units, y=[u*5 for u in units], mode='lines', line=dict(color='#4CAF50', width=3), name='Variable Total'), row=1, col=1)
+            # Variable - Per Unit (constant)
+            fig.add_trace(go.Scatter(x=units[1:], y=[5]*len(units[1:]), mode='lines', line=dict(color='#4CAF50', width=3), name='Variable/Unit'), row=1, col=2)
+            # Fixed - Total (constant)
+            fig.add_trace(go.Scatter(x=units, y=[200]*len(units), mode='lines', line=dict(color='#F44336', width=3), name='Fixed Total'), row=2, col=1)
+            # Fixed - Per Unit (decreases)
+            fig.add_trace(go.Scatter(x=units[1:], y=[200/u for u in units[1:]], mode='lines', line=dict(color='#F44336', width=3), name='Fixed/Unit'), row=2, col=2)
+            
+            fig.update_layout(height=500, showlegend=False, plot_bgcolor='#0E1117', paper_bgcolor='#0E1117', font=dict(color='white'))
+            fig.update_xaxes(title_text="Units", gridcolor='#2D2D4A')
+            fig.update_yaxes(title_text="$", gridcolor='#2D2D4A')
+            
+            st.plotly_chart(fig, use_container_width=True)
+            
+            st.markdown("""
+            <div style='background: #12121F; padding: 20px; border-radius: 10px; margin-top: 10px;'>
+                <p style='color: #4CAF50;'><b>Variable Costs:</b> Total changes with activity; Per-unit stays constant</p>
+                <p style='color: #F44336;'><b>Fixed Costs:</b> Total stays constant; Per-unit decreases as activity increases</p>
+                <p style='color: #FFC107;'><b>Mixed Costs:</b> Have both fixed and variable components (Y = a + bX)</p>
+            </div>
+            """, unsafe_allow_html=True)
+        
+        elif diagram_choice_402 == "Cost Allocation Methods":
+            st.markdown("""
+            <div style='background: linear-gradient(145deg, #1A1A2E, #151525); padding: 30px; border-radius: 15px; border: 1px solid #2D2D4A;'>
+                <h3 style='color: #CFB53B; text-align: center; margin-bottom: 20px;'>Service Department Cost Allocation</h3>
+            </div>
+            """, unsafe_allow_html=True)
+            
+            methods = [
+                ("Direct Method", "Simplest - ignores reciprocal services between service departments. Allocates directly to production departments only.", "#4CAF50", "✓ Simple\n✗ Ignores all reciprocal flows"),
+                ("Step Method", "Allocates one service dept at a time in sequence. Partially recognizes reciprocal services.", "#FFC107", "✓ Partially accurate\n✗ Order matters"),
+                ("Reciprocal Method", "Most accurate - uses simultaneous equations to fully account for reciprocal services.", "#2196F3", "✓ Most accurate\n✗ More complex")
+            ]
+            
+            for name, desc, color, pros in methods:
+                st.markdown(f"""
+                <div style='background: linear-gradient(145deg, #1E1E2E, #151525); padding: 20px; border-radius: 10px; margin: 15px 0; border-left: 4px solid {color};'>
+                    <h4 style='color: {color}; margin: 0;'>{name}</h4>
+                    <p style='color: #DDD; margin: 10px 0;'>{desc}</p>
+                    <p style='color: #AAA; font-size: 0.9em; white-space: pre-line;'>{pros}</p>
+                </div>
+                """, unsafe_allow_html=True)
+        
+        elif diagram_choice_402 == "CVP Analysis Framework":
+            st.markdown("""
+            <div style='background: linear-gradient(145deg, #1A1A2E, #151525); padding: 30px; border-radius: 15px; border: 1px solid #2D2D4A;'>
+                <h3 style='color: #CFB53B; text-align: center;'>Cost-Volume-Profit Relationships</h3>
+            </div>
+            """, unsafe_allow_html=True)
+            
+            st.markdown("""
+            <div style='text-align: center; padding: 20px;'>
+                <div style='display: inline-block; background: #002E5D; padding: 20px 40px; border-radius: 15px; margin: 10px;'>
+                    <p style='color: #CFB53B; margin: 0;'>SALES</p>
+                    <p style='color: #FFF; font-size: 1.2em; margin: 5px 0;'>Price × Units</p>
+                </div>
+                <span style='color: #FFF; font-size: 2em;'> − </span>
+                <div style='display: inline-block; background: #C62828; padding: 20px 40px; border-radius: 15px; margin: 10px;'>
+                    <p style='color: #FFCDD2; margin: 0;'>VARIABLE COSTS</p>
+                    <p style='color: #FFF; font-size: 1.2em; margin: 5px 0;'>VC/Unit × Units</p>
+                </div>
+                <span style='color: #FFF; font-size: 2em;'> = </span>
+                <div style='display: inline-block; background: #1B5E20; padding: 20px 40px; border-radius: 15px; margin: 10px;'>
+                    <p style='color: #81C784; margin: 0;'>CONTRIBUTION MARGIN</p>
+                    <p style='color: #FFF; font-size: 1.2em; margin: 5px 0;'>CM/Unit × Units</p>
+                </div>
+            </div>
+            <div style='text-align: center; padding: 10px;'>
+                <span style='color: #FFF; font-size: 2em;'>↓</span>
+            </div>
+            <div style='text-align: center; padding: 20px;'>
+                <div style='display: inline-block; background: #1B5E20; padding: 20px 40px; border-radius: 15px; margin: 10px;'>
+                    <p style='color: #81C784; margin: 0;'>CONTRIBUTION MARGIN</p>
+                </div>
+                <span style='color: #FFF; font-size: 2em;'> − </span>
+                <div style='display: inline-block; background: #B8860B; padding: 20px 40px; border-radius: 15px; margin: 10px;'>
+                    <p style='color: #FFE082; margin: 0;'>FIXED COSTS</p>
+                </div>
+                <span style='color: #FFF; font-size: 2em;'> = </span>
+                <div style='display: inline-block; background: #6A1B9A; padding: 20px 40px; border-radius: 15px; margin: 10px;'>
+                    <p style='color: #CE93D8; margin: 0;'>OPERATING INCOME</p>
+                </div>
+            </div>
+            """, unsafe_allow_html=True)
+            
+            st.markdown("""
+            <div style='background: #12121F; padding: 20px; border-radius: 10px; margin-top: 20px;'>
+                <p style='color: #CFB53B; font-weight: bold;'>Key CVP Formulas:</p>
+                <p style='color: #FFF;'>• <b>Break-Even (Units)</b> = Fixed Costs ÷ CM per Unit</p>
+                <p style='color: #FFF;'>• <b>Break-Even ($)</b> = Fixed Costs ÷ CM Ratio</p>
+                <p style='color: #FFF;'>• <b>Target Profit (Units)</b> = (Fixed Costs + Target Profit) ÷ CM per Unit</p>
+                <p style='color: #FFF;'>• <b>Margin of Safety</b> = Actual Sales - Break-Even Sales</p>
+            </div>
+            """, unsafe_allow_html=True)
+    
+    with map_tab2:
+        st.markdown("<br>", unsafe_allow_html=True)
+        
+        diagram_choice_405 = st.selectbox("Select a Concept Map:", [
+            "Individual Tax Formula Flowchart",
+            "For AGI vs From AGI Deductions",
+            "Filing Status Decision Tree",
+            "Dependency Test Flowchart",
+            "QBI Deduction Decision Tree",
+            "OBBBA Deductions Overview"
+        ], key="map_405")
+        
+        st.markdown("<br>", unsafe_allow_html=True)
+        
+        if diagram_choice_405 == "Individual Tax Formula Flowchart":
+            st.markdown("""
+            <div style='background: linear-gradient(145deg, #1A1A2E, #151525); padding: 30px; border-radius: 15px; border: 1px solid #2D2D4A;'>
+                <h3 style='color: #81C784; text-align: center; margin-bottom: 30px;'>Individual Income Tax Formula (2025)</h3>
+            </div>
+            """, unsafe_allow_html=True)
+            
+            steps = [
+                ("💰", "Gross Income", "All income from whatever source derived (§61)", "#4CAF50"),
+                ("➖", "For AGI Deductions", "Business expenses, IRA, HSA, SE health insurance, student loan interest", "#2196F3"),
+                ("📊", "= AGI", "Adjusted Gross Income (The 'Line')", "#FFC107"),
+                ("➖", "From AGI Deductions", "Greater of: Standard OR Itemized", "#9C27B0"),
+                ("➖", "QBI Deduction", "20% of Qualified Business Income", "#E91E63"),
+                ("➖", "OBBBA Deductions", "Senior, Tips, Overtime, Car Loan Interest", "#00BCD4"),
+                ("📋", "= Taxable Income", "Amount subject to tax rates", "#FF5722"),
+                ("✖️", "Tax Rates", "Apply tax brackets to taxable income", "#795548"),
+                ("📈", "= Tax Liability", "Gross tax before credits", "#F44336"),
+                ("➖", "Credits & Prepayments", "Child tax credit, withholding, etc.", "#4CAF50"),
+                ("💵", "= Tax Due / Refund", "Final amount owed or refunded", "#CFB53B")
+            ]
+            
+            for icon, title, desc, color in steps:
+                st.markdown(f"""
+                <div style='background: {color}22; padding: 12px 20px; border-radius: 10px; margin: 8px 0; border-left: 4px solid {color}; display: flex; align-items: center;'>
+                    <span style='font-size: 1.5em; margin-right: 15px;'>{icon}</span>
+                    <div style='flex: 1;'>
+                        <span style='color: #FFF; font-weight: bold;'>{title}</span>
+                        <span style='color: #AAA; margin-left: 15px; font-size: 0.9em;'>{desc}</span>
+                    </div>
+                </div>
+                """, unsafe_allow_html=True)
+        
+        elif diagram_choice_405 == "For AGI vs From AGI Deductions":
+            col1, col2 = st.columns(2)
+            with col1:
+                st.markdown("""
+                <div style='background: linear-gradient(145deg, #1565C0, #0D47A1); padding: 25px; border-radius: 15px;'>
+                    <h3 style='color: #FFF; text-align: center;'>📤 FOR AGI</h3>
+                    <p style='color: #90CAF9; text-align: center;'>(Above the Line)</p>
+                    <hr style='border-color: #1976D2;'>
+                    <ul style='color: #FFF;'>
+                        <li>Self-employment expenses</li>
+                        <li>50% of SE tax</li>
+                        <li>SE health insurance</li>
+                        <li>IRA contributions</li>
+                        <li>HSA contributions</li>
+                        <li>Student loan interest (up to $2,500)</li>
+                        <li>Alimony paid (pre-2019)</li>
+                        <li>Rental/royalty expenses</li>
+                        <li>Capital losses (up to $3,000)</li>
+                    </ul>
+                    <div style='background: #0D47A1; padding: 10px; border-radius: 5px; margin-top: 15px;'>
+                        <p style='color: #FFF; margin: 0; text-align: center;'><b>Benefit:</b> Reduces AGI, which affects other limitations</p>
+                    </div>
+                </div>
+                """, unsafe_allow_html=True)
+            with col2:
+                st.markdown("""
+                <div style='background: linear-gradient(145deg, #7B1FA2, #4A148C); padding: 25px; border-radius: 15px;'>
+                    <h3 style='color: #FFF; text-align: center;'>📥 FROM AGI</h3>
+                    <p style='color: #CE93D8; text-align: center;'>(Below the Line)</p>
+                    <hr style='border-color: #8E24AA;'>
+                    <p style='color: #FFF;'><b>Choose Greater Of:</b></p>
+                    <ul style='color: #FFF;'>
+                        <li>Standard Deduction, OR</li>
+                        <li>Itemized Deductions</li>
+                    </ul>
+                    <p style='color: #FFF;'><b>PLUS (always available):</b></p>
+                    <ul style='color: #FFF;'>
+                        <li>QBI Deduction (20%)</li>
+                        <li>Senior Deduction ($6,000)</li>
+                        <li>Tip Income Deduction</li>
+                        <li>Overtime Deduction</li>
+                        <li>Car Loan Interest</li>
+                    </ul>
+                </div>
+                """, unsafe_allow_html=True)
+        
+        elif diagram_choice_405 == "Filing Status Decision Tree":
+            st.markdown("""
+            <div style='background: linear-gradient(145deg, #1A1A2E, #151525); padding: 30px; border-radius: 15px; border: 1px solid #2D2D4A;'>
+                <h3 style='color: #81C784; text-align: center;'>Filing Status Decision Tree</h3>
+            </div>
+            """, unsafe_allow_html=True)
+            
+            st.markdown("""
+            <div style='padding: 20px;'>
+                <div style='background: #002E5D; padding: 15px; border-radius: 10px; text-align: center; margin-bottom: 20px;'>
+                    <p style='color: #FFF; font-weight: bold; margin: 0;'>❓ Were you married on December 31?</p>
+                </div>
+                <div style='display: flex; gap: 20px;'>
+                    <div style='flex: 1;'>
+                        <div style='background: #1B5E20; padding: 10px; border-radius: 10px; text-align: center;'>
+                            <p style='color: #FFF; margin: 0;'><b>YES</b> → Married</p>
+                        </div>
+                        <div style='margin-left: 20px; margin-top: 10px;'>
+                            <div style='background: #1A1A2E; padding: 10px; border-radius: 5px; margin: 5px 0; border-left: 3px solid #4CAF50;'>
+                                <p style='color: #FFF; margin: 0;'>• <b>MFJ</b> - File together (most common)</p>
+                            </div>
+                            <div style='background: #1A1A2E; padding: 10px; border-radius: 5px; margin: 5px 0; border-left: 3px solid #FFC107;'>
+                                <p style='color: #FFF; margin: 0;'>• <b>MFS</b> - File separately (rare)</p>
+                            </div>
+                            <div style='background: #1A1A2E; padding: 10px; border-radius: 5px; margin: 5px 0; border-left: 3px solid #9C27B0;'>
+                                <p style='color: #FFF; margin: 0;'>• <b>HoH</b> - If "abandoned spouse" rules met</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div style='flex: 1;'>
+                        <div style='background: #C62828; padding: 10px; border-radius: 10px; text-align: center;'>
+                            <p style='color: #FFF; margin: 0;'><b>NO</b> → Unmarried</p>
+                        </div>
+                        <div style='margin-left: 20px; margin-top: 10px;'>
+                            <div style='background: #1A1A2E; padding: 10px; border-radius: 5px; margin: 5px 0; border-left: 3px solid #2196F3;'>
+                                <p style='color: #FFF; margin: 0;'>• <b>Single</b> - No qualifying person</p>
+                            </div>
+                            <div style='background: #1A1A2E; padding: 10px; border-radius: 5px; margin: 5px 0; border-left: 3px solid #FF9800;'>
+                                <p style='color: #FFF; margin: 0;'>• <b>HoH</b> - Qualifying person + pay >50% home</p>
+                            </div>
+                            <div style='background: #1A1A2E; padding: 10px; border-radius: 5px; margin: 5px 0; border-left: 3px solid #E91E63;'>
+                                <p style='color: #FFF; margin: 0;'>• <b>QSS</b> - Spouse died in prior 2 years + dependent child</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            """, unsafe_allow_html=True)
+        
+        elif diagram_choice_405 == "Dependency Test Flowchart":
+            col1, col2 = st.columns(2)
+            with col1:
+                st.markdown("""
+                <div style='background: linear-gradient(145deg, #1565C0, #0D47A1); padding: 25px; border-radius: 15px;'>
+                    <h3 style='color: #FFF; text-align: center;'>👶 Qualifying Child</h3>
+                    <p style='color: #90CAF9; text-align: center;'>Must pass ALL 4 tests</p>
+                    <hr style='border-color: #1976D2;'>
+                    <div style='background: #0D47A1; padding: 10px; border-radius: 5px; margin: 8px 0;'>
+                        <p style='color: #FFF; margin: 0;'><b>1. Relationship</b></p>
+                        <p style='color: #90CAF9; margin: 0; font-size: 0.9em;'>Child, sibling, or descendant</p>
+                    </div>
+                    <div style='background: #0D47A1; padding: 10px; border-radius: 5px; margin: 8px 0;'>
+                        <p style='color: #FFF; margin: 0;'><b>2. Age</b></p>
+                        <p style='color: #90CAF9; margin: 0; font-size: 0.9em;'><19, or <24 if student, or disabled</p>
+                    </div>
+                    <div style='background: #0D47A1; padding: 10px; border-radius: 5px; margin: 8px 0;'>
+                        <p style='color: #FFF; margin: 0;'><b>3. Residence</b></p>
+                        <p style='color: #90CAF9; margin: 0; font-size: 0.9em;'>Lived with taxpayer >½ year</p>
+                    </div>
+                    <div style='background: #0D47A1; padding: 10px; border-radius: 5px; margin: 8px 0;'>
+                        <p style='color: #FFF; margin: 0;'><b>4. Support</b></p>
+                        <p style='color: #90CAF9; margin: 0; font-size: 0.9em;'>Child did NOT provide >½ own support</p>
+                    </div>
+                </div>
+                """, unsafe_allow_html=True)
+            with col2:
+                st.markdown("""
+                <div style='background: linear-gradient(145deg, #1B5E20, #0D3D12); padding: 25px; border-radius: 15px;'>
+                    <h3 style='color: #FFF; text-align: center;'>👴 Qualifying Relative</h3>
+                    <p style='color: #81C784; text-align: center;'>Must pass ALL 3 tests</p>
+                    <hr style='border-color: #2E7D32;'>
+                    <div style='background: #0D3D12; padding: 10px; border-radius: 5px; margin: 8px 0;'>
+                        <p style='color: #FFF; margin: 0;'><b>1. Relationship</b></p>
+                        <p style='color: #81C784; margin: 0; font-size: 0.9em;'>Family member OR lived with taxpayer all year</p>
+                    </div>
+                    <div style='background: #0D3D12; padding: 10px; border-radius: 5px; margin: 8px 0;'>
+                        <p style='color: #FFF; margin: 0;'><b>2. Support</b></p>
+                        <p style='color: #81C784; margin: 0; font-size: 0.9em;'>Taxpayer provided >½ of support</p>
+                    </div>
+                    <div style='background: #0D3D12; padding: 10px; border-radius: 5px; margin: 8px 0;'>
+                        <p style='color: #FFF; margin: 0;'><b>3. Gross Income</b></p>
+                        <p style='color: #81C784; margin: 0; font-size: 0.9em;'>< $5,200 (2025)</p>
+                    </div>
+                    <div style='background: #C62828; padding: 10px; border-radius: 5px; margin: 15px 0 0 0;'>
+                        <p style='color: #FFF; margin: 0; text-align: center;'>⚠️ Cannot be a qualifying child of anyone</p>
+                    </div>
+                </div>
+                """, unsafe_allow_html=True)
+        
+        elif diagram_choice_405 == "QBI Deduction Decision Tree":
+            st.markdown("""
+            <div style='background: linear-gradient(145deg, #1A1A2E, #151525); padding: 30px; border-radius: 15px; border: 1px solid #2D2D4A;'>
+                <h3 style='color: #81C784; text-align: center;'>QBI Deduction (§199A) Decision Tree</h3>
+            </div>
+            """, unsafe_allow_html=True)
+            
+            st.markdown("""
+            <div style='padding: 20px;'>
+                <div style='background: #002E5D; padding: 15px; border-radius: 10px; text-align: center;'>
+                    <p style='color: #FFF; margin: 0;'><b>Step 1:</b> Is it a Qualified Trade or Business?</p>
+                    <p style='color: #AAA; margin: 5px 0 0 0; font-size: 0.9em;'>(Not SSTB and not being an employee)</p>
+                </div>
+                <div style='text-align: center; color: #CFB53B; font-size: 1.5em;'>↓</div>
+                <div style='background: #1B5E20; padding: 15px; border-radius: 10px; text-align: center;'>
+                    <p style='color: #FFF; margin: 0;'><b>Step 2:</b> Is Taxable Income ≤ $197,300 ($394,600 MFJ)?</p>
+                </div>
+                <div style='display: flex; gap: 20px; margin-top: 15px;'>
+                    <div style='flex: 1; background: #4CAF50; padding: 15px; border-radius: 10px;'>
+                        <p style='color: #FFF; text-align: center;'><b>YES</b></p>
+                        <p style='color: #FFF; text-align: center;'>Full 20% deduction!</p>
+                        <p style='color: #DDD; text-align: center; font-size: 0.9em;'>No wage limit applies</p>
+                    </div>
+                    <div style='flex: 1; background: #FF9800; padding: 15px; border-radius: 10px;'>
+                        <p style='color: #FFF; text-align: center;'><b>NO</b> - Above threshold</p>
+                        <p style='color: #FFF; text-align: center;'>Check if SSTB:</p>
+                        <p style='color: #DDD; font-size: 0.9em;'>• SSTB + above $247,300/$494,600 = NO deduction</p>
+                        <p style='color: #DDD; font-size: 0.9em;'>• Non-SSTB = Wage limit applies</p>
+                    </div>
+                </div>
+                <div style='background: #12121F; padding: 15px; border-radius: 10px; margin-top: 20px;'>
+                    <p style='color: #CFB53B;'><b>Wage-Based Limitation (when applicable):</b></p>
+                    <p style='color: #FFF;'>QBI Deduction ≤ Greater of:</p>
+                    <p style='color: #AAA;'>• 50% of W-2 wages, OR</p>
+                    <p style='color: #AAA;'>• 25% of W-2 wages + 2.5% of qualified property basis</p>
+                </div>
+            </div>
+            """, unsafe_allow_html=True)
+        
+        elif diagram_choice_405 == "OBBBA Deductions Overview":
+            st.markdown("""
+            <div style='background: linear-gradient(145deg, #1A1A2E, #151525); padding: 30px; border-radius: 15px; border: 1px solid #2D2D4A;'>
+                <h3 style='color: #CFB53B; text-align: center;'>OBBBA From AGI Deductions (2025-2028)</h3>
+                <p style='color: #AAA; text-align: center;'>One Big Beautiful Bill Act - Signed July 4, 2025</p>
+            </div>
+            """, unsafe_allow_html=True)
+            
+            deductions = [
+                ("👴 Senior Deduction", "$6,000", "$75,000 / $150,000", "6% of excess AGI", "#9C27B0", "Age 65+ at year-end"),
+                ("💵 Tip Income", "Up to $25,000", "$150,000 / $300,000", "$100 per $1,000", "#4CAF50", "Cash tips in customary occupation"),
+                ("⏰ Overtime", "$12,500 / $25,000", "$150,000 / $300,000", "$100 per $1,000", "#2196F3", "FLSA-required overtime"),
+                ("🚗 Car Loan Interest", "Up to $10,000", "$100,000 / $200,000", "$200 per $1,000", "#FF9800", "New US vehicle after 12/31/24"),
+            ]
+            
+            for name, max_amt, threshold, phase, color, note in deductions:
+                st.markdown(f"""
+                <div style='background: {color}22; padding: 20px; border-radius: 10px; margin: 15px 0; border-left: 4px solid {color};'>
+                    <div style='display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;'>
+                        <h4 style='color: {color}; margin: 0;'>{name}</h4>
+                        <span style='background: {color}; color: #FFF; padding: 5px 15px; border-radius: 20px;'>{max_amt}</span>
+                    </div>
+                    <div style='margin-top: 15px; display: flex; gap: 20px; flex-wrap: wrap;'>
+                        <div>
+                            <p style='color: #AAA; margin: 0; font-size: 0.8em;'>Phase-out Threshold (Single/MFJ)</p>
+                            <p style='color: #FFF; margin: 0;'>{threshold}</p>
+                        </div>
+                        <div>
+                            <p style='color: #AAA; margin: 0; font-size: 0.8em;'>Phase-out Rate</p>
+                            <p style='color: #FFF; margin: 0;'>{phase}</p>
+                        </div>
+                    </div>
+                    <p style='color: #AAA; margin: 10px 0 0 0; font-size: 0.9em;'>📌 {note}</p>
+                </div>
+                """, unsafe_allow_html=True)
+            
+            st.markdown("""
+            <div style='background: #C62828; padding: 15px; border-radius: 10px; margin-top: 20px;'>
+                <p style='color: #FFF; margin: 0; text-align: center;'>⚠️ <b>Senior, Tip, and Overtime deductions are NOT available for MFS filers</b></p>
+            </div>
+            """, unsafe_allow_html=True)
+
+
+# --- PAGE: WHAT-IF ANALYZER ---
+elif page == "🔮 What-If Analyzer":
+    st.markdown("<div class='page-header'><h1>🔮 What-If Scenario Analyzer</h1><p>See how changes impact your numbers</p></div>", unsafe_allow_html=True)
+    
+    if st.button("← Back to Home", key="back_whatif"):
+        st.session_state.selected_page = "🏠 Home"
+        st.rerun()
+    
+    whatif_tab1, whatif_tab2 = st.tabs(["📕 ACC 402 - Managerial", "📗 ACC 405 - Tax"])
+    
+    with whatif_tab1:
+        st.markdown("""<div style='background: linear-gradient(145deg, #002E5D, #001A3A); padding: 20px; border-radius: 15px; margin-bottom: 20px;'>
+            <h3 style='color: #CFB53B;'>CVP What-If Analysis</h3>
+            <p style='color: #AAA;'>See how changes in price, costs, or volume affect your break-even and profit</p>
+        </div>""", unsafe_allow_html=True)
+        
+        st.markdown("### 📊 Base Scenario")
+        col1, col2, col3, col4 = st.columns(4)
+        with col1:
+            base_price = st.number_input("Selling Price/Unit", min_value=0.01, value=50.0, step=1.0, key="wi_price")
+        with col2:
+            base_vc = st.number_input("Variable Cost/Unit", min_value=0.0, value=30.0, step=1.0, key="wi_vc")
+        with col3:
+            base_fc = st.number_input("Fixed Costs", min_value=0.0, value=40000.0, step=1000.0, key="wi_fc")
+        with col4:
+            base_units = st.number_input("Expected Units", min_value=0, value=3000, step=100, key="wi_units")
+        
+        st.markdown("### 🔄 What-If Changes")
+        col1, col2, col3, col4 = st.columns(4)
+        with col1:
+            price_change = st.slider("Price Change %", min_value=-50, max_value=50, value=0, key="wi_price_chg")
+        with col2:
+            vc_change = st.slider("Variable Cost Change %", min_value=-50, max_value=50, value=0, key="wi_vc_chg")
+        with col3:
+            fc_change = st.slider("Fixed Cost Change %", min_value=-50, max_value=50, value=0, key="wi_fc_chg")
+        with col4:
+            units_change = st.slider("Volume Change %", min_value=-50, max_value=50, value=0, key="wi_units_chg")
+        
+        # Calculate scenarios
+        new_price = base_price * (1 + price_change/100)
+        new_vc = base_vc * (1 + vc_change/100)
+        new_fc = base_fc * (1 + fc_change/100)
+        new_units = int(base_units * (1 + units_change/100))
+        
+        # Base calculations
+        base_cm = base_price - base_vc
+        base_bep = base_fc / base_cm if base_cm > 0 else 0
+        base_profit = (base_cm * base_units) - base_fc
+        
+        # New calculations
+        new_cm = new_price - new_vc
+        new_bep = new_fc / new_cm if new_cm > 0 else float('inf')
+        new_profit = (new_cm * new_units) - new_fc
+        
+        # Display comparison
+        st.markdown("### 📈 Comparison Results")
+        
+        col1, col2, col3 = st.columns(3)
+        
+        with col1:
+            bep_diff = new_bep - base_bep
+            bep_color = "#4CAF50" if bep_diff < 0 else "#F44336" if bep_diff > 0 else "#FFF"
+            st.markdown(f"""
+            <div style='background: #1A1A2E; padding: 20px; border-radius: 10px; text-align: center;'>
+                <p style='color: #AAA;'>Break-Even Point</p>
+                <p style='color: #888;'>{base_bep:,.0f} units</p>
+                <p style='color: {bep_color}; font-size: 1.8em; font-weight: bold;'>{new_bep:,.0f} units</p>
+                <p style='color: {bep_color};'>{bep_diff:+,.0f} units</p>
+            </div>
+            """, unsafe_allow_html=True)
+        
+        with col2:
+            cm_diff = new_cm - base_cm
+            cm_color = "#4CAF50" if cm_diff > 0 else "#F44336" if cm_diff < 0 else "#FFF"
+            st.markdown(f"""
+            <div style='background: #1A1A2E; padding: 20px; border-radius: 10px; text-align: center;'>
+                <p style='color: #AAA;'>CM per Unit</p>
+                <p style='color: #888;'>${base_cm:,.2f}</p>
+                <p style='color: {cm_color}; font-size: 1.8em; font-weight: bold;'>${new_cm:,.2f}</p>
+                <p style='color: {cm_color};'>${cm_diff:+,.2f}</p>
+            </div>
+            """, unsafe_allow_html=True)
+        
+        with col3:
+            profit_diff = new_profit - base_profit
+            profit_color = "#4CAF50" if profit_diff > 0 else "#F44336" if profit_diff < 0 else "#FFF"
+            st.markdown(f"""
+            <div style='background: #1A1A2E; padding: 20px; border-radius: 10px; text-align: center;'>
+                <p style='color: #AAA;'>Operating Income</p>
+                <p style='color: #888;'>${base_profit:,.0f}</p>
+                <p style='color: {profit_color}; font-size: 1.8em; font-weight: bold;'>${new_profit:,.0f}</p>
+                <p style='color: {profit_color};'>${profit_diff:+,.0f}</p>
+            </div>
+            """, unsafe_allow_html=True)
+        
+        # Visual chart
+        st.markdown("### 📊 Visual Impact")
+        
+        scenarios = ['Base', 'New']
+        
+        fig = go.Figure()
+        fig.add_trace(go.Bar(name='Revenue', x=scenarios, y=[base_price*base_units, new_price*new_units], marker_color='#4CAF50'))
+        fig.add_trace(go.Bar(name='Total Costs', x=scenarios, y=[base_fc + base_vc*base_units, new_fc + new_vc*new_units], marker_color='#F44336'))
+        fig.add_trace(go.Bar(name='Profit', x=scenarios, y=[base_profit, new_profit], marker_color='#CFB53B'))
+        
+        fig.update_layout(
+            barmode='group',
+            plot_bgcolor='#0E1117', paper_bgcolor='#0E1117',
+            font=dict(color='white'),
+            legend=dict(bgcolor='rgba(0,0,0,0)'),
+            yaxis=dict(gridcolor='#2D2D4A', title='$'),
+            xaxis=dict(title='Scenario')
+        )
+        st.plotly_chart(fig, use_container_width=True)
+    
+    with whatif_tab2:
+        st.markdown("""<div style='background: linear-gradient(145deg, #1B5E20, #0D3D12); padding: 20px; border-radius: 15px; margin-bottom: 20px;'>
+            <h3 style='color: #81C784;'>Tax What-If Analysis (2025)</h3>
+            <p style='color: #AAA;'>See how life changes affect your tax situation</p>
+        </div>""", unsafe_allow_html=True)
+        
+        scenario = st.selectbox("Select a What-If Scenario:", [
+            "What if I got married?",
+            "What if my income increased?",
+            "What if I started a business?",
+            "What if I bought a house?",
+            "What if I had a child?",
+            "Custom Comparison"
+        ], key="tax_scenario")
+        
+        st.markdown("---")
+        
+        if scenario == "Custom Comparison":
+            col1, col2 = st.columns(2)
+            
+            with col1:
+                st.markdown("### 📋 Current Situation")
+                curr_income = st.number_input("Gross Income", min_value=0.0, value=75000.0, step=1000.0, key="curr_inc")
+                curr_status = st.selectbox("Filing Status", ["Single", "MFJ", "HoH"], key="curr_status")
+                curr_for_agi = st.number_input("For AGI Deductions", min_value=0.0, value=2000.0, step=500.0, key="curr_for")
+                curr_itemized = st.number_input("Itemized Deductions", min_value=0.0, value=8000.0, step=500.0, key="curr_item")
+                curr_credits = st.number_input("Tax Credits", min_value=0.0, value=0.0, step=500.0, key="curr_cred")
+            
+            with col2:
+                st.markdown("### 🔄 New Situation")
+                new_income = st.number_input("Gross Income", min_value=0.0, value=75000.0, step=1000.0, key="new_inc")
+                new_status = st.selectbox("Filing Status", ["Single", "MFJ", "HoH"], key="new_status", index=1)
+                new_for_agi = st.number_input("For AGI Deductions", min_value=0.0, value=2000.0, step=500.0, key="new_for")
+                new_itemized = st.number_input("Itemized Deductions", min_value=0.0, value=8000.0, step=500.0, key="new_item")
+                new_credits = st.number_input("Tax Credits", min_value=0.0, value=0.0, step=500.0, key="new_cred")
+        else:
+            # Pre-set scenarios
+            st.markdown("### 📋 Your Current Situation")
+            col1, col2, col3 = st.columns(3)
+            with col1:
+                curr_income = st.number_input("Gross Income", min_value=0.0, value=75000.0, step=1000.0, key="base_inc")
+            with col2:
+                curr_for_agi = st.number_input("For AGI Deductions", min_value=0.0, value=2000.0, step=500.0, key="base_for")
+            with col3:
+                curr_itemized = st.number_input("Itemized Deductions", min_value=0.0, value=8000.0, step=500.0, key="base_item")
+            
+            curr_status = "Single"
+            curr_credits = 0
+            
+            # Set new scenario based on selection
+            if scenario == "What if I got married?":
+                new_income = curr_income
+                new_status = "MFJ"
+                new_for_agi = curr_for_agi
+                new_itemized = curr_itemized
+                new_credits = curr_credits
+                st.info("📝 Comparing: Single → Married Filing Jointly")
+            elif scenario == "What if my income increased?":
+                new_income = curr_income * 1.2
+                new_status = curr_status
+                new_for_agi = curr_for_agi
+                new_itemized = curr_itemized
+                new_credits = curr_credits
+                st.info(f"📝 Comparing: ${curr_income:,.0f} → ${new_income:,.0f} (20% increase)")
+            elif scenario == "What if I started a business?":
+                new_income = curr_income + 30000
+                new_status = curr_status
+                new_for_agi = curr_for_agi + 4500  # SE tax deduction
+                new_itemized = curr_itemized
+                new_credits = curr_credits
+                st.info("📝 Adding $30,000 business income with SE tax deduction")
+            elif scenario == "What if I bought a house?":
+                new_income = curr_income
+                new_status = curr_status
+                new_for_agi = curr_for_agi
+                new_itemized = 18000  # Mortgage interest + property tax
+                new_credits = curr_credits
+                st.info("📝 Adding mortgage interest ($12,000) + property taxes ($6,000)")
+            elif scenario == "What if I had a child?":
+                new_income = curr_income
+                new_status = "HoH"
+                new_for_agi = curr_for_agi
+                new_itemized = curr_itemized
+                new_credits = 2200  # Child tax credit
+                st.info("📝 Filing as Head of Household + $2,200 child tax credit")
+        
+        if st.button("🔮 Analyze Impact", key="analyze_tax", use_container_width=True):
+            # Standard deductions
+            std_ded = {"Single": 15750, "MFJ": 31500, "HoH": 23625}
+            
+            # Current tax calculation
+            curr_agi = curr_income - curr_for_agi
+            curr_ded = max(std_ded[curr_status], curr_itemized)
+            curr_taxable = max(0, curr_agi - curr_ded)
+            
+            # Simplified tax calculation (2024 brackets approximation)
+            def calc_tax(taxable, status):
+                if status == "MFJ":
+                    brackets = [(23200, 0.10), (94300, 0.12), (201050, 0.22), (383900, 0.24), (487450, 0.32), (731200, 0.35), (float('inf'), 0.37)]
+                else:
+                    brackets = [(11600, 0.10), (47150, 0.12), (100525, 0.22), (191950, 0.24), (243725, 0.32), (609350, 0.35), (float('inf'), 0.37)]
+                
+                tax = 0
+                prev = 0
+                for limit, rate in brackets:
+                    if taxable <= 0:
+                        break
+                    taxable_at_rate = min(taxable, limit - prev)
+                    tax += taxable_at_rate * rate
+                    taxable -= taxable_at_rate
+                    prev = limit
+                return tax
+            
+            curr_tax = calc_tax(curr_taxable, curr_status) - curr_credits
+            
+            # New tax calculation
+            new_agi = new_income - new_for_agi
+            new_ded = max(std_ded[new_status], new_itemized)
+            new_taxable = max(0, new_agi - new_ded)
+            new_tax = calc_tax(new_taxable, new_status) - new_credits
+            
+            # Display results
+            st.markdown("### 📊 Comparison Results")
+            
+            col1, col2, col3 = st.columns(3)
+            
+            with col1:
+                st.markdown(f"""
+                <div style='background: #1A1A2E; padding: 20px; border-radius: 10px;'>
+                    <p style='color: #CFB53B; font-weight: bold; text-align: center;'>CURRENT</p>
+                    <hr style='border-color: #2D2D4A;'>
+                    <p style='color: #AAA;'>Status: <span style='color: #FFF;'>{curr_status}</span></p>
+                    <p style='color: #AAA;'>AGI: <span style='color: #FFF;'>${curr_agi:,.0f}</span></p>
+                    <p style='color: #AAA;'>Deduction: <span style='color: #FFF;'>${curr_ded:,.0f}</span></p>
+                    <p style='color: #AAA;'>Taxable: <span style='color: #FFF;'>${curr_taxable:,.0f}</span></p>
+                    <p style='color: #AAA;'>Tax: <span style='color: #FFF; font-size: 1.3em;'>${curr_tax:,.0f}</span></p>
+                </div>
+                """, unsafe_allow_html=True)
+            
+            with col2:
+                st.markdown(f"""
+                <div style='background: #1A1A2E; padding: 20px; border-radius: 10px;'>
+                    <p style='color: #81C784; font-weight: bold; text-align: center;'>NEW</p>
+                    <hr style='border-color: #2D2D4A;'>
+                    <p style='color: #AAA;'>Status: <span style='color: #FFF;'>{new_status}</span></p>
+                    <p style='color: #AAA;'>AGI: <span style='color: #FFF;'>${new_agi:,.0f}</span></p>
+                    <p style='color: #AAA;'>Deduction: <span style='color: #FFF;'>${new_ded:,.0f}</span></p>
+                    <p style='color: #AAA;'>Taxable: <span style='color: #FFF;'>${new_taxable:,.0f}</span></p>
+                    <p style='color: #AAA;'>Tax: <span style='color: #FFF; font-size: 1.3em;'>${new_tax:,.0f}</span></p>
+                </div>
+                """, unsafe_allow_html=True)
+            
+            with col3:
+                tax_diff = new_tax - curr_tax
+                diff_color = "#4CAF50" if tax_diff < 0 else "#F44336" if tax_diff > 0 else "#FFF"
+                diff_text = "SAVINGS" if tax_diff < 0 else "INCREASE" if tax_diff > 0 else "NO CHANGE"
+                
+                st.markdown(f"""
+                <div style='background: linear-gradient(145deg, {diff_color}22, {diff_color}11); padding: 20px; border-radius: 10px; border: 2px solid {diff_color};'>
+                    <p style='color: {diff_color}; font-weight: bold; text-align: center;'>{diff_text}</p>
+                    <hr style='border-color: {diff_color}44;'>
+                    <p style='color: {diff_color}; font-size: 2.5em; text-align: center; font-weight: bold;'>${abs(tax_diff):,.0f}</p>
+                    <p style='color: #AAA; text-align: center;'>{"per year" if abs(tax_diff) > 0 else ""}</p>
+                </div>
+                """, unsafe_allow_html=True)
+            
+            # Effective tax rate comparison
+            curr_eff_rate = (curr_tax / curr_income * 100) if curr_income > 0 else 0
+            new_eff_rate = (new_tax / new_income * 100) if new_income > 0 else 0
+            
+            st.markdown(f"""
+            <div style='background: #12121F; padding: 20px; border-radius: 10px; margin-top: 20px;'>
+                <p style='color: #CFB53B; font-weight: bold;'>Effective Tax Rate Comparison:</p>
+                <div style='display: flex; justify-content: space-around; margin-top: 10px;'>
+                    <div style='text-align: center;'>
+                        <p style='color: #AAA;'>Current</p>
+                        <p style='color: #FFF; font-size: 1.5em;'>{curr_eff_rate:.1f}%</p>
+                    </div>
+                    <div style='text-align: center;'>
+                        <p style='color: #AAA;'>New</p>
+                        <p style='color: #FFF; font-size: 1.5em;'>{new_eff_rate:.1f}%</p>
+                    </div>
+                    <div style='text-align: center;'>
+                        <p style='color: #AAA;'>Change</p>
+                        <p style='color: {diff_color}; font-size: 1.5em;'>{new_eff_rate - curr_eff_rate:+.1f}%</p>
+                    </div>
+                </div>
+            </div>
+            """, unsafe_allow_html=True)
+
+
+# ============================================================================
+# END OF WOW FEATURES CODE
+# ============================================================================
