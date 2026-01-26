@@ -3390,10 +3390,10 @@ GUIDELINES:
             cols = st.columns(2)
             for idx, s in enumerate(suggestions):
                 with cols[idx % 2]:
-                if st.button(f"📌 {s[:40]}...", key=f"sug_{idx}"):
-                    st.session_state.chat_history_402.append({'role': 'user', 'content': s})
-                    st.session_state.trigger_ai_call = True
-                    st.rerun()
+                    if st.button(f"📌 {s[:40]}...", key=f"sug_{idx}"):
+                        st.session_state.chat_history_402.append({'role': 'user', 'content': s})
+                        st.session_state.trigger_ai_call = True
+                        st.rerun()
     
     with tab2:
         st.markdown("<h3>📚 Key ACC 402 Formulas</h3>", unsafe_allow_html=True)
