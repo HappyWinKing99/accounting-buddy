@@ -3395,9 +3395,9 @@ GUIDELINES:
                         st.session_state.trigger_ai_call = True
                         st.rerun()
     
-    with tab2:
-        st.markdown("<h3>📚 Key ACC 402 Formulas</h3>", unsafe_allow_html=True)
-        formulas = [
+            with tab2:
+                st.markdown("<h3>📚 Key ACC 402 Formulas</h3>", unsafe_allow_html=True)
+                formulas = [
             ("Contribution Margin", "Sales - Variable Costs"),
             ("CM Ratio", "CM ÷ Sales"),
             ("Break-Even (Units)", "Fixed Costs ÷ CM per Unit"),
