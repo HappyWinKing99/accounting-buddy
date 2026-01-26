@@ -2570,19 +2570,19 @@ with st.sidebar:
         <p style='text-align: center; color: #CFB53B; font-size: 0.9em; letter-spacing: 2px; margin-bottom: 30px;'>STUDY HUB</p>
     """, unsafe_allow_html=True)
     
-    st.markdown("---")
+st.markdown("---")
     
- pages = [
-    "🏠 Home",
-    "🧮 Calculators",
-    "📖 Formula Database",
-    "📊 Break-Even Visualizer",
-    "📕 ACC 402 - Managerial Accounting",
-    "📗 ACC 405 - Tax Accounting",
-    "📝 Practice Exam Generator",
-    "🗺️ Concept Maps",
-    "🔮 What-If Analyzer"
-]
+    pages = [
+        "🏠 Home",
+        "🧮 Calculators",
+        "📖 Formula Database",
+        "📊 Break-Even Visualizer",
+        "📕 ACC 402 - Managerial Accounting",
+        "📗 ACC 405 - Tax Accounting",
+        "📝 Practice Exam Generator",
+        "🗺️ Concept Maps",
+        "🔮 What-If Analyzer"
+    ]
     
     for page_name in pages:
         if st.button(page_name, key=f"nav_{page_name}", use_container_width=True):
