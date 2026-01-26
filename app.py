@@ -2564,20 +2564,18 @@ SUMMARY: TAXABLE INCOME CALCULATION
 ================================================================================
 """
 
-
 # ============================================================================
 # CUSTOM CSS - LIQUID GLASS THEME (FULL APP)
 # ============================================================================
 st.markdown("""
     <style>
-    /* 1. APP BACKGROUND - Deep Dark Blue/Black */
+    /* 1. APP BACKGROUND */
     .stApp { 
         background: linear-gradient(180deg, #020617 0%, #0f172a 50%, #1e1b4b 100%); 
-        font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
     }
     
-    /* 2. LIQUID GLASS HEADINGS (H1, H2, H3) */
-    /* This makes titles look like they are reflecting light */
+    /* 2. TEXT STYLING - Global */
     h1, h2, h3 {
         background: linear-gradient(120deg, #FFFFFF 0%, #E2E8F0 80%, #94A3B8 100%);
         -webkit-background-clip: text !important;
@@ -2587,87 +2585,86 @@ st.markdown("""
         letter-spacing: -0.5px !important;
     }
     
-    /* 3. FROSTED BODY TEXT */
-    /* Softens the white so it looks suspended in glass */
     p, span, div, label, li, td, th { 
-        color: rgba(255, 255, 255, 0.9) !important;
-        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3); /* Subtle depth */
+        color: rgba(255, 255, 255, 0.95) !important;
         font-weight: 400;
-        letter-spacing: 0.2px;
+        letter-spacing: 0.3px;
     }
     
-    /* 4. LIQUID GLASS BOXES (Buttons) */
+    /* 3. INPUT BOXES & TEXT AREAS (Fixing White-on-White) */
+    /* We make the background DARK glass so white text pops */
+    .stTextInput > div > div > input, 
+    .stNumberInput > div > div > input, 
+    .stSelectbox > div > div, 
+    .stTextArea > div > div > textarea {
+        background-color: rgba(0, 0, 0, 0.3) !important; /* Dark Glass */
+        color: #FFFFFF !important;
+        border: 1px solid rgba(255, 255, 255, 0.15) !important;
+        border-radius: 12px !important;
+        backdrop-filter: blur(10px);
+    }
+    
+    /* Placeholder Text Color */
+    ::placeholder { color: rgba(255, 255, 255, 0.5) !important; }
+    
+    /* Focus State - Glow Blue */
+    .stTextInput > div > div > input:focus, 
+    .stTextArea > div > div > textarea:focus {
+        border-color: #60A5FA !important;
+        box-shadow: 0 0 15px rgba(96, 165, 250, 0.2) !important;
+        background-color: rgba(0, 0, 0, 0.5) !important;
+    }
+
+    /* 4. DROPDOWN MENUS (Fixing the Popover) */
+    /* This targets the list that pops up */
+    div[data-baseweb="popover"] {
+        background-color: #0f172a !important; /* Solid Dark Blue Background */
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 12px;
+    }
+    div[data-baseweb="menu"] {
+        background-color: transparent !important;
+    }
+    /* The options inside the list */
+    div[data-baseweb="menu"] li {
+        color: #FFFFFF !important;
+        background-color: transparent !important;
+    }
+    /* Hover state for options */
+    div[data-baseweb="menu"] li:hover {
+        background-color: rgba(96, 165, 250, 0.2) !important; /* Blue highlight */
+    }
+
+    /* 5. BUTTONS (Liquid Glass) */
     div.stButton > button {
         width: 100%;
-        /* The liquid background */
         background: linear-gradient(145deg, rgba(255, 255, 255, 0.07) 0%, rgba(255, 255, 255, 0.01) 100%) !important;
         backdrop-filter: blur(25px) !important;
         -webkit-backdrop-filter: blur(25px) !important;
-        
         border: 1px solid rgba(255, 255, 255, 0.15) !important;
-        border-top: 1px solid rgba(255, 255, 255, 0.3) !important; /* Catch light on top */
-        border-bottom: 1px solid rgba(0, 0, 0, 0.2) !important;    /* Shadow on bottom */
+        border-top: 1px solid rgba(255, 255, 255, 0.3) !important;
         border-radius: 24px !important;
-        
-        /* Text inside buttons */
         color: #FFFFFF !important;
         font-weight: 600 !important;
-        letter-spacing: 0.5px !important;
-        text-shadow: 0 2px 10px rgba(0,0,0,0.2) !important;
-        
         padding: 20px !important;
         transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
-        box-shadow: 
-            0 15px 35px rgba(0, 0, 0, 0.2) !important,
-            inset 0 0 20px rgba(255, 255, 255, 0.02) !important;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2) !important;
     }
 
-    /* 5. BUTTON HOVER - Liquid Flow */
     div.stButton > button:hover {
         transform: translateY(-6px) scale(1.01) !important;
         background: linear-gradient(145deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.03) 100%) !important;
         border: 1px solid rgba(255, 255, 255, 0.4) !important;
-        box-shadow: 
-            0 25px 50px rgba(0, 0, 0, 0.5) !important,
-            0 0 30px rgba(96, 165, 250, 0.4) !important; /* Deep Blue Glow */
-        color: #FFFFFF !important;
+        box-shadow: 0 0 30px rgba(96, 165, 250, 0.4) !important;
     }
 
-    /* 6. SIDEBAR - Dark Frosted Glass */
+    /* 6. SIDEBAR */
     section[data-testid="stSidebar"] {
         background-color: rgba(10, 15, 30, 0.85) !important;
         backdrop-filter: blur(20px);
         border-right: 1px solid rgba(255, 255, 255, 0.05) !important;
     }
     
-    /* 7. INPUT FIELDS - Glass Panes */
-    .stTextInput > div > div > input, 
-    .stNumberInput > div > div > input, 
-    .stSelectbox > div > div, 
-    .stTextArea > div > div > textarea {
-        background-color: rgba(255, 255, 255, 0.03) !important;
-        color: #F8FAFC !important;
-        border: 1px solid rgba(255, 255, 255, 0.1) !important;
-        border-radius: 12px !important;
-        backdrop-filter: blur(10px);
-    }
-    
-    /* Focus state for inputs */
-    .stTextInput > div > div > input:focus, 
-    .stNumberInput > div > div > input:focus,
-    .stTextArea > div > div > textarea:focus {
-        border-color: #60A5FA !important;
-        box-shadow: 0 0 15px rgba(96, 165, 250, 0.2) !important;
-        background-color: rgba(255, 255, 255, 0.07) !important;
-    }
-    
-    /* 8. CODE BLOCKS - Dark Glass */
-    code, .stCodeBlock {
-        background-color: rgba(0, 0, 0, 0.3) !important;
-        border: 1px solid rgba(255, 255, 255, 0.1) !important;
-        border-radius: 10px !important;
-    }
-
     /* Hide default header */
     header {visibility: hidden;}
     </style>
@@ -2722,26 +2719,26 @@ page = st.session_state.selected_page
 if page == "🏠 Home":
     # 1. HEADER SECTION
     st.markdown("""
-        <div style='text-align: center; padding: 50px 20px 30px 20px;'>
+        <div style='text-align: center; padding: 60px 20px 40px 20px;'>
             <h1 style='
-                font-size: 4rem; 
+                font-size: 6rem; 
                 font-weight: 800; 
                 background: linear-gradient(90deg, #60A5FA, #A78BFA); 
                 -webkit-background-clip: text; 
                 -webkit-text-fill-color: transparent; 
-                filter: drop-shadow(0 0 20px rgba(139, 92, 246, 0.3));
-                margin-bottom: 10px;
+                filter: drop-shadow(0 0 25px rgba(139, 92, 246, 0.4));
+                margin-bottom: 15px;
+                line-height: 1.1;
             '>Study Hub</h1>
-            <p style='color: #94A3B8; font-size: 1.2rem; letter-spacing: 4px; text-transform: uppercase; font-weight: 600;'>BYU Accounting AI Assistant</p>
+            <p style='color: #94A3B8; font-size: 1.4rem; letter-spacing: 5px; text-transform: uppercase; font-weight: 600; opacity: 0.9;'>BYU Accounting AI Assistant</p>
         </div>
     """, unsafe_allow_html=True)
     
     # 2. COURSES SECTION
-    st.markdown("<h3 style='margin: 20px 0; padding-left: 15px; border-left: 4px solid #60A5FA;'>📚 Your Courses</h3>", unsafe_allow_html=True)
+    st.markdown("<h3 style='margin: 30px 0 20px 0; padding-left: 15px; border-left: 5px solid #60A5FA; font-size: 2rem;'>📚 Your Courses</h3>", unsafe_allow_html=True)
     
     c1, c2 = st.columns(2, gap="medium")
     with c1:
-        # Use simple newlines for formatting. The Global CSS handles the glass look.
         if st.button("📘 ACC 402\n\nManagerial Accounting\n\nAI Tutor: Ch 1, 3, 4, 6, 7", use_container_width=True):
             st.session_state.selected_page = "📕 ACC 402 - Managerial Accounting"
             st.rerun()
@@ -2751,7 +2748,7 @@ if page == "🏠 Home":
             st.rerun()
     
     # 3. STUDY TOOLS SECTION
-    st.markdown("<h3 style='margin: 40px 0 20px 0; padding-left: 15px; border-left: 4px solid #A78BFA;'>🛠️ Study Tools</h3>", unsafe_allow_html=True)
+    st.markdown("<h3 style='margin: 50px 0 20px 0; padding-left: 15px; border-left: 5px solid #A78BFA; font-size: 2rem;'>🛠️ Study Tools</h3>", unsafe_allow_html=True)
     
     t1, t2, t3, t4 = st.columns(4, gap="small")
     with t1:
