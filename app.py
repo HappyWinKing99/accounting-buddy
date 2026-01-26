@@ -3316,21 +3316,21 @@ elif page == "📕 ACC 402 - Managerial Accounting":
         if st.session_state.trigger_ai_call:
             should_call = True
             st.session_state.trigger_ai_call = False
-if should_call and st.session_state.chat_history_402 and st.session_state.chat_history_402[-1]['role'] == 'user':
+        if should_call and st.session_state.chat_history_402 and st.session_state.chat_history_402[-1]['role'] == 'user':
             try:
                 api_key = st.secrets["ANTHROPIC_API_KEY"]
                 
                 latex_example = "$$BEP = \\frac{Fixed}{CM}$$"
                 system_prompt = f"""You are the Managerial Accounting Master Tutor for ACC 402. Use the textbook content below as your primary source.
                 
-GUIDELINES:
-- Use LaTeX for formulas (e.g., {latex_example})
-- Bold key terms, use bullet points for lists
-- Walk through calculations step-by-step
-- Cite chapters when referencing content
-- Be encouraging and academically rigorous
+                GUIDELINES:
+                - Use LaTeX for formulas (e.g., {latex_example})
+                - Bold key terms, use bullet points for lists
+                - Walk through calculations step-by-step
+                - Cite chapters when referencing content
+                - Be encouraging and academically rigorous
 
-{FULL_TEXTBOOK_CONTENT}"""
+                {FULL_TEXTBOOK_CONTENT}"""
                 
                 with st.spinner("🤔 Thinking..."):
                     response = requests.post(
