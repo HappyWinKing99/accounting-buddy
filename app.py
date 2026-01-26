@@ -3412,9 +3412,9 @@ GUIDELINES:
             ("EU (Weighted-Avg)", "Completed + (End WIP × %)"),
             ("EU (FIFO)", "Complete Beg + Started&Completed + End EU"),
         ]
-        for name, formula in formulas:
-            with st.expander(f"📐 {name}"):
-                st.code(formula, language=None)
+            for name, formula in formulas:
+                with st.expander(f"📐 {name}"):
+                    st.code(formula, language=None)
 
 # --- ACC 405 AI TUTOR PAGE ---
 elif page == "📗 ACC 405 - Tax Accounting":
