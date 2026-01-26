@@ -3318,10 +3318,55 @@ elif page == "📕 ACC 402 - Managerial Accounting":
             st.session_state.trigger_ai_call = False
         
         if should_call and st.session_state.chat_history_402 and st.session_state.chat_history_402[-1]['role'] == 'user':
-            try:
-                api_key = st.secrets["ANTHROPIC_API_KEY"]
-                system_prompt = f"""You are the Managerial Accounting Master Tutor for ACC 402. Use the textbook content below as your primary source.
+    try:
+        api_key = st.secrets["ANTHROPIC_API_KEY"]
+        
+        # DEBUG: Show key info (remove after testing!)
+        st.write(f"🔑 Key length: {len(api_key)}")
+        st.write(f"🔑 Key starts with: {api_key[:10]}...")
+        st.write(f"🔑 Key ends with: ...{api_key[-5:]}")
+        
+        system_prompt = f"""You are the Managerial Accounting Master Tutor..."""
+        
+        headers = {
+            "Content-Type": "application/json",
+            "x-api-key": api_key,
+            "anthropic-version": "2023-06-01"
+        }
+        
+        payload = {
+            "model": model_choice,
+            "max_tokens": 4096,
+            "system": system_prompt,
+            "messages": [{"role": m['role'], "content": m['content']} for m in st.session_state.chat_history_402]
+        }
+        
+        with st.spinner("🤔 Thinking..."):
+            response = requests.post(
+                "https://api.anthropic.com/v1/messages",
+                headers=headers,
+                json=payload,
+                timeout=60
+            )
+            
+            # DEBUG: Show full response info
+            st.write(f"📡 Status Code: {response.status_code}")
+            st.write(f"📡 Response Headers: {dict(response.headers)}")
+            
+            if response.status_code == 200:
+                ai_msg = response.json()['content'][0]['text']
+                st.session_state.chat_history_402.append({'role': 'assistant', 'content': ai_msg})
+                st.rerun()
+            else:
+                st.error(f"API Error: {response.status_code}")
+                st.error(f"Response Body: {response.text}")  # This will show WHY it failed
                 
+    except KeyError as e:
+        st.error(f"⚠️ Secret not found: {e}")
+    except Exception as e:
+        st.error(f"Error: {str(e)}")
+        import traceback
+        st.code(traceback.format_exc())  # Full error trace
 GUIDELINES:
 - Use LaTeX for formulas (e.g., $$BEP = \\frac{{Fixed}}{{CM}}$$)
 - Bold key terms, use bullet points for lists
