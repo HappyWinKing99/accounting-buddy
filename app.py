@@ -13,6 +13,38 @@ st.set_page_config(
     layout="wide",
     initial_sidebar_state="expanded"
 )
+
+# --- DIRECT API TEST (DELETE AFTER FIXING) ---
+import requests
+
+try:
+    test_key = st.secrets["ANTHROPIC_API_KEY"]
+    
+    # Make a minimal test call to Anthropic
+    test_response = requests.post(
+        "https://api.anthropic.com/v1/messages",
+        headers={
+            "Content-Type": "application/json",
+            "x-api-key": test_key,
+            "anthropic-version": "2023-06-01"
+        },
+        json={
+            "model": "claude-haiku-3-5-20241022",
+            "max_tokens": 10,
+            "messages": [{"role": "user", "content": "Hi"}]
+        },
+        timeout=30
+    )
+    
+    if test_response.status_code == 200:
+        st.success("✅ API CONNECTION WORKING!")
+    else:
+        st.error(f"❌ API Error: {test_response.status_code}")
+        st.error(f"Response: {test_response.text}")
+        
+except Exception as e:
+    st.error(f"Exception: {str(e)}")
+# --- END TEST ---
 # --- KEY INSPECTOR (Put this right after st.set_page_config) ---
 try:
     # 1. Get the key
