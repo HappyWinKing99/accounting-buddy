@@ -14,6 +14,16 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
+# --- DEBUG SECTION (DELETE AFTER FIXING) ---
+try:
+    key = st.secrets["ANTHROPIC_API_KEY"]
+    st.success(f"✅ API Key Found! It starts with: {key[:10]}...")
+except FileNotFoundError:
+    st.error("❌ secrets.toml file not found! Check your .streamlit folder.")
+except KeyError:
+    st.error("❌ Key 'ANTHROPIC_API_KEY' not found in secrets.toml.")
+# -------------------------------------------
+
 # ============================================================================
 # SESSION STATE INITIALIZATION
 # ============================================================================
