@@ -2495,70 +2495,66 @@ SUMMARY: TAXABLE INCOME CALCULATION
 # ============================================================================
 # CUSTOM CSS - DARK MODE THEME
 # ============================================================================
+# ============================================================================
+# CUSTOM CSS - LIQUID GLASS THEME
+# ============================================================================
 st.markdown("""
     <style>
-    .stApp { background-color: #0E1117; color: #FFFFFF; }
-    header[data-testid="stHeader"] { background-color: #0E1117 !important; }
-    .stApp { font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; }
-    .stApp, .stMarkdown, p, span, div, label, li, td, th { color: #FFFFFF !important; }
-    code { color: #FFFFFF !important; background-color: #1E1E1E !important; }
-    .stCodeBlock, pre { background-color: #1E1E1E !important; }
-    section[data-testid="stSidebar"] { background-color: #0A0A0F !important; border-right: 1px solid #1E1E1E !important; }
-    section[data-testid="stSidebar"] > div { background-color: #0A0A0F !important; }
-    section[data-testid="stSidebar"] * { color: #FFFFFF !important; }
-    section[data-testid="stSidebar"] h1 { color: #FFFFFF !important; font-weight: 600 !important; letter-spacing: 1px !important; }
-    .stButton > button { background: linear-gradient(145deg, #CFB53B, #B8A033) !important; color: #FFFFFF !important; font-weight: 600 !important; border: none !important; border-radius: 10px !important; padding: 12px 28px !important; transition: all 0.3s ease !important; box-shadow: 0 4px 15px rgba(207, 181, 59, 0.2) !important; }
-    .stButton > button:hover { background: linear-gradient(145deg, #E0C64C, #CFB53B) !important; transform: translateY(-2px) !important; }
-    .stButton > button p { color: #FFFFFF !important; }
-    .stDownloadButton > button { background: linear-gradient(145deg, #CFB53B, #B8A033) !important; color: #FFFFFF !important; font-weight: 600 !important; border: none !important; border-radius: 10px !important; }
-    .stDownloadButton > button p, .stDownloadButton > button span { color: #FFFFFF !important; }
-    .stFormSubmitButton > button { background: linear-gradient(145deg, #CFB53B, #B8A033) !important; color: #FFFFFF !important; font-weight: 600 !important; border: none !important; border-radius: 10px !important; }
-    .stFormSubmitButton > button p { color: #FFFFFF !important; }
-    [data-testid="stExpander"] { background-color: #1A1A2E !important; border: 1px solid #2D2D4A !important; border-radius: 12px !important; }
-    [data-testid="stExpander"] > details > summary { background-color: #1A1A2E !important; color: #FFFFFF !important; padding: 15px 20px !important; }
-    [data-testid="stExpander"] > details > summary:hover { background-color: #252542 !important; }
-    [data-testid="stExpander"] div[data-testid="stExpanderDetails"] { background-color: #12121F !important; padding: 20px !important; }
-    [data-testid="stExpander"] div[data-testid="stExpanderDetails"] * { color: #FFFFFF !important; }
-    .stTextInput > div > div > input { background-color: #1A1A2E !important; color: #FFFFFF !important; border: 1px solid #2D2D4A !important; border-radius: 10px !important; }
-    .stTextInput > div > div > input:focus { border-color: #CFB53B !important; }
-    .stTextArea > div > div > textarea { background-color: #FFFFFF !important; color: #000000 !important; border: 1px solid #2D2D4A !important; border-radius: 10px !important; }
-    .stTextArea > div > div > textarea::placeholder { color: #666666 !important; }
-    .stNumberInput > div > div > input { background-color: #1A1A2E !important; color: #FFFFFF !important; border: 1px solid #2D2D4A !important; border-radius: 10px !important; }
-   .stSelectbox > div > div { background-color: #1A1A2E !important; color: #FFFFFF !important; border: 1px solid #2D2D4A !important; border-radius: 10px !important; }
-    .stSelectbox > div > div > div { color: #FFFFFF !important; }
-    .stSelectbox [data-baseweb="select"] > div { background-color: #1A1A2E !important; }
-    .stSelectbox [data-baseweb="select"] span { color: #FFFFFF !important; }
-    .stSelectbox svg { fill: #FFFFFF !important; }
-    [data-baseweb="menu"] { background-color: #1A1A2E !important; border: 1px solid #2D2D4A !important; }
-    [data-baseweb="menu"] li { color: #FFFFFF !important; background-color: #1A1A2E !important; }
-    [data-baseweb="menu"] li:hover { background-color: #252542 !important; }
-    [data-baseweb="popover"] { background-color: #1A1A2E !important; }
-    [data-baseweb="popover"] ul { background-color: #1A1A2E !important; }
-    [data-baseweb="popover"] li { color: #FFFFFF !important; background-color: #1A1A2E !important; }
-    [data-baseweb="popover"] li:hover { background-color: #252542 !important; }
-    div[data-baseweb="select"] > div { background-color: #1A1A2E !important; }
-    div[data-baseweb="select"] * { color: #FFFFFF !important; }
-    .stRadio > div { background-color: transparent !important; }
-    .stRadio label { color: #FFFFFF !important; }
-    .stTabs [data-baseweb="tab-list"] { background-color: transparent !important; gap: 10px; border-bottom: 1px solid #2D2D4A !important; }
-    .stTabs [data-baseweb="tab"] { background-color: transparent !important; color: #888888 !important; border-radius: 10px 10px 0 0 !important; padding: 15px 25px !important; }
-    .stTabs [data-baseweb="tab"]:hover { background-color: #1A1A2E !important; color: #FFFFFF !important; }
-    .stTabs [aria-selected="true"] { background-color: #002E5D !important; color: #FFFFFF !important; border-bottom: 3px solid #CFB53B !important; }
-    .stAlert { background-color: #1A1A2E !important; color: #FFFFFF !important; border-radius: 12px !important; }
-    .stAlert p, .stAlert span, .stAlert div { color: #FFFFFF !important; }
-    .user-message { background: linear-gradient(145deg, #1E3A5F, #162D4A); padding: 20px; border-radius: 15px; margin: 15px 0; border: 1px solid #2D4A6F; }
-    .user-message * { color: #FFFFFF !important; }
-    .ai-message { background: linear-gradient(145deg, #1A1A2E, #151525); padding: 20px; border-radius: 15px; margin: 15px 0; border-left: 4px solid #CFB53B; border-top: 1px solid #2D2D4A; border-right: 1px solid #2D2D4A; border-bottom: 1px solid #2D2D4A; }
-    .ai-message * { color: #FFFFFF !important; }
-    hr { border-color: #2D2D4A !important; }
-    a { color: #CFB53B !important; }
-    a:hover { color: #E8D066 !important; }
-    ::-webkit-scrollbar { width: 8px; height: 8px; }
-    ::-webkit-scrollbar-track { background: #0E1117; }
-    ::-webkit-scrollbar-thumb { background: #2D2D4A; border-radius: 4px; }
-    .page-header { text-align: center; padding: 40px 20px; margin-bottom: 30px; background: linear-gradient(180deg, #0E1117 0%, #1A1A2E 100%); border-radius: 0 0 20px 20px; border-bottom: 1px solid #2D2D4A; }
-    .page-header h1 { color: #FFFFFF !important; font-size: 2.5em !important; font-weight: 700 !important; }
-    .page-header p { color: #888888 !important; font-size: 1.1em !important; }
+    /* 1. APP BACKGROUND - Deep Dark Blue/Black */
+    .stApp { 
+        background: linear-gradient(180deg, #0f172a 0%, #1e1b4b 100%); 
+        font-family: 'SF Pro Display', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    }
+    
+    /* 2. TEXT STYLING */
+    h1, h2, h3, p, span, div { color: #F8FAFC !important; }
+    
+    /* 3. LIQUID GLASS BOXES (Replaces the Gold Buttons) */
+    div.stButton > button {
+        width: 100%;
+        background: rgba(255, 255, 255, 0.03) !important; /* Crystal Clear */
+        backdrop-filter: blur(20px) !important;           /* Heavy Frost */
+        -webkit-backdrop-filter: blur(20px) !important;
+        
+        border: 1px solid rgba(255, 255, 255, 0.1) !important;
+        border-top: 1px solid rgba(255, 255, 255, 0.2) !important; /* Top Light Catch */
+        border-radius: 24px !important;
+        
+        color: #FFFFFF !important;
+        font-weight: 500 !important;
+        letter-spacing: 0.5px !important;
+        padding: 20px !important;
+        transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1) !important;
+    }
+
+    /* 4. HOVER EFFECT - The "Liquid" Feel */
+    div.stButton > button:hover {
+        transform: translateY(-5px) scale(1.01) !important;
+        background: rgba(255, 255, 255, 0.08) !important; /* Slightly lighter */
+        border: 1px solid rgba(255, 255, 255, 0.3) !important;
+        box-shadow: 
+            0 20px 40px rgba(0, 0, 0, 0.4) !important,
+            0 0 20px rgba(96, 165, 250, 0.3) !important; /* Subtle Blue Glow */
+        color: #FFFFFF !important;
+    }
+
+    /* 5. SIDEBAR STYLING - Frosted Dark Glass */
+    section[data-testid="stSidebar"] {
+        background-color: rgba(15, 23, 42, 0.9) !important;
+        border-right: 1px solid rgba(255, 255, 255, 0.05) !important;
+    }
+    
+    /* 6. INPUT FIELDS - Clean Glass */
+    .stTextInput > div > div > input, .stNumberInput > div > div > input, .stSelectbox > div > div {
+        background-color: rgba(255, 255, 255, 0.05) !important;
+        color: white !important;
+        border: 1px solid rgba(255, 255, 255, 0.1) !important;
+        border-radius: 12px !important;
+    }
+    
+    /* 7. HIDE DEFAULT HEADER */
+    header {visibility: hidden;}
     </style>
 """, unsafe_allow_html=True)
 
@@ -2609,168 +2605,67 @@ page = st.session_state.selected_page
 
 # --- HOME PAGE ---
 if page == "🏠 Home":
-    # 1. CSS: LIQUID GLASS GLOBAL STYLING
+    # 1. HEADER SECTION
     st.markdown("""
-    <style>
-    /* Hide default header */
-    header {visibility: hidden;}
-    
-    /* GLOWING TITLE STYLE */
-    .glowing-text {
-        font-size: 3.5rem;
-        font-weight: 800;
-        background: linear-gradient(90deg, #60A5FA, #A78BFA); /* Blue to Purple */
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        margin-top: 10px;
-        margin-bottom: 5px;
-        filter: drop-shadow(0 0 15px rgba(167, 139, 250, 0.4));
-    }
-
-    /* GLOBAL LIQUID GLASS BUTTONS */
-    div.stButton > button {
-        width: 100%;
-        height: auto;
-        min-height: 220px; /* Tall enough to hold your descriptions */
-        
-        /* LIQUID BACKGROUND */
-        background: linear-gradient(
-            135deg, 
-            rgba(255, 255, 255, 0.08) 0%, 
-            rgba(255, 255, 255, 0.02) 100%
-        );
-        background-size: 200% 200%;
-        
-        backdrop-filter: blur(20px);
-        -webkit-backdrop-filter: blur(20px);
-        
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        border-top: 1px solid rgba(255, 255, 255, 0.2);
-        border-radius: 28px;
-        
-        color: #F1F5F9;
-        font-size: 16px; /* Slightly smaller base font for long text */
-        font-weight: 400;
-        letter-spacing: 0.5px;
-        
-        /* Layout */
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        padding: 30px 20px;
-        white-space: pre-wrap; /* Allows text wrapping */
-        line-height: 1.5;
-        
-        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        box-shadow: 
-            0 10px 30px -5px rgba(0, 0, 0, 0.3),
-            inset 0 0 0 1px rgba(255, 255, 255, 0.05);
-    }
-
-    /* HOVER EFFECT */
-    div.stButton > button:hover {
-        transform: translateY(-8px) scale(1.02);
-        background-position: 100% 50%; /* Shifts gradient */
-        border: 1px solid rgba(255, 255, 255, 0.3);
-        box-shadow: 
-            0 20px 40px -10px rgba(96, 165, 250, 0.3), /* Blue glow */
-            0 0 20px rgba(255, 255, 255, 0.1),
-            inset 0 0 20px rgba(255, 255, 255, 0.05);
-        color: #FFFFFF;
-        text-shadow: 0 0 8px rgba(255,255,255,0.4);
-    }
-
-    /* ACTIVE EFFECT */
-    div.stButton > button:active {
-        transform: scale(0.98);
-        box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-    }
-    
-    /* Make the emoji/titles larger inside the button */
-    div.stButton > button p {
-        font-size: 1.2rem;
-    }
-    </style>
-    """, unsafe_allow_html=True)
-
-    # 2. HEADER SECTION (With your SVG)
-    st.markdown("""
-        <div style='text-align: center; padding: 40px 20px;'>
-            <svg width="140" height="140" viewBox="0 0 220 220" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="110" cy="110" r="105" fill="#002E5D"/>
-                <text x="110" y="85" font-size="48" fill="white" text-anchor="middle" font-weight="bold">BYU</text>
-                <text x="110" y="115" font-size="14" fill="#CFB53B" text-anchor="middle" letter-spacing="3">MARRIOTT SCHOOL</text>
-                <line x1="60" y1="130" x2="160" y2="130" stroke="#CFB53B" stroke-width="1" opacity="0.6"/>
-                <text x="110" y="155" font-size="18" fill="white" text-anchor="middle" letter-spacing="4">ACCOUNTING</text>
-            </svg>
-            <h1 class='glowing-text'>Accounting Study Hub</h1>
-            <p style='color: #94A3B8; letter-spacing: 2px; text-transform: uppercase; font-weight: 600;'>Brigham Young University</p>
-            <p style='color: #64748B; font-size: 0.9em; margin-top: 10px;'>AI-powered study tools for ACC 402 & ACC 405</p>
+        <div style='text-align: center; padding: 50px 20px 30px 20px;'>
+            <h1 style='
+                font-size: 4rem; 
+                font-weight: 800; 
+                background: linear-gradient(90deg, #60A5FA, #A78BFA); 
+                -webkit-background-clip: text; 
+                -webkit-text-fill-color: transparent; 
+                filter: drop-shadow(0 0 20px rgba(139, 92, 246, 0.3));
+                margin-bottom: 10px;
+            '>Study Hub</h1>
+            <p style='color: #94A3B8; font-size: 1.2rem; letter-spacing: 4px; text-transform: uppercase; font-weight: 600;'>BYU Accounting AI Assistant</p>
         </div>
     """, unsafe_allow_html=True)
     
-    # --- COURSES SECTION ---
-    st.markdown("<h3 style='color: #F8FAFC; margin: 20px 0 20px 0; padding-left: 10px; border-left: 4px solid #60A5FA;'>📚 Courses</h3>", unsafe_allow_html=True)
+    # 2. COURSES SECTION
+    st.markdown("<h3 style='margin: 20px 0; padding-left: 15px; border-left: 4px solid #60A5FA;'>📚 Your Courses</h3>", unsafe_allow_html=True)
     
-    col1, col2 = st.columns(2, gap="medium")
-    with col1:
-        # I formatted the text with newlines (\n) to replicate the structure of your original HTML cards
-        btn_text = "📕 ACC 402\nMANAGERIAL ACCOUNTING\n\nAI Tutor: Ch 1, 3, 4, 6, 7\nCost management, job costing,\nprocess costing & allocation."
-        if st.button(btn_text, key="goto_402", use_container_width=True):
+    c1, c2 = st.columns(2, gap="medium")
+    with c1:
+        # Use simple newlines for formatting. The Global CSS handles the glass look.
+        if st.button("📘 ACC 402\n\nManagerial Accounting\n\nAI Tutor: Ch 1, 3, 4, 6, 7", use_container_width=True):
             st.session_state.selected_page = "📕 ACC 402 - Managerial Accounting"
             st.rerun()
-    
-    with col2:
-        btn_text = "📗 ACC 405\nFEDERAL TAX ACCOUNTING\n\nAI Tutor: Ch 4-6\nTax formula, gross income,\ndeductions & OBBBA."
-        if st.button(btn_text, key="goto_405", use_container_width=True):
+    with c2:
+        if st.button("📗 ACC 405\n\nFederal Tax Accounting\n\nAI Tutor: Ch 4-6 & OBBBA", use_container_width=True):
             st.session_state.selected_page = "📗 ACC 405 - Tax Accounting"
             st.rerun()
     
-    # --- STUDY TOOLS SECTION ---
-    st.markdown("<h3 style='color: #F8FAFC; margin: 40px 0 20px 0; padding-left: 10px; border-left: 4px solid #A78BFA;'>🛠️ Study Tools</h3>", unsafe_allow_html=True)
+    # 3. STUDY TOOLS SECTION
+    st.markdown("<h3 style='margin: 40px 0 20px 0; padding-left: 15px; border-left: 4px solid #A78BFA;'>🛠️ Study Tools</h3>", unsafe_allow_html=True)
     
-    col3, col4 = st.columns(2, gap="medium")
-    with col3:
-        btn_text = "🧮 Calculators\nQUICK TOOLS\n\nCVP, equivalent units, overhead rates,\ntaxable income & OBBBA deductions."
-        if st.button(btn_text, key="goto_calc", use_container_width=True):
-            st.session_state.selected_page = "🧮 Calculators"
-            st.rerun()
-    
-    with col4:
-        btn_text = "📖 Formula Database\nQUICK REFERENCE\n\nSearchable formulas for both\nACC 402 and ACC 405."
-        if st.button(btn_text, key="goto_formulas", use_container_width=True):
-            st.session_state.selected_page = "📖 Formula Database"
-            st.rerun()
-    
-    st.markdown("<div style='margin-top: 20px;'></div>", unsafe_allow_html=True)
-    
-    col5, col6 = st.columns(2, gap="medium")
-    with col5:
-        btn_text = "📊 Break-Even Visualizer\nINTERACTIVE CHARTS\n\nVisualize CVP relationships with\ndynamic, interactive graphs."
-        if st.button(btn_text, key="goto_viz", use_container_width=True):
-            st.session_state.selected_page = "📊 Break-Even Visualizer"
-            st.rerun()
-    
-    with col6:
-        btn_text = "📝 Practice Exam Generator\nAI-POWERED\n\nGenerate custom practice exams\nwith instant grading and explanations."
-        if st.button(btn_text, key="goto_exam", use_container_width=True):
+    t1, t2, t3, t4 = st.columns(4, gap="small")
+    with t1:
+        if st.button("📝 Practice Exam\nGenerator", use_container_width=True):
             st.session_state.selected_page = "📝 Practice Exam Generator"
             st.rerun()
-    
-    st.markdown("<div style='margin-top: 20px;'></div>", unsafe_allow_html=True)
-    
-    col7, col8 = st.columns(2, gap="medium")
-    with col7:
-        btn_text = "🗺️ Concept Maps\nVISUAL LEARNING\n\nInteractive diagrams showing how\naccounting concepts connect."
-        if st.button(btn_text, key="goto_maps", use_container_width=True):
+    with t2:
+        if st.button("📊 Break-Even\nVisualizer", use_container_width=True):
+            st.session_state.selected_page = "📊 Break-Even Visualizer"
+            st.rerun()
+    with t3:
+        if st.button("🗺️ Concept\nMaps", use_container_width=True):
             st.session_state.selected_page = "🗺️ Concept Maps"
             st.rerun()
-    
-    with col8:
-        btn_text = "🔮 What-If Analyzer\nSCENARIO PLANNING\n\nSee how changes in variables affect\nyour CVP analysis or tax situation."
-        if st.button(btn_text, key="goto_whatif", use_container_width=True):
+    with t4:
+        if st.button("🔮 What-If\nAnalyzer", use_container_width=True):
             st.session_state.selected_page = "🔮 What-If Analyzer"
+            st.rerun()
+
+    # 4. REFERENCE SECTION
+    st.markdown("<div style='margin-top: 25px;'></div>", unsafe_allow_html=True)
+    r1, r2 = st.columns(2, gap="medium")
+    with r1:
+        if st.button("🧮 Quick Calculators", use_container_width=True):
+            st.session_state.selected_page = "🧮 Calculators"
+            st.rerun()
+    with r2:
+        if st.button("📖 Formula Database", use_container_width=True):
+            st.session_state.selected_page = "📖 Formula Database"
             st.rerun()
 # --- CALCULATORS PAGE ---
 elif page == "🧮 Calculators":
