@@ -2496,64 +2496,109 @@ SUMMARY: TAXABLE INCOME CALCULATION
 # CUSTOM CSS - DARK MODE THEME
 # ============================================================================
 # ============================================================================
-# CUSTOM CSS - LIQUID GLASS THEME
+# CUSTOM CSS - LIQUID GLASS THEME (FULL APP)
 # ============================================================================
 st.markdown("""
     <style>
     /* 1. APP BACKGROUND - Deep Dark Blue/Black */
     .stApp { 
-        background: linear-gradient(180deg, #0f172a 0%, #1e1b4b 100%); 
-        font-family: 'SF Pro Display', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        background: linear-gradient(180deg, #020617 0%, #0f172a 50%, #1e1b4b 100%); 
+        font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     }
     
-    /* 2. TEXT STYLING */
-    h1, h2, h3, p, span, div { color: #F8FAFC !important; }
+    /* 2. LIQUID GLASS HEADINGS (H1, H2, H3) */
+    /* This makes titles look like they are reflecting light */
+    h1, h2, h3 {
+        background: linear-gradient(120deg, #FFFFFF 0%, #E2E8F0 80%, #94A3B8 100%);
+        -webkit-background-clip: text !important;
+        -webkit-text-fill-color: transparent !important;
+        text-shadow: 0 0 30px rgba(255, 255, 255, 0.15);
+        font-weight: 800 !important;
+        letter-spacing: -0.5px !important;
+    }
     
-    /* 3. LIQUID GLASS BOXES (Replaces the Gold Buttons) */
+    /* 3. FROSTED BODY TEXT */
+    /* Softens the white so it looks suspended in glass */
+    p, span, div, label, li, td, th { 
+        color: rgba(255, 255, 255, 0.9) !important;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3); /* Subtle depth */
+        font-weight: 400;
+        letter-spacing: 0.2px;
+    }
+    
+    /* 4. LIQUID GLASS BOXES (Buttons) */
     div.stButton > button {
         width: 100%;
-        background: rgba(255, 255, 255, 0.03) !important; /* Crystal Clear */
-        backdrop-filter: blur(20px) !important;           /* Heavy Frost */
-        -webkit-backdrop-filter: blur(20px) !important;
+        /* The liquid background */
+        background: linear-gradient(145deg, rgba(255, 255, 255, 0.07) 0%, rgba(255, 255, 255, 0.01) 100%) !important;
+        backdrop-filter: blur(25px) !important;
+        -webkit-backdrop-filter: blur(25px) !important;
         
-        border: 1px solid rgba(255, 255, 255, 0.1) !important;
-        border-top: 1px solid rgba(255, 255, 255, 0.2) !important; /* Top Light Catch */
+        border: 1px solid rgba(255, 255, 255, 0.15) !important;
+        border-top: 1px solid rgba(255, 255, 255, 0.3) !important; /* Catch light on top */
+        border-bottom: 1px solid rgba(0, 0, 0, 0.2) !important;    /* Shadow on bottom */
         border-radius: 24px !important;
         
+        /* Text inside buttons */
         color: #FFFFFF !important;
-        font-weight: 500 !important;
+        font-weight: 600 !important;
         letter-spacing: 0.5px !important;
+        text-shadow: 0 2px 10px rgba(0,0,0,0.2) !important;
+        
         padding: 20px !important;
-        transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
-        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1) !important;
+        transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
+        box-shadow: 
+            0 15px 35px rgba(0, 0, 0, 0.2) !important,
+            inset 0 0 20px rgba(255, 255, 255, 0.02) !important;
     }
 
-    /* 4. HOVER EFFECT - The "Liquid" Feel */
+    /* 5. BUTTON HOVER - Liquid Flow */
     div.stButton > button:hover {
-        transform: translateY(-5px) scale(1.01) !important;
-        background: rgba(255, 255, 255, 0.08) !important; /* Slightly lighter */
-        border: 1px solid rgba(255, 255, 255, 0.3) !important;
+        transform: translateY(-6px) scale(1.01) !important;
+        background: linear-gradient(145deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.03) 100%) !important;
+        border: 1px solid rgba(255, 255, 255, 0.4) !important;
         box-shadow: 
-            0 20px 40px rgba(0, 0, 0, 0.4) !important,
-            0 0 20px rgba(96, 165, 250, 0.3) !important; /* Subtle Blue Glow */
+            0 25px 50px rgba(0, 0, 0, 0.5) !important,
+            0 0 30px rgba(96, 165, 250, 0.4) !important; /* Deep Blue Glow */
         color: #FFFFFF !important;
     }
 
-    /* 5. SIDEBAR STYLING - Frosted Dark Glass */
+    /* 6. SIDEBAR - Dark Frosted Glass */
     section[data-testid="stSidebar"] {
-        background-color: rgba(15, 23, 42, 0.9) !important;
+        background-color: rgba(10, 15, 30, 0.85) !important;
+        backdrop-filter: blur(20px);
         border-right: 1px solid rgba(255, 255, 255, 0.05) !important;
     }
     
-    /* 6. INPUT FIELDS - Clean Glass */
-    .stTextInput > div > div > input, .stNumberInput > div > div > input, .stSelectbox > div > div {
-        background-color: rgba(255, 255, 255, 0.05) !important;
-        color: white !important;
+    /* 7. INPUT FIELDS - Glass Panes */
+    .stTextInput > div > div > input, 
+    .stNumberInput > div > div > input, 
+    .stSelectbox > div > div, 
+    .stTextArea > div > div > textarea {
+        background-color: rgba(255, 255, 255, 0.03) !important;
+        color: #F8FAFC !important;
         border: 1px solid rgba(255, 255, 255, 0.1) !important;
         border-radius: 12px !important;
+        backdrop-filter: blur(10px);
     }
     
-    /* 7. HIDE DEFAULT HEADER */
+    /* Focus state for inputs */
+    .stTextInput > div > div > input:focus, 
+    .stNumberInput > div > div > input:focus,
+    .stTextArea > div > div > textarea:focus {
+        border-color: #60A5FA !important;
+        box-shadow: 0 0 15px rgba(96, 165, 250, 0.2) !important;
+        background-color: rgba(255, 255, 255, 0.07) !important;
+    }
+    
+    /* 8. CODE BLOCKS - Dark Glass */
+    code, .stCodeBlock {
+        background-color: rgba(0, 0, 0, 0.3) !important;
+        border: 1px solid rgba(255, 255, 255, 0.1) !important;
+        border-radius: 10px !important;
+    }
+
+    /* Hide default header */
     header {visibility: hidden;}
     </style>
 """, unsafe_allow_html=True)
