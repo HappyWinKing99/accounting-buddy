@@ -2570,7 +2570,7 @@ with st.sidebar:
         <p style='text-align: center; color: #CFB53B; font-size: 0.9em; letter-spacing: 2px; margin-bottom: 30px;'>STUDY HUB</p>
     """, unsafe_allow_html=True)
     
-st.markdown("---")
+    st.markdown("---")
     
     pages = [
         "🏠 Home",
