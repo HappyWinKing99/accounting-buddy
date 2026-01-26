@@ -14,6 +14,13 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
+# --- CHARACTER TEST ---
+test_key = st.secrets["ANTHROPIC_API_KEY"]
+st.write(f"Key length: {len(test_key)}")
+st.write(f"First 20 chars: {repr(test_key[:20])}")
+st.write(f"Last 10 chars: {repr(test_key[-10:])}")
+# --- END TEST ---
+
 # --- DIRECT API TEST (DELETE AFTER FIXING) ---
 import requests
 
