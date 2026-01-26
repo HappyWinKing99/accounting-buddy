@@ -3318,7 +3318,7 @@ elif page == "📕 ACC 402 - Managerial Accounting":
             st.session_state.trigger_ai_call = False
         
         if should_call and st.session_state.chat_history_402 and st.session_state.chat_history_402[-1]['role'] == 'user':
-    try:
+            try:
         api_key = st.secrets["ANTHROPIC_API_KEY"]
         
         # DEBUG: Show key info (remove after testing!)
