@@ -3305,6 +3305,7 @@ elif page == "📕 ACC 402 - Managerial Accounting":
         with st.expander("⚙️ AI Settings"):
             model_choice = st.radio("Model:", ["claude-sonnet-4-20250514", "claude-haiku-3-5-20241022"], horizontal=True)
         
+        # Display chat history
         for message in st.session_state.chat_history_402:
             if message['role'] == 'user':
                 st.markdown(f"<div class='user-message'><strong>🧑‍🎓 You:</strong><br>{message['content']}</div>", unsafe_allow_html=True)
@@ -3312,10 +3313,12 @@ elif page == "📕 ACC 402 - Managerial Accounting":
                 st.markdown(f"<div class='ai-message'><strong>🤖 AI Tutor:</strong></div>", unsafe_allow_html=True)
                 st.markdown(message['content'])
         
+        # Input form
         with st.form(key="question_form_402", clear_on_submit=True):
             user_question = st.text_area("Ask your question:", height=100, placeholder="Example: What's the difference between job and process costing?")
             submit = st.form_submit_button("Send", type="primary")
         
+        # Clear and export buttons
         col1, col2 = st.columns([1, 4])
         with col1:
             if st.button("🗑️ Clear Chat", key="clear_402"):
@@ -3326,6 +3329,7 @@ elif page == "📕 ACC 402 - Managerial Accounting":
                 export = "\n\n".join([f"{'You' if m['role']=='user' else 'AI'}: {m['content']}" for m in st.session_state.chat_history_402])
                 st.download_button("📥 Export", export, "acc402_chat.txt", "text/plain")
         
+        # Determine if we should call the API
         should_call = False
         if submit and user_question.strip():
             st.session_state.chat_history_402.append({'role': 'user', 'content': user_question})
@@ -3333,6 +3337,8 @@ elif page == "📕 ACC 402 - Managerial Accounting":
         if st.session_state.trigger_ai_call:
             should_call = True
             st.session_state.trigger_ai_call = False
+        
+        # API Call
         if should_call and st.session_state.chat_history_402 and st.session_state.chat_history_402[-1]['role'] == 'user':
             try:
                 api_key = st.secrets["ANTHROPIC_API_KEY"]
@@ -3340,14 +3346,14 @@ elif page == "📕 ACC 402 - Managerial Accounting":
                 latex_example = "$$BEP = \\frac{Fixed}{CM}$$"
                 system_prompt = f"""You are the Managerial Accounting Master Tutor for ACC 402. Use the textbook content below as your primary source.
                 
-                GUIDELINES:
-                - Use LaTeX for formulas (e.g., {latex_example})
-                - Bold key terms, use bullet points for lists
-                - Walk through calculations step-by-step
-                - Cite chapters when referencing content
-                - Be encouraging and academically rigorous
+GUIDELINES:
+- Use LaTeX for formulas (e.g., {latex_example})
+- Bold key terms, use bullet points for lists
+- Walk through calculations step-by-step
+- Cite chapters when referencing content
+- Be encouraging and academically rigorous
 
-                {FULL_TEXTBOOK_CONTENT}"""
+{FULL_TEXTBOOK_CONTENT}"""
                 
                 with st.spinner("🤔 Thinking..."):
                     response = requests.post(
@@ -3378,43 +3384,25 @@ elif page == "📕 ACC 402 - Managerial Accounting":
                 st.error("⚠️ API key not found. Add ANTHROPIC_API_KEY to secrets.")
             except Exception as e:
                 st.error(f"Error: {str(e)}")
-                
-                with st.spinner("🤔 Thinking..."):
-                    response = requests.post(
-                        "https://api.anthropic.com/v1/messages",
-                        headers={"Content-Type": "application/json", "x-api-key": api_key, "anthropic-version": "2023-06-01"},
-                        json={"model": model_choice, "max_tokens": 4096, "system": system_prompt,
-                              "messages": [{"role": m['role'], "content": m['content']} for m in st.session_state.chat_history_402]},
-                        timeout=60
-                    )
-                    if response.status_code == 200:
-                        ai_msg = response.json()['content'][0]['text']
-                        st.session_state.chat_history_402.append({'role': 'assistant', 'content': ai_msg})
-                        st.rerun()
-                    else:
-                        st.error(f"API Error: {response.status_code}")
-            except KeyError:
-                st.error("⚠️ API key not found. Add ANTHROPIC_API_KEY to secrets.")
-            except Exception as e:
-                st.error(f"Error: {str(e)}")
         
-            st.markdown("<p style='color: #FFF;'>💡 Suggested Questions:</p>", unsafe_allow_html=True)
-            suggestions = ["What's the difference between job costing and process costing?",
+        # Suggested questions (OUTSIDE the if should_call block)
+        st.markdown("<p style='color: #FFF;'>💡 Suggested Questions:</p>", unsafe_allow_html=True)
+        suggestions = ["What's the difference between job costing and process costing?",
                        "How do I calculate equivalent units using FIFO?",
                        "Explain the reciprocal method of cost allocation",
                        "What are prime costs vs conversion costs?",
                        "Walk me through a production cost report"]
-            cols = st.columns(2)
-            for idx, s in enumerate(suggestions):
-                with cols[idx % 2]:
-                    if st.button(f"📌 {s[:40]}...", key=f"sug_{idx}"):
-                        st.session_state.chat_history_402.append({'role': 'user', 'content': s})
-                        st.session_state.trigger_ai_call = True
-                        st.rerun()
+        cols = st.columns(2)
+        for idx, s in enumerate(suggestions):
+            with cols[idx % 2]:
+                if st.button(f"📌 {s[:40]}...", key=f"sug_{idx}"):
+                    st.session_state.chat_history_402.append({'role': 'user', 'content': s})
+                    st.session_state.trigger_ai_call = True
+                    st.rerun()
     
-            with tab2:
-                st.markdown("<h3>📚 Key ACC 402 Formulas</h3>", unsafe_allow_html=True)
-                formulas = [
+    with tab2:
+        st.markdown("<h3>📚 Key ACC 402 Formulas</h3>", unsafe_allow_html=True)
+        formulas = [
             ("Contribution Margin", "Sales - Variable Costs"),
             ("CM Ratio", "CM ÷ Sales"),
             ("Break-Even (Units)", "Fixed Costs ÷ CM per Unit"),
@@ -3429,10 +3417,9 @@ elif page == "📕 ACC 402 - Managerial Accounting":
             ("EU (Weighted-Avg)", "Completed + (End WIP × %)"),
             ("EU (FIFO)", "Complete Beg + Started&Completed + End EU"),
         ]
-            for name, formula in formulas:
-                with st.expander(f"📐 {name}"):
-                    st.code(formula, language=None)
-
+        for name, formula in formulas:
+            with st.expander(f"📐 {name}"):
+                st.code(formula, language=None)
 # --- ACC 405 AI TUTOR PAGE ---
 elif page == "📗 ACC 405 - Tax Accounting":
     st.markdown("<div class='page-header'><h1>📗 ACC 405 - Federal Tax Accounting</h1><p>AI Tutor with full textbook access</p></div>", unsafe_allow_html=True)
