@@ -3381,8 +3381,8 @@ GUIDELINES:
             except Exception as e:
                 st.error(f"Error: {str(e)}")
         
-        st.markdown("<p style='color: #FFF;'>💡 Suggested Questions:</p>", unsafe_allow_html=True)
-        suggestions = ["What's the difference between job costing and process costing?",
+            st.markdown("<p style='color: #FFF;'>💡 Suggested Questions:</p>", unsafe_allow_html=True)
+            suggestions = ["What's the difference between job costing and process costing?",
                        "How do I calculate equivalent units using FIFO?",
                        "Explain the reciprocal method of cost allocation",
                        "What are prime costs vs conversion costs?",
