@@ -3368,12 +3368,17 @@ if should_call and st.session_state.chat_history_402 and st.session_state.chat_h
         import traceback
         st.code(traceback.format_exc())  # Full error trace
 
-    GUIDELINES:
-- Use LaTeX for formulas (e.g., $$BEP = \\frac{{Fixed}}{{CM}}$$)
+latex_example = "$$BEP = \\frac{Fixed}{CM}$$"
+system_prompt = f"""You are the Managerial Accounting Master Tutor for ACC 402. Use the textbook content below as your primary source.
+                
+GUIDELINES:
+- Use LaTeX for formulas (e.g., {latex_example})
 - Bold key terms, use bullet points for lists
 - Walk through calculations step-by-step
 - Cite chapters when referencing content
 - Be encouraging and academically rigorous
+
+{FULL_TEXTBOOK_CONTENT}"""
 
 {FULL_TEXTBOOK_CONTENT}"""
                 
