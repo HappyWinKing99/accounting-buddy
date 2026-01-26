@@ -2608,124 +2608,172 @@ page = st.session_state.selected_page
 
 # --- HOME PAGE ---
 if page == "🏠 Home":
-    st.markdown("<br>", unsafe_allow_html=True)
+    # 1. Custom CSS for "Super Wow" Glassmorphism
     st.markdown("""
-        <div style='text-align: center; padding: 40px 20px;'>
-            <svg width="180" height="180" viewBox="0 0 220 220" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="110" cy="110" r="105" fill="#002E5D"/>
-                <text x="110" y="85" font-size="48" fill="white" text-anchor="middle" font-weight="bold">BYU</text>
-                <text x="110" y="115" font-size="14" fill="#CFB53B" text-anchor="middle" letter-spacing="3">MARRIOTT SCHOOL</text>
-                <line x1="60" y1="130" x2="160" y2="130" stroke="#CFB53B" stroke-width="1" opacity="0.6"/>
-                <text x="110" y="155" font-size="18" fill="white" text-anchor="middle" letter-spacing="4">ACCOUNTING</text>
-            </svg>
-            <h1 style='color: #FFFFFF; font-size: 3em; margin: 20px 0 10px 0;'>Accounting Study Hub</h1>
-            <p style='color: #CFB53B; letter-spacing: 4px;'>BRIGHAM YOUNG UNIVERSITY</p>
-            <p style='color: #888; margin-top: 20px; max-width: 500px; margin-left: auto; margin-right: auto;'>AI-powered study tools for ACC 402 Managerial Accounting and ACC 405 Federal Tax Accounting</p>
-        </div>
+    <style>
+    /* Container for the cards */
+    .glass-container {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+        padding: 40px 0;
+    }
+
+    /* The Glass Card */
+    .glass-card {
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 20px;
+        padding: 30px;
+        box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        transition: all 0.3s ease-in-out;
+        text-align: center;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .glass-card:hover {
+        transform: translateY(-8px);
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        box-shadow: 0 0 25px rgba(96, 165, 250, 0.4);
+    }
+
+    .glass-card h3 {
+        color: #60A5FA !important;
+        margin-bottom: 10px;
+        font-size: 1.8rem;
+        font-weight: 700;
+    }
+    .glass-card p {
+        color: #E5E7EB !important;
+        font-size: 1.1rem;
+        margin-bottom: 15px;
+    }
+    .glass-card .metric {
+        font-size: 3rem;
+        font-weight: 800;
+        background: -webkit-linear-gradient(#eee, #333);
+        -webkit-background-clip: text;
+        color: #FFFFFF;
+        margin: 10px 0;
+        text-shadow: 0 0 15px rgba(255,255,255,0.4);
+    }
+    
+    .glass-card .sub-metric {
+        font-size: 0.9rem;
+        color: #9CA3AF !important;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+    }
+
+    /* Tool Grid Styling */
+    .tool-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 15px;
+        margin-top: 20px;
+    }
+    
+    div.stButton > button {
+        background: linear-gradient(135deg, #2563EB, #1D4ED8);
+        border: none;
+        color: white;
+        font-weight: bold;
+        border-radius: 12px;
+        padding: 12px 28px;
+        transition: all 0.3s;
+        box-shadow: 0 4px 14px 0 rgba(37, 99, 235, 0.39);
+        width: 100%;
+        height: 100%;
+    }
+    div.stButton > button:hover {
+        box-shadow: 0 6px 20px rgba(37, 99, 235, 0.23);
+        transform: scale(1.02);
+        background: linear-gradient(135deg, #3B82F6, #2563EB);
+    }
+    </style>
     """, unsafe_allow_html=True)
-    
-    # --- Course Cards ---
-    st.markdown("<h2 style='text-align: center; color: #FFF; margin: 40px 0 20px 0;'>📚 Courses</h2>", unsafe_allow_html=True)
-    
-    col1, col2 = st.columns(2, gap="large")
-    with col1:
-        st.markdown("""<div style='background: linear-gradient(145deg, #002E5D, #001A3A); padding: 30px; border-radius: 15px; border: 1px solid #003D7A;'>
-            <div style='font-size: 2.5em;'>📕</div>
-            <h3 style='color: #FFF;'>ACC 402</h3>
-            <p style='color: #CFB53B;'>MANAGERIAL ACCOUNTING</p>
-            <p style='color: #AAA;'>AI Tutor with Chapters 1, 3, 4, 6, 7. Cost management, job costing, process costing, cost allocation.</p>
-        </div>""", unsafe_allow_html=True)
-        if st.button("Launch ACC 402 →", key="goto_402", use_container_width=True):
+
+    # 2. Page Title
+    st.markdown("""
+    <div style='text-align: center; padding: 50px 0;'>
+        <h1 style='font-size: 4rem; margin-bottom: 0; background: linear-gradient(to right, #60A5FA, #E879F9); -webkit-background-clip: text; -webkit-text-fill-color: transparent;'>Study Hub</h1>
+        <p style='color: #9CA3AF; font-size: 1.5rem; margin-top: 10px;'>BYU Accounting AI Assistant</p>
+    </div>
+    """, unsafe_allow_html=True)
+
+    # 3. Main Dashboard (Top Row)
+    st.markdown("""
+    <div class="glass-container">
+        <div class="glass-card">
+            <h3>📘 Managerial</h3>
+            <p>ACC 402 AI Tutor</p>
+            <div class="metric">3/5</div>
+            <p class="sub-metric">Modules Mastered</p>
+        </div>
+        <div class="glass-card">
+            <h3>📗 Tax</h3>
+            <p>ACC 405 AI Tutor</p>
+            <div class="metric">85%</div>
+            <p class="sub-metric">Exam Readiness</p>
+        </div>
+        <div class="glass-card">
+            <h3>📊 Analytics</h3>
+            <p>Weekly Progress</p>
+            <div class="metric">42</div>
+            <p class="sub-metric">Questions Solved</p>
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+
+    # 4. Main Course Buttons
+    c1, c2 = st.columns(2)
+    with c1:
+        if st.button("🚀 Launch ACC 402 Tutor", use_container_width=True):
             st.session_state.selected_page = "📕 ACC 402 - Managerial Accounting"
             st.rerun()
-    
-    with col2:
-        st.markdown("""<div style='background: linear-gradient(145deg, #1B5E20, #0D3D12); padding: 30px; border-radius: 15px; border: 1px solid #2E7D32;'>
-            <div style='font-size: 2.5em;'>📗</div>
-            <h3 style='color: #FFF;'>ACC 405</h3>
-            <p style='color: #81C784;'>FEDERAL TAX ACCOUNTING</p>
-            <p style='color: #AAA;'>AI Tutor with Chapters 4-6. Tax formula, gross income, deductions, OBBBA provisions.</p>
-        </div>""", unsafe_allow_html=True)
-        if st.button("Launch ACC 405 →", key="goto_405", use_container_width=True):
+    with c2:
+        if st.button("🚀 Launch ACC 405 Tutor", use_container_width=True):
             st.session_state.selected_page = "📗 ACC 405 - Tax Accounting"
             st.rerun()
+
+    # 5. Tools Grid (Preserving the functionality from the original code)
+    st.markdown("<h3 style='text-align: center; margin-top: 40px; color: #FFF;'>🛠️ Quick Tools</h3>", unsafe_allow_html=True)
     
-    # --- Study Tools ---
-    st.markdown("<h2 style='text-align: center; color: #FFF; margin: 40px 0 20px 0;'>🛠️ Study Tools</h2>", unsafe_allow_html=True)
-    
-    col3, col4 = st.columns(2, gap="large")
-    with col3:
-        st.markdown("""<div style='background: linear-gradient(145deg, #1A1A2E, #151525); padding: 30px; border-radius: 15px; border: 1px solid #2D2D4A;'>
-            <div style='font-size: 2.5em;'>🧮</div>
-            <h3 style='color: #FFF;'>Calculators</h3>
-            <p style='color: #CFB53B;'>QUICK TOOLS</p>
-            <p style='color: #AAA;'>CVP analysis, equivalent units, overhead rates, taxable income, OBBBA deductions, and more.</p>
-        </div>""", unsafe_allow_html=True)
-        if st.button("Open Calculators →", key="goto_calc", use_container_width=True):
-            st.session_state.selected_page = "🧮 Calculators"
-            st.rerun()
-    
-    with col4:
-        st.markdown("""<div style='background: linear-gradient(145deg, #1A1A2E, #151525); padding: 30px; border-radius: 15px; border: 1px solid #2D2D4A;'>
-            <div style='font-size: 2.5em;'>📖</div>
-            <h3 style='color: #FFF;'>Formula Database</h3>
-            <p style='color: #CFB53B;'>QUICK REFERENCE</p>
-            <p style='color: #AAA;'>Searchable formulas for both ACC 402 and ACC 405 courses.</p>
-        </div>""", unsafe_allow_html=True)
-        if st.button("Browse Formulas →", key="goto_formulas", use_container_width=True):
-            st.session_state.selected_page = "📖 Formula Database"
-            st.rerun()
-    
-    st.markdown("<br>", unsafe_allow_html=True)
-    
-    col5, col6 = st.columns(2, gap="large")
-    with col5:
-        st.markdown("""<div style='background: linear-gradient(145deg, #1A1A2E, #151525); padding: 30px; border-radius: 15px; border: 1px solid #2D2D4A;'>
-            <div style='font-size: 2.5em;'>📊</div>
-            <h3 style='color: #FFF;'>Break-Even Visualizer</h3>
-            <p style='color: #CFB53B;'>INTERACTIVE CHARTS</p>
-            <p style='color: #AAA;'>Visualize CVP relationships with dynamic, interactive graphs.</p>
-        </div>""", unsafe_allow_html=True)
-        if st.button("Open Visualizer →", key="goto_viz", use_container_width=True):
-            st.session_state.selected_page = "📊 Break-Even Visualizer"
-            st.rerun()
-    
-    with col6:
-        st.markdown("""<div style='background: linear-gradient(145deg, #1A1A2E, #151525); padding: 30px; border-radius: 15px; border: 1px solid #2D2D4A;'>
-            <div style='font-size: 2.5em;'>📝</div>
-            <h3 style='color: #FFF;'>Practice Exam Generator</h3>
-            <p style='color: #E91E63;'>AI-POWERED</p>
-            <p style='color: #AAA;'>Generate custom practice exams with instant grading and explanations.</p>
-        </div>""", unsafe_allow_html=True)
-        if st.button("Generate Exam →", key="goto_exam", use_container_width=True):
+    t1, t2, t3, t4 = st.columns(4)
+    with t1:
+        if st.button("📝 Practice Exam", use_container_width=True):
             st.session_state.selected_page = "📝 Practice Exam Generator"
             st.rerun()
-    
-    st.markdown("<br>", unsafe_allow_html=True)
-    
-    col7, col8 = st.columns(2, gap="large")
-    with col7:
-        st.markdown("""<div style='background: linear-gradient(145deg, #1A1A2E, #151525); padding: 30px; border-radius: 15px; border: 1px solid #2D2D4A;'>
-            <div style='font-size: 2.5em;'>🗺️</div>
-            <h3 style='color: #FFF;'>Concept Maps</h3>
-            <p style='color: #2196F3;'>VISUAL LEARNING</p>
-            <p style='color: #AAA;'>Interactive diagrams showing how accounting concepts connect.</p>
-        </div>""", unsafe_allow_html=True)
-        if st.button("View Concept Maps →", key="goto_maps", use_container_width=True):
+    with t2:
+        if st.button("📊 Break-Even", use_container_width=True):
+            st.session_state.selected_page = "📊 Break-Even Visualizer"
+            st.rerun()
+    with t3:
+        if st.button("🗺️ Concept Maps", use_container_width=True):
             st.session_state.selected_page = "🗺️ Concept Maps"
             st.rerun()
-    
-    with col8:
-        st.markdown("""<div style='background: linear-gradient(145deg, #1A1A2E, #151525); padding: 30px; border-radius: 15px; border: 1px solid #2D2D4A;'>
-            <div style='font-size: 2.5em;'>🔮</div>
-            <h3 style='color: #FFF;'>What-If Analyzer</h3>
-            <p style='color: #9C27B0;'>SCENARIO PLANNING</p>
-            <p style='color: #AAA;'>See how changes in variables affect your CVP analysis or tax situation.</p>
-        </div>""", unsafe_allow_html=True)
-        if st.button("Open Analyzer →", key="goto_whatif", use_container_width=True):
+    with t4:
+        if st.button("🔮 What-If Tool", use_container_width=True):
             st.session_state.selected_page = "🔮 What-If Analyzer"
             st.rerun()
-
+    
+    # 6. Extra Tools Row
+    t5, t6 = st.columns([1,1])
+    with t5:
+        if st.button("🧮 Calculators", use_container_width=True):
+            st.session_state.selected_page = "🧮 Calculators"
+            st.rerun()
+    with t6:
+        if st.button("📖 Formula DB", use_container_width=True):
+            st.session_state.selected_page = "📖 Formula Database"
+            st.rerun()
 # --- CALCULATORS PAGE ---
 elif page == "🧮 Calculators":
     st.markdown("<div class='page-header'><h1>🧮 Accounting Calculators</h1><p>Quick calculation tools for ACC 402 & ACC 405</p></div>", unsafe_allow_html=True)
