@@ -2609,161 +2609,168 @@ page = st.session_state.selected_page
 
 # --- HOME PAGE ---
 if page == "🏠 Home":
-    # 1. CSS: "LIQUID GLASS" & FRESH UI
+    # 1. CSS: LIQUID GLASS GLOBAL STYLING
     st.markdown("""
     <style>
     /* Hide default header */
     header {visibility: hidden;}
     
-    /* 1. THE GLOWING TITLE (Kept the nice purple/blue) */
+    /* GLOWING TITLE STYLE */
     .glowing-text {
-        font-size: 3.8rem;
+        font-size: 3.5rem;
         font-weight: 800;
-        background: linear-gradient(90deg, #60A5FA, #A78BFA);
+        background: linear-gradient(90deg, #60A5FA, #A78BFA); /* Blue to Purple */
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
+        margin-top: 10px;
         margin-bottom: 5px;
         filter: drop-shadow(0 0 15px rgba(167, 139, 250, 0.4));
     }
 
-    /* 2. LIQUID GLASS BUTTONS */
+    /* GLOBAL LIQUID GLASS BUTTONS */
     div.stButton > button {
         width: 100%;
         height: auto;
-        min-height: 170px;
+        min-height: 220px; /* Tall enough to hold your descriptions */
         
-        /* THE LIQUID BASE: A subtle gradient that we can animate */
+        /* LIQUID BACKGROUND */
         background: linear-gradient(
             135deg, 
             rgba(255, 255, 255, 0.08) 0%, 
             rgba(255, 255, 255, 0.02) 100%
         );
-        background-size: 200% 200%; /* Allows us to shift the background */
+        background-size: 200% 200%;
         
         backdrop-filter: blur(20px);
         -webkit-backdrop-filter: blur(20px);
         
         border: 1px solid rgba(255, 255, 255, 0.1);
-        border-top: 1px solid rgba(255, 255, 255, 0.2); /* Highlight top edge */
-        border-radius: 28px; /* Super rounded liquid feel */
+        border-top: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 28px;
         
         color: #F1F5F9;
-        font-size: 19px;
-        font-weight: 500;
+        font-size: 16px; /* Slightly smaller base font for long text */
+        font-weight: 400;
         letter-spacing: 0.5px;
         
-        /* Flex layout for icons/text */
+        /* Layout */
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        padding: 25px;
-        white-space: pre-wrap;
-        line-height: 1.6;
+        padding: 30px 20px;
+        white-space: pre-wrap; /* Allows text wrapping */
+        line-height: 1.5;
         
-        /* Smooth physics */
         transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         box-shadow: 
             0 10px 30px -5px rgba(0, 0, 0, 0.3),
-            inset 0 0 0 1px rgba(255, 255, 255, 0.05); /* Inner light ring */
+            inset 0 0 0 1px rgba(255, 255, 255, 0.05);
     }
 
-    /* HOVER STATE: The "Flow" Effect */
+    /* HOVER EFFECT */
     div.stButton > button:hover {
         transform: translateY(-8px) scale(1.02);
-        
-        /* Shift the gradient to create movement */
-        background-position: 100% 50%;
-        
+        background-position: 100% 50%; /* Shifts gradient */
         border: 1px solid rgba(255, 255, 255, 0.3);
-        
-        /* A colored glow "under" the glass */
         box-shadow: 
-            0 20px 40px -10px rgba(96, 165, 250, 0.3), /* Blue-ish glow */
-            0 0 20px rgba(255, 255, 255, 0.1),         /* White halo */
-            inset 0 0 20px rgba(255, 255, 255, 0.05);  /* Inner depth */
-            
+            0 20px 40px -10px rgba(96, 165, 250, 0.3), /* Blue glow */
+            0 0 20px rgba(255, 255, 255, 0.1),
+            inset 0 0 20px rgba(255, 255, 255, 0.05);
         color: #FFFFFF;
         text-shadow: 0 0 8px rgba(255,255,255,0.4);
     }
 
-    /* CLICK STATE: Pressing into the liquid */
+    /* ACTIVE EFFECT */
     div.stButton > button:active {
-        transform: scale(0.96) translateY(0);
+        transform: scale(0.98);
         box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-        background: rgba(255, 255, 255, 0.1);
     }
     
-    /* Subtext styling */
-    p { color: #94A3B8; font-size: 1.15rem; }
-    
+    /* Make the emoji/titles larger inside the button */
+    div.stButton > button p {
+        font-size: 1.2rem;
+    }
     </style>
     """, unsafe_allow_html=True)
 
-    # 2. HEADER
+    # 2. HEADER SECTION (With your SVG)
     st.markdown("""
-    <div style='text-align: center; padding: 60px 20px 40px 20px;'>
-        <h1 class='glowing-text'>Study Hub</h1>
-        <p style='color: #94A3B8; font-size: 1.1rem; letter-spacing: 4px; font-weight: 600; text-transform: uppercase; opacity: 0.8;'>BYU Accounting AI Assistant</p>
-    </div>
+        <div style='text-align: center; padding: 40px 20px;'>
+            <svg width="140" height="140" viewBox="0 0 220 220" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="110" cy="110" r="105" fill="#002E5D"/>
+                <text x="110" y="85" font-size="48" fill="white" text-anchor="middle" font-weight="bold">BYU</text>
+                <text x="110" y="115" font-size="14" fill="#CFB53B" text-anchor="middle" letter-spacing="3">MARRIOTT SCHOOL</text>
+                <line x1="60" y1="130" x2="160" y2="130" stroke="#CFB53B" stroke-width="1" opacity="0.6"/>
+                <text x="110" y="155" font-size="18" fill="white" text-anchor="middle" letter-spacing="4">ACCOUNTING</text>
+            </svg>
+            <h1 class='glowing-text'>Accounting Study Hub</h1>
+            <p style='color: #94A3B8; letter-spacing: 2px; text-transform: uppercase; font-weight: 600;'>Brigham Young University</p>
+            <p style='color: #64748B; font-size: 0.9em; margin-top: 10px;'>AI-powered study tools for ACC 402 & ACC 405</p>
+        </div>
     """, unsafe_allow_html=True)
-
-    # 3. COURSES SECTION
-    st.markdown("<h3 style='color: #F8FAFC; margin-bottom: 25px; font-weight: 600; padding-left: 10px; border-left: 4px solid #60A5FA;'>📚 Your Courses</h3>", unsafe_allow_html=True)
     
-    c1, c2, c3 = st.columns(3, gap="medium")
+    # --- COURSES SECTION ---
+    st.markdown("<h3 style='color: #F8FAFC; margin: 20px 0 20px 0; padding-left: 10px; border-left: 4px solid #60A5FA;'>📚 Courses</h3>", unsafe_allow_html=True)
     
-    with c1:
-        if st.button("📘 ACC 402\nManagerial Accounting\n\n🔹 Modules: 3/5", use_container_width=True):
+    col1, col2 = st.columns(2, gap="medium")
+    with col1:
+        # I formatted the text with newlines (\n) to replicate the structure of your original HTML cards
+        btn_text = "📕 ACC 402\nMANAGERIAL ACCOUNTING\n\nAI Tutor: Ch 1, 3, 4, 6, 7\nCost management, job costing,\nprocess costing & allocation."
+        if st.button(btn_text, key="goto_402", use_container_width=True):
             st.session_state.selected_page = "📕 ACC 402 - Managerial Accounting"
             st.rerun()
-            
-    with c2:
-        if st.button("📗 ACC 405\nFederal Tax\n\n🔹 Exam Ready: 85%", use_container_width=True):
+    
+    with col2:
+        btn_text = "📗 ACC 405\nFEDERAL TAX ACCOUNTING\n\nAI Tutor: Ch 4-6\nTax formula, gross income,\ndeductions & OBBBA."
+        if st.button(btn_text, key="goto_405", use_container_width=True):
             st.session_state.selected_page = "📗 ACC 405 - Tax Accounting"
             st.rerun()
-            
-    with c3:
-        if st.button("📊 Analytics\nWeekly Progress\n\n🔥 Streak: 3 Days", use_container_width=True):
-            st.toast("Analytics updated! You're on fire! 🔥")
-
-    # 4. TOOLS SECTION
-    st.markdown("<h3 style='color: #F8FAFC; margin: 50px 0 25px 0; font-weight: 600; padding-left: 10px; border-left: 4px solid #A78BFA;'>🛠️ Study Tools</h3>", unsafe_allow_html=True)
     
-    t1, t2, t3, t4 = st.columns(4, gap="small")
+    # --- STUDY TOOLS SECTION ---
+    st.markdown("<h3 style='color: #F8FAFC; margin: 40px 0 20px 0; padding-left: 10px; border-left: 4px solid #A78BFA;'>🛠️ Study Tools</h3>", unsafe_allow_html=True)
     
-    with t1:
-        if st.button("📝 Practice Exam\nGenerator", use_container_width=True):
-            st.session_state.selected_page = "📝 Practice Exam Generator"
-            st.rerun()
-            
-    with t2:
-        if st.button("📊 Break-Even\nVisualizer", use_container_width=True):
-            st.session_state.selected_page = "📊 Break-Even Visualizer"
-            st.rerun()
-            
-    with t3:
-        if st.button("🗺️ Concept\nMaps", use_container_width=True):
-            st.session_state.selected_page = "🗺️ Concept Maps"
-            st.rerun()
-            
-    with t4:
-        if st.button("🔮 What-If\nAnalyzer", use_container_width=True):
-            st.session_state.selected_page = "🔮 What-If Analyzer"
-            st.rerun()
-
-    # 5. REFERENCE SECTION
-    st.markdown("<div style='margin-top: 25px;'></div>", unsafe_allow_html=True)
-    r1, r2 = st.columns(2, gap="medium")
-    
-    with r1:
-        if st.button("🧮 Quick Calculators\nCVP, Tax, & More", use_container_width=True):
+    col3, col4 = st.columns(2, gap="medium")
+    with col3:
+        btn_text = "🧮 Calculators\nQUICK TOOLS\n\nCVP, equivalent units, overhead rates,\ntaxable income & OBBBA deductions."
+        if st.button(btn_text, key="goto_calc", use_container_width=True):
             st.session_state.selected_page = "🧮 Calculators"
             st.rerun()
-            
-    with r2:
-        if st.button("📖 Formula Database\nSearchable Reference", use_container_width=True):
+    
+    with col4:
+        btn_text = "📖 Formula Database\nQUICK REFERENCE\n\nSearchable formulas for both\nACC 402 and ACC 405."
+        if st.button(btn_text, key="goto_formulas", use_container_width=True):
             st.session_state.selected_page = "📖 Formula Database"
+            st.rerun()
+    
+    st.markdown("<div style='margin-top: 20px;'></div>", unsafe_allow_html=True)
+    
+    col5, col6 = st.columns(2, gap="medium")
+    with col5:
+        btn_text = "📊 Break-Even Visualizer\nINTERACTIVE CHARTS\n\nVisualize CVP relationships with\ndynamic, interactive graphs."
+        if st.button(btn_text, key="goto_viz", use_container_width=True):
+            st.session_state.selected_page = "📊 Break-Even Visualizer"
+            st.rerun()
+    
+    with col6:
+        btn_text = "📝 Practice Exam Generator\nAI-POWERED\n\nGenerate custom practice exams\nwith instant grading and explanations."
+        if st.button(btn_text, key="goto_exam", use_container_width=True):
+            st.session_state.selected_page = "📝 Practice Exam Generator"
+            st.rerun()
+    
+    st.markdown("<div style='margin-top: 20px;'></div>", unsafe_allow_html=True)
+    
+    col7, col8 = st.columns(2, gap="medium")
+    with col7:
+        btn_text = "🗺️ Concept Maps\nVISUAL LEARNING\n\nInteractive diagrams showing how\naccounting concepts connect."
+        if st.button(btn_text, key="goto_maps", use_container_width=True):
+            st.session_state.selected_page = "🗺️ Concept Maps"
+            st.rerun()
+    
+    with col8:
+        btn_text = "🔮 What-If Analyzer\nSCENARIO PLANNING\n\nSee how changes in variables affect\nyour CVP analysis or tax situation."
+        if st.button(btn_text, key="goto_whatif", use_container_width=True):
+            st.session_state.selected_page = "🔮 What-If Analyzer"
             st.rerun()
 # --- CALCULATORS PAGE ---
 elif page == "🧮 Calculators":
