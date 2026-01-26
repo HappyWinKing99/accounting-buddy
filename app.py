@@ -2524,11 +2524,20 @@ st.markdown("""
     .stTextArea > div > div > textarea { background-color: #FFFFFF !important; color: #000000 !important; border: 1px solid #2D2D4A !important; border-radius: 10px !important; }
     .stTextArea > div > div > textarea::placeholder { color: #666666 !important; }
     .stNumberInput > div > div > input { background-color: #1A1A2E !important; color: #FFFFFF !important; border: 1px solid #2D2D4A !important; border-radius: 10px !important; }
-    .stSelectbox > div > div { background-color: #1A1A2E !important; color: #FFFFFF !important; border: 1px solid #2D2D4A !important; border-radius: 10px !important; }
+   .stSelectbox > div > div { background-color: #1A1A2E !important; color: #FFFFFF !important; border: 1px solid #2D2D4A !important; border-radius: 10px !important; }
     .stSelectbox > div > div > div { color: #FFFFFF !important; }
+    .stSelectbox [data-baseweb="select"] > div { background-color: #1A1A2E !important; }
+    .stSelectbox [data-baseweb="select"] span { color: #FFFFFF !important; }
+    .stSelectbox svg { fill: #FFFFFF !important; }
     [data-baseweb="menu"] { background-color: #1A1A2E !important; border: 1px solid #2D2D4A !important; }
     [data-baseweb="menu"] li { color: #FFFFFF !important; background-color: #1A1A2E !important; }
     [data-baseweb="menu"] li:hover { background-color: #252542 !important; }
+    [data-baseweb="popover"] { background-color: #1A1A2E !important; }
+    [data-baseweb="popover"] ul { background-color: #1A1A2E !important; }
+    [data-baseweb="popover"] li { color: #FFFFFF !important; background-color: #1A1A2E !important; }
+    [data-baseweb="popover"] li:hover { background-color: #252542 !important; }
+    div[data-baseweb="select"] > div { background-color: #1A1A2E !important; }
+    div[data-baseweb="select"] * { color: #FFFFFF !important; }
     .stRadio > div { background-color: transparent !important; }
     .stRadio label { color: #FFFFFF !important; }
     .stTabs [data-baseweb="tab-list"] { background-color: transparent !important; gap: 10px; border-bottom: 1px solid #2D2D4A !important; }
