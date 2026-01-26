@@ -13,7 +13,32 @@ st.set_page_config(
     layout="wide",
     initial_sidebar_state="expanded"
 )
+# --- KEY INSPECTOR (Put this right after st.set_page_config) ---
+try:
+    # 1. Get the key
+    raw_key = st.secrets["ANTHROPIC_API_KEY"]
+    
+    # 2. Check for hidden spaces
+    if raw_key.strip() != raw_key:
+        st.error("🚨 CRITICAL ERROR: Your API Key has hidden spaces at the start or end!")
+        st.write(f"What Streamlit sees: '{raw_key}' (Notice the quotes?)")
+        st.stop()
+        
+    # 3. Check for OpenAI key (Common mistake)
+    if raw_key.startswith("sk-proj"):
+        st.error("🚨 WRONG KEY TYPE: You pasted an OpenAI key. You need an Anthropic key (starts with 'sk-ant').")
+        st.stop()
 
+    # 4. Check length
+    if len(raw_key) < 50:
+        st.error(f"🚨 KEY TOO SHORT: Your key is only {len(raw_key)} characters. It should be ~108 characters.")
+        st.stop()
+
+    st.success(f"✅ Key Format Valid: Starts with '{raw_key[:15]}...'")
+
+except Exception as e:
+    st.error(f"secrets.toml error: {e}")
+# -------------------------------------------------------------
 # --- DEBUG SECTION (DELETE AFTER FIXING) ---
 try:
     key = st.secrets["ANTHROPIC_API_KEY"]
