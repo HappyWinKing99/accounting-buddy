@@ -2624,7 +2624,8 @@ if page == "🏠 Home":
         </div>
     """, unsafe_allow_html=True)
     
-    st.markdown("<h2 style='text-align: center; color: #FFF; margin: 40px 0;'>Get Started</h2>", unsafe_allow_html=True)
+    # --- Course Cards ---
+    st.markdown("<h2 style='text-align: center; color: #FFF; margin: 40px 0 20px 0;'>📚 Courses</h2>", unsafe_allow_html=True)
     
     col1, col2 = st.columns(2, gap="large")
     with col1:
@@ -2649,7 +2650,9 @@ if page == "🏠 Home":
             st.session_state.selected_page = "📗 ACC 405 - Tax Accounting"
             st.rerun()
     
-    st.markdown("<br>", unsafe_allow_html=True)
+    # --- Study Tools ---
+    st.markdown("<h2 style='text-align: center; color: #FFF; margin: 40px 0 20px 0;'>🛠️ Study Tools</h2>", unsafe_allow_html=True)
+    
     col3, col4 = st.columns(2, gap="large")
     with col3:
         st.markdown("""<div style='background: linear-gradient(145deg, #1A1A2E, #151525); padding: 30px; border-radius: 15px; border: 1px solid #2D2D4A;'>
@@ -2671,6 +2674,56 @@ if page == "🏠 Home":
         </div>""", unsafe_allow_html=True)
         if st.button("Browse Formulas →", key="goto_formulas", use_container_width=True):
             st.session_state.selected_page = "📖 Formula Database"
+            st.rerun()
+    
+    st.markdown("<br>", unsafe_allow_html=True)
+    
+    col5, col6 = st.columns(2, gap="large")
+    with col5:
+        st.markdown("""<div style='background: linear-gradient(145deg, #1A1A2E, #151525); padding: 30px; border-radius: 15px; border: 1px solid #2D2D4A;'>
+            <div style='font-size: 2.5em;'>📊</div>
+            <h3 style='color: #FFF;'>Break-Even Visualizer</h3>
+            <p style='color: #CFB53B;'>INTERACTIVE CHARTS</p>
+            <p style='color: #AAA;'>Visualize CVP relationships with dynamic, interactive graphs.</p>
+        </div>""", unsafe_allow_html=True)
+        if st.button("Open Visualizer →", key="goto_viz", use_container_width=True):
+            st.session_state.selected_page = "📊 Break-Even Visualizer"
+            st.rerun()
+    
+    with col6:
+        st.markdown("""<div style='background: linear-gradient(145deg, #1A1A2E, #151525); padding: 30px; border-radius: 15px; border: 1px solid #2D2D4A;'>
+            <div style='font-size: 2.5em;'>📝</div>
+            <h3 style='color: #FFF;'>Practice Exam Generator</h3>
+            <p style='color: #E91E63;'>AI-POWERED</p>
+            <p style='color: #AAA;'>Generate custom practice exams with instant grading and explanations.</p>
+        </div>""", unsafe_allow_html=True)
+        if st.button("Generate Exam →", key="goto_exam", use_container_width=True):
+            st.session_state.selected_page = "📝 Practice Exam Generator"
+            st.rerun()
+    
+    st.markdown("<br>", unsafe_allow_html=True)
+    
+    col7, col8 = st.columns(2, gap="large")
+    with col7:
+        st.markdown("""<div style='background: linear-gradient(145deg, #1A1A2E, #151525); padding: 30px; border-radius: 15px; border: 1px solid #2D2D4A;'>
+            <div style='font-size: 2.5em;'>🗺️</div>
+            <h3 style='color: #FFF;'>Concept Maps</h3>
+            <p style='color: #2196F3;'>VISUAL LEARNING</p>
+            <p style='color: #AAA;'>Interactive diagrams showing how accounting concepts connect.</p>
+        </div>""", unsafe_allow_html=True)
+        if st.button("View Concept Maps →", key="goto_maps", use_container_width=True):
+            st.session_state.selected_page = "🗺️ Concept Maps"
+            st.rerun()
+    
+    with col8:
+        st.markdown("""<div style='background: linear-gradient(145deg, #1A1A2E, #151525); padding: 30px; border-radius: 15px; border: 1px solid #2D2D4A;'>
+            <div style='font-size: 2.5em;'>🔮</div>
+            <h3 style='color: #FFF;'>What-If Analyzer</h3>
+            <p style='color: #9C27B0;'>SCENARIO PLANNING</p>
+            <p style='color: #AAA;'>See how changes in variables affect your CVP analysis or tax situation.</p>
+        </div>""", unsafe_allow_html=True)
+        if st.button("Open Analyzer →", key="goto_whatif", use_container_width=True):
+            st.session_state.selected_page = "🔮 What-If Analyzer"
             st.rerun()
 
 # --- CALCULATORS PAGE ---
