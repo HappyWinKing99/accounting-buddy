@@ -3319,29 +3319,29 @@ elif page == "📕 ACC 402 - Managerial Accounting":
         
         if should_call and st.session_state.chat_history_402 and st.session_state.chat_history_402[-1]['role'] == 'user':
             try:
-        api_key = st.secrets["ANTHROPIC_API_KEY"]
+            api_key = st.secrets["ANTHROPIC_API_KEY"]
         
-        # DEBUG: Show key info (remove after testing!)
-        st.write(f"🔑 Key length: {len(api_key)}")
-        st.write(f"🔑 Key starts with: {api_key[:10]}...")
-        st.write(f"🔑 Key ends with: ...{api_key[-5:]}")
+            # DEBUG: Show key info (remove after testing!)
+            st.write(f"🔑 Key length: {len(api_key)}")
+            st.write(f"🔑 Key starts with: {api_key[:10]}...")
+            st.write(f"🔑 Key ends with: ...{api_key[-5:]}")
         
-        system_prompt = f"""You are the Managerial Accounting Master Tutor..."""
+            system_prompt = f"""You are the Managerial Accounting Master Tutor..."""
         
-        headers = {
+            headers = {
             "Content-Type": "application/json",
             "x-api-key": api_key,
             "anthropic-version": "2023-06-01"
-        }
+            }
         
-        payload = {
+            payload = {
             "model": model_choice,
             "max_tokens": 4096,
             "system": system_prompt,
             "messages": [{"role": m['role'], "content": m['content']} for m in st.session_state.chat_history_402]
-        }
+            }
         
-        with st.spinner("🤔 Thinking..."):
+            with st.spinner("🤔 Thinking..."):
             response = requests.post(
                 "https://api.anthropic.com/v1/messages",
                 headers=headers,
