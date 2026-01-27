@@ -2960,6 +2960,109 @@ pre code span {
         line-height: 2 !important;
         letter-spacing: 0.5px !important;
     }
+
+    /* AI RESPONSE CONTENT STYLING - Add this to your CSS section */
+/* Place this right before: header {visibility: hidden;} */
+
+    /* Tables in AI responses */
+    .stMarkdown table {
+        background-color: rgba(15, 23, 42, 0.95) !important;
+        border-collapse: collapse !important;
+        width: 100% !important;
+        margin: 15px 0 !important;
+    }
+    
+    .stMarkdown table th {
+        background-color: rgba(96, 165, 250, 0.3) !important;
+        color: #FFFFFF !important;
+        padding: 12px !important;
+        border: 1px solid rgba(255, 255, 255, 0.2) !important;
+        text-align: left !important;
+    }
+    
+    .stMarkdown table td {
+        background-color: rgba(15, 23, 42, 0.8) !important;
+        color: #FFFFFF !important;
+        padding: 10px !important;
+        border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    }
+    
+    .stMarkdown table tr:nth-child(even) td {
+        background-color: rgba(30, 41, 59, 0.8) !important;
+    }
+    
+    /* Code blocks in AI responses */
+    .stMarkdown pre {
+        background-color: rgba(0, 0, 0, 0.5) !important;
+        border: 1px solid rgba(255, 255, 255, 0.15) !important;
+        border-radius: 10px !important;
+        padding: 15px !important;
+    }
+    
+    .stMarkdown pre code {
+        color: #E2E8F0 !important;
+        background-color: transparent !important;
+    }
+    
+    /* Inline code */
+    .stMarkdown code {
+        background-color: rgba(0, 0, 0, 0.4) !important;
+        color: #93C5FD !important;
+        padding: 2px 6px !important;
+        border-radius: 4px !important;
+    }
+    
+    /* Blockquotes */
+    .stMarkdown blockquote {
+        background-color: rgba(96, 165, 250, 0.1) !important;
+        border-left: 4px solid #60A5FA !important;
+        padding: 10px 15px !important;
+        margin: 15px 0 !important;
+        color: #E2E8F0 !important;
+    }
+    
+    /* Horizontal rules */
+    .stMarkdown hr {
+        border-color: rgba(255, 255, 255, 0.2) !important;
+    }
+    
+    /* Lists */
+    .stMarkdown ul, .stMarkdown ol {
+        color: #FFFFFF !important;
+    }
+    
+    .stMarkdown li {
+        color: #FFFFFF !important;
+    }
+    
+    /* DataFrames / Data tables */
+    .stDataFrame {
+        background-color: rgba(15, 23, 42, 0.95) !important;
+    }
+    
+    .stDataFrame table {
+        background-color: rgba(15, 23, 42, 0.95) !important;
+    }
+    
+    .stDataFrame th {
+        background-color: rgba(96, 165, 250, 0.3) !important;
+        color: #FFFFFF !important;
+    }
+    
+    .stDataFrame td {
+        background-color: rgba(15, 23, 42, 0.8) !important;
+        color: #FFFFFF !important;
+    }
+    
+    /* Any nested divs that might have white backgrounds */
+    .stMarkdown div {
+        background-color: transparent !important;
+    }
+    
+    /* LaTeX / Math expressions */
+    .katex {
+        color: #FFFFFF !important;
+    }
     
     header {visibility: hidden;}
     </style>
