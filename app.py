@@ -3099,45 +3099,57 @@ pre code span {
     section[data-testid="stSidebar"] .stButton > button[kind="primary"] {
         background: linear-gradient(145deg, rgba(96, 165, 250, 0.3), rgba(139, 92, 246, 0.2)) !important;
         border: 1px soli
+
+/* Hide the white top toolbar/header bar */
+    header[data-testid="stHeader"] {
+        background-color: transparent !important;
+        background: transparent !important;
+    }
+    
+    [data-testid="stToolbar"] {
+        display: none !important;
+    }
+    
+    [data-testid="stDecoration"] {
+        display: none !important;
+    }
     
     header {visibility: hidden;}
     </style>
 """, unsafe_allow_html=True)
 
 # ============================================================================
-# SIDEBAR NAVIGATION - LIQUID GLASS THEME
+# SIDEBAR NAVIGATION - LIQUID GLASS THEME (FIXED)
 # ============================================================================
 with st.sidebar:
     # Logo and branding
     st.markdown("""
-        <div style='text-align: center; padding: 30px 15px 20px 15px;'>
+        <div style='text-align: center; padding: 20px 15px 15px 15px;'>
             <div style='
                 background: linear-gradient(145deg, rgba(0, 46, 93, 0.8), rgba(0, 30, 60, 0.9));
                 border-radius: 20px;
-                padding: 25px;
+                padding: 20px;
                 border: 1px solid rgba(207, 181, 59, 0.3);
                 box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
             '>
-                <p style='font-size: 2.5rem; font-weight: 800; color: #FFFFFF; margin: 0; letter-spacing: 2px;'>BYU</p>
-                <p style='font-size: 0.7rem; color: #CFB53B; letter-spacing: 3px; margin: 5px 0;'>MARRIOTT SCHOOL</p>
-                <div style='width: 60%; height: 1px; background: linear-gradient(90deg, transparent, rgba(207, 181, 59, 0.5), transparent); margin: 10px auto;'></div>
-                <p style='font-size: 0.9rem; color: #FFFFFF; letter-spacing: 4px; margin: 0;'>ACCOUNTING</p>
+                <p style='font-size: 2.2rem; font-weight: 800; color: #FFFFFF; margin: 0; letter-spacing: 2px;'>BYU</p>
+                <p style='font-size: 0.65rem; color: #CFB53B; letter-spacing: 2px; margin: 5px 0;'>MARRIOTT SCHOOL</p>
+                <div style='width: 60%; height: 1px; background: linear-gradient(90deg, transparent, rgba(207, 181, 59, 0.5), transparent); margin: 8px auto;'></div>
+                <p style='font-size: 0.8rem; color: #FFFFFF; letter-spacing: 3px; margin: 0;'>ACCOUNTING</p>
             </div>
-            <p style='color: #CFB53B; font-size: 0.85rem; letter-spacing: 3px; margin-top: 15px; text-transform: uppercase;'>Study Hub</p>
+            <p style='color: #CFB53B; font-size: 0.8rem; letter-spacing: 2px; margin-top: 12px; text-transform: uppercase;'>Study Hub</p>
         </div>
     """, unsafe_allow_html=True)
     
-    st.markdown("<div style='margin: 20px 0;'></div>", unsafe_allow_html=True)
-    
     # Navigation section header
     st.markdown("""
-        <p style='color: rgba(255,255,255,0.5); font-size: 0.75rem; letter-spacing: 2px; padding-left: 10px; margin-bottom: 10px;'>NAVIGATION</p>
+        <p style='color: rgba(255,255,255,0.4); font-size: 0.7rem; letter-spacing: 2px; padding-left: 10px; margin: 15px 0 8px 0;'>NAVIGATION</p>
     """, unsafe_allow_html=True)
     
     # Navigation pages
     pages = [
         ("🏠", "Home", "🏠 Home"),
-        ("📕", "ACC 402", "📕 ACC 402 - Managerial Accounting"),
+        ("📘", "ACC 402", "📘 ACC 402 - Managerial Accounting"),
         ("📗", "ACC 405", "📗 ACC 405 - Tax Accounting"),
         ("🧮", "Calculators", "🧮 Calculators"),
         ("📖", "Formulas", "📖 Formula Database"),
@@ -3148,9 +3160,7 @@ with st.sidebar:
     ]
     
     for icon, label, page_name in pages:
-        # Check if this is the current page
         is_active = st.session_state.selected_page == page_name
-        
         if st.button(
             f"{icon}  {label}", 
             key=f"nav_{page_name}", 
@@ -3160,20 +3170,13 @@ with st.sidebar:
             st.session_state.selected_page = page_name
             st.rerun()
     
-    # Footer
+    # Footer - NO position:absolute, just regular flow
     st.markdown("""
-        <div style='
-            position: absolute;
-            bottom: 20px;
-            left: 0;
-            right: 0;
-            text-align: center;
-            padding: 20px;
-        '>
+        <div style='text-align: center; padding: 30px 10px 20px 10px; margin-top: 20px;'>
             <div style='width: 80%; height: 1px; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent); margin: 0 auto 15px auto;'></div>
-            <p style='color: rgba(255,255,255,0.4); font-size: 0.75rem; margin: 0;'>Created for</p>
-            <p style='color: rgba(255,255,255,0.7); font-size: 0.85rem; margin: 5px 0;'>BYU Accounting Students</p>
-            <p style='color: #CFB53B; font-size: 0.8rem; margin: 0;'>AI & Data Analytics</p>
+            <p style='color: rgba(255,255,255,0.4); font-size: 0.7rem; margin: 0;'>Created for</p>
+            <p style='color: rgba(255,255,255,0.7); font-size: 0.8rem; margin: 5px 0;'>BYU Accounting Students</p>
+            <p style='color: #CFB53B; font-size: 0.75rem; margin: 0;'>AI & Data Analytics</p>
         </div>
     """, unsafe_allow_html=True)
 # ============================================================================
