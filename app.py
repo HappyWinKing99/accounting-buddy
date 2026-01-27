@@ -2497,6 +2497,49 @@ SUMMARY: TAXABLE INCOME CALCULATION
 # ============================================================================
 st.markdown("""
     <style>
+
+/* Hide ALL header elements */
+    header {
+        visibility: hidden !important;
+        height: 0 !important;
+    }
+    
+    header[data-testid="stHeader"] {
+        display: none !important;
+    }
+    
+    [data-testid="stHeader"] {
+        display: none !important;
+    }
+    
+    [data-testid="stToolbar"] {
+        display: none !important;
+    }
+    
+    [data-testid="stDecoration"] {
+        display: none !important;
+    }
+    
+    .stDeployButton {
+        display: none !important;
+    }
+    
+    .main .block-container {
+        padding-top: 0 !important;
+    }
+    
+    [data-testid="stStatusWidget"] {
+        display: none !important;
+    }
+    
+    .st-emotion-cache-h4xjwg {
+        display: none !important;
+    }
+    
+    .st-emotion-cache-1dp5vir {
+        display: none !important;
+    }
+    
     /* 1. APP BACKGROUND */
     .stApp { 
         background: linear-gradient(180deg, #020617 0%, #0f172a 50%, #1e1b4b 100%); 
@@ -3112,9 +3155,6 @@ pre code span {
     
     [data-testid="stDecoration"] {
         display: none !important;
-    }
-    
-    header {visibility: hidden;}
     </style>
 """, unsafe_allow_html=True)
 
