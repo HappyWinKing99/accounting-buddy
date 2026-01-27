@@ -2762,6 +2762,64 @@ details[data-testid="stExpander"] code {
     color: #FFFFFF !important;
 }
 
+/* 5b. EXPANDER NUCLEAR FIX */
+/* Target ALL possible expander elements */
+[data-testid="stExpander"] {
+    background-color: #0f172a !important;
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    border-radius: 12px !important;
+}
+
+[data-testid="stExpander"] > div {
+    background-color: #0f172a !important;
+}
+
+[data-testid="stExpander"] summary {
+    background-color: #0f172a !important;
+}
+
+[data-testid="stExpanderDetails"] {
+    background-color: #0f172a !important;
+}
+
+/* Force all children to have dark background */
+[data-testid="stExpander"] * {
+    background-color: transparent !important;
+}
+
+[data-testid="stExpander"],
+[data-testid="stExpander"] > div:first-child,
+[data-testid="stExpanderDetails"] {
+    background: #0f172a !important;
+}
+
+/* Target the specific white box issue */
+div[data-testid="stExpander"] > details {
+    background-color: #0f172a !important;
+}
+
+div[data-testid="stExpander"] > details > summary {
+    background-color: #0f172a !important;
+}
+
+div[data-testid="stExpander"] > details > div {
+    background-color: #0f172a !important;
+}
+
+/* Stblock containers that might be causing white */
+div.stMarkdown, div.stCodeBlock {
+    background-color: transparent !important;
+}
+
+/* Element container fix */
+div[data-testid="element-container"] {
+    background-color: transparent !important;
+}
+
+div[data-testid="stVerticalBlock"] {
+    background-color: transparent !important;
+}
+
     /* 6. BUTTONS (Liquid Glass) */
     div.stButton > button {
         width: 100%;
