@@ -3021,16 +3021,49 @@ if page == "🏠 Home":
         </div>
     """, unsafe_allow_html=True)
     
-    # 2. COURSES SECTION
+# 2. COURSES SECTION
     st.markdown("<h3 style='margin: 30px 0 20px 0; padding-left: 15px; border-left: 5px solid #60A5FA; font-size: 2rem;'>📚 Your Courses</h3>", unsafe_allow_html=True)
     
     c1, c2 = st.columns(2, gap="medium")
     with c1:
-        if st.button("📘 ACC 402\n\nManagerial Accounting\n\nAI Tutor: Ch 1, 3, 4, 6, 7", use_container_width=True):
+        st.markdown("""
+        <div style='background: linear-gradient(145deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.02)); 
+                    backdrop-filter: blur(25px); 
+                    border: 1px solid rgba(255, 255, 255, 0.15); 
+                    border-radius: 20px; 
+                    padding: 30px; 
+                    text-align: center;
+                    transition: all 0.3s ease;
+                    cursor: pointer;'
+             onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 10px 40px rgba(96, 165, 250, 0.3)';"
+             onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none';">
+            <p style='color: #60A5FA; font-size: 1rem; margin-bottom: 5px;'>📘</p>
+            <h2 style='color: #FFFFFF; font-size: 2.2rem; font-weight: 700; margin: 10px 0;'>ACC 402</h2>
+            <h3 style='color: #E2E8F0; font-size: 1.4rem; font-weight: 500; margin: 5px 0 15px 0;'>Managerial Accounting</h3>
+            <p style='color: #94A3B8; font-size: 0.95rem;'>AI Tutor: Ch 1, 3, 4, 6, 7</p>
+        </div>
+        """, unsafe_allow_html=True)
+        if st.button("Open ACC 402 →", key="open_402", use_container_width=True):
             st.session_state.selected_page = "📕 ACC 402 - Managerial Accounting"
             st.rerun()
+    
     with c2:
-        if st.button("📗 ACC 405\n\nFederal Tax Accounting\n\nAI Tutor: Ch 4-6 & OBBBA", use_container_width=True):
+        st.markdown("""
+        <div style='background: linear-gradient(145deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.02)); 
+                    backdrop-filter: blur(25px); 
+                    border: 1px solid rgba(255, 255, 255, 0.15); 
+                    border-radius: 20px; 
+                    padding: 30px; 
+                    text-align: center;
+                    transition: all 0.3s ease;
+                    cursor: pointer;'>
+            <p style='color: #4ADE80; font-size: 1rem; margin-bottom: 5px;'>📗</p>
+            <h2 style='color: #FFFFFF; font-size: 2.2rem; font-weight: 700; margin: 10px 0;'>ACC 405</h2>
+            <h3 style='color: #E2E8F0; font-size: 1.4rem; font-weight: 500; margin: 5px 0 15px 0;'>Federal Tax Accounting</h3>
+            <p style='color: #94A3B8; font-size: 0.95rem;'>AI Tutor: Ch 4-6 & OBBBA</p>
+        </div>
+        """, unsafe_allow_html=True)
+        if st.button("Open ACC 405 →", key="open_405", use_container_width=True):
             st.session_state.selected_page = "📗 ACC 405 - Tax Accounting"
             st.rerun()
     
