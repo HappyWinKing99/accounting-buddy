@@ -2988,13 +2988,22 @@ pre code span {
         font-weight: 500 !important;
     }
 
-.stTextArea > div,
-.stTextArea > div > div,
-[data-testid="stTextArea"] > div,
-[data-testid="stTextArea"] > div > div {
-    background-color: transparent !important;
-    background: transparent !important;
-}
+.stTextArea label {
+        color: #FFFFFF !important;
+        font-weight: 500 !important;
+    }
+
+    .stTextArea > div,
+    .stTextArea > div > div,
+    [data-testid="stTextArea"] > div,
+    [data-testid="stTextArea"] > div > div {
+        background-color: transparent !important;
+        background: transparent !important;
+    }
+
+    header {visibility: hidden;}
+    </style>
+""", unsafe_allow_html=True)
 
 # ============================================================================
 # SIDEBAR NAVIGATION
