@@ -3032,93 +3032,78 @@ if page == "🏠 Home":
 # 2. COURSES SECTION
     st.markdown("<h3 style='margin: 30px 0 20px 0; padding-left: 15px; border-left: 5px solid #60A5FA; font-size: 2rem;'>📚 Your Courses</h3>", unsafe_allow_html=True)
     
+    # Global CSS to hide the buttons and make them overlay
+    st.markdown("""
+    <style>
+    /* Hide button text and make it overlay the card */
+    [data-testid="stMainBlockContainer"] [data-testid="stHorizontalBlock"]:has(#course-card-402) [data-testid="stBaseButton-secondary"] {
+        position: relative !important;
+        margin-top: -270px !important;
+        height: 260px !important;
+        background: transparent !important;
+        border: none !important;
+        box-shadow: none !important;
+    }
+    [data-testid="stMainBlockContainer"] [data-testid="stHorizontalBlock"]:has(#course-card-405) [data-testid="stBaseButton-secondary"] {
+        position: relative !important;
+        margin-top: -270px !important;
+        height: 260px !important;
+        background: transparent !important;
+        border: none !important;
+        box-shadow: none !important;
+    }
+    </style>
+    """, unsafe_allow_html=True)
+    
     c1, c2 = st.columns(2, gap="medium")
     
     with c1:
-        # Card with button overlay using custom component approach
         st.markdown("""
-        <style>
-        #card-container-402 {
-            position: relative;
-        }
-        #card-container-402 + div button {
-            position: absolute !important;
-            top: -260px !important;
-            left: 0 !important;
-            width: 100% !important;
-            height: 250px !important;
-            opacity: 0 !important;
-            cursor: pointer !important;
-            z-index: 999 !important;
-        }
-        </style>
-        <div id="card-container-402">
-            <div style='background: linear-gradient(145deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.01)); 
-                        backdrop-filter: blur(25px); 
-                        border: 1px solid rgba(255, 255, 255, 0.15);
-                        border-top: 1px solid rgba(255, 255, 255, 0.3);
-                        border-radius: 24px; 
-                        padding: 35px 25px; 
-                        text-align: center;
-                        cursor: pointer;
-                        transition: all 0.3s ease;
-                        min-height: 200px;'>
-                <p style='font-size: 2rem; margin: 0;'>📘</p>
-                <p style='font-size: 2.5rem; font-weight: 800; color: #FFFFFF; margin: 10px 0 5px 0; 
-                          background: linear-gradient(120deg, #FFFFFF, #60A5FA); -webkit-background-clip: text; -webkit-text-fill-color: transparent;'>ACC 402</p>
-                <p style='font-size: 1.3rem; font-weight: 500; color: #E2E8F0; margin: 0 0 15px 0;'>Managerial Accounting</p>
-                <div style='width: 60%; height: 1px; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent); margin: 15px auto;'></div>
-                <p style='font-size: 0.95rem; color: #94A3B8; margin: 0;'>AI Tutor: Ch 1, 3, 4, 6, 7</p>
-            </div>
+        <div id="course-card-402" style='background: linear-gradient(145deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.01)); 
+                    backdrop-filter: blur(25px); 
+                    border: 1px solid rgba(255, 255, 255, 0.15);
+                    border-top: 1px solid rgba(255, 255, 255, 0.3);
+                    border-radius: 24px; 
+                    padding: 35px 25px; 
+                    text-align: center;
+                    min-height: 220px;
+                    transition: all 0.3s ease;'>
+            <p style='font-size: 2rem; margin: 0;'>📘</p>
+            <p style='font-size: 2.5rem; font-weight: 800; color: #FFFFFF; margin: 10px 0 5px 0; 
+                      background: linear-gradient(120deg, #FFFFFF, #60A5FA); -webkit-background-clip: text; -webkit-text-fill-color: transparent;'>ACC 402</p>
+            <p style='font-size: 1.3rem; font-weight: 500; color: #E2E8F0; margin: 0 0 15px 0;'>Managerial Accounting</p>
+            <div style='width: 60%; height: 1px; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent); margin: 15px auto;'></div>
+            <p style='font-size: 0.95rem; color: #94A3B8; margin: 0;'>AI Tutor: Ch 1, 3, 4, 6, 7</p>
         </div>
         """, unsafe_allow_html=True)
         
-        if st.button("ㅤ", key="btn_402", use_container_width=True):
+        if st.button("ㅤ", key="click_402", type="secondary", use_container_width=True):
             st.session_state.selected_page = "📕 ACC 402 - Managerial Accounting"
             st.rerun()
     
     with c2:
         st.markdown("""
-        <style>
-        #card-container-405 {
-            position: relative;
-        }
-        #card-container-405 + div button {
-            position: absolute !important;
-            top: -260px !important;
-            left: 0 !important;
-            width: 100% !important;
-            height: 250px !important;
-            opacity: 0 !important;
-            cursor: pointer !important;
-            z-index: 999 !important;
-        }
-        </style>
-        <div id="card-container-405">
-            <div style='background: linear-gradient(145deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.01)); 
-                        backdrop-filter: blur(25px); 
-                        border: 1px solid rgba(255, 255, 255, 0.15);
-                        border-top: 1px solid rgba(255, 255, 255, 0.3);
-                        border-radius: 24px; 
-                        padding: 35px 25px; 
-                        text-align: center;
-                        cursor: pointer;
-                        transition: all 0.3s ease;
-                        min-height: 200px;'>
-                <p style='font-size: 2rem; margin: 0;'>📗</p>
-                <p style='font-size: 2.5rem; font-weight: 800; color: #FFFFFF; margin: 10px 0 5px 0;
-                          background: linear-gradient(120deg, #FFFFFF, #4ADE80); -webkit-background-clip: text; -webkit-text-fill-color: transparent;'>ACC 405</p>
-                <p style='font-size: 1.3rem; font-weight: 500; color: #E2E8F0; margin: 0 0 15px 0;'>Federal Tax Accounting</p>
-                <div style='width: 60%; height: 1px; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent); margin: 15px auto;'></div>
-                <p style='font-size: 0.95rem; color: #94A3B8; margin: 0;'>AI Tutor: Ch 4-6 & OBBBA</p>
-            </div>
+        <div id="course-card-405" style='background: linear-gradient(145deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.01)); 
+                    backdrop-filter: blur(25px); 
+                    border: 1px solid rgba(255, 255, 255, 0.15);
+                    border-top: 1px solid rgba(255, 255, 255, 0.3);
+                    border-radius: 24px; 
+                    padding: 35px 25px; 
+                    text-align: center;
+                    min-height: 220px;
+                    transition: all 0.3s ease;'>
+            <p style='font-size: 2rem; margin: 0;'>📗</p>
+            <p style='font-size: 2.5rem; font-weight: 800; color: #FFFFFF; margin: 10px 0 5px 0;
+                      background: linear-gradient(120deg, #FFFFFF, #4ADE80); -webkit-background-clip: text; -webkit-text-fill-color: transparent;'>ACC 405</p>
+            <p style='font-size: 1.3rem; font-weight: 500; color: #E2E8F0; margin: 0 0 15px 0;'>Federal Tax Accounting</p>
+            <div style='width: 60%; height: 1px; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent); margin: 15px auto;'></div>
+            <p style='font-size: 0.95rem; color: #94A3B8; margin: 0;'>AI Tutor: Ch 4-6 & OBBBA</p>
         </div>
         """, unsafe_allow_html=True)
         
-        if st.button("ㅤ", key="btn_405", use_container_width=True):
+        if st.button("ㅤ", key="click_405", type="secondary", use_container_width=True):
             st.session_state.selected_page = "📗 ACC 405 - Tax Accounting"
             st.rerun()
-    
     # 3. STUDY TOOLS SECTION
     st.markdown("<h3 style='margin: 50px 0 20px 0; padding-left: 15px; border-left: 5px solid #A78BFA; font-size: 2rem;'>🛠️ Study Tools</h3>", unsafe_allow_html=True)
     
