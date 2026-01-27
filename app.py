@@ -2702,20 +2702,65 @@ div[data-testid="stSlider"] div[data-testid="stTickBarMax"] {
     color: #FFFFFF !important;
 }
 
-    /* 5. EXPANDER BOXES (Fixing white text inside white expanders) */
-    .streamlit-expanderHeader {
-        background-color: rgba(255, 255, 255, 0.05) !important;
-        border: 1px solid rgba(255, 255, 255, 0.1) !important;
-        border-radius: 12px !important;
-        color: #FFFFFF !important;
-    }
-    .streamlit-expanderContent {
-        background-color: rgba(0, 0, 0, 0.2) !important;
-        border-radius: 0 0 12px 12px;
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        border-top: none;
-        color: #FFFFFF !important;
-    }
+/* 5. EXPANDER BOXES - COMPREHENSIVE FIX */
+/* Expander header (collapsed state) */
+details[data-testid="stExpander"] {
+    background-color: rgba(0, 0, 0, 0.3) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    border-radius: 12px !important;
+}
+
+details[data-testid="stExpander"] summary {
+    background-color: rgba(0, 0, 0, 0.3) !important;
+    color: #FFFFFF !important;
+}
+
+details[data-testid="stExpander"] summary:hover {
+    background-color: rgba(96, 165, 250, 0.2) !important;
+}
+
+/* Expander content (expanded state) */
+details[data-testid="stExpander"] > div[data-testid="stExpanderDetails"] {
+    background-color: rgba(15, 23, 42, 0.95) !important;
+    border: none !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+/* All text inside expanders */
+details[data-testid="stExpander"] p,
+details[data-testid="stExpander"] span,
+details[data-testid="stExpander"] li,
+details[data-testid="stExpander"] code,
+details[data-testid="stExpander"] label {
+    color: #FFFFFF !important;
+}
+
+/* Code blocks inside expanders */
+details[data-testid="stExpander"] pre {
+    background-color: rgba(0, 0, 0, 0.4) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+details[data-testid="stExpander"] code {
+    background-color: rgba(0, 0, 0, 0.4) !important;
+    color: #81C784 !important;
+}
+
+/* Legacy expander selectors (for older Streamlit versions) */
+.streamlit-expanderHeader {
+    background-color: rgba(0, 0, 0, 0.3) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    border-radius: 12px !important;
+    color: #FFFFFF !important;
+}
+
+.streamlit-expanderContent {
+    background-color: rgba(15, 23, 42, 0.95) !important;
+    border-radius: 0 0 12px 12px !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    border-top: none !important;
+    color: #FFFFFF !important;
+}
 
     /* 6. BUTTONS (Liquid Glass) */
     div.stButton > button {
