@@ -3032,29 +3032,36 @@ if page == "🏠 Home":
 # 2. COURSES SECTION
     st.markdown("<h3 style='margin: 30px 0 20px 0; padding-left: 15px; border-left: 5px solid #60A5FA; font-size: 2rem;'>📚 Your Courses</h3>", unsafe_allow_html=True)
     
+    # Scoped CSS that ONLY affects the course card buttons
+    st.markdown("""
+    <style>
+    /* Make course card buttons invisible but clickable - VERY SPECIFIC selectors */
+    button[data-testid="stBaseButton-secondary"][key="hidden_402"],
+    button[data-testid="stBaseButton-secondary"][key="hidden_405"] {
+        position: absolute !important;
+        opacity: 0 !important;
+        width: 100% !important;
+        height: 250px !important;
+        z-index: 100 !important;
+        cursor: pointer !important;
+    }
+    
+    /* Container for course cards */
+    .course-card-container {
+        position: relative;
+    }
+    </style>
+    """, unsafe_allow_html=True)
+    
     c1, c2 = st.columns(2, gap="medium")
     
     with c1:
-        # Hidden button that actually does the navigation
-        if st.button("acc402", key="hidden_402", type="secondary"):
-            st.session_state.selected_page = "📕 ACC 402 - Managerial Accounting"
-            st.rerun()
+        # Container div
+        st.markdown("<div class='course-card-container'>", unsafe_allow_html=True)
         
-        # Hide the actual button and show our custom card
+        # The beautiful visible card
         st.markdown("""
-        <style>
-        /* Hide the actual button */
-        [data-testid="stColumn"]:nth-child(1) button[kind="secondary"] {
-            position: absolute;
-            width: 100%;
-            height: 220px;
-            opacity: 0;
-            cursor: pointer;
-            z-index: 10;
-            margin-top: -230px;
-        }
-        </style>
-        <div style='background: linear-gradient(145deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.01)); 
+        <div id="card-402" style='background: linear-gradient(145deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.01)); 
                     backdrop-filter: blur(25px); 
                     border: 1px solid rgba(255, 255, 255, 0.15);
                     border-top: 1px solid rgba(255, 255, 255, 0.3);
@@ -3063,7 +3070,8 @@ if page == "🏠 Home":
                     text-align: center;
                     cursor: pointer;
                     transition: all 0.3s ease;
-                    min-height: 180px;'
+                    min-height: 200px;
+                    pointer-events: none;'
                     onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 15px 40px rgba(96, 165, 250, 0.25)'; this.style.borderColor='rgba(96, 165, 250, 0.4)';"
                     onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'; this.style.borderColor='rgba(255, 255, 255, 0.15)';">
             <p style='font-size: 2rem; margin: 0;'>📘</p>
@@ -3074,28 +3082,21 @@ if page == "🏠 Home":
             <p style='font-size: 0.95rem; color: #94A3B8; margin: 0;'>AI Tutor: Ch 1, 3, 4, 6, 7</p>
         </div>
         """, unsafe_allow_html=True)
+        
+        st.markdown("</div>", unsafe_allow_html=True)
+        
+        # Invisible button overlaid on the card
+        if st.button("ㅤ", key="hidden_402", type="secondary", use_container_width=True):
+            st.session_state.selected_page = "📕 ACC 402 - Managerial Accounting"
+            st.rerun()
     
     with c2:
-        # Hidden button that actually does the navigation
-        if st.button("acc405", key="hidden_405", type="secondary"):
-            st.session_state.selected_page = "📗 ACC 405 - Tax Accounting"
-            st.rerun()
+        # Container div
+        st.markdown("<div class='course-card-container'>", unsafe_allow_html=True)
         
-        # Hide the actual button and show our custom card
+        # The beautiful visible card
         st.markdown("""
-        <style>
-        /* Hide the actual button */
-        [data-testid="stColumn"]:nth-child(2) button[kind="secondary"] {
-            position: absolute;
-            width: 100%;
-            height: 220px;
-            opacity: 0;
-            cursor: pointer;
-            z-index: 10;
-            margin-top: -230px;
-        }
-        </style>
-        <div style='background: linear-gradient(145deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.01)); 
+        <div id="card-405" style='background: linear-gradient(145deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.01)); 
                     backdrop-filter: blur(25px); 
                     border: 1px solid rgba(255, 255, 255, 0.15);
                     border-top: 1px solid rgba(255, 255, 255, 0.3);
@@ -3104,7 +3105,8 @@ if page == "🏠 Home":
                     text-align: center;
                     cursor: pointer;
                     transition: all 0.3s ease;
-                    min-height: 180px;'
+                    min-height: 200px;
+                    pointer-events: none;'
                     onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 15px 40px rgba(74, 222, 128, 0.25)'; this.style.borderColor='rgba(74, 222, 128, 0.4)';"
                     onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'; this.style.borderColor='rgba(255, 255, 255, 0.15)';">
             <p style='font-size: 2rem; margin: 0;'>📗</p>
@@ -3115,6 +3117,13 @@ if page == "🏠 Home":
             <p style='font-size: 0.95rem; color: #94A3B8; margin: 0;'>AI Tutor: Ch 4-6 & OBBBA</p>
         </div>
         """, unsafe_allow_html=True)
+        
+        st.markdown("</div>", unsafe_allow_html=True)
+        
+        # Invisible button overlaid on the card
+        if st.button("ㅤ", key="hidden_405", type="secondary", use_container_width=True):
+            st.session_state.selected_page = "📗 ACC 405 - Tax Accounting"
+            st.rerun()
     
     # 3. STUDY TOOLS SECTION
     st.markdown("<h3 style='margin: 50px 0 20px 0; padding-left: 15px; border-left: 5px solid #A78BFA; font-size: 2rem;'>🛠️ Study Tools</h3>", unsafe_allow_html=True)
