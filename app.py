@@ -3724,7 +3724,9 @@ GUIDELINES:
         for name, formula in formulas:
             with st.expander(f"📐 {name}"):
                 st.code(formula, language=None):
-                st.code(formula, language=None)
+               
+
+
 # --- ACC 405 AI TUTOR PAGE ---
 elif page == "📗 ACC 405 - Tax Accounting":
     st.markdown("<div class='page-header'><h1>ACC 405 - Federal Tax Accounting</h1><p>AI Tutor with full textbook access</p></div>", unsafe_allow_html=True)
