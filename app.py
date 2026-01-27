@@ -2565,7 +2565,7 @@ SUMMARY: TAXABLE INCOME CALCULATION
 """
 
 # ============================================================================
-# CUSTOM CSS - LIQUID GLASS THEME (FULL APP)
+# CUSTOM CSS - LIQUID GLASS THEME (FULL APP - DROPDOWN FIX)
 # ============================================================================
 st.markdown("""
     <style>
@@ -2585,57 +2585,69 @@ st.markdown("""
         letter-spacing: -0.5px !important;
     }
     
-    p, span, div, label, li, td, th { 
+    p, span, label, li, td, th { 
         color: rgba(255, 255, 255, 0.95) !important;
         font-weight: 400;
         letter-spacing: 0.3px;
     }
     
-    /* 3. INPUT BOXES & TEXT AREAS (Fixing White-on-White) */
-    /* We make the background DARK glass so white text pops */
+    /* 3. INPUT BOXES (Standard State) */
     .stTextInput > div > div > input, 
     .stNumberInput > div > div > input, 
     .stSelectbox > div > div, 
     .stTextArea > div > div > textarea {
-        background-color: rgba(0, 0, 0, 0.3) !important; /* Dark Glass */
+        background-color: rgba(0, 0, 0, 0.3) !important;
         color: #FFFFFF !important;
         border: 1px solid rgba(255, 255, 255, 0.15) !important;
         border-radius: 12px !important;
         backdrop-filter: blur(10px);
     }
-    
-    /* Placeholder Text Color */
-    ::placeholder { color: rgba(255, 255, 255, 0.5) !important; }
-    
-    /* Focus State - Glow Blue */
-    .stTextInput > div > div > input:focus, 
-    .stTextArea > div > div > textarea:focus {
-        border-color: #60A5FA !important;
-        box-shadow: 0 0 15px rgba(96, 165, 250, 0.2) !important;
-        background-color: rgba(0, 0, 0, 0.5) !important;
-    }
 
-    /* 4. DROPDOWN MENUS (Fixing the Popover) */
-    /* This targets the list that pops up */
+    /* 4. DROPDOWN MENU FIX (The "White on White" Killer) */
+    /* This targets the actual list that pops up */
     div[data-baseweb="popover"] {
-        background-color: #0f172a !important; /* Solid Dark Blue Background */
-        border: 1px solid rgba(255, 255, 255, 0.1);
+        background-color: #0f172a !important; /* Force Dark Blue Background */
+        border: 1px solid rgba(255, 255, 255, 0.2);
         border-radius: 12px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.5);
     }
+    
+    /* The individual options in the list */
     div[data-baseweb="menu"] {
         background-color: transparent !important;
     }
-    /* The options inside the list */
+    
     div[data-baseweb="menu"] li {
-        color: #FFFFFF !important;
-        background-color: transparent !important;
+        color: #FFFFFF !important; /* Make text white */
     }
-    /* Hover state for options */
-    div[data-baseweb="menu"] li:hover {
-        background-color: rgba(96, 165, 250, 0.2) !important; /* Blue highlight */
+    
+    /* Hover state for dropdown options */
+    div[data-baseweb="menu"] li:hover, div[data-baseweb="menu"] li[aria-selected="true"] {
+        background-color: rgba(96, 165, 250, 0.3) !important; /* Blue highlight */
+        color: #FFFFFF !important;
+    }
+    
+    /* Fix the arrow icon in selectbox */
+    div[data-baseweb="select"] svg {
+        fill: #FFFFFF !important;
     }
 
-    /* 5. BUTTONS (Liquid Glass) */
+    /* 5. EXPANDER BOXES (Fixing white text inside white expanders) */
+    .streamlit-expanderHeader {
+        background-color: rgba(255, 255, 255, 0.05) !important;
+        border: 1px solid rgba(255, 255, 255, 0.1) !important;
+        border-radius: 12px !important;
+        color: #FFFFFF !important;
+    }
+    .streamlit-expanderContent {
+        background-color: rgba(0, 0, 0, 0.2) !important;
+        border-radius: 0 0 12px 12px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-top: none;
+        color: #FFFFFF !important;
+    }
+
+    /* 6. BUTTONS (Liquid Glass) */
     div.stButton > button {
         width: 100%;
         background: linear-gradient(145deg, rgba(255, 255, 255, 0.07) 0%, rgba(255, 255, 255, 0.01) 100%) !important;
@@ -2658,14 +2670,13 @@ st.markdown("""
         box-shadow: 0 0 30px rgba(96, 165, 250, 0.4) !important;
     }
 
-    /* 6. SIDEBAR */
+    /* 7. SIDEBAR */
     section[data-testid="stSidebar"] {
         background-color: rgba(10, 15, 30, 0.85) !important;
         backdrop-filter: blur(20px);
         border-right: 1px solid rgba(255, 255, 255, 0.05) !important;
     }
     
-    /* Hide default header */
     header {visibility: hidden;}
     </style>
 """, unsafe_allow_html=True)
