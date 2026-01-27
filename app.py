@@ -3279,7 +3279,7 @@ if page == "🏠 Home":
         """, unsafe_allow_html=True)
         
         if st.button("Open Managerial Accounting →", key="open_402", use_container_width=True):
-            st.session_state.selected_page = "📕 ACC 402 - Managerial Accounting"
+            st.session_state.selected_page = "📘 ACC 402 - Managerial Accounting"
             st.rerun()
     
     with c2:
@@ -3873,7 +3873,7 @@ elif page == "📊 Break-Even Visualizer":
                 st.markdown("</div>", unsafe_allow_html=True)
 
 # --- ACC 402 AI TUTOR PAGE ---
-elif page == "📕 ACC 402 - Managerial Accounting":
+elif page == "📘 ACC 402 - Managerial Accounting":
     st.markdown("<div class='page-header'><h1>ACC 402 - Managerial Accounting</h1><p>AI Tutor with full textbook access</p></div>", unsafe_allow_html=True)
     
     if st.button("← Back to Home", key="back_402"):
