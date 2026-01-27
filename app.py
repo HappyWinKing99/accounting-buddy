@@ -2867,6 +2867,43 @@ pre code span {
     color: #FFFFFF !important;
 }
 
+/* TAB STYLING - LIQUID GLASS */
+[data-baseweb="tab-list"] {
+    background: transparent !important;
+    gap: 10px !important;
+}
+
+[data-baseweb="tab"] {
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.01)) !important;
+    backdrop-filter: blur(25px) !important;
+    -webkit-backdrop-filter: blur(25px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    border-radius: 12px !important;
+    color: rgba(255, 255, 255, 0.7) !important;
+    padding: 10px 20px !important;
+}
+
+[data-baseweb="tab"]:hover {
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.03)) !important;
+    border: 1px solid rgba(255, 255, 255, 0.3) !important;
+    color: #FFFFFF !important;
+}
+
+[data-baseweb="tab"][aria-selected="true"] {
+    background: linear-gradient(145deg, rgba(96, 165, 250, 0.2), rgba(96, 165, 250, 0.05)) !important;
+    border: 1px solid rgba(96, 165, 250, 0.4) !important;
+    color: #FFFFFF !important;
+}
+
+/* Remove the default tab underline */
+[data-baseweb="tab-highlight"] {
+    display: none !important;
+}
+
+[data-baseweb="tab-border"] {
+    display: none !important;
+}
+
     /* 6. BUTTONS (Liquid Glass) */
     div.stButton > button {
         width: 100%;
@@ -3538,7 +3575,7 @@ elif page == "📊 Break-Even Visualizer":
 
 # --- ACC 402 AI TUTOR PAGE ---
 elif page == "📕 ACC 402 - Managerial Accounting":
-    st.markdown("<div class='page-header'><h1>📕 ACC 402 - Managerial Accounting</h1><p>AI Tutor with full textbook access</p></div>", unsafe_allow_html=True)
+    st.markdown("<div class='page-header'><h1>ACC 402 - Managerial Accounting</h1><p>AI Tutor with full textbook access</p></div>", unsafe_allow_html=True)
     
     if st.button("← Back to Home", key="back_402"):
         st.session_state.selected_page = "🏠 Home"
@@ -3547,9 +3584,9 @@ elif page == "📕 ACC 402 - Managerial Accounting":
     tab1, tab2 = st.tabs(["🤖 AI Tutor", "📚 Key Formulas"])
     
     with tab1:
-        st.markdown("""<div style='background: linear-gradient(145deg, #002E5D, #001A3A); padding: 20px; border-radius: 15px; margin-bottom: 20px;'>
-            <h3 style='color: #FFF;'>🤖 ACC 402 AI Study Assistant</h3>
-            <p style='color: #AAA;'>Full access to Chapters 1, 3, 4, 6, and 7</p>
+    st.markdown("""<div style='background: linear-gradient(145deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.01)); backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px); padding: 25px; border-radius: 20px; margin-bottom: 20px; border: 1px solid rgba(255, 255, 255, 0.15); border-top: 1px solid rgba(255, 255, 255, 0.3);'>
+            <h3 style='color: #FFF; margin: 0 0 10px 0;'>ACC 402 AI Study Assistant</h3>
+            <p style='color: rgba(255, 255, 255, 0.7); margin: 0;'>Full access to Chapters 1, 3, 4, 6, and 7</p>
         </div>""", unsafe_allow_html=True)
         
         if 'trigger_ai_call' not in st.session_state:
@@ -3689,7 +3726,7 @@ GUIDELINES:
                 st.code(formula, language=None)
 # --- ACC 405 AI TUTOR PAGE ---
 elif page == "📗 ACC 405 - Tax Accounting":
-    st.markdown("<div class='page-header'><h1>📗 ACC 405 - Federal Tax Accounting</h1><p>AI Tutor with full textbook access</p></div>", unsafe_allow_html=True)
+    st.markdown("<div class='page-header'><h1>ACC 405 - Federal Tax Accounting</h1><p>AI Tutor with full textbook access</p></div>", unsafe_allow_html=True)
     
     if st.button("← Back to Home", key="back_405"):
         st.session_state.selected_page = "🏠 Home"
@@ -3697,10 +3734,9 @@ elif page == "📗 ACC 405 - Tax Accounting":
     
     tab1, tab2 = st.tabs(["🤖 AI Tutor", "📚 Key Concepts"])
     
-    with tab1:
-        st.markdown("""<div style='background: linear-gradient(145deg, #1B5E20, #0D3D12); padding: 20px; border-radius: 15px; margin-bottom: 20px;'>
-            <h3 style='color: #FFF;'>🤖 ACC 405 AI Study Assistant</h3>
-            <p style='color: #AAA;'>Full access to Chapters 4-6 including OBBBA provisions</p>
+    st.markdown("""<div style='background: linear-gradient(145deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.01)); backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px); padding: 25px; border-radius: 20px; margin-bottom: 20px; border: 1px solid rgba(255, 255, 255, 0.15); border-top: 1px solid rgba(255, 255, 255, 0.3);'>
+            <h3 style='color: #FFF; margin: 0 0 10px 0;'>ACC 405 AI Study Assistant</h3>
+            <p style='color: rgba(255, 255, 255, 0.7); margin: 0;'>Full access to Chapters 4-6 including OBBBA provisions</p>
         </div>""", unsafe_allow_html=True)
         
         if 'trigger_ai_call_405' not in st.session_state:
