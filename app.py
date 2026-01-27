@@ -3032,40 +3032,21 @@ if page == "🏠 Home":
 # 2. COURSES SECTION
     st.markdown("<h3 style='margin: 30px 0 20px 0; padding-left: 15px; border-left: 5px solid #60A5FA; font-size: 2rem;'>📚 Your Courses</h3>", unsafe_allow_html=True)
     
-    # CSS to make buttons transparent overlays
-    st.markdown("""
-    <style>
-    /* Target the specific course buttons and make them invisible overlays */
-    button[kind="secondary"]:has(p:empty), 
-    button[kind="secondary"] p:empty {
-        background: transparent !important;
-    }
-    
-    div:has(> #course-card-402) + div [data-testid="stBaseButton-secondary"],
-    div:has(> #course-card-405) + div [data-testid="stBaseButton-secondary"] {
-        margin-top: -270px !important;
-        height: 260px !important;
-        background: transparent !important;
-        border: none !important;
-        box-shadow: none !important;
-        opacity: 0 !important;
-    }
-    
-    div:has(> #course-card-402) + div [data-testid="stBaseButton-secondary"]:hover,
-    div:has(> #course-card-405) + div [data-testid="stBaseButton-secondary"]:hover {
-        background: transparent !important;
-        border: none !important;
-        box-shadow: none !important;
-        opacity: 0 !important;
-    }
-    </style>
-    """, unsafe_allow_html=True)
-    
     c1, c2 = st.columns(2, gap="medium")
     
     with c1:
         st.markdown("""
-        <div id="course-card-402" style='background: linear-gradient(145deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.01)); 
+        <style>
+        /* Target first column button specifically */
+        [data-testid="column"]:first-child [data-testid="stBaseButton-secondary"] {
+            margin-top: -270px !important;
+            height: 260px !important;
+            opacity: 0 !important;
+            background: transparent !important;
+            border: none !important;
+        }
+        </style>
+        <div style='background: linear-gradient(145deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.01)); 
                     backdrop-filter: blur(25px); 
                     border: 1px solid rgba(255, 255, 255, 0.15);
                     border-top: 1px solid rgba(255, 255, 255, 0.3);
@@ -3073,8 +3054,7 @@ if page == "🏠 Home":
                     padding: 35px 25px; 
                     text-align: center;
                     min-height: 220px;
-                    cursor: pointer;
-                    transition: all 0.3s ease;'>
+                    cursor: pointer;'>
             <p style='font-size: 2rem; margin: 0;'>📘</p>
             <p style='font-size: 2.5rem; font-weight: 800; color: #FFFFFF; margin: 10px 0 5px 0; 
                       background: linear-gradient(120deg, #FFFFFF, #60A5FA); -webkit-background-clip: text; -webkit-text-fill-color: transparent;'>ACC 402</p>
@@ -3090,7 +3070,17 @@ if page == "🏠 Home":
     
     with c2:
         st.markdown("""
-        <div id="course-card-405" style='background: linear-gradient(145deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.01)); 
+        <style>
+        /* Target second column button specifically */
+        [data-testid="column"]:last-child [data-testid="stBaseButton-secondary"] {
+            margin-top: -270px !important;
+            height: 260px !important;
+            opacity: 0 !important;
+            background: transparent !important;
+            border: none !important;
+        }
+        </style>
+        <div style='background: linear-gradient(145deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.01)); 
                     backdrop-filter: blur(25px); 
                     border: 1px solid rgba(255, 255, 255, 0.15);
                     border-top: 1px solid rgba(255, 255, 255, 0.3);
@@ -3098,8 +3088,7 @@ if page == "🏠 Home":
                     padding: 35px 25px; 
                     text-align: center;
                     min-height: 220px;
-                    cursor: pointer;
-                    transition: all 0.3s ease;'>
+                    cursor: pointer;'>
             <p style='font-size: 2rem; margin: 0;'>📗</p>
             <p style='font-size: 2.5rem; font-weight: 800; color: #FFFFFF; margin: 10px 0 5px 0;
                       background: linear-gradient(120deg, #FFFFFF, #4ADE80); -webkit-background-clip: text; -webkit-text-fill-color: transparent;'>ACC 405</p>
