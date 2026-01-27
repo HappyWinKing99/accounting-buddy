@@ -3033,14 +3033,88 @@ if page == "🏠 Home":
     st.markdown("<h3 style='margin: 30px 0 20px 0; padding-left: 15px; border-left: 5px solid #60A5FA; font-size: 2rem;'>📚 Your Courses</h3>", unsafe_allow_html=True)
     
     c1, c2 = st.columns(2, gap="medium")
+    
     with c1:
-        if st.button("📘  ACC 402\n\nManagerial Accounting\n\nAI Tutor: Ch 1, 3, 4, 6, 7", use_container_width=True):
+        # Hidden button that actually does the navigation
+        if st.button("acc402", key="hidden_402", type="secondary"):
             st.session_state.selected_page = "📕 ACC 402 - Managerial Accounting"
             st.rerun()
+        
+        # Hide the actual button and show our custom card
+        st.markdown("""
+        <style>
+        /* Hide the actual button */
+        [data-testid="stColumn"]:nth-child(1) button[kind="secondary"] {
+            position: absolute;
+            width: 100%;
+            height: 220px;
+            opacity: 0;
+            cursor: pointer;
+            z-index: 10;
+            margin-top: -230px;
+        }
+        </style>
+        <div style='background: linear-gradient(145deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.01)); 
+                    backdrop-filter: blur(25px); 
+                    border: 1px solid rgba(255, 255, 255, 0.15);
+                    border-top: 1px solid rgba(255, 255, 255, 0.3);
+                    border-radius: 24px; 
+                    padding: 35px 25px; 
+                    text-align: center;
+                    cursor: pointer;
+                    transition: all 0.3s ease;
+                    min-height: 180px;'
+                    onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 15px 40px rgba(96, 165, 250, 0.25)'; this.style.borderColor='rgba(96, 165, 250, 0.4)';"
+                    onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'; this.style.borderColor='rgba(255, 255, 255, 0.15)';">
+            <p style='font-size: 2rem; margin: 0;'>📘</p>
+            <p style='font-size: 2.5rem; font-weight: 800; color: #FFFFFF; margin: 10px 0 5px 0; 
+                      background: linear-gradient(120deg, #FFFFFF, #60A5FA); -webkit-background-clip: text; -webkit-text-fill-color: transparent;'>ACC 402</p>
+            <p style='font-size: 1.3rem; font-weight: 500; color: #E2E8F0; margin: 0 0 15px 0;'>Managerial Accounting</p>
+            <div style='width: 60%; height: 1px; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent); margin: 15px auto;'></div>
+            <p style='font-size: 0.95rem; color: #94A3B8; margin: 0;'>AI Tutor: Ch 1, 3, 4, 6, 7</p>
+        </div>
+        """, unsafe_allow_html=True)
+    
     with c2:
-        if st.button("📗  ACC 405\n\nFederal Tax Accounting\n\nAI Tutor: Ch 4-6 & OBBBA", use_container_width=True):
+        # Hidden button that actually does the navigation
+        if st.button("acc405", key="hidden_405", type="secondary"):
             st.session_state.selected_page = "📗 ACC 405 - Tax Accounting"
             st.rerun()
+        
+        # Hide the actual button and show our custom card
+        st.markdown("""
+        <style>
+        /* Hide the actual button */
+        [data-testid="stColumn"]:nth-child(2) button[kind="secondary"] {
+            position: absolute;
+            width: 100%;
+            height: 220px;
+            opacity: 0;
+            cursor: pointer;
+            z-index: 10;
+            margin-top: -230px;
+        }
+        </style>
+        <div style='background: linear-gradient(145deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.01)); 
+                    backdrop-filter: blur(25px); 
+                    border: 1px solid rgba(255, 255, 255, 0.15);
+                    border-top: 1px solid rgba(255, 255, 255, 0.3);
+                    border-radius: 24px; 
+                    padding: 35px 25px; 
+                    text-align: center;
+                    cursor: pointer;
+                    transition: all 0.3s ease;
+                    min-height: 180px;'
+                    onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 15px 40px rgba(74, 222, 128, 0.25)'; this.style.borderColor='rgba(74, 222, 128, 0.4)';"
+                    onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'; this.style.borderColor='rgba(255, 255, 255, 0.15)';">
+            <p style='font-size: 2rem; margin: 0;'>📗</p>
+            <p style='font-size: 2.5rem; font-weight: 800; color: #FFFFFF; margin: 10px 0 5px 0;
+                      background: linear-gradient(120deg, #FFFFFF, #4ADE80); -webkit-background-clip: text; -webkit-text-fill-color: transparent;'>ACC 405</p>
+            <p style='font-size: 1.3rem; font-weight: 500; color: #E2E8F0; margin: 0 0 15px 0;'>Federal Tax Accounting</p>
+            <div style='width: 60%; height: 1px; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent); margin: 15px auto;'></div>
+            <p style='font-size: 0.95rem; color: #94A3B8; margin: 0;'>AI Tutor: Ch 4-6 & OBBBA</p>
+        </div>
+        """, unsafe_allow_html=True)
     
     # 3. STUDY TOOLS SECTION
     st.markdown("<h3 style='margin: 50px 0 20px 0; padding-left: 15px; border-left: 5px solid #A78BFA; font-size: 2rem;'>🛠️ Study Tools</h3>", unsafe_allow_html=True)
