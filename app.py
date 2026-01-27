@@ -3032,20 +3032,43 @@ if page == "🏠 Home":
 # 2. COURSES SECTION
     st.markdown("<h3 style='margin: 30px 0 20px 0; padding-left: 15px; border-left: 5px solid #60A5FA; font-size: 2rem;'>📚 Your Courses</h3>", unsafe_allow_html=True)
     
+    # Custom CSS for the course buttons
+    st.markdown("""
+    <style>
+    /* ACC 402 Button - Blue theme */
+    [data-testid="column"]:first-child .stButton > button {
+        background: linear-gradient(145deg, rgba(96, 165, 250, 0.3), rgba(59, 130, 246, 0.2)) !important;
+        border: 1px solid rgba(96, 165, 250, 0.5) !important;
+        color: #93C5FD !important;
+        margin-top: 15px !important;
+    }
+    [data-testid="column"]:first-child .stButton > button:hover {
+        background: linear-gradient(145deg, rgba(96, 165, 250, 0.5), rgba(59, 130, 246, 0.4)) !important;
+        border: 1px solid rgba(96, 165, 250, 0.8) !important;
+        box-shadow: 0 0 25px rgba(96, 165, 250, 0.4) !important;
+        color: #FFFFFF !important;
+    }
+    
+    /* ACC 405 Button - Green theme */
+    [data-testid="column"]:last-child .stButton > button {
+        background: linear-gradient(145deg, rgba(74, 222, 128, 0.3), rgba(34, 197, 94, 0.2)) !important;
+        border: 1px solid rgba(74, 222, 128, 0.5) !important;
+        color: #86EFAC !important;
+        margin-top: 15px !important;
+    }
+    [data-testid="column"]:last-child .stButton > button:hover {
+        background: linear-gradient(145deg, rgba(74, 222, 128, 0.5), rgba(34, 197, 94, 0.4)) !important;
+        border: 1px solid rgba(74, 222, 128, 0.8) !important;
+        box-shadow: 0 0 25px rgba(74, 222, 128, 0.4) !important;
+        color: #FFFFFF !important;
+    }
+    </style>
+    """, unsafe_allow_html=True)
+    
     c1, c2 = st.columns(2, gap="medium")
     
     with c1:
         st.markdown("""
-        <style>
-        /* Target first column button specifically */
-        [data-testid="column"]:first-child [data-testid="stBaseButton-secondary"] {
-            margin-top: -270px !important;
-            height: 260px !important;
-            opacity: 0 !important;
-            background: transparent !important;
-            border: none !important;
-        }
-        </style>
         <div style='background: linear-gradient(145deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.01)); 
                     backdrop-filter: blur(25px); 
                     border: 1px solid rgba(255, 255, 255, 0.15);
@@ -3053,33 +3076,22 @@ if page == "🏠 Home":
                     border-radius: 24px; 
                     padding: 35px 25px; 
                     text-align: center;
-                    min-height: 220px;
-                    cursor: pointer;'>
+                    min-height: 220px;'>
             <p style='font-size: 2rem; margin: 0;'>📘</p>
             <p style='font-size: 2.5rem; font-weight: 800; color: #FFFFFF; margin: 10px 0 5px 0; 
                       background: linear-gradient(120deg, #FFFFFF, #60A5FA); -webkit-background-clip: text; -webkit-text-fill-color: transparent;'>ACC 402</p>
             <p style='font-size: 1.3rem; font-weight: 500; color: #E2E8F0; margin: 0 0 15px 0;'>Managerial Accounting</p>
-            <div style='width: 60%; height: 1px; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent); margin: 15px auto;'></div>
+            <div style='width: 60%; height: 1px; background: linear-gradient(90deg, transparent, rgba(96, 165, 250, 0.5), transparent); margin: 15px auto;'></div>
             <p style='font-size: 0.95rem; color: #94A3B8; margin: 0;'>AI Tutor: Ch 1, 3, 4, 6, 7</p>
         </div>
         """, unsafe_allow_html=True)
         
-        if st.button("ㅤ", key="click_402", type="secondary", use_container_width=True):
+        if st.button("✨ Open Managerial Accounting", key="open_402", use_container_width=True):
             st.session_state.selected_page = "📕 ACC 402 - Managerial Accounting"
             st.rerun()
     
     with c2:
         st.markdown("""
-        <style>
-        /* Target second column button specifically */
-        [data-testid="column"]:last-child [data-testid="stBaseButton-secondary"] {
-            margin-top: -270px !important;
-            height: 260px !important;
-            opacity: 0 !important;
-            background: transparent !important;
-            border: none !important;
-        }
-        </style>
         <div style='background: linear-gradient(145deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.01)); 
                     backdrop-filter: blur(25px); 
                     border: 1px solid rgba(255, 255, 255, 0.15);
@@ -3087,18 +3099,17 @@ if page == "🏠 Home":
                     border-radius: 24px; 
                     padding: 35px 25px; 
                     text-align: center;
-                    min-height: 220px;
-                    cursor: pointer;'>
+                    min-height: 220px;'>
             <p style='font-size: 2rem; margin: 0;'>📗</p>
             <p style='font-size: 2.5rem; font-weight: 800; color: #FFFFFF; margin: 10px 0 5px 0;
                       background: linear-gradient(120deg, #FFFFFF, #4ADE80); -webkit-background-clip: text; -webkit-text-fill-color: transparent;'>ACC 405</p>
             <p style='font-size: 1.3rem; font-weight: 500; color: #E2E8F0; margin: 0 0 15px 0;'>Federal Tax Accounting</p>
-            <div style='width: 60%; height: 1px; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent); margin: 15px auto;'></div>
+            <div style='width: 60%; height: 1px; background: linear-gradient(90deg, transparent, rgba(74, 222, 128, 0.5), transparent); margin: 15px auto;'></div>
             <p style='font-size: 0.95rem; color: #94A3B8; margin: 0;'>AI Tutor: Ch 4-6 & OBBBA</p>
         </div>
         """, unsafe_allow_html=True)
         
-        if st.button("ㅤ", key="click_405", type="secondary", use_container_width=True):
+        if st.button("✨ Open Tax Accounting", key="open_405", use_container_width=True):
             st.session_state.selected_page = "📗 ACC 405 - Tax Accounting"
             st.rerun()
     # 3. STUDY TOOLS SECTION
