@@ -3030,7 +3030,16 @@ if page == "🏠 Home":
     """, unsafe_allow_html=True)
     
 # 2. COURSES SECTION
-    st.markdown("<h3 style='margin: 30px 0 20px 0; padding-left: 15px; border-left: 5px solid #60A5FA; font-size: 2rem;'>📚 Your Courses</h3>", unsafe_allow_html=True)
+    st.markdown("""
+    <h3 style='margin: 30px 0 25px 0; 
+               padding-left: 15px; 
+               border-left: 4px solid #60A5FA; 
+               font-size: 1.8rem;
+               background: linear-gradient(120deg, #FFFFFF, #94A3B8); 
+               -webkit-background-clip: text; 
+               -webkit-text-fill-color: transparent;
+               font-weight: 600;'>Your Courses</h3>
+    """, unsafe_allow_html=True)
     
     # Custom CSS for the course buttons
     st.markdown("""
@@ -3040,7 +3049,7 @@ if page == "🏠 Home":
         background: linear-gradient(145deg, rgba(96, 165, 250, 0.3), rgba(59, 130, 246, 0.2)) !important;
         border: 1px solid rgba(96, 165, 250, 0.5) !important;
         color: #93C5FD !important;
-        margin-top: 15px !important;
+        margin-top: 20px !important;
     }
     [data-testid="column"]:first-child .stButton > button:hover {
         background: linear-gradient(145deg, rgba(96, 165, 250, 0.5), rgba(59, 130, 246, 0.4)) !important;
@@ -3054,7 +3063,7 @@ if page == "🏠 Home":
         background: linear-gradient(145deg, rgba(74, 222, 128, 0.3), rgba(34, 197, 94, 0.2)) !important;
         border: 1px solid rgba(74, 222, 128, 0.5) !important;
         color: #86EFAC !important;
-        margin-top: 15px !important;
+        margin-top: 20px !important;
     }
     [data-testid="column"]:last-child .stButton > button:hover {
         background: linear-gradient(145deg, rgba(74, 222, 128, 0.5), rgba(34, 197, 94, 0.4)) !important;
@@ -3086,7 +3095,7 @@ if page == "🏠 Home":
         </div>
         """, unsafe_allow_html=True)
         
-        if st.button("✨ Open Managerial Accounting", key="open_402", use_container_width=True):
+        if st.button("Open Managerial Accounting →", key="open_402", use_container_width=True):
             st.session_state.selected_page = "📕 ACC 402 - Managerial Accounting"
             st.rerun()
     
@@ -3109,9 +3118,21 @@ if page == "🏠 Home":
         </div>
         """, unsafe_allow_html=True)
         
-        if st.button("✨ Open Tax Accounting", key="open_405", use_container_width=True):
+        if st.button("Open Tax Accounting →", key="open_405", use_container_width=True):
             st.session_state.selected_page = "📗 ACC 405 - Tax Accounting"
             st.rerun()
+    
+    # 3. STUDY TOOLS SECTION
+    st.markdown("""
+    <h3 style='margin: 50px 0 25px 0; 
+               padding-left: 15px; 
+               border-left: 4px solid #A78BFA; 
+               font-size: 1.8rem;
+               background: linear-gradient(120deg, #FFFFFF, #94A3B8); 
+               -webkit-background-clip: text; 
+               -webkit-text-fill-color: transparent;
+               font-weight: 600;'>Study Tools</h3>
+    """, unsafe_allow_html=True)
     # 3. STUDY TOOLS SECTION
     st.markdown("<h3 style='margin: 50px 0 20px 0; padding-left: 15px; border-left: 5px solid #A78BFA; font-size: 2rem;'>🛠️ Study Tools</h3>", unsafe_allow_html=True)
     
