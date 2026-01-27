@@ -3032,46 +3032,12 @@ if page == "🏠 Home":
 # 2. COURSES SECTION
     st.markdown("""
     <h3 style='margin: 30px 0 25px 0; 
-               padding-left: 15px; 
+               padding-left: 18px; 
                border-left: 4px solid #60A5FA; 
                font-size: 1.8rem;
-               background: linear-gradient(120deg, #FFFFFF, #94A3B8); 
-               -webkit-background-clip: text; 
-               -webkit-text-fill-color: transparent;
-               font-weight: 600;'>Your Courses</h3>
-    """, unsafe_allow_html=True)
-    
-    # Custom CSS for the course buttons
-    st.markdown("""
-    <style>
-    /* ACC 402 Button - Blue theme */
-    [data-testid="column"]:first-child .stButton > button {
-        background: linear-gradient(145deg, rgba(96, 165, 250, 0.3), rgba(59, 130, 246, 0.2)) !important;
-        border: 1px solid rgba(96, 165, 250, 0.5) !important;
-        color: #93C5FD !important;
-        margin-top: 20px !important;
-    }
-    [data-testid="column"]:first-child .stButton > button:hover {
-        background: linear-gradient(145deg, rgba(96, 165, 250, 0.5), rgba(59, 130, 246, 0.4)) !important;
-        border: 1px solid rgba(96, 165, 250, 0.8) !important;
-        box-shadow: 0 0 25px rgba(96, 165, 250, 0.4) !important;
-        color: #FFFFFF !important;
-    }
-    
-    /* ACC 405 Button - Green theme */
-    [data-testid="column"]:last-child .stButton > button {
-        background: linear-gradient(145deg, rgba(74, 222, 128, 0.3), rgba(34, 197, 94, 0.2)) !important;
-        border: 1px solid rgba(74, 222, 128, 0.5) !important;
-        color: #86EFAC !important;
-        margin-top: 20px !important;
-    }
-    [data-testid="column"]:last-child .stButton > button:hover {
-        background: linear-gradient(145deg, rgba(74, 222, 128, 0.5), rgba(34, 197, 94, 0.4)) !important;
-        border: 1px solid rgba(74, 222, 128, 0.8) !important;
-        box-shadow: 0 0 25px rgba(74, 222, 128, 0.4) !important;
-        color: #FFFFFF !important;
-    }
-    </style>
+               color: #FFFFFF;
+               font-weight: 700;
+               letter-spacing: 0.5px;'>Your Courses</h3>
     """, unsafe_allow_html=True)
     
     c1, c2 = st.columns(2, gap="medium")
@@ -3085,7 +3051,8 @@ if page == "🏠 Home":
                     border-radius: 24px; 
                     padding: 35px 25px; 
                     text-align: center;
-                    min-height: 220px;'>
+                    min-height: 220px;
+                    margin-bottom: 20px;'>
             <p style='font-size: 2rem; margin: 0;'>📘</p>
             <p style='font-size: 2.5rem; font-weight: 800; color: #FFFFFF; margin: 10px 0 5px 0; 
                       background: linear-gradient(120deg, #FFFFFF, #60A5FA); -webkit-background-clip: text; -webkit-text-fill-color: transparent;'>ACC 402</p>
@@ -3108,7 +3075,8 @@ if page == "🏠 Home":
                     border-radius: 24px; 
                     padding: 35px 25px; 
                     text-align: center;
-                    min-height: 220px;'>
+                    min-height: 220px;
+                    margin-bottom: 20px;'>
             <p style='font-size: 2rem; margin: 0;'>📗</p>
             <p style='font-size: 2.5rem; font-weight: 800; color: #FFFFFF; margin: 10px 0 5px 0;
                       background: linear-gradient(120deg, #FFFFFF, #4ADE80); -webkit-background-clip: text; -webkit-text-fill-color: transparent;'>ACC 405</p>
@@ -3125,32 +3093,29 @@ if page == "🏠 Home":
     # 3. STUDY TOOLS SECTION
     st.markdown("""
     <h3 style='margin: 50px 0 25px 0; 
-               padding-left: 15px; 
+               padding-left: 18px; 
                border-left: 4px solid #A78BFA; 
                font-size: 1.8rem;
-               background: linear-gradient(120deg, #FFFFFF, #94A3B8); 
-               -webkit-background-clip: text; 
-               -webkit-text-fill-color: transparent;
-               font-weight: 600;'>Study Tools</h3>
+               color: #FFFFFF;
+               font-weight: 700;
+               letter-spacing: 0.5px;'>Study Tools</h3>
     """, unsafe_allow_html=True)
-    # 3. STUDY TOOLS SECTION
-    st.markdown("<h3 style='margin: 50px 0 20px 0; padding-left: 15px; border-left: 5px solid #A78BFA; font-size: 2rem;'>🛠️ Study Tools</h3>", unsafe_allow_html=True)
     
     t1, t2, t3, t4 = st.columns(4, gap="small")
     with t1:
-        if st.button("📝 Practice Exam\nGenerator", use_container_width=True):
+        if st.button("Practice Exam\nGenerator", use_container_width=True):
             st.session_state.selected_page = "📝 Practice Exam Generator"
             st.rerun()
     with t2:
-        if st.button("📊 Break-Even\nVisualizer", use_container_width=True):
+        if st.button("Break-Even\nVisualizer", use_container_width=True):
             st.session_state.selected_page = "📊 Break-Even Visualizer"
             st.rerun()
     with t3:
-        if st.button("🗺️ Concept\nMaps", use_container_width=True):
+        if st.button("Concept\nMaps", use_container_width=True):
             st.session_state.selected_page = "🗺️ Concept Maps"
             st.rerun()
     with t4:
-        if st.button("🔮 What-If\nAnalyzer", use_container_width=True):
+        if st.button("What-If\nAnalyzer", use_container_width=True):
             st.session_state.selected_page = "🔮 What-If Analyzer"
             st.rerun()
 
@@ -3158,11 +3123,11 @@ if page == "🏠 Home":
     st.markdown("<div style='margin-top: 25px;'></div>", unsafe_allow_html=True)
     r1, r2 = st.columns(2, gap="medium")
     with r1:
-        if st.button("🧮 Quick Calculators", use_container_width=True):
+        if st.button("Quick Calculators", use_container_width=True):
             st.session_state.selected_page = "🧮 Calculators"
             st.rerun()
     with r2:
-        if st.button("📖 Formula Database", use_container_width=True):
+        if st.button("Formula Database", use_container_width=True):
             st.session_state.selected_page = "📖 Formula Database"
             st.rerun()
 # --- CALCULATORS PAGE ---
