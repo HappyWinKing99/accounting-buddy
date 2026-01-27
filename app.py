@@ -14,79 +14,7 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# --- CHARACTER TEST ---
-test_key = st.secrets["ANTHROPIC_API_KEY"]
-st.write(f"Key length: {len(test_key)}")
-st.write(f"First 20 chars: {repr(test_key[:20])}")
-st.write(f"Last 10 chars: {repr(test_key[-10:])}")
-# --- END TEST ---
 
-# --- DIRECT API TEST (DELETE AFTER FIXING) ---
-import requests
-
-try:
-    test_key = st.secrets["ANTHROPIC_API_KEY"]
-    
-    # Make a minimal test call to Anthropic
-    test_response = requests.post(
-        "https://api.anthropic.com/v1/messages",
-        headers={
-            "Content-Type": "application/json",
-            "x-api-key": test_key,
-            "anthropic-version": "2023-06-01"
-        },
-        json={
-            "model": "claude-haiku-3-5-20241022",
-            "max_tokens": 10,
-            "messages": [{"role": "user", "content": "Hi"}]
-        },
-        timeout=30
-    )
-    
-    if test_response.status_code == 200:
-        st.success("✅ API CONNECTION WORKING!")
-    else:
-        st.error(f"❌ API Error: {test_response.status_code}")
-        st.error(f"Response: {test_response.text}")
-        
-except Exception as e:
-    st.error(f"Exception: {str(e)}")
-# --- END TEST ---
-# --- KEY INSPECTOR (Put this right after st.set_page_config) ---
-try:
-    # 1. Get the key
-    raw_key = st.secrets["ANTHROPIC_API_KEY"]
-    
-    # 2. Check for hidden spaces
-    if raw_key.strip() != raw_key:
-        st.error("🚨 CRITICAL ERROR: Your API Key has hidden spaces at the start or end!")
-        st.write(f"What Streamlit sees: '{raw_key}' (Notice the quotes?)")
-        st.stop()
-        
-    # 3. Check for OpenAI key (Common mistake)
-    if raw_key.startswith("sk-proj"):
-        st.error("🚨 WRONG KEY TYPE: You pasted an OpenAI key. You need an Anthropic key (starts with 'sk-ant').")
-        st.stop()
-
-    # 4. Check length
-    if len(raw_key) < 50:
-        st.error(f"🚨 KEY TOO SHORT: Your key is only {len(raw_key)} characters. It should be ~108 characters.")
-        st.stop()
-
-    st.success(f"✅ Key Format Valid: Starts with '{raw_key[:15]}...'")
-
-except Exception as e:
-    st.error(f"secrets.toml error: {e}")
-# -------------------------------------------------------------
-# --- DEBUG SECTION (DELETE AFTER FIXING) ---
-try:
-    key = st.secrets["ANTHROPIC_API_KEY"]
-    st.success(f"✅ API Key Found! It starts with: {key[:10]}...")
-except FileNotFoundError:
-    st.error("❌ secrets.toml file not found! Check your .streamlit folder.")
-except KeyError:
-    st.error("❌ Key 'ANTHROPIC_API_KEY' not found in secrets.toml.")
-# -------------------------------------------
 
 # ============================================================================
 # SESSION STATE INITIALIZATION
@@ -3000,7 +2928,31 @@ pre code span {
         background-color: transparent !important;
         background: transparent !important;
     }
+/* Download/Export Button Styling */
+    .stDownloadButton > button {
+        background: linear-gradient(145deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.01)) !important;
+        backdrop-filter: blur(25px) !important;
+        -webkit-backdrop-filter: blur(25px) !important;
+        border: 1px solid rgba(255, 255, 255, 0.15) !important;
+        border-top: 1px solid rgba(255, 255, 255, 0.3) !important;
+        border-radius: 12px !important;
+        color: #FFFFFF !important;
+        font-weight: 500 !important;
+        padding: 8px 16px !important;
+        transition: all 0.3s ease !important;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2) !important;
+    }
 
+    .stDownloadButton > button:hover {
+        background: linear-gradient(145deg, rgba(96, 165, 250, 0.2), rgba(139, 92, 246, 0.15)) !important;
+        border: 1px solid rgba(96, 165, 250, 0.4) !important;
+        transform: translateY(-2px) !important;
+        box-shadow: 0 6px 20px rgba(96, 165, 250, 0.3) !important;
+    }
+
+    .stDownloadButton > button svg {
+        fill: #FFFFFF !important;
+    }
     header {visibility: hidden;}
     </style>
 """, unsafe_allow_html=True)
