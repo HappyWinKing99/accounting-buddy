@@ -2934,6 +2934,60 @@ pre code span {
         border-right: 1px solid rgba(255, 255, 255, 0.05) !important;
     }
     
+/* TEXT AREA STYLING - AI Tutor Input Box */
+    .stTextArea textarea {
+        background-color: rgba(0, 0, 0, 0.4) !important;
+        color: #FFFFFF !important;
+        border: 1px solid rgba(255, 255, 255, 0.15) !important;
+        border-radius: 12px !important;
+        backdrop-filter: blur(10px) !important;
+        -webkit-backdrop-filter: blur(10px) !important;
+        font-size: 1rem !important;
+    }
+
+    .stTextArea textarea:focus {
+        border: 1px solid rgba(96, 165, 250, 0.5) !important;
+        box-shadow: 0 0 15px rgba(96, 165, 250, 0.2) !important;
+        outline: none !important;
+    }
+
+    .stTextArea textarea::placeholder {
+        color: rgba(255, 255, 255, 0.5) !important;
+    }
+
+    /* FORM SUBMIT BUTTON - Send Button Styling */
+    .stFormSubmitButton > button {
+        background: linear-gradient(145deg, rgba(96, 165, 250, 0.8), rgba(139, 92, 246, 0.8)) !important;
+        color: #FFFFFF !important;
+        border: none !important;
+        border-radius: 12px !important;
+        padding: 12px 30px !important;
+        font-weight: 600 !important;
+        font-size: 1rem !important;
+        transition: all 0.3s ease !important;
+        box-shadow: 0 4px 15px rgba(96, 165, 250, 0.3) !important;
+    }
+
+    .stFormSubmitButton > button:hover {
+        background: linear-gradient(145deg, rgba(129, 183, 255, 0.9), rgba(167, 139, 250, 0.9)) !important;
+        transform: translateY(-2px) !important;
+        box-shadow: 0 6px 20px rgba(139, 92, 246, 0.4) !important;
+    }
+
+    /* FORM CONTAINER */
+    [data-testid="stForm"] {
+        background: linear-gradient(145deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.01)) !important;
+        border: 1px solid rgba(255, 255, 255, 0.1) !important;
+        border-radius: 16px !important;
+        padding: 20px !important;
+        backdrop-filter: blur(10px) !important;
+    }
+
+    .stTextArea label {
+        color: #FFFFFF !important;
+        font-weight: 500 !important;
+    }
+
     header {visibility: hidden;}
     </style>
 """, unsafe_allow_html=True)
