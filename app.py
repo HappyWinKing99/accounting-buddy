@@ -3584,7 +3584,7 @@ elif page == "📕 ACC 402 - Managerial Accounting":
     tab1, tab2 = st.tabs(["🤖 AI Tutor", "📚 Key Formulas"])
     
     with tab1:
-    st.markdown("""<div style='background: linear-gradient(145deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.01)); backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px); padding: 25px; border-radius: 20px; margin-bottom: 20px; border: 1px solid rgba(255, 255, 255, 0.15); border-top: 1px solid rgba(255, 255, 255, 0.3);'>
+        st.markdown("""<div style='background: linear-gradient(145deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.01)); backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px); padding: 25px; border-radius: 20px; margin-bottom: 20px; border: 1px solid rgba(255, 255, 255, 0.15); border-top: 1px solid rgba(255, 255, 255, 0.3);'>
             <h3 style='color: #FFF; margin: 0 0 10px 0;'>ACC 402 AI Study Assistant</h3>
             <p style='color: rgba(255, 255, 255, 0.7); margin: 0;'>Full access to Chapters 1, 3, 4, 6, and 7</p>
         </div>""", unsafe_allow_html=True)
@@ -3723,6 +3723,7 @@ GUIDELINES:
         ]
         for name, formula in formulas:
             with st.expander(f"📐 {name}"):
+                st.code(formula, language=None):
                 st.code(formula, language=None)
 # --- ACC 405 AI TUTOR PAGE ---
 elif page == "📗 ACC 405 - Tax Accounting":
@@ -3734,7 +3735,8 @@ elif page == "📗 ACC 405 - Tax Accounting":
     
     tab1, tab2 = st.tabs(["🤖 AI Tutor", "📚 Key Concepts"])
     
-    st.markdown("""<div style='background: linear-gradient(145deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.01)); backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px); padding: 25px; border-radius: 20px; margin-bottom: 20px; border: 1px solid rgba(255, 255, 255, 0.15); border-top: 1px solid rgba(255, 255, 255, 0.3);'>
+    with tab1:
+        st.markdown("""<div style='background: linear-gradient(145deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.01)); backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px); padding: 25px; border-radius: 20px; margin-bottom: 20px; border: 1px solid rgba(255, 255, 255, 0.15); border-top: 1px solid rgba(255, 255, 255, 0.3);'>
             <h3 style='color: #FFF; margin: 0 0 10px 0;'>ACC 405 AI Study Assistant</h3>
             <p style='color: rgba(255, 255, 255, 0.7); margin: 0;'>Full access to Chapters 4-6 including OBBBA provisions</p>
         </div>""", unsafe_allow_html=True)
@@ -3852,10 +3854,10 @@ GUIDELINES:
         
         with st.expander("📐 Standard Deduction (2025)"):
             st.code("""Single: $15,750
-        MFJ/QSS: $31,500
-        MFS: $15,750
-        HoH: $23,625
-        Additional (65+ or Blind): $1,600 (married) / $2,000 (unmarried)""", language=None)
+MFJ/QSS: $31,500
+MFS: $15,750
+HoH: $23,625
+Additional (65+ or Blind): $1,600 (married) / $2,000 (unmarried)""", language=None)
         
         with st.expander("📐 OBBBA From AGI Deductions (2025-2028)"):
             st.markdown("""
@@ -3944,7 +3946,6 @@ GUIDELINES:
 
 **Netting:** STCG/STCL net together, LTCG/LTCL net together, then net the results
             """)
-
 
 # --- PAGE: PRACTICE EXAM GENERATOR ---
 elif page == "📝 Practice Exam Generator":
