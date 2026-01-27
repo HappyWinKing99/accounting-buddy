@@ -2820,6 +2820,53 @@ div[data-testid="stVerticalBlock"] {
     background-color: transparent !important;
 }
 
+div[data-testid="stVerticalBlock"] {
+    background-color: transparent !important;
+}
+
+/* CODE BLOCK TEXT FIX */
+[data-testid="stExpander"] pre code {
+    color: #FFFFFF !important;
+}
+
+[data-testid="stExpander"] pre code span {
+    color: #FFFFFF !important;
+}
+
+[data-testid="stExpander"] code {
+    color: #FFFFFF !important;
+}
+
+/* Target the specific code element styling */
+pre {
+    color: #FFFFFF !important;
+}
+
+pre code {
+    color: #FFFFFF !important;
+}
+
+pre code span {
+    color: #FFFFFF !important;
+}
+
+/* stCodeBlock specific */
+[data-testid="stCodeBlock"] {
+    color: #FFFFFF !important;
+}
+
+[data-testid="stCodeBlock"] code {
+    color: #FFFFFF !important;
+}
+
+[data-testid="stCodeBlock"] pre {
+    color: #FFFFFF !important;
+}
+
+[data-testid="stCodeBlock"] span {
+    color: #FFFFFF !important;
+}
+
     /* 6. BUTTONS (Liquid Glass) */
     div.stButton > button {
         width: 100%;
