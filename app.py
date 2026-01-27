@@ -3852,10 +3852,10 @@ GUIDELINES:
         
         with st.expander("📐 Standard Deduction (2025)"):
             st.code("""Single: $15,750
-MFJ/QSS: $31,500
-MFS: $15,750
-HoH: $23,625
-Additional (65+ or Blind): $1,600 (married) / $2,000 (unmarried)""", language=None)
+        MFJ/QSS: $31,500
+        MFS: $15,750
+        HoH: $23,625
+        Additional (65+ or Blind): $1,600 (married) / $2,000 (unmarried)""", language=None)
         
         with st.expander("📐 OBBBA From AGI Deductions (2025-2028)"):
             st.markdown("""
