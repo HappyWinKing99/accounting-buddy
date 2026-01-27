@@ -3235,7 +3235,7 @@ if page == "🏠 Home":
             st.rerun()
 # --- CALCULATORS PAGE ---
 elif page == "🧮 Calculators":
-    st.markdown("<div class='page-header'><h1>🧮 Accounting Calculators</h1><p>Quick calculation tools for ACC 402 & ACC 405</p></div>", unsafe_allow_html=True)
+    st.markdown("<div class='page-header'><h1>Accounting Calculators</h1><p>Quick calculation tools for ACC 402 & ACC 405</p></div>", unsafe_allow_html=True)
     
     if st.button("← Back to Home", key="back_calc"):
         st.session_state.selected_page = "🏠 Home"
@@ -3640,7 +3640,7 @@ elif page == "🧮 Calculators":
 
 # --- FORMULA DATABASE PAGE ---
 elif page == "📖 Formula Database":
-    st.markdown("<div class='page-header'><h1>📖 Formula Database</h1><p>Quick reference for key formulas</p></div>", unsafe_allow_html=True)
+    st.markdown("<div class='page-header'><h1>Formula Database</h1><p>Quick reference for key formulas</p></div>", unsafe_allow_html=True)
     
     if st.button("← Back to Home", key="back_formula"):
         st.session_state.selected_page = "🏠 Home"
@@ -3707,7 +3707,7 @@ elif page == "📖 Formula Database":
 
 # --- BREAK-EVEN VISUALIZER PAGE ---
 elif page == "📊 Break-Even Visualizer":
-    st.markdown("<div class='page-header'><h1>📊 Break-Even Visualizer</h1><p>Interactive CVP analysis</p></div>", unsafe_allow_html=True)
+    st.markdown("<div class='page-header'><h1>Break-Even Visualizer</h1><p>Interactive CVP analysis</p></div>", unsafe_allow_html=True)
     
     if st.button("← Back to Home", key="back_viz"):
         st.session_state.selected_page = "🏠 Home"
@@ -4137,7 +4137,7 @@ Additional (65+ or Blind): $1,600 (married) / $2,000 (unmarried)""", language=No
 
 # --- PAGE: PRACTICE EXAM GENERATOR ---
 elif page == "📝 Practice Exam Generator":
-    st.markdown("<div class='page-header'><h1>📝 Practice Exam Generator</h1><p>AI-generated practice problems tailored to your textbook</p></div>", unsafe_allow_html=True)
+    st.markdown("<div class='page-header'><h1>Practice Exam Generator</h1><p>AI-generated practice problems tailored to your textbook</p></div>", unsafe_allow_html=True)
     
     if st.button("← Back to Home", key="back_exam"):
         st.session_state.selected_page = "🏠 Home"
@@ -4359,7 +4359,7 @@ Base questions on this textbook content:
 
 # --- PAGE: CONCEPT MAPS ---
 elif page == "🗺️ Concept Maps":
-    st.markdown("<div class='page-header'><h1>🗺️ Interactive Concept Maps</h1><p>Visual diagrams to understand how concepts connect</p></div>", unsafe_allow_html=True)
+    st.markdown("<div class='page-header'><h1>Interactive Concept Maps</h1><p>Visual diagrams to understand how concepts connect</p></div>", unsafe_allow_html=True)
     
     if st.button("← Back to Home", key="back_maps"):
         st.session_state.selected_page = "🏠 Home"
@@ -4880,7 +4880,7 @@ elif page == "🗺️ Concept Maps":
 
 # --- PAGE: WHAT-IF ANALYZER ---
 elif page == "🔮 What-If Analyzer":
-    st.markdown("<div class='page-header'><h1>🔮 What-If Scenario Analyzer</h1><p>See how changes impact your numbers</p></div>", unsafe_allow_html=True)
+    st.markdown("<div class='page-header'><h1>What-If Scenario Analyzer</h1><p>See how changes impact your numbers</p></div>", unsafe_allow_html=True)
     
     if st.button("← Back to Home", key="back_whatif"):
         st.session_state.selected_page = "🏠 Home"
