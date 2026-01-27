@@ -3034,11 +3034,11 @@ if page == "🏠 Home":
     
     c1, c2 = st.columns(2, gap="medium")
     with c1:
-        if st.button("📘  ACC 402\n━━━━━━━━━━━━━━━\nManagerial Accounting\n\nAI Tutor: Ch 1, 3, 4, 6, 7", use_container_width=True):
+        if st.button("📘  ACC 402\n\nManagerial Accounting\n\nAI Tutor: Ch 1, 3, 4, 6, 7", use_container_width=True):
             st.session_state.selected_page = "📕 ACC 402 - Managerial Accounting"
             st.rerun()
     with c2:
-        if st.button("📗  ACC 405\n━━━━━━━━━━━━━━━\nFederal Tax Accounting\n\nAI Tutor: Ch 4-6 & OBBBA", use_container_width=True):
+        if st.button("📗  ACC 405\n\nFederal Tax Accounting\n\nAI Tutor: Ch 4-6 & OBBBA", use_container_width=True):
             st.session_state.selected_page = "📗 ACC 405 - Tax Accounting"
             st.rerun()
     
