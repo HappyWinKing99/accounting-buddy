@@ -2988,9 +2988,13 @@ pre code span {
         font-weight: 500 !important;
     }
 
-    header {visibility: hidden;}
-    </style>
-""", unsafe_allow_html=True)
+.stTextArea > div,
+.stTextArea > div > div,
+[data-testid="stTextArea"] > div,
+[data-testid="stTextArea"] > div > div {
+    background-color: transparent !important;
+    background: transparent !important;
+}
 
 # ============================================================================
 # SIDEBAR NAVIGATION
