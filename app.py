@@ -3723,7 +3723,7 @@ GUIDELINES:
         ]
         for name, formula in formulas:
             with st.expander(f"📐 {name}"):
-                st.code(formula, language=None):
+                st.code(formula, language=None)
                
 
 
