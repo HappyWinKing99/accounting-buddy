@@ -2498,46 +2498,47 @@ SUMMARY: TAXABLE INCOME CALCULATION
 st.markdown("""
     <style>
 
-/* Hide ALL header elements */
-    header {
-        visibility: hidden !important;
-        height: 0 !important;
-    }
-    
+/* Make header transparent instead of hiding it completely */
     header[data-testid="stHeader"] {
-        display: none !important;
+        background: transparent !important;
     }
     
-    [data-testid="stHeader"] {
-        display: none !important;
-    }
-    
-    [data-testid="stToolbar"] {
-        display: none !important;
-    }
-    
+    /* Hide the decoration/colored line at top */
     [data-testid="stDecoration"] {
         display: none !important;
     }
     
+    /* Hide deploy button */
     .stDeployButton {
         display: none !important;
     }
     
-    .main .block-container {
-        padding-top: 0 !important;
-    }
-    
+    /* Hide status widget */
     [data-testid="stStatusWidget"] {
         display: none !important;
     }
     
-    .st-emotion-cache-h4xjwg {
-        display: none !important;
+    /* Make the toolbar area transparent */
+    [data-testid="stToolbar"] {
+        background: transparent !important;
     }
     
-    .st-emotion-cache-1dp5vir {
-        display: none !important;
+    /* Style the sidebar collapse button to match theme */
+    button[data-testid="stSidebarCollapseButton"] {
+        background: rgba(0, 0, 0, 0.3) !important;
+        border: 1px solid rgba(255, 255, 255, 0.15) !important;
+        border-radius: 8px !important;
+        color: #FFFFFF !important;
+    }
+    
+    button[data-testid="stSidebarCollapseButton"]:hover {
+        background: rgba(96, 165, 250, 0.3) !important;
+        border: 1px solid rgba(96, 165, 250, 0.5) !important;
+    }
+    
+    button[data-testid="stSidebarCollapseButton"] svg {
+        fill: #FFFFFF !important;
+        stroke: #FFFFFF !important;
     }
     
     /* 1. APP BACKGROUND */
