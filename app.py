@@ -3032,25 +3032,31 @@ if page == "🏠 Home":
 # 2. COURSES SECTION
     st.markdown("<h3 style='margin: 30px 0 20px 0; padding-left: 15px; border-left: 5px solid #60A5FA; font-size: 2rem;'>📚 Your Courses</h3>", unsafe_allow_html=True)
     
-    # Global CSS to hide the buttons and make them overlay
+    # CSS to make buttons transparent overlays
     st.markdown("""
     <style>
-    /* Hide button text and make it overlay the card */
-    [data-testid="stMainBlockContainer"] [data-testid="stHorizontalBlock"]:has(#course-card-402) [data-testid="stBaseButton-secondary"] {
-        position: relative !important;
-        margin-top: -270px !important;
-        height: 260px !important;
+    /* Target the specific course buttons and make them invisible overlays */
+    button[kind="secondary"]:has(p:empty), 
+    button[kind="secondary"] p:empty {
         background: transparent !important;
-        border: none !important;
-        box-shadow: none !important;
     }
-    [data-testid="stMainBlockContainer"] [data-testid="stHorizontalBlock"]:has(#course-card-405) [data-testid="stBaseButton-secondary"] {
-        position: relative !important;
+    
+    div:has(> #course-card-402) + div [data-testid="stBaseButton-secondary"],
+    div:has(> #course-card-405) + div [data-testid="stBaseButton-secondary"] {
         margin-top: -270px !important;
         height: 260px !important;
         background: transparent !important;
         border: none !important;
         box-shadow: none !important;
+        opacity: 0 !important;
+    }
+    
+    div:has(> #course-card-402) + div [data-testid="stBaseButton-secondary"]:hover,
+    div:has(> #course-card-405) + div [data-testid="stBaseButton-secondary"]:hover {
+        background: transparent !important;
+        border: none !important;
+        box-shadow: none !important;
+        opacity: 0 !important;
     }
     </style>
     """, unsafe_allow_html=True)
@@ -3067,6 +3073,7 @@ if page == "🏠 Home":
                     padding: 35px 25px; 
                     text-align: center;
                     min-height: 220px;
+                    cursor: pointer;
                     transition: all 0.3s ease;'>
             <p style='font-size: 2rem; margin: 0;'>📘</p>
             <p style='font-size: 2.5rem; font-weight: 800; color: #FFFFFF; margin: 10px 0 5px 0; 
@@ -3091,6 +3098,7 @@ if page == "🏠 Home":
                     padding: 35px 25px; 
                     text-align: center;
                     min-height: 220px;
+                    cursor: pointer;
                     transition: all 0.3s ease;'>
             <p style='font-size: 2rem; margin: 0;'>📗</p>
             <p style='font-size: 2.5rem; font-weight: 800; color: #FFFFFF; margin: 10px 0 5px 0;
