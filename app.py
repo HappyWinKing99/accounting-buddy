@@ -2603,34 +2603,104 @@ st.markdown("""
         backdrop-filter: blur(10px);
     }
 
-    /* 4. DROPDOWN MENU FIX (The "White on White" Killer) */
-    /* This targets the actual list that pops up */
-    div[data-baseweb="popover"] {
-        background-color: #0f172a !important; /* Force Dark Blue Background */
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        border-radius: 12px;
-        box-shadow: 0 10px 40px rgba(0,0,0,0.5);
-    }
-    
-    /* The individual options in the list */
-    div[data-baseweb="menu"] {
-        background-color: transparent !important;
-    }
-    
-    div[data-baseweb="menu"] li {
-        color: #FFFFFF !important; /* Make text white */
-    }
-    
-    /* Hover state for dropdown options */
-    div[data-baseweb="menu"] li:hover, div[data-baseweb="menu"] li[aria-selected="true"] {
-        background-color: rgba(96, 165, 250, 0.3) !important; /* Blue highlight */
-        color: #FFFFFF !important;
-    }
-    
-    /* Fix the arrow icon in selectbox */
-    div[data-baseweb="select"] svg {
-        fill: #FFFFFF !important;
-    }
+/* 4. DROPDOWN MENU FIX - COMPREHENSIVE */
+/* Main selectbox container */
+div[data-baseweb="select"] > div {
+    background-color: rgba(0, 0, 0, 0.3) !important;
+    border-color: rgba(255, 255, 255, 0.15) !important;
+}
+
+/* The dropdown popover/menu that appears */
+div[data-baseweb="popover"] {
+    background-color: #0f172a !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    border-radius: 12px !important;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.5) !important;
+}
+
+/* Menu container */
+div[data-baseweb="menu"] {
+    background-color: #0f172a !important;
+}
+
+/* Individual menu items */
+div[data-baseweb="menu"] ul {
+    background-color: #0f172a !important;
+}
+
+div[data-baseweb="menu"] li {
+    color: #FFFFFF !important;
+    background-color: #0f172a !important;
+}
+
+/* Hover and selected states */
+div[data-baseweb="menu"] li:hover {
+    background-color: rgba(96, 165, 250, 0.3) !important;
+    color: #FFFFFF !important;
+}
+
+div[data-baseweb="menu"] li[aria-selected="true"] {
+    background-color: rgba(96, 165, 250, 0.4) !important;
+    color: #FFFFFF !important;
+}
+
+/* The selected value display */
+div[data-baseweb="select"] span {
+    color: #FFFFFF !important;
+}
+
+/* Dropdown arrow icon */
+div[data-baseweb="select"] svg {
+    fill: #FFFFFF !important;
+}
+
+/* Fix for the input/search area in selectbox */
+div[data-baseweb="select"] input {
+    color: #FFFFFF !important;
+    background-color: transparent !important;
+}
+
+/* Multiselect tags */
+div[data-baseweb="tag"] {
+    background-color: rgba(96, 165, 250, 0.3) !important;
+    color: #FFFFFF !important;
+}
+
+/* Radio buttons and their labels */
+div[data-testid="stRadio"] label {
+    color: #FFFFFF !important;
+}
+
+div[data-testid="stRadio"] label span {
+    color: #FFFFFF !important;
+}
+
+/* Checkbox labels */
+div[data-testid="stCheckbox"] label {
+    color: #FFFFFF !important;
+}
+
+div[data-testid="stCheckbox"] label span {
+    color: #FFFFFF !important;
+}
+
+/* Tab styling */
+button[data-baseweb="tab"] {
+    color: rgba(255, 255, 255, 0.7) !important;
+    background-color: transparent !important;
+}
+
+button[data-baseweb="tab"][aria-selected="true"] {
+    color: #FFFFFF !important;
+    background-color: rgba(96, 165, 250, 0.2) !important;
+}
+
+/* Slider labels and values */
+div[data-testid="stSlider"] label,
+div[data-testid="stSlider"] div[data-testid="stTickBarMin"],
+div[data-testid="stSlider"] div[data-testid="stTickBarMax"] {
+    color: #FFFFFF !important;
+}
 
     /* 5. EXPANDER BOXES (Fixing white text inside white expanders) */
     .streamlit-expanderHeader {
