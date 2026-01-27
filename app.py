@@ -3571,7 +3571,7 @@ elif page == "📊 Break-Even Visualizer":
             with col3:
                 st.metric("CM per Unit", f"${price - var_cost:,.2f}")
     
-    st.markdown("</div>", unsafe_allow_html=True)
+                st.markdown("</div>", unsafe_allow_html=True)
 
 # --- ACC 402 AI TUTOR PAGE ---
 elif page == "📕 ACC 402 - Managerial Accounting":
