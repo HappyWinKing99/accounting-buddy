@@ -2563,16 +2563,42 @@ st.markdown("""
         letter-spacing: 0.3px;
     }
     
-    /* 3. INPUT BOXES (Standard State) */
+/* 3. INPUT BOXES (Standard State) */
     .stTextInput > div > div > input, 
     .stNumberInput > div > div > input, 
     .stSelectbox > div > div, 
     .stTextArea > div > div > textarea {
-        background-color: rgba(0, 0, 0, 0.3) !important;
+        background-color: rgba(0, 0, 0, 0.4) !important;
         color: #FFFFFF !important;
         border: 1px solid rgba(255, 255, 255, 0.15) !important;
         border-radius: 12px !important;
-        backdrop-filter: blur(10px);
+        backdrop-filter: blur(10px) !important;
+        -webkit-backdrop-filter: blur(10px) !important;
+    }
+    
+    /* Text input container background fix */
+    .stTextInput > div,
+    .stTextInput > div > div {
+        background-color: transparent !important;
+        background: transparent !important;
+    }
+    
+    /* Text input focus state */
+    .stTextInput > div > div > input:focus {
+        border: 1px solid rgba(96, 165, 250, 0.5) !important;
+        box-shadow: 0 0 15px rgba(96, 165, 250, 0.2) !important;
+        outline: none !important;
+        background-color: rgba(0, 0, 0, 0.5) !important;
+    }
+    
+    /* Placeholder text */
+    .stTextInput > div > div > input::placeholder {
+        color: rgba(255, 255, 255, 0.4) !important;
+    }
+    
+    /* Label styling */
+    .stTextInput label {
+        color: #FFFFFF !important;
     }
 
 /* 4. DROPDOWN MENU FIX - COMPREHENSIVE */
