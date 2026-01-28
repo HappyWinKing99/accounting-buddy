@@ -3358,23 +3358,7 @@ summary > span:first-child:not([data-testid="stMarkdownContainer"]) {
     </style>
 """, unsafe_allow_html=True)
 
-header[data-testid="stHeader"] {
-        background-color: transparent !important;
-        background: transparent !important;
-        visibility: visible !important;
-    }
-    
-    /* Ensure the sidebar toggle button is visible and white */
-    [data-testid="stSidebarCollapseButton"] {
-        display: block !important;
-        color: #FFFFFF !important;
-        z-index: 99999 !important;
-    }
-    
-    [data-testid="stSidebarCollapseButton"] svg {
-        fill: #FFFFFF !important;
-        stroke: #FFFFFF !important;
-    }
+
 
 # ============================================================================
 # SIDEBAR NAVIGATION - LIQUID GLASS THEME (FIXED)
