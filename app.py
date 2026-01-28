@@ -3358,8 +3358,7 @@ summary > span:first-child:not([data-testid="stMarkdownContainer"]) {
     </style>
 """, unsafe_allow_html=True)
 
-
-    header[data-testid="stHeader"] {
+header[data-testid="stHeader"] {
         background-color: transparent !important;
         background: transparent !important;
         visibility: visible !important;
