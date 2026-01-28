@@ -3290,9 +3290,13 @@ pre code span {
         box-shadow: 0 4px 15px rgba(96, 165, 250, 0.2) !important;
     }
     
-    section[data-testid="stSidebar"] .stButton > button[kind="primary"] {
-        background: linear-gradient(145deg, rgba(96, 165, 250, 0.3), rgba(139, 92, 246, 0.2)) !important;
-        border: 1px soli
+section[data-testid="stSidebar"] .stButton > button[kind="primary"] {
+    background: linear-gradient(145deg, rgba(96, 165, 250, 0.3), rgba(139, 92, 246, 0.2)) !important;
+    border: 1px solid rgba(96, 165, 250, 0.5) !important;
+    color: #FFFFFF !important;
+}
+
+/* Hide the white top toolbar/header bar */
 
 /* Hide the white top toolbar/header bar */
     header[data-testid="stHeader"] {
@@ -3307,6 +3311,7 @@ pre code span {
     [data-testid="stDecoration"] {
         display: none !important;
         /* PLOTLY CHART BACKGROUND FIX */
+         }
     .js-plotly-plot, 
     .plotly,
     .plot-container,
