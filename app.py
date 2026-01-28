@@ -2588,10 +2588,31 @@ h1, h2, h3 {
         letter-spacing: 0.3px;
     }
 
-    /* EMOJI FIX - Prevent emojis from being colored white */
-    p, span, label, li, td, th, h1, h2, h3, h4, h5, h6 {
-        font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji' !important;
-    }
+/* EMOJI FIX - Render emojis in color, not white */
+/* Add emoji fonts to all text elements */
+p, span, label, li, td, th, h1, h2, h3, h4, h5, h6, summary, button {
+    font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji' !important;
+}
+
+/* Ensure emojis render in color - but DON'T break text color */
+.stMarkdown em {
+    -webkit-text-fill-color: initial !important;
+    background: none !important;
+    -webkit-background-clip: unset !important;
+}
+
+/* Fix Streamlit's internal icon/emoji rendering */
+[data-testid="stExpander"] summary span[data-testid="stMarkdownContainer"],
+[data-testid="stExpander"] summary > span:first-child {
+    -webkit-text-fill-color: #FFFFFF !important;
+}
+
+/* Ensure the expander toggle icon renders */
+[data-testid="stExpander"] summary svg {
+    display: inline-block !important;
+    visibility: visible !important;
+    fill: currentColor !important;
+}
     
     /* Ensure emojis render in color */
     .emoji, 
