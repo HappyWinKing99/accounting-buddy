@@ -4916,7 +4916,7 @@ elif page == "🗺️ Concept Maps":
             with col1:
                 st.markdown("""
                 <div style='background: linear-gradient(145deg, #1565C0, #0D47A1); padding: 25px; border-radius: 15px;'>
-                    <h3 style='color: #FFF; text-align: center;'>👶 Qualifying Child</h3>
+                    <h3 style='color: #FFF; text-align: center;'>Qualifying Child</h3>
                     <p style='color: #90CAF9; text-align: center;'>Must pass ALL 4 tests</p>
                     <hr style='border-color: #1976D2;'>
                     <div style='background: #0D47A1; padding: 10px; border-radius: 5px; margin: 8px 0;'>
@@ -4940,7 +4940,7 @@ elif page == "🗺️ Concept Maps":
             with col2:
                 st.markdown("""
                 <div style='background: linear-gradient(145deg, #1B5E20, #0D3D12); padding: 25px; border-radius: 15px;'>
-                    <h3 style='color: #FFF; text-align: center;'>👴 Qualifying Relative</h3>
+                    <h3 style='color: #FFF; text-align: center;'>Qualifying Relative</h3>
                     <p style='color: #81C784; text-align: center;'>Must pass ALL 3 tests</p>
                     <hr style='border-color: #2E7D32;'>
                     <div style='background: #0D3D12; padding: 10px; border-radius: 5px; margin: 8px 0;'>
