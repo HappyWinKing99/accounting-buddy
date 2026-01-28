@@ -5059,7 +5059,7 @@ elif page == "🔮 What-If Analyzer":
             <p style='color: #AAA;'>See how changes in price, costs, or volume affect your break-even and profit</p>
         </div>""", unsafe_allow_html=True)
         
-        st.markdown("### 📊 Base Scenario")
+        st.markdown("### Base Scenario")
         col1, col2, col3, col4 = st.columns(4)
         with col1:
             base_price = st.number_input("Selling Price/Unit", min_value=0.01, value=50.0, step=1.0, key="wi_price")
@@ -5070,7 +5070,7 @@ elif page == "🔮 What-If Analyzer":
         with col4:
             base_units = st.number_input("Expected Units", min_value=0, value=3000, step=100, key="wi_units")
         
-        st.markdown("### 🔄 What-If Changes")
+        st.markdown("### What-If Changes")
         col1, col2, col3, col4 = st.columns(4)
         with col1:
             price_change = st.slider("Price Change %", min_value=-50, max_value=50, value=0, key="wi_price_chg")
@@ -5098,7 +5098,7 @@ elif page == "🔮 What-If Analyzer":
         new_profit = (new_cm * new_units) - new_fc
         
         # Display comparison
-        st.markdown("### 📈 Comparison Results")
+        st.markdown("### Comparison Results")
         
         col1, col2, col3 = st.columns(3)
         
@@ -5139,7 +5139,7 @@ elif page == "🔮 What-If Analyzer":
             """, unsafe_allow_html=True)
         
         # Visual chart
-        st.markdown("### 📊 Visual Impact")
+        st.markdown("### Visual Impact")
         
         scenarios = ['Base', 'New']
         
@@ -5187,7 +5187,7 @@ elif page == "🔮 What-If Analyzer":
                 curr_credits = st.number_input("Tax Credits", min_value=0.0, value=0.0, step=500.0, key="curr_cred")
             
             with col2:
-                st.markdown("### 🔄 New Situation")
+                st.markdown("### New Situation")
                 new_income = st.number_input("Gross Income", min_value=0.0, value=75000.0, step=1000.0, key="new_inc")
                 new_status = st.selectbox("Filing Status", ["Single", "MFJ", "HoH"], key="new_status", index=1)
                 new_for_agi = st.number_input("For AGI Deductions", min_value=0.0, value=2000.0, step=500.0, key="new_for")
@@ -5195,7 +5195,7 @@ elif page == "🔮 What-If Analyzer":
                 new_credits = st.number_input("Tax Credits", min_value=0.0, value=0.0, step=500.0, key="new_cred")
         else:
             # Pre-set scenarios
-            st.markdown("### 📋 Your Current Situation")
+            st.markdown("### Your Current Situation")
             col1, col2, col3 = st.columns(3)
             with col1:
                 curr_income = st.number_input("Gross Income", min_value=0.0, value=75000.0, step=1000.0, key="base_inc")
@@ -5214,37 +5214,37 @@ elif page == "🔮 What-If Analyzer":
                 new_for_agi = curr_for_agi
                 new_itemized = curr_itemized
                 new_credits = curr_credits
-                st.info("📝 Comparing: Single → Married Filing Jointly")
+                st.info("Comparing: Single → Married Filing Jointly")
             elif scenario == "What if my income increased?":
                 new_income = curr_income * 1.2
                 new_status = curr_status
                 new_for_agi = curr_for_agi
                 new_itemized = curr_itemized
                 new_credits = curr_credits
-                st.info(f"📝 Comparing: ${curr_income:,.0f} → ${new_income:,.0f} (20% increase)")
+                st.info(f"Comparing: ${curr_income:,.0f} → ${new_income:,.0f} (20% increase)")
             elif scenario == "What if I started a business?":
                 new_income = curr_income + 30000
                 new_status = curr_status
                 new_for_agi = curr_for_agi + 4500  # SE tax deduction
                 new_itemized = curr_itemized
                 new_credits = curr_credits
-                st.info("📝 Adding $30,000 business income with SE tax deduction")
+                st.info("Adding $30,000 business income with SE tax deduction")
             elif scenario == "What if I bought a house?":
                 new_income = curr_income
                 new_status = curr_status
                 new_for_agi = curr_for_agi
                 new_itemized = 18000  # Mortgage interest + property tax
                 new_credits = curr_credits
-                st.info("📝 Adding mortgage interest ($12,000) + property taxes ($6,000)")
+                st.info("Adding mortgage interest ($12,000) + property taxes ($6,000)")
             elif scenario == "What if I had a child?":
                 new_income = curr_income
                 new_status = "HoH"
                 new_for_agi = curr_for_agi
                 new_itemized = curr_itemized
                 new_credits = 2200  # Child tax credit
-                st.info("📝 Filing as Head of Household + $2,200 child tax credit")
+                st.info("Filing as Head of Household + $2,200 child tax credit")
         
-        if st.button("🔮 Analyze Impact", key="analyze_tax", use_container_width=True):
+        if st.button("Analyze Impact", key="analyze_tax", use_container_width=True):
             # Standard deductions
             std_ded = {"Single": 15750, "MFJ": 31500, "HoH": 23625}
             
@@ -5280,7 +5280,7 @@ elif page == "🔮 What-If Analyzer":
             new_tax = calc_tax(new_taxable, new_status) - new_credits
             
             # Display results
-            st.markdown("### 📊 Comparison Results")
+            st.markdown("### Comparison Results")
             
             col1, col2, col3 = st.columns(3)
             
