@@ -2584,11 +2584,42 @@ st.markdown("""
     }
     
     /* Text input focus state */
-    .stTextInput > div > div > input:focus {
-        border: 1px solid rgba(96, 165, 250, 0.5) !important;
-        box-shadow: 0 0 15px rgba(96, 165, 250, 0.2) !important;
+    .stTextInput > div > div > input:focus,
+    .stTextInput > div > div > input:active,
+    .stTextInput > div[data-baseweb="input"]:focus-within,
+    .stNumberInput > div > div > input:focus,
+    .stTextArea > div > div > textarea:focus,
+    .stTextArea > div > div > textarea:active {
+        border-color: rgba(96, 165, 250, 0.6) !important;
+        box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.25) !important;
         outline: none !important;
-        background-color: rgba(0, 0, 0, 0.5) !important;
+    }
+    
+    /* Remove red border from all input containers */
+    div[data-baseweb="input"] {
+        border-color: rgba(255, 255, 255, 0.15) !important;
+    }
+    
+    div[data-baseweb="input"]:focus-within {
+        border-color: rgba(96, 165, 250, 0.6) !important;
+        box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.25) !important;
+    }
+    
+    div[data-baseweb="textarea"]:focus-within {
+        border-color: rgba(96, 165, 250, 0.6) !important;
+        box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.25) !important;
+    }
+    
+    /* Override any red/error styling */
+    .stTextInput > div > div,
+    .stTextArea > div > div {
+        border-color: rgba(255, 255, 255, 0.15) !important;
+    }
+    
+    .stTextInput > div > div:focus-within,
+    .stTextArea > div > div:focus-within {
+        border-color: rgba(96, 165, 250, 0.6) !important;
+        box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.25) !important;
     }
     
     /* Placeholder text */
