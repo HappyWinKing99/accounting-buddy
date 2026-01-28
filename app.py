@@ -2548,10 +2548,8 @@ st.markdown("""
     }
     
     /* 2. TEXT STYLING - Global */
-    h1, h2, h3 {
-        background: linear-gradient(120deg, #FFFFFF 0%, #E2E8F0 80%, #94A3B8 100%);
-        -webkit-background-clip: text !important;
-        -webkit-text-fill-color: transparent !important;
+h1, h2, h3 {
+        color: #FFFFFF !important;
         text-shadow: 0 0 30px rgba(255, 255, 255, 0.15);
         font-weight: 800 !important;
         letter-spacing: -0.5px !important;
@@ -2561,6 +2559,22 @@ st.markdown("""
         color: rgba(255, 255, 255, 0.95) !important;
         font-weight: 400;
         letter-spacing: 0.3px;
+    }
+
+    /* EMOJI FIX - Prevent emojis from being colored white */
+    p, span, label, li, td, th, h1, h2, h3, h4, h5, h6 {
+        font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji' !important;
+    }
+    
+    /* Ensure emojis render in color */
+    .emoji, 
+    span[data-emoji],
+    .stMarkdown em,
+    h1 span, h2 span, h3 span, h4 span {
+        -webkit-text-fill-color: initial !important;
+        background: none !important;
+        -webkit-background-clip: unset !important;
+        color: inherit !important;
     }
     
 /* 3. INPUT BOXES (Standard State) */
