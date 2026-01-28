@@ -2808,66 +2808,61 @@ div[data-testid="stSlider"] div[data-testid="stTickBarMax"] {
         background-color: rgba(96, 165, 250, 0.3) !important;
     }
 
-/* 5. EXPANDER BOXES - COMPREHENSIVE FIX */
-/* Expander header (collapsed state) */
-details[data-testid="stExpander"] {
-    background-color: rgba(0, 0, 0, 0.3) !important;
-    border: 1px solid rgba(255, 255, 255, 0.1) !important;
-    border-radius: 12px !important;
-}
-
-details[data-testid="stExpander"] summary {
-    background-color: rgba(0, 0, 0, 0.3) !important;
-    color: #FFFFFF !important;
-}
-
-details[data-testid="stExpander"] summary:hover {
-    background-color: rgba(96, 165, 250, 0.2) !important;
-}
-
-/* Expander content (expanded state) */
-details[data-testid="stExpander"] > div[data-testid="stExpanderDetails"] {
+//* 5. EXPANDER BOXES - COMPLETE FIX */
+/* Main expander container */
+[data-testid="stExpander"] {
     background-color: rgba(15, 23, 42, 0.95) !important;
-    border: none !important;
-    border-top: 1px solid rgba(255, 255, 255, 0.1) !important;
-}
-
-/* All text inside expanders */
-details[data-testid="stExpander"] p,
-details[data-testid="stExpander"] span,
-details[data-testid="stExpander"] li,
-details[data-testid="stExpander"] code,
-details[data-testid="stExpander"] label {
-    color: #FFFFFF !important;
-}
-
-/* Code blocks inside expanders */
-details[data-testid="stExpander"] pre {
-    background-color: rgba(0, 0, 0, 0.4) !important;
-    border: 1px solid rgba(255, 255, 255, 0.1) !important;
-}
-
-details[data-testid="stExpander"] code {
-    background-color: rgba(0, 0, 0, 0.4) !important;
-    color: #81C784 !important;
-}
-
-/* Legacy expander selectors (for older Streamlit versions) */
-.streamlit-expanderHeader {
-    background-color: rgba(0, 0, 0, 0.3) !important;
-    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
     border-radius: 12px !important;
+    overflow: hidden !important;
+}
+
+/* Expander header/summary */
+[data-testid="stExpander"] summary {
+    background-color: rgba(0, 0, 0, 0.3) !important;
+    color: #FFFFFF !important;
+    padding: 12px 16px !important;
+    font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Noto Color Emoji' !important;
+}
+
+/* CRITICAL: Fix the expander arrow and text */
+[data-testid="stExpander"] summary span {
+    color: #FFFFFF !important;
+    -webkit-text-fill-color: #FFFFFF !important;
+    background: none !important;
+    -webkit-background-clip: unset !important;
+    background-clip: unset !important;
+}
+
+/* Fix the SVG arrow icon */
+[data-testid="stExpander"] summary svg {
+    fill: #FFFFFF !important;
     color: #FFFFFF !important;
 }
 
-.streamlit-expanderContent {
+/* Expander content area */
+[data-testid="stExpander"] [data-testid="stExpanderDetails"] {
     background-color: rgba(15, 23, 42, 0.95) !important;
-    border-radius: 0 0 12px 12px !important;
-    border: 1px solid rgba(255, 255, 255, 0.1) !important;
-    border-top: none !important;
+    padding: 16px !important;
+}
+
+/* All text inside expander content */
+[data-testid="stExpander"] [data-testid="stExpanderDetails"] p,
+[data-testid="stExpander"] [data-testid="stExpanderDetails"] span,
+[data-testid="stExpander"] [data-testid="stExpanderDetails"] li,
+[data-testid="stExpander"] [data-testid="stExpanderDetails"] code {
     color: #FFFFFF !important;
 }
 
+/* Code blocks in expanders */
+[data-testid="stExpander"] pre {
+    background-color: rgba(0, 0, 0, 0.4) !important;
+    color: #E2E8F0 !important;
+}
+
+[data-testid="stExpander"] pre code {
+    color: #E2E8F0 !important;
+}
 /* 5b. EXPANDER NUCLEAR FIX */
 /* Target ALL possible expander elements */
 [data-testid="stExpander"] {
