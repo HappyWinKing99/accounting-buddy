@@ -2554,6 +2554,33 @@ h1, h2, h3 {
         font-weight: 800 !important;
         letter-spacing: -0.5px !important;
     }
+
+    /* FIX EXPANDER ARROWS - Prevent emoji shortcodes from breaking */
+    [data-testid="stExpander"] summary svg {
+        color: #FFFFFF !important;
+        fill: #FFFFFF !important;
+    }
+    
+    /* Fix for Streamlit's internal emoji rendering */
+    .stExpander span,
+    details summary span,
+    [data-testid="stExpander"] summary span {
+        -webkit-text-fill-color: initial !important;
+        background: none !important;
+        -webkit-background-clip: unset !important;
+        background-clip: unset !important;
+    }
+    
+    /* Ensure expander text renders properly */
+    [data-testid="stExpander"] summary > span {
+        color: #FFFFFF !important;
+        -webkit-text-fill-color: #FFFFFF !important;
+    }
+    
+    /* Hide broken emoji text codes */
+    [data-testid="stExpander"] summary {
+        font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Noto Color Emoji' !important;
+    }
     
     p, span, label, li, td, th { 
         color: rgba(255, 255, 255, 0.95) !important;
