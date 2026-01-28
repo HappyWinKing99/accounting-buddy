@@ -2696,6 +2696,22 @@ p, span, label, li, td, th, h1, h2, h3, h4, h5, h6, summary, button {
 
 /* 4. DROPDOWN MENU FIX - COMPREHENSIVE */
 /* Main selectbox container */
+
+/* FORCE SELECTED VALUE TO BE WHITE */
+    div[data-baseweb="select"] div {
+        color: #FFFFFF !important; 
+        -webkit-text-fill-color: #FFFFFF !important;
+    }
+    
+    /* Force the container text to be white */
+    .stSelectbox div[data-baseweb="select"] span {
+        color: #FFFFFF !important;
+    }
+    
+    /* Force input text (if searchable) to be white */
+    input[role="combobox"] {
+        color: #FFFFFF !important;
+    }
 div[data-baseweb="select"] > div {
     background-color: rgba(0, 0, 0, 0.3) !important;
     border-color: rgba(255, 255, 255, 0.15) !important;
