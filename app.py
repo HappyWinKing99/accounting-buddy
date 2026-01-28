@@ -3156,6 +3156,22 @@ pre code span {
     
     [data-testid="stDecoration"] {
         display: none !important;
+        /* PLOTLY CHART BACKGROUND FIX */
+    .js-plotly-plot, 
+    .plotly,
+    .plot-container,
+    .svg-container {
+        background-color: transparent !important;
+        background: transparent !important;
+    }
+
+    [data-testid="stPlotlyChart"] > div {
+        background-color: transparent !important;
+    }
+
+    [data-testid="stPlotlyChart"] {
+        background-color: transparent !important;
+    }
     </style>
 """, unsafe_allow_html=True)
 
@@ -4630,7 +4646,7 @@ elif page == "🗺️ Concept Maps":
             # Fixed - Per Unit (decreases)
             fig.add_trace(go.Scatter(x=units[1:], y=[200/u for u in units[1:]], mode='lines', line=dict(color='#F44336', width=3), name='Fixed/Unit'), row=2, col=2)
             
-            fig.update_layout(height=500, showlegend=False, plot_bgcolor='#0E1117', paper_bgcolor='#0E1117', font=dict(color='white'))
+            fig.update_layout(height=500, showlegend=False, plot_bgcolor='rgba(0,0,0,0)', paper_bgcolor='rgba(0,0,0,0)', font=dict(color='white'))
             fig.update_xaxes(title_text="Units", gridcolor='#2D2D4A')
             fig.update_yaxes(title_text="$", gridcolor='#2D2D4A')
             
