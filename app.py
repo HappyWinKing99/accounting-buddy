@@ -4878,7 +4878,7 @@ elif page == "🗺️ Concept Maps":
             with col1:
                 st.markdown("""
                 <div style='background: linear-gradient(145deg, #1565C0, #0D47A1); padding: 25px; border-radius: 15px;'>
-                    <h3 style='color: #FFF; text-align: center;'>📤 FOR AGI</h3>
+                    <h3 style='color: #FFF; text-align: center;'>FOR AGI</h3>
                     <p style='color: #90CAF9; text-align: center;'>(Above the Line)</p>
                     <hr style='border-color: #1976D2;'>
                     <ul style='color: #FFF;'>
@@ -4900,7 +4900,7 @@ elif page == "🗺️ Concept Maps":
             with col2:
                 st.markdown("""
                 <div style='background: linear-gradient(145deg, #7B1FA2, #4A148C); padding: 25px; border-radius: 15px;'>
-                    <h3 style='color: #FFF; text-align: center;'>📥 FROM AGI</h3>
+                    <h3 style='color: #FFF; text-align: center;'>FROM AGI</h3>
                     <p style='color: #CE93D8; text-align: center;'>(Below the Line)</p>
                     <hr style='border-color: #8E24AA;'>
                     <p style='color: #FFF;'><b>Choose Greater Of:</b></p>
