@@ -2674,6 +2674,42 @@ div[data-testid="stSlider"] div[data-testid="stTickBarMax"] {
     color: #FFFFFF !important;
 }
 
+/* DROPDOWN OPTIONS LIST - NUCLEAR FIX */
+    div[data-baseweb="popover"] > div {
+        background-color: #0f172a !important;
+    }
+    
+    div[data-baseweb="popover"] > div > div {
+        background-color: #0f172a !important;
+    }
+    
+    div[data-baseweb="popover"] > div > div > ul {
+        background-color: #0f172a !important;
+    }
+    
+    div[data-baseweb="popover"] > div > div > ul > li {
+        background-color: #0f172a !important;
+        color: #FFFFFF !important;
+    }
+    
+    div[data-baseweb="popover"] > div > div > ul > li:hover {
+        background-color: rgba(96, 165, 250, 0.3) !important;
+    }
+    
+    /* Target the listbox specifically */
+    ul[role="listbox"] {
+        background-color: #0f172a !important;
+    }
+    
+    ul[role="listbox"] li {
+        background-color: #0f172a !important;
+        color: #FFFFFF !important;
+    }
+    
+    ul[role="listbox"] li:hover {
+        background-color: rgba(96, 165, 250, 0.3) !important;
+    }
+
 /* 5. EXPANDER BOXES - COMPREHENSIVE FIX */
 /* Expander header (collapsed state) */
 details[data-testid="stExpander"] {
