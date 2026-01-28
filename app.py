@@ -3344,32 +3344,39 @@ section[data-testid="stSidebar"] .stButton > button[kind="primary"] {
         background-color: transparent !important;
     }
 
-    /* NUCLEAR FIX FOR STREAMLIT ARROW ICONS */
-/* Hide any text-based arrow fallbacks */
-summary span:not([data-testid]) {
-    font-size: 0 !important;
+/* EXPANDER TEXT FIX */
+[data-testid="stExpander"] summary {
+    color: #FFFFFF !important;
 }
 
-summary span:not([data-testid])::before {
+[data-testid="stExpander"] summary span {
+    color: #FFFFFF !important;
     font-size: 1rem !important;
-    content: "" !important;
+    display: inline !important;
+    visibility: visible !important;
 }
 
-/* Force SVG icons to show */
-[data-testid="stExpander"] summary > svg,
-details summary svg {
+[data-testid="stExpander"] summary svg {
+    fill: #FFFFFF !important;
     display: inline-block !important;
     visibility: visible !important;
-    opacity: 1 !important;
-    width: 1rem !important;
-    height: 1rem !important;
-    fill: #FFFFFF !important;
-    margin-right: 8px !important;
 }
 
-/* Hide the broken text completely */
-summary > span:first-child:not([data-testid="stMarkdownContainer"]) {
-    display: none !important;
+/* SIDEBAR COLLAPSE BUTTON FIX */
+button[data-testid="stSidebarCollapseButton"] {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    background: rgba(0, 0, 0, 0.3) !important;
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    border-radius: 8px !important;
+}
+
+button[data-testid="stSidebarCollapseButton"] svg {
+    fill: #FFFFFF !important;
+    stroke: #FFFFFF !important;
+    display: block !important;
+    visibility: visible !important;
 }
     </style>
 """, unsafe_allow_html=True)
