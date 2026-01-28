@@ -3378,6 +3378,63 @@ button[data-testid="stSidebarCollapseButton"] svg {
     display: block !important;
     visibility: visible !important;
 }
+
+/* HIDE MATERIAL ICON TEXT AND REPLACE WITH CSS ARROWS */
+/* Hide the "keyboard_arrow_right" text */
+[data-testid="stExpander"] summary > span:first-child {
+    font-size: 0 !important;
+    width: 20px !important;
+    height: 20px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+[data-testid="stExpander"] summary > span:first-child::before {
+    content: "▶" !important;
+    font-size: 0.8rem !important;
+    color: #FFFFFF !important;
+    display: inline-block !important;
+}
+
+[data-testid="stExpander"][open] summary > span:first-child::before {
+    content: "▼" !important;
+}
+
+/* Ensure expander label text is visible */
+[data-testid="stExpander"] summary > span:last-child,
+[data-testid="stExpander"] summary [data-testid="stMarkdownContainer"] {
+    font-size: 1rem !important;
+    color: #FFFFFF !important;
+    display: inline !important;
+    visibility: visible !important;
+}
+
+/* SIDEBAR TOGGLE BUTTON - Make it visible */
+[data-testid="collapsedControl"] {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    position: fixed !important;
+    left: 0 !important;
+    top: 50% !important;
+    z-index: 999999 !important;
+    background: rgba(15, 23, 42, 0.95) !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    border-radius: 0 8px 8px 0 !important;
+    padding: 10px 5px !important;
+}
+
+[data-testid="collapsedControl"] svg {
+    fill: #FFFFFF !important;
+    stroke: #FFFFFF !important;
+    width: 24px !important;
+    height: 24px !important;
+}
+
+[data-testid="collapsedControl"]:hover {
+    background: rgba(96, 165, 250, 0.3) !important;
+}
     </style>
 """, unsafe_allow_html=True)
 
