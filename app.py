@@ -3322,6 +3322,34 @@ pre code span {
     [data-testid="stPlotlyChart"] {
         background-color: transparent !important;
     }
+
+    /* NUCLEAR FIX FOR STREAMLIT ARROW ICONS */
+/* Hide any text-based arrow fallbacks */
+summary span:not([data-testid]) {
+    font-size: 0 !important;
+}
+
+summary span:not([data-testid])::before {
+    font-size: 1rem !important;
+    content: "" !important;
+}
+
+/* Force SVG icons to show */
+[data-testid="stExpander"] summary > svg,
+details summary svg {
+    display: inline-block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    width: 1rem !important;
+    height: 1rem !important;
+    fill: #FFFFFF !important;
+    margin-right: 8px !important;
+}
+
+/* Hide the broken text completely */
+summary > span:first-child:not([data-testid="stMarkdownContainer"]) {
+    display: none !important;
+}
     </style>
 """, unsafe_allow_html=True)
 
