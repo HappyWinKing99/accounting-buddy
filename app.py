@@ -3359,7 +3359,6 @@ summary > span:first-child:not([data-testid="stMarkdownContainer"]) {
 """, unsafe_allow_html=True)
 
 
-/* FIXED HEADER: Keeps the sidebar arrow visible but background clear */
     header[data-testid="stHeader"] {
         background-color: transparent !important;
         background: transparent !important;
