@@ -2548,81 +2548,19 @@ st.markdown("""
     }
     
     /* 2. TEXT STYLING - Global */
-h1, h2, h3 {
-        color: #FFFFFF !important;
+    h1, h2, h3 {
+        background: linear-gradient(120deg, #FFFFFF 0%, #E2E8F0 80%, #94A3B8 100%);
+        -webkit-background-clip: text !important;
+        -webkit-text-fill-color: transparent !important;
         text-shadow: 0 0 30px rgba(255, 255, 255, 0.15);
         font-weight: 800 !important;
         letter-spacing: -0.5px !important;
-    }
-
-    /* FIX EXPANDER ARROWS - Prevent emoji shortcodes from breaking */
-    [data-testid="stExpander"] summary svg {
-        color: #FFFFFF !important;
-        fill: #FFFFFF !important;
-    }
-    
-    /* Fix for Streamlit's internal emoji rendering */
-    .stExpander span,
-    details summary span,
-    [data-testid="stExpander"] summary span {
-        -webkit-text-fill-color: initial !important;
-        background: none !important;
-        -webkit-background-clip: unset !important;
-        background-clip: unset !important;
-    }
-    
-    /* Ensure expander text renders properly */
-    [data-testid="stExpander"] summary > span {
-        color: #FFFFFF !important;
-        -webkit-text-fill-color: #FFFFFF !important;
-    }
-    
-    /* Hide broken emoji text codes */
-    [data-testid="stExpander"] summary {
-        font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Noto Color Emoji' !important;
     }
     
     p, span, label, li, td, th { 
         color: rgba(255, 255, 255, 0.95) !important;
         font-weight: 400;
         letter-spacing: 0.3px;
-    }
-
-/* EMOJI FIX - Render emojis in color, not white */
-/* Add emoji fonts to all text elements */
-p, span, label, li, td, th, h1, h2, h3, h4, h5, h6, summary, button {
-    font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji' !important;
-}
-
-/* Ensure emojis render in color - but DON'T break text color */
-.stMarkdown em {
-    -webkit-text-fill-color: initial !important;
-    background: none !important;
-    -webkit-background-clip: unset !important;
-}
-
-/* Fix Streamlit's internal icon/emoji rendering */
-[data-testid="stExpander"] summary span[data-testid="stMarkdownContainer"],
-[data-testid="stExpander"] summary > span:first-child {
-    -webkit-text-fill-color: #FFFFFF !important;
-}
-
-/* Ensure the expander toggle icon renders */
-[data-testid="stExpander"] summary svg {
-    display: inline-block !important;
-    visibility: visible !important;
-    fill: currentColor !important;
-}
-    
-    /* Ensure emojis render in color */
-    .emoji, 
-    span[data-emoji],
-    .stMarkdown em,
-    h1 span, h2 span, h3 span, h4 span {
-        -webkit-text-fill-color: initial !important;
-        background: none !important;
-        -webkit-background-clip: unset !important;
-        color: inherit !important;
     }
     
 /* 3. INPUT BOXES (Standard State) */
@@ -2696,22 +2634,6 @@ p, span, label, li, td, th, h1, h2, h3, h4, h5, h6, summary, button {
 
 /* 4. DROPDOWN MENU FIX - COMPREHENSIVE */
 /* Main selectbox container */
-
-/* FORCE SELECTED VALUE TO BE WHITE */
-    div[data-baseweb="select"] div {
-        color: #FFFFFF !important; 
-        -webkit-text-fill-color: #FFFFFF !important;
-    }
-    
-    /* Force the container text to be white */
-    .stSelectbox div[data-baseweb="select"] span {
-        color: #FFFFFF !important;
-    }
-    
-    /* Force input text (if searchable) to be white */
-    input[role="combobox"] {
-        color: #FFFFFF !important;
-    }
 div[data-baseweb="select"] > div {
     background-color: rgba(0, 0, 0, 0.3) !important;
     border-color: rgba(255, 255, 255, 0.15) !important;
@@ -2845,61 +2767,66 @@ div[data-testid="stSlider"] div[data-testid="stTickBarMax"] {
         background-color: rgba(96, 165, 250, 0.3) !important;
     }
 
-//* 5. EXPANDER BOXES - COMPLETE FIX */
-/* Main expander container */
-[data-testid="stExpander"] {
-    background-color: rgba(15, 23, 42, 0.95) !important;
-    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+/* 5. EXPANDER BOXES - COMPREHENSIVE FIX */
+/* Expander header (collapsed state) */
+details[data-testid="stExpander"] {
+    background-color: rgba(0, 0, 0, 0.3) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
     border-radius: 12px !important;
-    overflow: hidden !important;
 }
 
-/* Expander header/summary */
-[data-testid="stExpander"] summary {
+details[data-testid="stExpander"] summary {
     background-color: rgba(0, 0, 0, 0.3) !important;
     color: #FFFFFF !important;
-    padding: 12px 16px !important;
-    font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Noto Color Emoji' !important;
 }
 
-/* CRITICAL: Fix the expander arrow and text */
-[data-testid="stExpander"] summary span {
-    color: #FFFFFF !important;
-    -webkit-text-fill-color: #FFFFFF !important;
-    background: none !important;
-    -webkit-background-clip: unset !important;
-    background-clip: unset !important;
+details[data-testid="stExpander"] summary:hover {
+    background-color: rgba(96, 165, 250, 0.2) !important;
 }
 
-/* Fix the SVG arrow icon */
-[data-testid="stExpander"] summary svg {
-    fill: #FFFFFF !important;
-    color: #FFFFFF !important;
-}
-
-/* Expander content area */
-[data-testid="stExpander"] [data-testid="stExpanderDetails"] {
+/* Expander content (expanded state) */
+details[data-testid="stExpander"] > div[data-testid="stExpanderDetails"] {
     background-color: rgba(15, 23, 42, 0.95) !important;
-    padding: 16px !important;
+    border: none !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.1) !important;
 }
 
-/* All text inside expander content */
-[data-testid="stExpander"] [data-testid="stExpanderDetails"] p,
-[data-testid="stExpander"] [data-testid="stExpanderDetails"] span,
-[data-testid="stExpander"] [data-testid="stExpanderDetails"] li,
-[data-testid="stExpander"] [data-testid="stExpanderDetails"] code {
+/* All text inside expanders */
+details[data-testid="stExpander"] p,
+details[data-testid="stExpander"] span,
+details[data-testid="stExpander"] li,
+details[data-testid="stExpander"] code,
+details[data-testid="stExpander"] label {
     color: #FFFFFF !important;
 }
 
-/* Code blocks in expanders */
-[data-testid="stExpander"] pre {
+/* Code blocks inside expanders */
+details[data-testid="stExpander"] pre {
     background-color: rgba(0, 0, 0, 0.4) !important;
-    color: #E2E8F0 !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
 }
 
-[data-testid="stExpander"] pre code {
-    color: #E2E8F0 !important;
+details[data-testid="stExpander"] code {
+    background-color: rgba(0, 0, 0, 0.4) !important;
+    color: #81C784 !important;
 }
+
+/* Legacy expander selectors (for older Streamlit versions) */
+.streamlit-expanderHeader {
+    background-color: rgba(0, 0, 0, 0.3) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    border-radius: 12px !important;
+    color: #FFFFFF !important;
+}
+
+.streamlit-expanderContent {
+    background-color: rgba(15, 23, 42, 0.95) !important;
+    border-radius: 0 0 12px 12px !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    border-top: none !important;
+    color: #FFFFFF !important;
+}
+
 /* 5b. EXPANDER NUCLEAR FIX */
 /* Target ALL possible expander elements */
 [data-testid="stExpander"] {
@@ -3306,13 +3233,9 @@ pre code span {
         box-shadow: 0 4px 15px rgba(96, 165, 250, 0.2) !important;
     }
     
-section[data-testid="stSidebar"] .stButton > button[kind="primary"] {
-    background: linear-gradient(145deg, rgba(96, 165, 250, 0.3), rgba(139, 92, 246, 0.2)) !important;
-    border: 1px solid rgba(96, 165, 250, 0.5) !important;
-    color: #FFFFFF !important;
-}
-
-/* Hide the white top toolbar/header bar */
+    section[data-testid="stSidebar"] .stButton > button[kind="primary"] {
+        background: linear-gradient(145deg, rgba(96, 165, 250, 0.3), rgba(139, 92, 246, 0.2)) !important;
+        border: 1px soli
 
 /* Hide the white top toolbar/header bar */
     header[data-testid="stHeader"] {
@@ -3327,7 +3250,6 @@ section[data-testid="stSidebar"] .stButton > button[kind="primary"] {
     [data-testid="stDecoration"] {
         display: none !important;
         /* PLOTLY CHART BACKGROUND FIX */
-         }
     .js-plotly-plot, 
     .plotly,
     .plot-container,
@@ -3343,102 +3265,8 @@ section[data-testid="stSidebar"] .stButton > button[kind="primary"] {
     [data-testid="stPlotlyChart"] {
         background-color: transparent !important;
     }
-
-/* EXPANDER TEXT FIX */
-[data-testid="stExpander"] summary {
-    color: #FFFFFF !important;
-}
-
-[data-testid="stExpander"] summary span {
-    color: #FFFFFF !important;
-    font-size: 1rem !important;
-    display: inline !important;
-    visibility: visible !important;
-}
-
-[data-testid="stExpander"] summary svg {
-    fill: #FFFFFF !important;
-    display: inline-block !important;
-    visibility: visible !important;
-}
-
-/* SIDEBAR COLLAPSE BUTTON FIX */
-button[data-testid="stSidebarCollapseButton"] {
-    display: flex !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-    background: rgba(0, 0, 0, 0.3) !important;
-    border: 1px solid rgba(255, 255, 255, 0.15) !important;
-    border-radius: 8px !important;
-}
-
-button[data-testid="stSidebarCollapseButton"] svg {
-    fill: #FFFFFF !important;
-    stroke: #FFFFFF !important;
-    display: block !important;
-    visibility: visible !important;
-}
-
-/* HIDE MATERIAL ICON TEXT AND REPLACE WITH CSS ARROWS */
-/* Hide the "keyboard_arrow_right" text */
-[data-testid="stExpander"] summary > span:first-child {
-    font-size: 0 !important;
-    width: 20px !important;
-    height: 20px !important;
-    display: inline-flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-}
-
-[data-testid="stExpander"] summary > span:first-child::before {
-    content: "▶" !important;
-    font-size: 0.8rem !important;
-    color: #FFFFFF !important;
-    display: inline-block !important;
-}
-
-[data-testid="stExpander"][open] summary > span:first-child::before {
-    content: "▼" !important;
-}
-
-/* Ensure expander label text is visible */
-[data-testid="stExpander"] summary > span:last-child,
-[data-testid="stExpander"] summary [data-testid="stMarkdownContainer"] {
-    font-size: 1rem !important;
-    color: #FFFFFF !important;
-    display: inline !important;
-    visibility: visible !important;
-}
-
-/* SIDEBAR TOGGLE BUTTON - Make it visible */
-[data-testid="collapsedControl"] {
-    display: flex !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-    position: fixed !important;
-    left: 0 !important;
-    top: 50% !important;
-    z-index: 999999 !important;
-    background: rgba(15, 23, 42, 0.95) !important;
-    border: 1px solid rgba(255, 255, 255, 0.2) !important;
-    border-radius: 0 8px 8px 0 !important;
-    padding: 10px 5px !important;
-}
-
-[data-testid="collapsedControl"] svg {
-    fill: #FFFFFF !important;
-    stroke: #FFFFFF !important;
-    width: 24px !important;
-    height: 24px !important;
-}
-
-[data-testid="collapsedControl"]:hover {
-    background: rgba(96, 165, 250, 0.3) !important;
-}
     </style>
 """, unsafe_allow_html=True)
-
-
 
 # ============================================================================
 # SIDEBAR NAVIGATION - LIQUID GLASS THEME (FIXED)
